@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 const Form = () => {
-  const forgetPassword = () => {
-    alert('Hello');
+  const signIn = () => {
+    fetch('localhost:8080')
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   };
   return (
     <Container>
@@ -12,7 +15,7 @@ const Form = () => {
         <Input type="text" placeholder="Tài khoản" />
         <Input type="password" placeholder="Mật khẩu" />
         <div>
-          <Button onClick={forgetPassword}>Đăng nhập</Button>
+          <Button onClick={signIn}>Đăng nhập</Button>
           <span>Quên mật khẩu?</span>
         </div>
       </div>
