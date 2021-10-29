@@ -1,0 +1,36 @@
+{
+    "User": {
+            "username": "String",
+            "password": "String",
+            "id": "Number",
+            "role": "String",
+            "name": "String",
+            "dateOfBirth": "String",
+            "email": "String",
+            "town": "String"
+    },
+    
+    "Student": {
+        "id": "Number",
+        "class_id": "Number"
+    },
+
+    "Teacher": {
+        "id": "Number",
+        "class_ids": "Array"
+    },
+
+    "ScoreTable": {
+        "user_id": "Number",
+        "semester": "String",
+        "gpa": "Number",
+        "cpa": "Number",
+        "drl": "Number"
+    },
+
+    "Class": {
+        "id": "Number",
+        "user_ids": "Array"
+    }
+}
+
