@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 const Form = () => {
-  const signIn = () => {
-    fetch('localhost:8080')
+  const signIn = (e) => {
+    fetch('http://localhost:8080/login', {
+      method: 'post'
+    })
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
+      e.preventDefault();
   };
   return (
     <Container>

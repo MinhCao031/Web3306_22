@@ -10,10 +10,11 @@ module.exports.renderLogin = (req, res) => {
 
 module.exports.login = async function(req, res) {
     res.set('Access-Control-Allow-Origin', '*');
-
+    console.log("OK");
     const { username } = req.body;
     const user = await User.findOne({ username: '19021363' });
     res.json({
+        auth: true,
         firstName: user.firstName,
         lastName: user.lastName,
         role: user.role
