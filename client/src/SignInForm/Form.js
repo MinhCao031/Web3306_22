@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
@@ -26,7 +27,9 @@ const Form = () => {
         </InputField>
         <div className="wrapper">
           <Button onClick={signIn}>Đăng nhập</Button>
-          <span>Quên mật khẩu?</span>
+          <span>
+            <Link to="/forget">Quên mật khẩu?</Link>
+          </span>
         </div>
       </div>
     </Container>
@@ -57,8 +60,8 @@ const Container = styled.form`
   div > span {
     margin-left: 35px;
     color: #0ba1f5;
-    text-decoration: underline;
     cursor: pointer;
+    text-decoration: underline;
   }
   div > span:hover {
     color: red;
