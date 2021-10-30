@@ -5,11 +5,13 @@ import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 const Form = () => {
   const signIn = (e) => {
-    fetch('localhost:8080')
+    fetch('http://localhost:8080/login', {
+      method: 'post'
+    })
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
-    e.preventDefault();
+      e.preventDefault();
   };
   return (
     <Container>

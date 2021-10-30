@@ -48,6 +48,7 @@ app.use((req, res) => {
     res.send('Not found');
 });
 
-app.listen(8080, () => {
-    console.log('Listening at port 3000');
+var port = 8080
+app.listen(port, () => {
+    console.log(`Server connected on port ${port}`);
 });
