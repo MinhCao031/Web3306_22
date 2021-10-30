@@ -1,15 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from './Header';
-import Body from './Body';
-import Footer from './Footer';
+import Header from './components/Header';
+import Body from './components/Body';
+import Footer from './components/Footer';
 const App = () => {
   return (
-    <Container>
-      <Header />
-      <Body />
-      <Footer />
-    </Container>
+    <>
+      <Container>
+        <Header />
+        <Body />
+        <Footer />
+      </Container>
+    </>
   );
 };
 const Container = styled.div`
