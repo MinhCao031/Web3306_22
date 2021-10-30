@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import Header from './Header';
 import Body from './Body';
 import Footer from './Footer';
-const App = () => {
+import styled from 'styled-components';
+const SignInForm = () => {
   return (
     <Container>
       <Header />
@@ -18,6 +18,5 @@ const Container = styled.div`
   margin: 20px auto;
   border-radius: 27px;
   box-shadow: 0 0 12px 0 hsl(0deg 0% 48% / 45%);
-}
 `;
-export default App;
+export default SignInForm;
