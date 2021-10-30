@@ -7,12 +7,12 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 const Form = () => {
   const signIn = (e) => {
     fetch('http://localhost:8080/login', {
-      method: 'post'
+      method: 'post',
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
-      e.preventDefault();
+    e.preventDefault();
   };
   return (
     <Container>
