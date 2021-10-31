@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import CustomDialog from './CustomDialog';
 import axios from 'axios';
+import { useHistory } from 'react-router';
+
 const Form = () => {
   const [user, setUser] = useState({
     username: '',
     password: '',
   });
+  let [message, setMessage] = useState('');
+  const history = useHistory();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -21,19 +25,26 @@ const Form = () => {
     const { username, password } = user;
     if (username && password) {
       axios
-        .get('http://localhost:3000/users/3')
+        .get('http://localhost:3000/users/2')
         .then((res) => {
-          console.log(res.data);
+          if (res.data.auth === false) {
+            setMessage('Tài khoản hoặc mật khẩu không hợp lệ!!!!!');
+          } else {
+            if (res.data.role === 'student') {
+              history.push('/studentHomepage');
+            } else if (res.data.role === 'teacher') {
+              history.push('/teacherHomepage');
+            }
+          }
         })
         .catch((err) => console.log(err));
     } else {
-      alert('Hãy điền đầy đủ thông tin');
+      setMessage('Vui lòng điền đầy đủ tài khoản và mật khẩu!!!!!!');
     }
     e.preventDefault();
   };
   return (
     <Container>
-      {console.log(user)}
       <div className="wrapper">
         <h1>UET-SMTA</h1>
         <p>UET Student Management for Teaching Assistant </p>
@@ -45,6 +56,7 @@ const Form = () => {
             name="username"
             value={user.username}
             onChange={handleChange}
+            onClick={() => setMessage('')}
           />
         </InputField>
         <InputField>
@@ -55,15 +67,22 @@ const Form = () => {
             name="password"
             value={user.password}
             onChange={handleChange}
+            onClick={() => setMessage('')}
           />
         </InputField>
         <div className="wrapper">
           <Button onClick={signIn}>Đăng nhập</Button>
-          <span>
-            <Link to="/forget">Quên mật khẩu?</Link>
-          </span>
+          <CustomDialog
+            value="Quên mật khẩu?"
+            title="Quên mật khẩu?"
+            type="span"
+          >
+            Vui lòng liên hệ với phòng đào tạo theo số điện thoại 0123456789
+            hoặc pđt@gmail.com để được hỗ trợ.
+          </CustomDialog>
         </div>
       </div>
+      <ErrorMessage>{message}</ErrorMessage>
     </Container>
   );
 };
@@ -87,10 +106,12 @@ const Container = styled.form`
     font-weight: 700;
   }
   div > .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 35px 40px;
   }
   div > span {
-    margin-left: 35px;
     color: #0ba1f5;
     cursor: pointer;
     text-decoration: underline;
@@ -116,9 +137,9 @@ const Button = styled.button`
   padding: 12px 30px;
   border-radius: 20px;
   border: none;
+  font-size: 15px;
   color: #f6f5f5;
   background-image: linear-gradient(to right, #9ee7ff, #5ea4ff);
-  font-size: 15px;
   transition-timing-function: ease-in;
   &:hover {
     color: rgb(115, 129, 143);
@@ -127,5 +148,9 @@ const Button = styled.button`
 `;
 const InputField = styled.div`
   position: relative;
+`;
+const ErrorMessage = styled.div`
+  text-align: center;
+  color: red;
 `;
 export default Form;
