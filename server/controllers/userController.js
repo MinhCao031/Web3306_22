@@ -1,33 +1,23 @@
 const User = require('../models/user');
+const express = require('express');
 const session = require('express-session');
-
 
 // This function is for testing purpose only!
 module.exports.renderLogin = (req, res) => {
-    // res.set('Access-Control-Allow-Origin', '*');
-    // res.json({ auth: true });
-    // res.send();
     res.render('users/login');
 };
 
 // This function should be authenticated by middleware function.
 module.exports.login = async function(req, res) {
-    const { username, password } = req.body;
-    console.log(req.body);
-
-    // '19021363' username is for testing purpose only, please use username in request.body instead.
-    const user = await User.findOne({ username: username }); 
-    if (user) {
-        res.json({
-            auth: true,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            role: user.role
-        });
-        res.send();
-    } else {
-        console.log("not found")
-    }    
+    const user = await User.findOne({ username: req.body.username });
+    res.json({
+        auth: true,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role
+    });
+    res.send();
 };
 
 // This function is for testing purpose only!
@@ -62,18 +52,18 @@ module.exports.update = async function(req, res) {
 
     const query = {
         username: id
-    }
+    };
 
     const user = await User.findOneAndUpdate(query, {
         firstName: firstName,
         lastName: lastName,
         email: email,
         phoneNumber: phoneNumber
-    })
+    });
     await user.save();
-    
+
     res.json({
-        status: "OK"
-    })
-    res.send()
+        status: 'OK'
+    });
+    res.send();
 };
