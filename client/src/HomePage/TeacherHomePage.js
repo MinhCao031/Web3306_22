@@ -1,7 +1,8 @@
 import React from 'react';
+import Navbar from './components/Navbar';
 
 const TeacherHomePage = ({ firstName, lastName, role }) => {
-  return <div>Teacher Homepage</div>;
+    return <Navbar />
 };
 
 export default TeacherHomePage;
