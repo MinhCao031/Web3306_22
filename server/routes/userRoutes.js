@@ -7,9 +7,8 @@ const router = express.Router();
 
 router
     .route('/login')
-    // .get(users.renderLogin) // Delete this line if you only want to render html files from client side.
-    .post(users.login);
-// .post(authenticate, users.login); // Uncomment this line and comment out the line above to use authenticate middleware
+    // .get(users.renderLogin) // Render ejs files, used for testing login functionality only.
+    .post(authenticate, users.login);
 
 router.route('/register').get(users.renderRegister).post(users.register);
 
