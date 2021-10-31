@@ -24,8 +24,26 @@ const Form = () => {
   const signIn = (e) => {
     const { username, password } = user;
     if (username && password) {
+      // Uncomment axios POST method below when finish bug fixing. 
+      // In the mean time, use axios GET method to get fake data for front pages routing.
+
+      // axios
+      //   .post('http://localhost:3000/login/2', user)
+      //   .then((res) => {
+      //     if (res.data.auth === false) {
+      //       setMessage('Tài khoản hoặc mật khẩu không hợp lệ!!!!!');
+      //     } else {
+      //       if (res.data.role === 'student') {
+      //         history.push('/studentHomepage');
+      //       } else if (res.data.role === 'teacher') {
+      //         history.push('/teacherHomepage');
+      //       }
+      //     }
+      //   })
+      //   .catch((err) => console.log(err.res));
+
       axios
-        .get('http://localhost:3000/users/2')
+        .get('http://localhost:3000/login/10012019')
         .then((res) => {
           if (res.data.auth === false) {
             setMessage('Tài khoản hoặc mật khẩu không hợp lệ!!!!!');
