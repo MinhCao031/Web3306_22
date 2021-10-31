@@ -1,31 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 const Form = () => {
+  const [user, setUser] = useState({
+    username: '',
+    password: '',
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
   const signIn = (e) => {
-    fetch('http://localhost:8080/login', {
-      method: 'post',
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+    const { username, password } = user;
+    if (username && password) {
+      axios
+        .get('http://localhost:3000/users/3')
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      alert('Hãy điền đầy đủ thông tin');
+    }
     e.preventDefault();
   };
   return (
     <Container>
+      {console.log(user)}
       <div className="wrapper">
         <h1>UET-SMTA</h1>
         <p>UET Student Management for Teaching Assistant </p>
         <InputField>
           <FontAwesomeIcon icon={faUserCircle} size="lg" style={iconStyle} />
-          <Input type="text" placeholder="Tài khoản" />
+          <Input
+            type="text"
+            placeholder="Tài khoản"
+            name="username"
+            value={user.username}
+            onChange={handleChange}
+          />
         </InputField>
         <InputField>
           <FontAwesomeIcon icon={faLock} size="lg" style={iconStyle} />
-          <Input type="password" placeholder="Mật khẩu" />
+          <Input
+            type="password"
+            placeholder="Mật khẩu"
+            name="password"
+            value={user.password}
+            onChange={handleChange}
+          />
         </InputField>
         <div className="wrapper">
           <Button onClick={signIn}>Đăng nhập</Button>
