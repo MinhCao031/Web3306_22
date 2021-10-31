@@ -1,5 +1,4 @@
 import React from 'react';
-
 const RetrievePassword = () => {
   return (
     <div>
@@ -7,5 +6,4 @@ const RetrievePassword = () => {
     </div>
   );
 };
-
 export default RetrievePassword;
