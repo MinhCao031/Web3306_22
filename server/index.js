@@ -4,6 +4,13 @@ const userRoutes = require('./routes/userRoutes');
 const session = require('express-session');
 
 const mongoose = require('mongoose');
+const cors=require("cors");
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
 
 const dbUrl = 'mongodb://localhost:27017/uet-smta-local';
 
@@ -20,6 +27,8 @@ mongoose
     });
 
 const app = express();
+
+app.use(cors(corsOptions));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -48,7 +57,7 @@ app.use((req, res) => {
     res.send('Not found');
 });
 
-var port = 8080
+var port = 5000
 app.listen(port, () => {
     console.log(`Server connected on port ${port}`);
 });
