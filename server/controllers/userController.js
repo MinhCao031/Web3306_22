@@ -3,29 +3,6 @@ const express = require('express');
 const session = require('express-session');
 
 // This function is for testing purpose only!
-module.exports.renderLogin = (req, res) => {
-    res.render('users/login');
-};
-
-// This function should be authenticated by middleware function.
-module.exports.login = async function(req, res) {
-    const user = await User.findOne({ username: req.body.username });
-    res.json({
-        auth: true,
-        username: user.username,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        role: user.role
-    });
-    res.send();
-};
-
-// This function is for testing purpose only!
-module.exports.renderRegister = (req, res) => {
-    res.render('users/register');
-};
-
-// This function is for testing purpose only!
 module.exports.register = async function(req, res) {
     const { username, password, firstName, lastName, role, email, phoneNumber } = req.body;
     const user = new User({
@@ -42,28 +19,76 @@ module.exports.register = async function(req, res) {
     res.redirect('homepage');
 };
 
-// This function is for testing purpose only!
-module.exports.renderUpdate = (req, res) => {
-    res.render('users/update');
+// This function should be authenticated by middleware function.
+module.exports.login = async function(req, res) {
+    const user = await User.findOne({ username: req.body.username });
+    const data = {
+        auth: true,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role
+    };
+    res.json(data);
 };
 
+// Need to validate request input from client side first, such as whether request's data empty or not.
 module.exports.update = async function(req, res) {
-    const { id, firstName, lastName, email, phoneNumber } = req.body;
+    const { id, firstName, lastName, email, phoneNumber, dateOfBirth } = req.body;
 
     const query = {
         username: id
     };
 
-    const user = await User.findOneAndUpdate(query, {
+    const update = {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        phoneNumber: phoneNumber
-    });
-    await user.save();
+        phoneNumber: phoneNumber,
+        dateOfBirth: dateOfBirth
+    };
 
-    res.json({
-        status: 'OK'
+    const user = await User.findOneAndUpdate(query, update);
+    await user.save().then(() => res.json({ status: 'OK' })).catch((err) => {
+        console.log(err);
+        res.json({ status: 'FAILED' });
     });
-    res.send();
+};
+
+module.exports.setPassword = async function(req, res) {
+    const { id, password } = req.body;
+
+    const query = {
+        username: id
+    };
+
+    const update = {
+        password: password
+    };
+
+    const user = await User.findOneAndUpdate(query, update);
+    await user.save()
+    .then(() => res.json({ status: 'OK' }))
+    .catch((err) => {
+        const response = {
+            error: err,
+            status: 'Failed'
+        }
+        res.json(response);
+    });
+};
+
+// This function is for testing purpose only!
+module.exports.renderRegister = (req, res) => {
+    res.render('users/register');
+};
+
+// This function is for testing purpose only!
+module.exports.renderLogin = (req, res) => {
+    res.render('users/login');
+};
+
+// This function is for testing purpose only!
+module.exports.renderUpdate = (req, res) => {
+    res.render('users/update');
 };
