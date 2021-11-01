@@ -17,7 +17,7 @@ module.exports.authenticate = async function(req, res, next) {
 
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.session.user_id) {
-        return res.redirect('/login');
+        res.json({ status: 'Login required'})
     }
     next();
 };
