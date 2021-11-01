@@ -53,7 +53,10 @@ This is the repository for web programming course in our university.
 # Todo
 
 - For frontend team:
-
+    + Change user info 
+    + Change user password
+    + Get the managed class & students
+    + Read a file
 - For backend team:
     + Update Change user info feature
     + Update Change user password feature
