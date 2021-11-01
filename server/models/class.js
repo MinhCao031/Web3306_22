@@ -10,7 +10,11 @@ const classSchema = new mongooes.Schema({
         type: String,
         required: true
     },
-    userIds: {
+    teacherId: {
+        type: Number,
+        required: true
+    },
+    studentIds: {
         type: [Number],
         required: true
     }
