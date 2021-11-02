@@ -15,6 +15,7 @@ function Navbar() {
     const showSidebar = () => setSidebar(!sidebar);
 
     const contentWidth = window.innerWidth;
+    const contentWidthActive = window.innerWidth - 260;
 
     return (
         <>
@@ -25,15 +26,14 @@ function Navbar() {
                     </Link>
                     <div className='profile'>
                         <IoIcons.IoMdNotifications style={{color: '#404E68'}} size={30} />
-                        <span className='profile-text'>Trần Văn Trọng Thành</span>
+                        <span className='profile-text'>Mai Nhật Quang</span>
                         <img alt={'Avatar'} src={boy}/>
                     </div>
                 </div>
             </IconContext.Provider>
-            <div className={sidebar ? 'content active' : 'content'} style={{maxWidth: contentWidth}} >
+            <div className={sidebar ? 'content active' : 'content'} style={ sidebar ? { maxWidth: contentWidthActive } : { maxWidth: contentWidth }} >
                 {/* add content like <Forum /> */}
                 <img src={'https://static.bongda24h.vn/medias/standard/2021/10/22/bruno-fernandes-len-tieng-ve-tuong-lai-hlv-solskjaer.jpg'} />
-                <br />
                 <span>I will add random shit here just to test if my sidebar and content is working perfectly. You don't need to read this anymore. Why do you still read? I said STOP!! Hey, I am not messing with you, you need to stop reading right fk now. So you just won't give up, will you? Okay, whatever, suit yourself</span>
             </div>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>

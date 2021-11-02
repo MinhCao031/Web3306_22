@@ -51,7 +51,6 @@
     position: relative;
     top: 30px;     /* refer to navbar's height */
     transition: 300ms;
-    /* max-width: ; */
 }
 
 .content.active {
