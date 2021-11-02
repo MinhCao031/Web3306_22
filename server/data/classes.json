@@ -1,0 +1,42 @@
+[
+    {
+        "classId" : 1,
+        "className":"K64_CACLC1",
+        "teacherId" : 10032019,
+        "studentIDs" : [
+                "19021363",
+                "19021364",
+                "18021365"
+        ]
+    }, 
+    {
+        "classId" : 2,
+        "className":"K63_CACLC1",
+        "teacherId" : 10052019,
+        "studentIDs" : [
+                "18021363",
+                "18021364",
+                "18021365"
+        ]
+    },        
+    {
+        "classId" : 3,
+        "className":"K63_CACLC2",
+        "teacherId" : 10052019,
+        "studentIDs" : [
+                "18021366",
+                "18021367",
+                "18021368"
+        ]
+    },
+    {
+        "classId" : 4,
+        "className":"K65_CACLC4",
+        "teacherId" : 10032019,
+        "studentIDs" : [
+                "20021320",
+                "20021321",
+                "20021322"
+        ]
+    }
+]
