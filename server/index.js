@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 // const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
+const classRoutes = require('./routes/classRoutes');
 const session = require('express-session');
 
 const mongoose = require('mongoose');
@@ -47,6 +48,7 @@ app.use(express.json());
 // app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/', userRoutes);
+app.use('/classes', classRoutes);
 
 app.get('/', (req, res) => {
     res.redirect('/login');

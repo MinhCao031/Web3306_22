@@ -2,7 +2,7 @@
 
 ---
 
-*UET Student Management for Teaching Assistants /turn*
+*UET Student Management for Teaching Assistants*
 
 ## Introduction
 
@@ -50,7 +50,7 @@ This is the repository for web programming course in our university.
 
 ---
 
-# Todo
+## Todo
 
 - For frontend team:
 
