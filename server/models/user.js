@@ -16,19 +16,24 @@ const UserSchema = new Schema({
     role: {
         type: String,
         // required: true,
-        enum: [ 'teacher', 'student' ]
+        enum: [ 'Teacher', 'Student' ]
     },
-    firstName: {
-        type: String
-        // required: true
+    level: {
+        type: String,
+        // required: true,
+        enum: [ 'Thành viên', 'Bí thư', 'Lớp trưởng', 'None' ]
     },
-    lastName: {
+    name: {
         type: String
         // required: true
     },
     dateOfBirth: {
         type: Date
         // required: true
+    },
+    gender: {
+        type: String,
+        enum: ['Nam', 'Nữ']
     },
     phoneNumber: {
         type: Number
@@ -39,6 +44,15 @@ const UserSchema = new Schema({
     },
     introduction: {
         type: String
+    },
+    hometown: {
+        type: String
+    },
+    fieldOfStudy: {
+        type: String
+    },
+    gpa: {
+        type: Number,
     }
 });
 

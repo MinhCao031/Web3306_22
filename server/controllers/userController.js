@@ -2,23 +2,6 @@ const User = require('../models/user');
 const express = require('express');
 const session = require('express-session');
 
-// This function is for testing purpose only!
-module.exports.register = async function(req, res) {
-    const { username, password, firstName, lastName, role, email, phoneNumber } = req.body;
-    const user = new User({
-        username,
-        password,
-        firstName,
-        lastName,
-        role,
-        email,
-        phoneNumber
-    });
-    await user.save();
-    req.session.user_id = user._id;
-    res.redirect('homepage');
-};
-
 // This function should be authenticated by middleware function.
 module.exports.login = async function(req, res) {
     const user = await User.findOne({ username: req.body.username });
@@ -34,24 +17,30 @@ module.exports.login = async function(req, res) {
 
 // Need to validate request input from client side first, such as whether request's data empty or not.
 module.exports.update = async function(req, res) {
-    const { id, firstName, lastName, email, phoneNumber, dateOfBirth } = req.body;
+    const { username, name, email, phoneNumber, dateOfBirth, fieldOfStudy, introduction } = req.body;
 
     const query = {
-        username: id
+        username: username
     };
 
     const update = {
-        firstName: firstName,
-        lastName: lastName,
+        name: name,
         email: email,
         phoneNumber: phoneNumber,
-        dateOfBirth: dateOfBirth
+        dateOfBirth: dateOfBirth,
+        fieldOfStudy: fieldOfStudy,
+        introduction: introduction
     };
 
     const user = await User.findOneAndUpdate(query, update);
-    await user.save().then(() => res.json({ status: 'OK' })).catch((err) => {
-        console.log(err);
-        res.json({ status: 'FAILED' });
+    await user.save()
+    .then(() => res.json({ status: 'OK' }))
+    .catch((err) => {
+        const response = {
+            error: err,
+            status: 'Failed'
+        }
+        res.json(response);
     });
 };
 
@@ -76,19 +65,4 @@ module.exports.setPassword = async function(req, res) {
         }
         res.json(response);
     });
-};
-
-// This function is for testing purpose only!
-module.exports.renderRegister = (req, res) => {
-    res.render('users/register');
-};
-
-// This function is for testing purpose only!
-module.exports.renderLogin = (req, res) => {
-    res.render('users/login');
-};
-
-// This function is for testing purpose only!
-module.exports.renderUpdate = (req, res) => {
-    res.render('users/update');
 };

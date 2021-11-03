@@ -5,7 +5,7 @@ const Class = require('../models/class');
 
 module.exports.getClasses = async function(req, res) {
     // '10052019' is for testing furpose only.
-    const classes = await Class.find({ teacherId: '10052019' });
+    const classes = await Class.find({ teacherId: '10022019' });
     if (Object.keys(classes).length > 0) {
         res.json(classes);
     } else {
