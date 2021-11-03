@@ -8,8 +8,7 @@ module.exports.login = async function(req, res) {
     const data = {
         auth: true,
         username: user.username,
-        firstName: user.firstName,
-        lastName: user.lastName,
+        name: user.name,
         role: user.role
     };
     res.json(data);
