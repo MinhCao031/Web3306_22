@@ -1,0 +1,156 @@
+.navbar {
+    background-color: #fff;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.menu-bars {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+    transition: 300ms;
+}
+
+.menu-bars.active {
+    margin-left: 282px;
+    transition: 400ms;
+    transition-delay: 165ms;
+}
+
+.profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    float: right;
+    position: absolute;
+    right: 50px;
+}
+
+.profile .profile-text {
+    border-left: 1px solid #404E68;
+    padding-left: 10px;
+    color: #404E68;
+    font-weight: bold;
+}
+
+.profile img {
+    margin-left: 6px;
+    color: #404E68;
+    height: 55px;
+    width: 55px;
+    stroke: cyan;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 30px;     /* refer to navbar's height */
+    transition: 300ms;
+}
+
+.content.active {
+    left: 260px;
+    transition: 500ms;
+}
+
+.nav-menu {
+    background-color: #404E68;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: 850ms;
+}
+
+.nav-menu.active {
+    left: 0;
+    transition: 500ms;
+}
+
+.nav-text {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 8px 0px;
+    margin-left: 6px;
+    list-style: none;
+    height: 60px;
+}
+
+.nav-text a {
+    text-decoration: none;
+    color: #D6D5EE;
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.nav-text a:hover, .nav-text a:active {
+    background-color: #D6D5EE;
+    color: #404E68;
+}
+
+.nav-menu-items {
+    width: 100%;
+}
+
+.homepage {
+    background-color: #404E68;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    margin-bottom: 3rem;
+}
+
+.homepage ~ .nav-menu-items {
+    margin-top: 8rem;
+}
+
+.homepage span {
+    line-height: 46px;
+    letter-spacing: 0.6px;
+    font-size: 20px;
+    font-weight: bolder;
+    margin-left: 10px;
+}
+
+.uet-logo {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    color: #D6D5EE;
+    text-decoration: none;
+}
+
+.uet-logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.navbar-toggle {
+    background-color: #404E68;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+span {
+    margin-left: 16px;
+}
