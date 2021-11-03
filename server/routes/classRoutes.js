@@ -5,9 +5,7 @@ const { isLoggedIn } = require('../middleware');
 
 const router = express.Router();
 
-// These two functions below need to be logged in first.
-router.route('/show').get(classes.getClasses);
-
-router.route('/show/:id').get(classes.getClassStudents);
+// The function below need users to be logged in first.
+router.route('/').get(classes.getClasses);
 
 module.exports = router;

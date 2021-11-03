@@ -6,7 +6,7 @@ const classSchema = new mongooes.Schema({
         required: true,
         unique: true
     },
-    name: {
+    className: {
         type: String,
         required: true
     },
