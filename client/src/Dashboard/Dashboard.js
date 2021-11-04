@@ -1,15 +1,12 @@
 import React from 'react';
 
 const DashBoard = () => {
-    return (
-        <>
-        </>
-    ); 
+  return <></>;
 };
 // function DashBoard() {
 //     return (
 //         <>
 //         </>
-//     ); 
+//     );
 // };
 export default DashBoard;

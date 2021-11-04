@@ -7,18 +7,13 @@ import './Navbar.css';
 import { IconContext } from 'react-icons';
 import boy from '../../assets/boy_ava.png';
 import logo from '../../assets/uet.png';
-import ChangeInfoTeacher from '../../NavigationMenu/ChangeInfo/ChangeInfoTeacher';
-
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-function Navbar({ dataDisplay }) {
+function Navbar() {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
 
   const contentWidth = window.innerWidth;
   const contentWidthActive = window.innerWidth - 260;
-
   return (
     <>
       <IconContext.Provider value={{ color: '#D6D5EE' }}>
@@ -32,8 +27,8 @@ function Navbar({ dataDisplay }) {
           <div className="profile">
             <IoIcons.IoMdNotifications style={{ color: '#404E68' }} size={30} />
             <span className="profile-text">
-              {`${dataDisplay.firstName} ${dataDisplay.lastName}`}
-              {/*Mai Nhật Quang*/}
+              {/* {`${dataDisplay.firstName} ${dataDisplay.lastName}`} */}
+              {'Nguyen Van Quang'}
             </span>
             <img alt={'Avatar'} src={boy} />
           </div>
@@ -59,17 +54,10 @@ function Navbar({ dataDisplay }) {
           stop reading right fk now. So you just won't give up, will you? Okay,
           whatever, suit yourself
         </span> */}
-        <Router><Switch>
-          <Route path="/teacherHomepage" exact>
-          </Route>
-          <Route path="/teacherHomepage/ChangeInfo">
-              <ChangeInfoTeacher />
-          </Route>
-        </Switch></Router>
       </div>
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
         <div className="homepage">
-          <Link to="/" className="uet-logo">
+          <Link to="/teacherHomepage" className="uet-logo">
             <img alt={'uet-logo'} src={logo} />
             <span>UET - SMTA</span>
           </Link>
@@ -78,7 +66,7 @@ function Navbar({ dataDisplay }) {
           {SidebarData.map((item, index) => {
             return (
               <li key={index} className={item.cName}>
-                <Link to={item.path}>
+                <Link to={item.path} exact>
                   {item.icon}
                   <span>{item.title}</span>
                 </Link>
