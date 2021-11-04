@@ -8,6 +8,7 @@ import { IconContext } from 'react-icons';
 import boy from '../../assets/boy_ava.png';
 import logo from '../../assets/uet.png';
 import ChangeInfoTeacher from '../../NavigationMenu/ChangeInfo/ChangeInfoTeacher';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function Navbar({ dataDisplay }) {
@@ -31,8 +32,8 @@ function Navbar({ dataDisplay }) {
           <div className="profile">
             <IoIcons.IoMdNotifications style={{ color: '#404E68' }} size={30} />
             <span className="profile-text">
-              {/* {`${dataDisplay.firstName} ${dataDisplay.lastName}`} */}
-              Mai Nhật Quang
+              {`${dataDisplay.firstName} ${dataDisplay.lastName}`}
+              {/*Mai Nhật Quang*/}
             </span>
             <img alt={'Avatar'} src={boy} />
           </div>
@@ -46,11 +47,11 @@ function Navbar({ dataDisplay }) {
             : { maxWidth: contentWidth }
         }
       >
-        {/* add content like <Forum />
-        <img
-          src={
+        {/* add content like <Forum /> 
+        <img src={
             'https://static.bongda24h.vn/medias/standard/2021/10/22/bruno-fernandes-len-tieng-ve-tuong-lai-hlv-solskjaer.jpg'
-          } alt="test"/>
+          } alt="test"
+        />
         <span>
           I will add random shit here just to test if my sidebar and content is
           working perfectly. You don't need to read this anymore. Why do you

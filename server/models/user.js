@@ -16,19 +16,24 @@ const UserSchema = new Schema({
     role: {
         type: String,
         // required: true,
-        enum: [ 'teacher', 'student' ]
+        enum: [ 'Teacher', 'Student' ]
     },
-    firstName: {
-        type: String
-        // required: true
+    level: {
+        type: String,
+        // required: true,
+        enum: [ 'Thành viên', 'Bí thư', 'Lớp trưởng', 'None' ]
     },
-    lastName: {
+    name: {
         type: String
         // required: true
     },
     dateOfBirth: {
         type: Date
         // required: true
+    },
+    gender: {
+        type: String,
+        enum: ['Nam', 'Nữ']
     },
     phoneNumber: {
         type: Number
@@ -37,15 +42,26 @@ const UserSchema = new Schema({
         type: String
         // required: true
     },
+    introduction: {
+        type: String
+    },
     hometown: {
         type: String
+    },
+    fieldOfStudy: {
+        type: String
+    },
+    gpa: {
+        type: Number,
     }
 });
 
 UserSchema.statics.findAndValidate = async function(username, password) {
     const foundUser = await this.findOne({ username });
-    const isValid = await bcrypt.compare(password, foundUser.password);
-    return isValid ? foundUser : false;
+    if (foundUser) {
+        return await bcrypt.compare(password, foundUser.password);
+    }
+    return false;
 };
 
 UserSchema.pre('save', async function(next) {
