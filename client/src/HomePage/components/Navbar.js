@@ -7,7 +7,8 @@ import './Navbar.css';
 import { IconContext } from 'react-icons';
 import boy from '../../assets/boy_ava.png';
 import logo from '../../assets/uet.png';
-import ChangeInfoTeacher from './ChangeInfoTeacher';
+import ChangeInfoTeacher from '../../NavigationMenu/ChangeInfo/ChangeInfoTeacher';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function Navbar({ dataDisplay }) {
@@ -57,7 +58,7 @@ function Navbar({ dataDisplay }) {
           still read? I said STOP!! Hey, I am not messing with you, you need to
           stop reading right fk now. So you just won't give up, will you? Okay,
           whatever, suit yourself
-        </span>*/}
+        </span> */}
         <Router><Switch>
           <Route path="/teacherHomepage" exact>
           </Route>
