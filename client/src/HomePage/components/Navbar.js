@@ -7,6 +7,7 @@ import './Navbar.css';
 import { IconContext } from 'react-icons';
 import boy from '../../assets/boy_ava.png';
 import logo from '../../assets/uet.png';
+import ChangeInfoTeacher from './ChangeInfoTeacher';
 
 function Navbar({ dataDisplay }) {
   const [sidebar, setSidebar] = useState(false);
