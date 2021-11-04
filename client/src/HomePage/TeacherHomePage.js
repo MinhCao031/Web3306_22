@@ -1,8 +1,9 @@
 import React from 'react';
 import Navbar from './components/Navbar';
-
-const TeacherHomePage = ({ firstName, lastName, role }) => {
-    return <Navbar />
+import { useLocation } from 'react-router';
+const TeacherHomePage = () => {
+  const location = useLocation();
+  return <Navbar dataDisplay={location.state} />;
 };
 
 export default TeacherHomePage;
