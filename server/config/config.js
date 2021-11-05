@@ -1,14 +1,32 @@
-const config = {
-    database: {
-        host: '127.0.0.1',
-        port: '27017',
-        db: 'uet-smta'
-    },
+require('dotenv').config({ path: './config/process.env' });
 
-    server: {
-        host: '127.0.0.1',
-        port: '3000'
+const env = process.env.NODE_ENV;
+
+const dev = {
+    app: {
+        port: parseInt(process.env.DEV_APP_PORT) || 5000
+    },
+    db: {
+        host: process.env.DEV_DB_HOST || 'localhost',
+        port: parseInt(process.env.DEV_DB_PORT) || 27017,
+        name: process.env.DEV_DB_NAME || 'uet-smta'
     }
 };
 
-module.exports = config;
+const test = {
+    app: {
+        port: parseInt(process.env.TEST_APP_PORT) || 5000
+    },
+    db: {
+        host: process.env.DEV_DB_HOST || 'localhost',
+        port: parseInt(process.env.DEV_DB_PORT) || 27017,
+        name: process.env.DEV_DB_NAME || 'uet-smta-test'
+    }
+};
+
+const config = {
+    dev,
+    test
+};
+
+module.exports = config[env];

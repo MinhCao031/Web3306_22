@@ -6,7 +6,6 @@ const Class = require('../models/class');
 module.exports.getClasses = async function(req, res) {
     // '10022019' is for testing furpose only.
     const foundClass = await Class.findOne({ teacherId: '10012019' });
-    console.log(foundClass)
     if (foundClass) {
         const result = {
             className: foundClass['className'],
