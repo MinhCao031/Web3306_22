@@ -9,7 +9,8 @@ const userRoutes = require('./routes/userRoutes.js');
 const classRoutes = require('./routes/classRoutes.js');
 
 // Connect to database
-const dbUrl = `mongodb://${config.database.host}:${config.database.port}/${config.database.db}`;
+const { db: { host, port, name } } = config;
+const dbUrl = `mongodb://${host}:${port}/${name}`;
 const dbOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -60,6 +61,6 @@ app.use((req, res) => {
 });
 
 // Set up listen port
-app.listen(config.server.port, () => {
-    console.log(`Server connected on port ${config.server.port}`);
+app.listen(config.app.port, () => {
+    console.log(`Server connected on port ${config.app.port}`);
 });
