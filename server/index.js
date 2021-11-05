@@ -1,25 +1,21 @@
 const express = require('express');
-const path = require('path');
-// const bodyParser = require('body-parser');
-const userRoutes = require('./routes/userRoutes');
-const classRoutes = require('./routes/classRoutes');
 const session = require('express-session');
-
-const mongoose = require('mongoose');
+const path = require('path');
 const cors = require('cors');
-const corsOptions = {
-    origin: '*',
-    credentials: true, //access-control-allow-credentials:true
-    optionSuccessStatus: 200
+const mongoose = require('mongoose');
+
+const config = require('./config/config.js');
+const userRoutes = require('./routes/userRoutes.js');
+const classRoutes = require('./routes/classRoutes.js');
+
+// Connect to database
+const dbUrl = `mongodb://${config.database.host}:${config.database.port}/${config.database.db}`;
+const dbOptions = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 };
-
-const dbUrl = 'mongodb://localhost:27017/uet-smta-local';
-
 mongoose
-    .connect(dbUrl, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
+    .connect(dbUrl, dbOptions)
     .then(() => {
         console.log('Connection openned!');
     })
@@ -27,42 +23,43 @@ mongoose
         console.log(err);
     });
 
+// Set up application
 const app = express();
-
-app.use(cors(corsOptions));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-const sessionConfig = {
+const corsOptions = {
+    origin: '*',
+    credentials: true,
+    optionSuccessStatus: 200
+};
+app.use(cors(corsOptions));
+
+const sessionOptions = {
     name: 'session',
     secret: 'testing',
     resave: false,
     saveUninitialized: true
 };
-
-app.use(session(sessionConfig));
+app.use(session(sessionOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// app.use(bodyParser.urlencoded({ extended: false }))
-
+// Set up routes
 app.use('/', userRoutes);
+
 app.use('/classes', classRoutes);
 
 app.get('/', (req, res) => {
     res.redirect('/login');
 });
 
-app.get('/homepage', (req, res) => {
-    res.render('homepage');
-});
-
 app.use((req, res) => {
     res.send('Not found');
 });
 
-var port = 5000;
-app.listen(port, () => {
-    console.log(`Server connected on port ${port}`);
+// Set up listen port
+app.listen(config.server.port, () => {
+    console.log(`Server connected on port ${config.server.port}`);
 });
