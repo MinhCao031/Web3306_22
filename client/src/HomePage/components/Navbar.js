@@ -26,10 +26,7 @@ function Navbar() {
           </Link>
           <div className="profile">
             <IoIcons.IoMdNotifications style={{ color: '#404E68' }} size={30} />
-            <span className="profile-text">
-              {/* {`${dataDisplay.firstName} ${dataDisplay.lastName}`} */}
-              {'Nguyen Van Quang'}
-            </span>
+            <span className="profile-text">{'Nguyen Van Quang'}</span>
             <img alt={'Avatar'} src={boy} />
           </div>
         </div>
