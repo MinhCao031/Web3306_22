@@ -2,7 +2,7 @@ const User = require('../models/user');
 
 const mongoose = require('mongoose');
 mongoose
-    .connect('mongodb://localhost:27017/uet-smta-local', { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect('mongodb://localhost:27017/uet-smta', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('Connection openned!');
     })
