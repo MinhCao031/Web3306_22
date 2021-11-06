@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Content () {
+function ChangeInfoTeacher () {
   return (
     <Container>
       <h1> Cập nhật thông tin </h1>  
@@ -193,4 +193,4 @@ const Button = styled.button`
 `;
 
 
-export default Content;
+export default ChangeInfoTeacher;

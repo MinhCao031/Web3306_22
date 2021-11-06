@@ -2,35 +2,44 @@ import React, { useState } from 'react';
 import * as IoIcons from 'react-icons/io';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { SidebarData } from './SidebarData';
-import './Navbar.css';
 import { IconContext } from 'react-icons';
 import boy from '../../assets/boy_ava.png';
 import logo from '../../assets/uet.png';
+
+import './Navbar.css';
+import { SidebarData } from './SidebarData';
+import DropdownAva from './DropdownAva';
+import ChangeInfoTeacher from '../../NavigationMenu/ChangeInfo/ChangeInfoTeacher';
+
+
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
-
   const showSidebar = () => setSidebar(!sidebar);
+
+  const [dropdown, setDropdown] = useState(false);
+  const showDropdown = () => setDropdown(!dropdown);
 
   const contentWidth = window.innerWidth;
   const contentWidthActive = window.innerWidth - 260;
+
   return (
     <>
-      <IconContext.Provider value={{ color: '#D6D5EE' }}>
-        <div className="navbar">
-          <Link to="#" className={sidebar ? 'menu-bars active' : 'menu-bars'}>
-            <AiIcons.AiOutlineBars
-              onClick={showSidebar}
-              style={{ color: '#404E68' }}
-            />
-          </Link>
-          <div className="profile">
-            <IoIcons.IoMdNotifications style={{ color: '#404E68' }} size={30} />
-            <span className="profile-text">{'Nguyen Van Quang'}</span>
+      <div className="navbar">
+        <Link to="#" className={sidebar ? 'menu-bars active' : 'menu-bars'}>
+          <AiIcons.AiOutlineBars
+            onClick={showSidebar}
+            style={{ color: '#404E68' }}
+          />
+        </Link>
+        <div className="profile">
+          <IoIcons.IoMdNotifications style={{ color: '#404E68' }} size={30} />
+          <span className="profile-text">{'Nguyen Van Quang'}</span>
+          <div onClick={showDropdown}>
             <img alt={'Avatar'} src={boy} />
+            {dropdown && <DropdownAva />}
           </div>
         </div>
-      </IconContext.Provider>
+      </div>
       <div
         className={sidebar ? 'content active' : 'content'}
         style={
