@@ -2,7 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 const Body = () => {
+  const handleSubmit = (e) => {
+    axios
+      .post('http://localhost:5000/users/set_password', {
+        id: '19021353',
+        password: '123456',
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    e.preventDefault();
+  };
   return (
     <Container>
       <h1>Cập nhật mật khẩu</h1>
@@ -22,7 +37,7 @@ const Body = () => {
         </InputField>
       </div>
       <div className="button-wrap">
-        <Button>Cập nhật</Button>
+        <Button onClick={handleSubmit}>Cập nhật</Button>
         <Button>Hủy</Button>
       </div>
     </Container>
