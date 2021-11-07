@@ -49,16 +49,7 @@ app.use(express.json());
 
 // Set up routes
 app.use('/', userRoutes);
-
 app.use('/classes', classRoutes);
-
-app.get('/', (req, res) => {
-    res.redirect('/login');
-});
-
-app.use((req, res) => {
-    res.send('Not found');
-});
 
 // Set up listen port
 app.listen(config.app.port, () => {

@@ -6,7 +6,7 @@ module.exports.authenticate = async function(req, res, next) {
     const { username, password } = req.body;
     const foundUser = await user.findAndValidate(username, password);
     if (foundUser) {
-        req.session.user_id = foundUser.username;
+        req.session.id = foundUser.username;
         return next();
     } else {
         res.send({
@@ -16,8 +16,11 @@ module.exports.authenticate = async function(req, res, next) {
 };
 
 module.exports.isLoggedIn = (req, res, next) => {
-    if (!req.session.user_id) {
+    if (!req.session.id) {
+        console.log("Log in required")
         res.json({ status: 'Login required'})
+    } else {
+        console.log(req.session.id)
     }
     next();
 };
