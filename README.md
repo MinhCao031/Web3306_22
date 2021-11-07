@@ -10,8 +10,10 @@ This is the repository for web programming course in our university.
 
 For Windows:
  - You need to install MongoDB and MongoDB database tools. You can find more information in the link below.
-	[MongoDB installation on Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
-	[MongoDB Database tools on Windows](https://docs.mongodb.com/database-tools/installation/installation-windows/)
+ 
+	[[MongoDB installation on Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)]
+	
+	[[MongoDB Database tools on Windows](https://docs.mongodb.com/database-tools/installation/installation-windows/)]
 
 For Linux:
  - Just need to follow the instructions in the [documentation page](https://docs.mongodb.com/manual/administration/install-on-linux/) for your Linux distro.
@@ -30,7 +32,7 @@ node userSeed.js
 mongoimport --db uet-smta --collection classes --type json --file server/data/classes.json --jsonArray
 ```
 
-## Collections and APIs table
+## Collections and APIs routing table
 
 ### Collections
 
@@ -71,21 +73,18 @@ mongoimport --db uet-smta --collection classes --type json --file server/data/cl
 }
 ```
 
-[API routes](https://www.notion.so/728669a7dac44361ad1bfb3b90196a9a)
+### APIs routing table
+
+| Resources | Action | Routes | Methods | Description|
+| ------ | ------ | ------ | ------ | ------ |
+| login | login | /login | POST | Login to user account|
+| logout | logout | /logout |   |   |
+| Users | update | /users/update | POST | Update user's profile |
+|  | Change password | /users/set_password | POST | Change user's password |
+| Classes | show | /classes/ | GET | Get managed class and students |
 
 ## Todo
 
 - For frontend team:
-    + Change user info 
-    + Change user password
-    + Get the managed class & students
-    + Read a file
-
+   
 - For backend team:
-    + Update Change user info feature. [DONE]
-    + Update Change user password feature. [DONE]
-    + Design API table and database collections. [DONE]
-    + New feature: Get managed classes and students. [DONE]
-	+ Adjust dateOfBirth format in mongoDB.
-	+ Import csv files.
-    + Beautify index.js and research more on proxy server + how to run frontend server and backend server in a single command
