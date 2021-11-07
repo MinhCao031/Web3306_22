@@ -1,0 +1,44 @@
+.navigationbar {
+    background-color: #fff;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    /* position: relative; */
+    /* display: flex; */
+    /* align-items: center; */
+    float: right;
+    position: absolute;
+    right: 50px;
+}
+
+.profile-text {
+    border-left: 1px solid #404E68;
+    padding-left: 10px;
+    color: #404E68;
+    font-weight: bold;
+}
+
+.avatar {
+    margin-left: 6px;
+    color: #404E68;
+    height: 55px;
+    width: 55px;
+    stroke: cyan;
+}
+
+.navbar-toggle {
+    background-color: #404E68;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+span {
+    margin-left: 16px;
+}

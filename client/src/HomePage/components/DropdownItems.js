@@ -13,7 +13,7 @@ export const DropdownItems = [
     },
     {
         title: 'Cập nhật thông tin',
-        path: '/changeInfo',
+        path: '/teacherHomepage/changeInfo',
         icon: <ImIcons.ImWrench className="icon" />,
         cname: 'dropdown-link'
     },

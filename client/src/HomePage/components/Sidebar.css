@@ -1,4 +1,4 @@
-.navbar {
+.sidebar {
     background-color: #fff;
     height: 80px;
     display: flex;
@@ -21,44 +21,7 @@
     transition-delay: 165ms;
 }
 
-.profile {
-    position: relative;
-    display: flex;
-    align-items: center;
-    float: right;
-    position: absolute;
-    right: 50px;
-}
-
-.profile .profile-text {
-    border-left: 1px solid #404E68;
-    padding-left: 10px;
-    color: #404E68;
-    font-weight: bold;
-}
-
-.profile img {
-    margin-left: 6px;
-    color: #404E68;
-    height: 55px;
-    width: 55px;
-    stroke: cyan;
-}
-
-.content {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 30px;     
-    transition: 300ms;
-}
-
-.content.active {
-    left: 260px;
-    transition: 500ms;
-}
-
-.nav-menu {
+.side-menu {
     background-color: #404E68;
     width: 250px;
     height: 100vh;
@@ -70,7 +33,7 @@
     transition: 850ms;
 }
 
-.nav-menu.active {
+.side-menu.active {
     left: 0;
     transition: 500ms;
 }
@@ -101,7 +64,7 @@
     color: #404E68;
 }
 
-.nav-menu-items {
+.side-menu-items {
     width: 100%;
 }
 
@@ -117,7 +80,7 @@
     margin-bottom: 3rem;
 }
 
-.homepage ~ .nav-menu-items {
+.homepage ~ .side-menu-items {
     margin-top: 8rem;
 }
 

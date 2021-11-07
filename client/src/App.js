@@ -4,23 +4,17 @@ import StudentHomePage from './HomePage/StudentHomePage';
 import TeacherHomePage from './HomePage/TeacherHomePage';
 import ChangeInfoTeacher from './NavigationMenu/ChangeInfo/ChangeInfoTeacher';
 import ChangePass from './NavigationMenu/ChangePass/ChangePass';
+import Navbar from './HomePage/components/Navbar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact>
-          <SignInForm />
-        </Route>
-        <Route path="/studentHomepage" exact>
-          <StudentHomePage />
-        </Route>
-        <Route path="/teacherHomepage" exact>
-          <TeacherHomePage />
-        </Route>
-        <Route path="/teacherHomepage/changeInfo">
-          <ChangeInfoTeacher />
-        </Route>
+        <Route path="/" exact component={SignInForm} />
+        <Route path="/studentHomepage" exact component={StudentHomePage} />
+        <Route path="/teacherHomepage" exact component={TeacherHomePage} />
+        <Route path="/teacherHomepage/changeInfo" component={ChangeInfoTeacher} />
         <Route path="/teacherHomepage/forum">
           <div>Đây là Diễn Đàn</div>
         </Route>
@@ -37,4 +31,5 @@ const App = () => {
     </Router>
   );
 };
+
 export default App;
