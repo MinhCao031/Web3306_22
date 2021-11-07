@@ -10,11 +10,11 @@ This is the repository for web programming course in our university.
 
 For Windows:
  - You need to install MongoDB and MongoDB database tools. You can find more information in the link below.
-	[MongoDB installation on Windows] (https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
-	[MongoDB Database tools on Windows] (https://docs.mongodb.com/database-tools/installation/installation-windows/)
+	[MongoDB installation on Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+	[MongoDB Database tools on Windows](https://docs.mongodb.com/database-tools/installation/installation-windows/)
 
 For Linux:
- - Just need to follow the instructions in the [documentation page] (https://docs.mongodb.com/manual/administration/install-on-linux/) for your Linux distro.
+ - Just need to follow the instructions in the [documentation page](https://docs.mongodb.com/manual/administration/install-on-linux/) for your Linux distro.
 
 **Users data**
 
