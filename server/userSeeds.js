@@ -1,5 +1,5 @@
-const config = require('./server/config/config.js');
-const User = require('./server/models/user.js');
+const config = require('./config/config');
+const User = require('./models/user.js');
 
 const mongoose = require('mongoose');
 
@@ -31,7 +31,8 @@ const registerNewUser = (
     hometown,
     introduction,
     fieldOfStudy,
-    gpa
+    gpa,
+    drl
 ) => {
     const user = new User({
         username: username,
@@ -46,7 +47,8 @@ const registerNewUser = (
         hometown: hometown,
         introduction: introduction,
         fieldOfStudy: fieldOfStudy,
-        gpa: gpa
+        gpa: gpa,
+        drl: drl
     });
 
     user
@@ -72,7 +74,8 @@ registerNewUser(
     'Hà Nội',
     'A daily-updated person',
     'Computer Science',
-    3.0
+    3.0,
+    80
 );
 
 registerNewUser(
@@ -88,7 +91,8 @@ registerNewUser(
     'Hà Nội',
     'A daily-updated person',
     'Computer Science',
-    3.5
+    3.5,
+    55
 );
 
 registerNewUser(
@@ -104,7 +108,8 @@ registerNewUser(
     'Hà Nội',
     'A daily-updated person',
     'Computer Science',
-    3.95
+    3.95,
+    95
 );
 
 registerNewUser(
@@ -120,6 +125,7 @@ registerNewUser(
     'Hà Nội',
     'A daily-updated person',
     'Computer Science',
+    0.0,
     0.0
 );
 
@@ -136,5 +142,6 @@ registerNewUser(
     'Hà Nội',
     'A daily-updated person',
     'Computer Science',
+    0.0,
     0.0
 );

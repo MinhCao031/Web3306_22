@@ -52,7 +52,10 @@ const UserSchema = new Schema({
         type: String
     },
     gpa: {
-        type: Number,
+        type: Number
+    },
+    drl: {
+        type: Number
     }
 });
 
