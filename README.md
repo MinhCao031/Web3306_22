@@ -8,18 +8,26 @@ This is the repository for web programming course in our university.
 
 ## Create testing data
 
+For Windows:
+ - You need to install MongoDB and MongoDB database tools. You can find more information in the link below.
+	[MongoDB installation on Windows] (https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+	[MongoDB Database tools on Windows] (https://docs.mongodb.com/database-tools/installation/installation-windows/)
+
+For Linux:
+ - Just need to follow the instructions in the [documentation page] (https://docs.mongodb.com/manual/administration/install-on-linux/) for your Linux distro.
+
 **Users data**
 
 ```bash
 # Create fake user accounts.
-node server/data/userSeed.js
+node userSeed.js
 ```
 
 **Classes data**
 
 ```bash
 # Import fake classes information to mongoDB.
-mongoimport --db uet-smta-local --collection classes --type json --file server/data/classes.json --jsonArray
+mongoimport --db uet-smta --collection classes --type json --file server/data/classes.json --jsonArray
 ```
 
 ## Collections and APIs table
