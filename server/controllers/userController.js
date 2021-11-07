@@ -66,6 +66,13 @@ module.exports.setPassword = async function(req, res) {
     });
 };
 
-module.exports.renderHome = (req, res) => {
-    res.send('This is homepage');
+module.exports.getInfo = async function(req, res) {
+    const { user_id } = req.params;
+    console.log(req.params)
+    const user = await User.findOne({ username: user_id });
+    if (user) {
+        res.send(user);
+    } else {
+        res.json({ success: false });
+    }
 };
