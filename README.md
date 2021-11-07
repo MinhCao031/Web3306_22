@@ -22,7 +22,7 @@ For Linux:
 
 ```bash
 # Create fake user accounts.
-node userSeed.js
+node server/userSeed.js
 ```
 
 **Classes data**
