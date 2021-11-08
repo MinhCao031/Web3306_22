@@ -13,13 +13,15 @@ export const DropdownItems = [
     },
     {
         title: 'Cập nhật thông tin',
-        path: '/changeInfo',
+        path: '/teacherHomepage/changeInfo',
+        //path: '/changeInfo',
         icon: <ImIcons.ImWrench className="icon" />,
         cname: 'dropdown-link'
     },
     {
         title: 'Cập nhật mật khẩu',
-        path: '/changePassword',
+        path: '/teacherHomepage/changePassword',
+        //path: '/changePassword',
         icon: <IoIcons.IoMdLock className="icon" />,
         cname: 'dropdown-link'
     },

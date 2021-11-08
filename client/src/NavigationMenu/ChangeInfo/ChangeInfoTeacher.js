@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+
 function ChangeInfoTeacher() {
   const handleSubmit = (e) => {};
   //     axios
@@ -134,43 +135,42 @@ function ChangeInfoTeacher() {
 }
 
 const Container = styled.div`
-  // width: 1500px;
-  // float: right;
-  h1 {
-    font-size: 40px;
-    text-align: center;
-    margin: 0px 0px 0px 0px;
-  }
-  div {
-    font-family: Mulish;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 28px;
-    display: flex;
-    align-items: left;
-    letter-spacing: 0.3px;
-  }
-  div > div {
-    position: ralative;
-    display: flex;
-    flex-direction: column;
-    margin: 0px 50px;
-  }
-  div > div > div {
-    position: ralative;
-    display: flex;
-    flex-direction: row;
-    margin: 0px 0px;
-  }
-  div > div > .FieldToChange {
-    position: left;
-    line-height: 28px;
-    width: 300px;
-  }
+    width: 1100px;
+    margin: auto;
+    h1 {
+        font-size: 40px;
+        text-align: center;
+        margin: 0px 0px 0px 0px;
+    }
+    div {
+        font-family: Mulish;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 28px;
+        display: flex;
+        align-items: left;
+        letter-spacing: 0.3px;    
+    }
+    div > div {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin: 0px 50px;
+    }
+    div > div > div {
+        position: relative;
+        display: flex;
+        flex-direction: row; 
+        margin: 0px 0px;
+    }    
+    div > div > .FieldToChange {
+        position: left;
+        line-height: 28px;
+        width: 300px;
+    }
 
-  .line,
-  .desc {
+  .line,  .desc {
     margin: 50px 0px 50px 0px;
   }
   .wrapper {
@@ -231,6 +231,7 @@ const Container = styled.div`
     line-height: 55px;
   }
 `;
+
 const Input = styled.input`
   background: #ffffff;
   border: 1px solid #cddedf;
@@ -241,7 +242,6 @@ const Input = styled.input`
   transition-timing-function: ease-in-out;
   padding: 10px 10px;
   margin: 0px 0px;
-
   &:active {
     border: 1px solid #0ba1f5;
   }

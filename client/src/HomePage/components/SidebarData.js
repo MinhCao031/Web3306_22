@@ -11,7 +11,7 @@ export const SidebarData = [
   },
   {
     title: 'Diễn đàn',
-    path: 'teacherHomepage/forum',
+    path: '/teacherHomepage/forum',
     icon: <MdIcons.MdForum />,
     cName: 'nav-text',
   },

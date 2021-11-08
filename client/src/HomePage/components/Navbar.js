@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import * as IoIcons from 'react-icons/io';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
@@ -10,7 +11,9 @@ import './Navbar.css';
 import { SidebarData } from './SidebarData';
 import DropdownAva from './DropdownAva';
 import ChangeInfoTeacher from '../../NavigationMenu/ChangeInfo/ChangeInfoTeacher';
-
+import FileInput from '../../Lists/FileInput/FileInput';
+// import ChangePass from '../../NavigationMenu/ChangePass/ChangePass';
+// import Content from './Content';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
@@ -42,12 +45,32 @@ function Navbar() {
       </div>
       <div
         className={sidebar ? 'content active' : 'content'}
-        style={
-          sidebar
-            ? { maxWidth: contentWidthActive }
-            : { maxWidth: contentWidth }
-        }
+        // style= {
+        //   sidebar
+        //     ? { maxWidth: contentWidthActive }
+        //     : { maxWidth: contentWidth }
+        // }
       >
+        <Router>
+          <Switch>
+            <Route exact path="/teacherHomepage/changeInfo">
+                <ChangeInfoTeacher />
+            </Route>
+            <Route exact path="/teacherHomepage/forum">
+                <div>Đây là Diễn Đàn</div>
+            </Route>
+            <Route exact path="/teacherHomepage/class-list">
+                <div>Đây là danh sách lớp</div>
+            </Route>
+            <Route exact path="/teacherHomepage/FileInput">
+                <FileInput />
+            </Route>            
+            <Route exact path="/teacherHomepage/dashboard">
+                <div>Đây là Dashboard</div>
+            </Route>
+          </Switch>
+        </Router>      
+
         {/* add content like <Forum /> 
         <img src={
             'https://static.bongda24h.vn/medias/standard/2021/10/22/bruno-fernandes-len-tieng-ve-tuong-lai-hlv-solskjaer.jpg'
