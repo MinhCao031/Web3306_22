@@ -1,13 +1,20 @@
-const User = require('../models/user');
+const config = require('./config/config');
+const User = require('./models/user.js');
 
 const mongoose = require('mongoose');
+
+const { db: { host, port, name } } = config;
+const dbUrl = `mongodb://${host}:${port}/${name}`;
+const dbOptions = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+};
 mongoose
-    .connect('mongodb://localhost:27017/uet-smta-local', { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(dbUrl, dbOptions)
     .then(() => {
         console.log('Connection openned!');
     })
     .catch((err) => {
-        console.log('Error!');
         console.log(err);
     });
 
@@ -24,7 +31,8 @@ const registerNewUser = (
     hometown,
     introduction,
     fieldOfStudy,
-    gpa
+    gpa,
+    drl
 ) => {
     const user = new User({
         username: username,
@@ -39,7 +47,8 @@ const registerNewUser = (
         hometown: hometown,
         introduction: introduction,
         fieldOfStudy: fieldOfStudy,
-        gpa: gpa
+        gpa: gpa,
+        drl: drl
     });
 
     user
@@ -65,7 +74,8 @@ registerNewUser(
     'Hà Nội',
     'A daily-updated person',
     'Computer Science',
-    3.0
+    3.0,
+    80
 );
 
 registerNewUser(
@@ -81,7 +91,8 @@ registerNewUser(
     'Hà Nội',
     'A daily-updated person',
     'Computer Science',
-    3.5
+    3.5,
+    55
 );
 
 registerNewUser(
@@ -97,42 +108,9 @@ registerNewUser(
     'Hà Nội',
     'A daily-updated person',
     'Computer Science',
-    3.95
+    3.95,
+    95
 );
-
-
-// const student02 = new User({
-//     username: 19021364,
-//     password: 'Thai25879',
-//     role: 'Student',
-//     level: 'Bí thư',
-//     name: 'Nguyễn Quang',
-//     dateOfBirth: '02/03/2001',
-//     gender: 'Nam',
-//     phoneNumber: 0868466825,
-//     email: 'quangnguyen.uet@gmail.com',
-//     hometown: 'Hải Hưng',
-//     introduction: "Hello it's Quang",
-//     fieldOfStudy: 'Computer Science',
-//     gpa: 3.9
-// });
-
-// const student03 = new User({
-//     username: 19021365,
-//     password: 'Thai25879',
-//     role: 'Student',
-//     level: 'Lớp trưởng',
-//     name: 'Nguyễn Quỳnh',
-//     dateOfBirth: '02/03/2001',
-//     gender: 'Nữ',
-//     phoneNumber: 0868466825,
-//     email: 'quynhnguyen.uet@gmail.com',
-//     hometown: 'Hải Dương',
-//     introduction: 'Hmmmm',
-//     fieldOfStudy: 'Information Technology',
-//     gpa: 3.95
-// });
-
 
 registerNewUser(
     10012019,
@@ -147,6 +125,7 @@ registerNewUser(
     'Hà Nội',
     'A daily-updated person',
     'Computer Science',
+    0.0,
     0.0
 );
 
@@ -163,38 +142,6 @@ registerNewUser(
     'Hà Nội',
     'A daily-updated person',
     'Computer Science',
+    0.0,
     0.0
 );
-
-
-// const teacher01 = new User({
-//     username: 10012019,
-//     password: 'Thai25879',
-//     role: 'Teacher',
-//     level: 'None',
-//     name: 'Nguyễn Tú',
-//     dateOfBirth: '02/03/2001',
-//     gender: 'Nữ',
-//     phoneNumber: 0868466825,
-//     email: 'tunguyen.uet@gmail.com',
-//     hometown: '',
-//     introduction: 'This is teacher 01',
-//     fieldOfStudy: 'Computer Science',
-//     gpa: 0.0
-// });
-
-// const teacher02 = new User({
-//     username: 10022019,
-//     password: 'Thai25879',
-//     role: 'Teacher',
-//     level: 'None',
-//     name: 'Nguyễn Minh Quang',
-//     dateOfBirth: '02/03/2001',
-//     gender: 'Nam',
-//     phoneNumber: 0868466825,
-//     email: 'mquangnguyen.uet@gmail.com',
-//     hometown: '',
-//     introduction: 'This is teacher 02',
-//     fieldOfStudy: 'Computer Science',
-//     gpa: 0.0
-// });

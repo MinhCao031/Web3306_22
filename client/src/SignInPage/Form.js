@@ -26,18 +26,18 @@ const Form = () => {
     if (username && password) {
       axios
         // .post('http://localhost:3000/login/2', user)    // For testing fake login API only
-        .get('http://localhost:3000/login/10012019') // For testing fake login API only
-        //.post('http://localhost:5000/login', user)
+        //.get('http://localhost:3000/login/10012019') // For testing fake login API only
+        .post('http://localhost:5000/login', user)
         .then((res) => {
           if (res.data.auth === false) {
             setMessage('Tài khoản hoặc mật khẩu không hợp lệ!!!!!');
           } else {
-            if (res.data.role === 'student') {
+            if (res.data.role === 'Student') {
               history.push({
                 pathname: '/studentHomepage',
                 state: res.data,
               });
-            } else if (res.data.role === 'teacher') {
+            } else if (res.data.role === 'Teacher') {
               history.push({
                 pathname: '/teacherHomepage',
                 state: res.data,
@@ -92,7 +92,7 @@ const Form = () => {
       </div>
       {message && (
         <div style={{ textAlign: 'center', color: 'red' }}>
-          Vui lòng điền đầy đủ thông tin!!!!
+          Sai mật khẩu hoặc tài khoản !!!!
         </div>
       )}
     </Container>
