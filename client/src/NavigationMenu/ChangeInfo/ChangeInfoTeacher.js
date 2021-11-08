@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Content () {
-  return (
+export default function ChangeInfoTeacher() {
+    return (
     <Container>
       <h1> Cập nhật thông tin </h1>  
       <div className="line">
@@ -72,8 +72,8 @@ function Content () {
 };
 
 const Container = styled.div`
-    // width: 1500px;
-    // float: right;
+    width: 1100px;
+    margin: auto;
     h1 {
         font-size: 40px;
         text-align: center;
@@ -90,13 +90,13 @@ const Container = styled.div`
         letter-spacing: 0.3px;    
     }
     div > div {
-        position:ralative;
+        position: relative;
         display: flex;
         flex-direction: column;
         margin: 0px 50px;
     }
     div > div > div {
-        position:ralative;
+        position: relative;
         display: flex;
         flex-direction: row; 
         margin: 0px 0px;
@@ -165,6 +165,7 @@ const Container = styled.div`
         line-height: 55px;    
     }
 `;
+
 const Input = styled.input`
   background: #FFFFFF;
   border: 1px solid #CDDEDF;
@@ -175,7 +176,6 @@ const Input = styled.input`
   transition-timing-function: ease-in-out;
   padding: 10px 10px;
   margin: 0px 0px;
-
   &:active {
     border: 1px solid #0ba1f5;
   }
@@ -191,6 +191,3 @@ const Button = styled.button`
   font-size: 25px;
   border-radius: 10px;  
 `;
-
-
-export default Content;
