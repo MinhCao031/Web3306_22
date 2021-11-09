@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as AiIcons from 'react-icons/ai';
 
 import './Sidebar.css'
 import logo from '../../assets/uet.png';
@@ -13,15 +12,6 @@ function Sidebar() {
   
     return (
         <div>
-            <div className='sidebar'>
-                <Link to="#" className={sidebar ? 'menu-bars active' : 'menu-bars'}>
-                    <AiIcons.AiOutlineBars
-                        onClick={showSidebar}
-                        style={{ color: '#404E68' }}
-                    />
-                </Link>
-            </div>
-
             <nav className={sidebar ? 'side-menu active' : 'side-menu'}>
                 <div className="homepage">
                     <Link to="/teacherHomepage" className="uet-logo">
