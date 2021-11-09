@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-
+import { useHistory } from 'react-router';
 function ChangeInfoTeacher() {
+  const history = useHistory();
   const handleSubmit = (e) => {};
   //     axios
   //       .post('http://localhost:5000/users/update', {
@@ -126,7 +127,13 @@ function ChangeInfoTeacher() {
         <Button id="submit" onClick={handleSubmit}>
           <p className="Submit">Cập nhật</p>
         </Button>
-        <Button id="cancel">
+        <Button
+          id="cancel"
+          onClick={(e) => {
+            e.preventDefault();
+            history.push('/teacherHomepage');
+          }}
+        >
           <p className="Cancel">Hủy</p>
         </Button>
       </div>
@@ -135,42 +142,43 @@ function ChangeInfoTeacher() {
 }
 
 const Container = styled.div`
-    width: 1100px;
-    margin: auto;
-    h1 {
-        font-size: 40px;
-        text-align: center;
-        margin: 0px 0px 0px 0px;
-    }
-    div {
-        font-family: Mulish;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 22px;
-        line-height: 28px;
-        display: flex;
-        align-items: left;
-        letter-spacing: 0.3px;    
-    }
-    div > div {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        margin: 0px 50px;
-    }
-    div > div > div {
-        position: relative;
-        display: flex;
-        flex-direction: row; 
-        margin: 0px 0px;
-    }    
-    div > div > .FieldToChange {
-        position: left;
-        line-height: 28px;
-        width: 300px;
-    }
+  width: 1100px;
+  margin: auto;
+  h1 {
+    font-size: 40px;
+    text-align: center;
+    margin: 0px 0px 0px 0px;
+  }
+  div {
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 28px;
+    display: flex;
+    align-items: left;
+    letter-spacing: 0.3px;
+  }
+  div > div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 50px;
+  }
+  div > div > div {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin: 0px 0px;
+  }
+  div > div > .FieldToChange {
+    position: left;
+    line-height: 28px;
+    width: 300px;
+  }
 
-  .line,  .desc {
+  .line,
+  .desc {
     margin: 50px 0px 50px 0px;
   }
   .wrapper {

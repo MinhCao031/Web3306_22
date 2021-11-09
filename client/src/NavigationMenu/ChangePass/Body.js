@@ -2,21 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-
+import { useHistory } from 'react-router';
 import axios from 'axios';
 const Body = () => {
+  const history = useHistory();
   const handleSubmit = (e) => {
-    axios
-      .post('http://localhost:5000/users/set_password', {
-        id: '19021353',
-        password: '123456',
-      })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // axios
+    //   .post('http://localhost:5000/users/set_password', {
+    //     id: '19021353',
+    //     password: '123456',
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    history.push('/teacherHomepage');
     e.preventDefault();
   };
   return (
@@ -39,7 +41,14 @@ const Body = () => {
       </div>
       <div className="button-wrap">
         <Button onClick={handleSubmit}>Cập nhật</Button>
-        <Button>Hủy</Button>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            history.push('/teacherHomepage');
+          }}
+        >
+          Hủy
+        </Button>
       </div>
     </Container>
   );
