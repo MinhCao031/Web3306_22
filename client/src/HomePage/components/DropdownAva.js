@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { DropdownItems } from './DropdownItems';
 import { Link } from 'react-router-dom';
 import './DropdownAva.css';
-// import './test.css';
 
 function DropdownAva() {
     const [click, setClick] = useState(false);

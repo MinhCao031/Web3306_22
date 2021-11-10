@@ -15,7 +15,10 @@ function Navbar() {
 	const showSidebar = () => setSidebar(!sidebar);
 
 	const [dropdown, setDropdown] = useState(false);
-	const showDropdown = () => setDropdown(!dropdown);
+	const showDropdown = () => {
+		setDropdown(!dropdown);
+		console.log("Change to " + dropdown)
+	}
 
 return (
 		<>
