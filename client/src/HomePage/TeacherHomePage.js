@@ -9,5 +9,4 @@ const TeacherHomePage = () => {
     </>
   );
 };
-
 export default TeacherHomePage;

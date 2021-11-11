@@ -4,19 +4,15 @@ import { Link } from 'react-router-dom';
 import './DropdownAva.css';
 
 function DropdownAva() {
-  const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
+  //   const [click, setClick] = useState(false);
 
   return (
     <div>
-      <ul
-        onClick={handleClick}
-        className={click ? 'dropdown-menu clicked' : 'dropdown-menu'}
-      >
+      <ul className="drop-menu">
         {DropdownItems.map((item, index) => {
           return (
             <li key={index} className={item.cname}>
-              <Link to={item.path} onClick={() => setClick(false)}>
+              <Link to={item.path}>
                 {item.icon}
                 <span> {item.title} </span>
               </Link>
