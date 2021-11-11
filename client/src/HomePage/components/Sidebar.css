@@ -1,14 +1,20 @@
-.navbar {
+.totalSidebar {
+    z-index: 1;
+}
+
+.sidebar {
     background-color: #fff;
     height: 80px;
     display: flex;
     justify-content: start;
     align-items: center;
-    position: relative;
+    position: absolute;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .menu-bars {
+    position: absolute;
+    top: 1.3rem;
     margin-left: 2rem;
     font-size: 2rem;
     background: none;
@@ -16,53 +22,14 @@
 }
 
 .menu-bars.active {
+    position: absolute;
+    top: 1.3rem;
     margin-left: 282px;
     transition: 400ms;
     transition-delay: 165ms;
 }
 
-.profile {
-    position: relative;
-    display: flex;
-    align-items: center;
-    float: right;
-    position: absolute;
-    right: 50px;
-}
-
-.profile .profile-text {
-    border-left: 1px solid #404E68;
-    padding-left: 10px;
-    color: #404E68;
-    font-weight: bold;
-}
-
-.profile img {
-    margin-left: 6px;
-    color: #404E68;
-    height: 55px;
-    width: 55px;
-    stroke: cyan;
-}
-
-.content {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    margin: auto;
-    top: 30px;     /* refer to navbar's height */
-    transition: 300ms;
-    z-index: -2;
-}
-
-.content.active {
-    margin: auto;
-   /* left: 260px;
-    transition: 500ms;
-    z-index: -2; */
-}
-
-.nav-menu {
+.side-menu {
     background-color: #404E68;
     width: 250px;
     height: 100vh;
@@ -74,12 +41,12 @@
     transition: 850ms;
 }
 
-.nav-menu.active {
+.side-menu.active {
     left: 0;
     transition: 500ms;
 }
 
-.nav-text {
+.side-text {
     display: flex;
     justify-content: start;
     align-items: center;
@@ -89,7 +56,7 @@
     height: 60px;
 }
 
-.nav-text a {
+.side-text a {
     text-decoration: none;
     color: #D6D5EE;
     font-size: 18px;
@@ -100,12 +67,12 @@
     padding: 0 16px;
 }
 
-.nav-text a:hover, .nav-text a:active {
+.side-text a:hover, .side-text a:active {
     background-color: #D6D5EE;
     color: #404E68;
 }
 
-.nav-menu-items {
+.side-menu-items {
     width: 100%;
 }
 
@@ -121,7 +88,7 @@
     margin-bottom: 3rem;
 }
 
-.homepage ~ .nav-menu-items {
+.homepage ~ .side-menu-items {
     margin-top: 8rem;
 }
 

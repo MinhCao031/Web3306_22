@@ -16,3 +16,26 @@
   justify-content: center;
   margin-left: 35px;
 }
+.profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  float: right;
+  position: absolute;
+  right: 50px;
+}
+
+.profile .profile-text {
+  border-left: 1px solid #404e68;
+  padding-left: 10px;
+  color: #404e68;
+  font-weight: bold;
+}
+
+.profile img {
+  margin-left: 6px;
+  color: #404e68;
+  height: 55px;
+  width: 55px;
+  stroke: cyan;
+}

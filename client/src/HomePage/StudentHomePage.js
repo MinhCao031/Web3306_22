@@ -1,7 +1,13 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-const StudentHomePage = () => {
-  return <Navbar />;
-};
+import NavigationBar from './components/NavigationBar';
+import Sidebar from './components/Sidebar';
+function StudentHomePage() {
+  return (
+    <div>
+      <NavigationBar />
+      <Sidebar />
+    </div>
+  );
+}
 
 export default StudentHomePage;
