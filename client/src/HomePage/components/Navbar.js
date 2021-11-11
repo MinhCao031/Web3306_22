@@ -6,14 +6,9 @@ import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import boy from '../../assets/boy_ava.png';
 import logo from '../../assets/uet.png';
-
 import './Navbar.css';
 import { SidebarData } from './SidebarData';
 import DropdownAva from './DropdownAva';
-import ChangeInfoTeacher from '../../NavigationMenu/ChangeInfo/ChangeInfoTeacher';
-import FileInput from '../../Lists/FileInput/FileInput';
-// import ChangePass from '../../NavigationMenu/ChangePass/ChangePass';
-// import Content from './Content';
 import ListOfStudents from '../../Lists/ListOfStudents/ListOfStudents';
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
