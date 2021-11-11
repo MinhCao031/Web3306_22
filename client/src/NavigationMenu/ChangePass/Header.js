@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import uet from '../../assets/uet.png';
 import boy from '../../assets/boy_ava.png';
 import * as IoIcons from 'react-icons/io';
-import '../../HomePage/components/Navbar.css';
+
 const Header = () => {
   return (
     <Container>

@@ -1,6 +1,13 @@
-import Navbar from './components/Navbar';
+import NavigationBar from "./components/NavigationBar";
+import Sidebar from "./components/Sidebar";
+
 const TeacherHomePage = () => {
-  return <Navbar />;
+    return (
+        <div>
+            <NavigationBar />
+            <Sidebar />
+        </div>
+    )
 };
 
 export default TeacherHomePage;

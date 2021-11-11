@@ -18,7 +18,7 @@ export const DropdownItems = [
     },
     {
         title: 'Cập nhật mật khẩu',
-        path: '/changePassword',
+        path: '/teacherHomepage/changePassword',
         icon: <IoIcons.IoMdLock className="icon" />,
         cname: 'dropdown-link'
     },
