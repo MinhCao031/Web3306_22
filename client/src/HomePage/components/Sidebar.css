@@ -14,7 +14,7 @@
 
 .menu-bars {
     position: absolute;
-    margin-top: 1.4rem;
+    top: 1.3rem;
     margin-left: 2rem;
     font-size: 2rem;
     background: none;
@@ -23,7 +23,7 @@
 
 .menu-bars.active {
     position: absolute;
-    margin-top: 1.4rem;
+    top: 1.3rem;
     margin-left: 282px;
     transition: 400ms;
     transition-delay: 165ms;

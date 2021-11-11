@@ -5,8 +5,8 @@ import Sidebar from './components/Sidebar';
 function StudentHomePage() {
     return (
         <div>
-            <Sidebar />
             <NavigationBar />
+            <Sidebar />
         </div>
     )
 }
