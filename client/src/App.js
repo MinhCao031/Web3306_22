@@ -5,7 +5,6 @@ import SignInForm from './SignInPage/SignInForm';
 import StudentHomePage from './HomePage/StudentHomePage';
 import TeacherHomePage from './HomePage/TeacherHomePage';
 
-import Navbar from './HomePage/components/Navbar';
 import ChangeInfoTeacher from './NavigationMenu/ChangeInfo/ChangeInfoTeacher';
 import ChangePass from './NavigationMenu/ChangePass/ChangePass';
 import ListOfStudents from './Lists/ListOfStudents/ListOfStudents';
