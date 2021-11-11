@@ -25,4 +25,4 @@ function DropdownAva() {
     )
 }
 
-export default DropdownAva
+export default DropdownAva;

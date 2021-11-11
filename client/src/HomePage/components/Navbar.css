@@ -49,13 +49,17 @@
     display: flex;
     justify-content: center;
     position: relative;
-    top: 30px;     
+    margin: auto;
+    top: 30px;     /* refer to navbar's height */
     transition: 300ms;
+    z-index: -2;
 }
 
 .content.active {
-    left: 260px;
+    margin: auto;
+   /* left: 260px;
     transition: 500ms;
+    z-index: -2; */
 }
 
 .nav-menu {

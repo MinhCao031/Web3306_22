@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useHistory } from 'react-router';
 function ChangeInfoTeacher() {
+  const history = useHistory();
   const handleSubmit = (e) => {};
   //     axios
   //       .post('http://localhost:5000/users/update', {
@@ -125,7 +127,13 @@ function ChangeInfoTeacher() {
         <Button id="submit" onClick={handleSubmit}>
           <p className="Submit">Cập nhật</p>
         </Button>
-        <Button id="cancel">
+        <Button
+          id="cancel"
+          onClick={(e) => {
+            e.preventDefault();
+            history.push('/teacherHomepage');
+          }}
+        >
           <p className="Cancel">Hủy</p>
         </Button>
       </div>
@@ -134,8 +142,8 @@ function ChangeInfoTeacher() {
 }
 
 const Container = styled.div`
-  // width: 1500px;
-  // float: right;
+  width: 1100px;
+  margin: auto;
   h1 {
     font-size: 40px;
     text-align: center;
@@ -152,13 +160,13 @@ const Container = styled.div`
     letter-spacing: 0.3px;
   }
   div > div {
-    position: ralative;
+    position: relative;
     display: flex;
     flex-direction: column;
     margin: 0px 50px;
   }
   div > div > div {
-    position: ralative;
+    position: relative;
     display: flex;
     flex-direction: row;
     margin: 0px 0px;
@@ -231,6 +239,7 @@ const Container = styled.div`
     line-height: 55px;
   }
 `;
+
 const Input = styled.input`
   background: #ffffff;
   border: 1px solid #cddedf;
@@ -241,7 +250,6 @@ const Input = styled.input`
   transition-timing-function: ease-in-out;
   padding: 10px 10px;
   margin: 0px 0px;
-
   &:active {
     border: 1px solid #0ba1f5;
   }

@@ -1,15 +1,10 @@
 import React from 'react';
 
 const ListOfStudents = () => {
-    return (
-        <>
-        </>
-    ); 
+  return (
+    <>
+      <h1>K64CA-CLC1</h1>
+    </>
+  );
 };
-// function ListOfStudents() {
-//     return (
-//         <>
-//         </>
-//     ); 
-// };
 export default ListOfStudents;
