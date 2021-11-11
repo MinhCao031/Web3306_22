@@ -12,7 +12,7 @@ function Sidebar() {
     const showSidebar = () => setSidebar(!sidebar);
   
     return (
-        <div>
+        <div className='totalSidebar'>
             <Link to="#" className={sidebar ? 'menu-bars active' : 'menu-bars'}>
                 <AiIcons.AiOutlineBars
                     onClick={showSidebar}
