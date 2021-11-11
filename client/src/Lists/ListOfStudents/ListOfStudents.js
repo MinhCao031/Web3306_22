@@ -1,9 +1,13 @@
 import React from 'react';
-
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import ClassName from './ClassName';
+import Table from './Table';
 const ListOfStudents = () => {
   return (
     <>
-      <h1>K64CA-CLC1</h1>
+      <ClassName></ClassName>
+      <Table></Table>
     </>
   );
 };

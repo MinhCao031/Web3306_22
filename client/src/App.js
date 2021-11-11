@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SignInForm from './SignInPage/SignInForm';
 import StudentHomePage from './HomePage/StudentHomePage';
 import TeacherHomePage from './HomePage/TeacherHomePage';
-
 import ChangeInfoTeacher from './NavigationMenu/ChangeInfo/ChangeInfoTeacher';
 import ChangePass from './NavigationMenu/ChangePass/ChangePass';
 import ListOfStudents from './Lists/ListOfStudents/ListOfStudents';
+import DropdownAva from './HomePage/components/DropdownAva';
 const App = () => {
   return (
     <Router>
@@ -41,6 +41,9 @@ const App = () => {
         </Route>
         <Route path="/studentHomepage" exact>
           <StudentHomePage />
+        </Route>
+        <Route path="/teacherHomepage/test">
+          <DropdownAva />
         </Route>
       </Switch>
     </Router>

@@ -1,13 +1,12 @@
-import NavigationBar from "./components/NavigationBar";
-import Sidebar from "./components/Sidebar";
-
+import React from 'react';
+import NavigationBar from './components/NavigationBar';
+import Sidebar from './components/Sidebar';
 const TeacherHomePage = () => {
-    return (
-        <div>
-            <NavigationBar />
-            <Sidebar />
-        </div>
-    )
+  return (
+    <>
+      <NavigationBar />
+      <Sidebar />
+    </>
+  );
 };
-
 export default TeacherHomePage;
