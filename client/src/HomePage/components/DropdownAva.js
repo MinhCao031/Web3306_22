@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import './DropdownAva.css';
 
 function DropdownAva() {
-  //   const [click, setClick] = useState(false);
-
   return (
     <div>
       <ul className="drop-menu">

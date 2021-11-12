@@ -1,13 +1,16 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import ClassName from './ClassName';
 import Table from './Table';
+import Sidebar from '../../HomePage/components/Sidebar';
+import NavigationBar from '../../HomePage/components/NavigationBar';
+
 const ListOfStudents = () => {
   return (
     <>
-      <ClassName></ClassName>
-      <Table></Table>
+      <NavigationBar />
+      <ClassName />
+      <Table />
+      <Sidebar />
     </>
   );
 };

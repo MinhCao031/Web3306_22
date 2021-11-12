@@ -5,3 +5,6 @@ h1 {
 .dropdown-menu {
   left: 0px;
 }
+.sr-only {
+  display: none;
+}
