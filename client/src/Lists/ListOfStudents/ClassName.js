@@ -14,7 +14,7 @@ const ClassName = () => {
         console.log(err);
       });
   }, []);
-  return <h1>{className}</h1>;
+  return <h1>{className || 'Loading...'}</h1>;
 };
 
 export default ClassName;
