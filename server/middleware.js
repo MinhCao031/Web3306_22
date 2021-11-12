@@ -1,10 +1,12 @@
-const user = require('./models/user');
 const express = require('express');
 const session = require('express-session');
 
+const User = require('./models/User');
+
 module.exports.authenticate = async function(req, res, next) {
     const { username, password } = req.body;
-    const foundUser = await user.findAndValidate(username, password);
+    const foundUser = await User.findAndValidate(username, password);
+
     if (foundUser) {
         req.session.id = foundUser.username;
         return next();
@@ -17,10 +19,7 @@ module.exports.authenticate = async function(req, res, next) {
 
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.session.id) {
-        console.log("Log in required")
-        res.json({ status: 'Login required'})
-    } else {
-        console.log(req.session.id)
+        res.json({ message: 'Login required' });
     }
-    next();
+    return next();
 };
