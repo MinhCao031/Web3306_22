@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const bcrypt = require('bcrypt');
 
@@ -33,7 +34,7 @@ const UserSchema = new Schema({
     },
     gender: {
         type: String,
-        enum: ['Nam', 'Nữ']
+        enum: [ 'Nam', 'Nữ' ]
     },
     phoneNumber: {
         type: Number
@@ -68,9 +69,10 @@ UserSchema.statics.findAndValidate = async function(username, password) {
 };
 
 UserSchema.pre('save', async function(next) {
-    if (!this.isModified('password')) return next();
-    this.password = await bcrypt.hash(this.password, 12);
-    next();
+    if (this.isModified('password')) {
+        this.password = await bcrypt.hash(this.password, 12);
+    }
+    return next();
 });
 
 module.exports = mongoose.model('User', UserSchema);

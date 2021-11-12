@@ -1,11 +1,10 @@
-const User = require('../models/user');
-const express = require('express');
-const session = require('express-session');
-const Class = require('../models/class');
+const User = require('../models/User');
+const Class = require('../models/Class');
 
 module.exports.getClasses = async function(req, res) {
-    // '10022019' is for testing furpose only.
-    const foundClass = await Class.findOne({ teacherId: '10012019' });
+    const { user_id } = req.params;
+    const foundClass = await Class.findOne({ teacherId: user_id });
+
     if (foundClass) {
         const result = {
             className: foundClass['className'],
@@ -26,16 +25,12 @@ module.exports.getClasses = async function(req, res) {
                 };
                 result.studentIds.push(student);
             } else {
-                res.json({
-                    status: 'No students found'
-                });
+                return res.json({ message: 'No students found' });
             }
         }
 
-        res.send(result);
+        return res.json(result);
     } else {
-        res.json({
-            status: 'No classes found'
-        });
+        return res.json({ message: 'No classes found' });
     }
 };
