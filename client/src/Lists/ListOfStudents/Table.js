@@ -127,7 +127,7 @@ const Table = () => {
     },
     {
       dataField: 'drl',
-      text: 'ĐRl',
+      text: 'ĐRL',
       sort: true,
       filter: textFilter(filterData),
       validator: (newValue, row, column) => {

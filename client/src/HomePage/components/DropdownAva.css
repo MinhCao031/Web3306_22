@@ -49,6 +49,7 @@
 
 .dropdown-link:first-child a {
   color: #f1f1f1;
+  cursor: default;
 }
 
 .dropdown-link:first-child:hover {
