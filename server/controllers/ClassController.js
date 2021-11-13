@@ -20,8 +20,9 @@ module.exports.getClasses = async function(req, res) {
                     level: foundStudent['level'],
                     dateOfBirth: foundStudent['dateOfBirth'],
                     gender: foundStudent['gender'],
-                    homewtown: foundStudent['hometown'],
-                    gpa: foundStudent['gpa']
+                    hometown: foundStudent['hometown'],
+                    gpa: foundStudent['gpa'],
+                    drl: foundStudent['drl']
                 };
                 result.studentIds.push(student);
             } else {
