@@ -1,11 +1,8 @@
-const User = require('../models/user');
+const User = require('../models/User');
 const express = require('express');
 const session = require('express-session');
 
-// This function should be authenticated by middleware function.
 module.exports.login = async function(req, res) {
-    console.log('Session id: ', req.session.id);
-
     const user = await User.findOne({ username: req.body.username });
     const data = {
         auth: true,
@@ -13,18 +10,23 @@ module.exports.login = async function(req, res) {
         name: user.name,
         role: user.role
     };
-    res.json(data);
+    return res.json(data);
+    // res.redirect('/home');
 };
 
-// Need to validate request input from client side first, such as whether request's data empty or not.
+module.exports.logout = async function(req, res) {
+    req.session.destroy();
+    if (req.session) {
+        return res.json({ message: 'Something went wrong!' });
+    } else {
+        return res.json({ success: true });
+    }
+};
+
 module.exports.update = async function(req, res) {
-    console.log('Session id: ', req.session.id);
-    const { username, name, email, phoneNumber, dateOfBirth, fieldOfStudy, introduction } = req.body;
-
-    const query = {
-        username: username
-    };
-
+    const { name, email, phoneNumber, dateOfBirth, fieldOfStudy, introduction } = req.body;
+    const { user_id } = req.params;
+    const query = { username: user_id };
     const update = {
         name: name,
         email: email,
@@ -33,30 +35,24 @@ module.exports.update = async function(req, res) {
         fieldOfStudy: fieldOfStudy,
         introduction: introduction
     };
-
     const user = await User.findOneAndUpdate(query, update);
+
     await user.save().then(() => res.json({ status: 'OK' })).catch((err) => {
         const response = {
             error: err,
             status: 'Failed'
         };
-        res.json(response);
+        return res.json(response);
     });
 };
 
 module.exports.setPassword = async function(req, res) {
-    console.log('Session id: ', req.session.id);
-
-    const { id, password } = req.body;
-    const query = {
-        username: id
-    };
-
-    const update = {
-        password: password
-    };
-
+    const { user_id } = req.params;
+    const { password } = req.body;
+    const query = { username: user_id };
+    const update = { password: password };
     const user = await User.findOneAndUpdate(query, update);
+
     await user.save().then(() => res.json({ status: 'OK' })).catch((err) => {
         const response = {
             error: err,
@@ -68,11 +64,11 @@ module.exports.setPassword = async function(req, res) {
 
 module.exports.getInfo = async function(req, res) {
     const { user_id } = req.params;
-    console.log(req.params)
     const user = await User.findOne({ username: user_id });
+
     if (user) {
-        res.send(user);
+        return res.json(user);
     } else {
-        res.json({ success: false });
+        return res.json({ message: 'Something went wrong!' });
     }
 };

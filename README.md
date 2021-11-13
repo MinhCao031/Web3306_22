@@ -1,6 +1,6 @@
 # UET - SMTA
 
-*UET Student Management for Teaching Assistants /turn*
+*UET Student Management for Teaching Assistants*
 
 ## Introduction
 
@@ -22,7 +22,7 @@ For Linux:
 
 ```bash
 # Create fake user accounts.
-node server/userSeed.js
+node server/UserSeed.js
 ```
 
 **Classes data**
@@ -77,11 +77,12 @@ mongoimport --db uet-smta --collection classes --type json --file server/data/cl
 
 | Resources | Action | Routes | Methods | Description|
 | ------ | ------ | ------ | ------ | ------ |
-| login | login | /login | POST | Login to user account|
-| logout | logout | /logout |   |   |
-| Users | update | /users/update | POST | Update user's profile |
-|  | Change password | /users/set_password | POST | Change user's password |
-| Classes | show | /classes/ | GET | Get managed class and students |
+| login | login | /login | POST | Log in|
+| logout | logout | /logout | GET | Log out |
+| Users | show | /:user_id/show | GET | Show user's profile |
+|  | update | /:user_id/update | POST | Update user's profile |
+|  | change password | /:user_id/set_password | POST | Change user's password |
+| Classes | show | /classes/:user_id/show | GET | Get managed class and students |
 
 ## Todo
 
