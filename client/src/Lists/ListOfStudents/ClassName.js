@@ -6,7 +6,7 @@ const ClassName = () => {
   const [className, setClassName] = useState('');
   useEffect(() => {
     axios
-      .get('http://localhost:3000/className')
+      .get('http://localhost:3001/className')
       .then((res) => {
         setClassName(res.data);
       })
@@ -14,7 +14,7 @@ const ClassName = () => {
         console.log(err);
       });
   }, []);
-  return <h1>{className || 'Loading...'}</h1>;
+  return <h1 class="class-name">{className || 'Loading...'}</h1>;
 };
 
 export default ClassName;

@@ -1,13 +1,14 @@
 import React from 'react';
 import NavigationBar from './components/NavigationBar';
 import Sidebar from './components/Sidebar';
+import { Container } from './TeacherHomePage';
 function StudentHomePage() {
   return (
-    <div>
+    <>
       <NavigationBar />
+      <Container />
       <Sidebar />
-    </div>
+    </>
   );
 }
-
 export default StudentHomePage;
