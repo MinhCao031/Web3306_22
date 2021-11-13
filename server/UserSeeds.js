@@ -1,5 +1,5 @@
 const config = require('./config/config');
-const User = require('./models/user.js');
+const User = require('./models/User.js');
 
 const mongoose = require('mongoose');
 

@@ -70,7 +70,7 @@ const Table = () => {
     },
     {
       dataField: 'drl',
-      text: 'ĐRl',
+      text: 'ĐRL',
       sort: true,
       filter: textFilter({
         placeholder: 'Nhập ĐRL',
