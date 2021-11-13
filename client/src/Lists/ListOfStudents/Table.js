@@ -180,7 +180,7 @@ const Table = () => {
   });
   useEffect(() => {
     axios
-      .get('http://localhost:3000/StudentIds')
+      .get('http://localhost:3001/StudentIds')
       .then((res) => {
         setUserList(res.data);
       })

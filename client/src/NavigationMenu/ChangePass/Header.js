@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import uet from '../../assets/uet.png';
 import boy from '../../assets/boy_ava.png';
-import * as IoIcons from 'react-icons/io';
 import './ChangePass.css';
 const Header = () => {
   return (
@@ -12,7 +11,6 @@ const Header = () => {
         <span>UET - SMTA</span>
       </div>
       <div className="profile">
-        <IoIcons.IoMdNotifications style={{ color: '#404E68' }} size={30} />
         <span className="profile-text">{'Nguyen Van Quang'}</span>
         <img alt="Avatar" src={boy} />
       </div>

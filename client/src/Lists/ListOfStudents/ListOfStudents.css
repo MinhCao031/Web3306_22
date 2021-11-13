@@ -1,10 +1,18 @@
-h1 {
+.class-name {
   font-size: 48px;
   text-align: center;
+  color: black;
+  margin-top: 40px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 .dropdown-menu {
   left: 0px;
 }
 .sr-only {
   display: none;
+}
+.table {
+  border-collapse: separate;
+  box-shadow: inset 0px -1px 0px #c9cfda;
 }
