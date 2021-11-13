@@ -8,7 +8,8 @@
             "dateOfBirth": "2001-02-02T17:00:00.000Z",
             "gender": "Nam",
             "homewtown": "Hà Nội",
-            "gpa": 3
+            "gpa": 3,
+            "drl": 100
         },
         {
             "username": 19021364,
@@ -17,7 +18,8 @@
             "dateOfBirth": "2001-02-02T17:00:00.000Z",
             "gender": "Nam",
             "homewtown": "Hải Hưng",
-            "gpa": 3.9
+            "gpa": 3.9,
+            "drl": 90
         },
         {
             "username": 19021365,
@@ -26,7 +28,8 @@
             "dateOfBirth": "2001-02-02T17:00:00.000Z",
             "gender": "Nữ",
             "homewtown": "Hải Dương",
-            "gpa": 3.95
+            "gpa": 3.95,
+            "drl": 80
         }
     ]
 }
