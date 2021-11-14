@@ -5,6 +5,7 @@ import './NavigationBar.css';
 import boy from '../../assets/boy_ava.png';
 import DropdownAva from './DropdownAva';
 
+const userName = 'Nguyen Van Quang';
 function NavigationBar() {
   const [dropdown, setDropdown] = useState(false);
   const showDropdown = () => {
@@ -18,7 +19,7 @@ function NavigationBar() {
           style={{ color: '#404E68', cursor: 'pointer' }}
           size={30}
         />
-        <span className="profile-text">{'Nguyen Van Quang'}</span>
+        <span className="profile-text">{userName}</span>
         <div onClick={showDropdown}>
           <img className="avatar" alt={'Avatar'} src={boy} />
           {dropdown && <DropdownAva />}

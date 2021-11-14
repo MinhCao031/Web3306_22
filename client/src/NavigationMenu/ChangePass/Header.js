@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import uet from '../../assets/uet.png';
 import boy from '../../assets/boy_ava.png';
 import './ChangePass.css';
+
+const Name = 'Nguyen Van Quang';
 const Header = () => {
   return (
     <Container>
@@ -11,7 +13,7 @@ const Header = () => {
         <span>UET - SMTA</span>
       </div>
       <div className="profile">
-        <span className="profile-text">{'Nguyen Van Quang'}</span>
+        <span className="profile-text">{Name}</span>
         <img alt="Avatar" src={boy} />
       </div>
     </Container>
