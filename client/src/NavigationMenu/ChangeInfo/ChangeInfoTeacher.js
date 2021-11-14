@@ -36,11 +36,12 @@ function ChangeInfoTeacher() {
             <p className="FieldToChange">
               Họ và tên: <Red>*</Red>
             </p>
-            <div class="Field2">
+            <div className="Field2">
               <Input
                 name="FullName"
                 id="FullName"
                 style={{ width: '400px', height: '55px;' }}
+                placeholder="Nguyễn Văn Quang"
               />
             </div>
           </div>
@@ -48,23 +49,26 @@ function ChangeInfoTeacher() {
             <p className="FieldToChange">
               Ngày sinh: <Red>*</Red>
             </p>
-            <div class="Field2">
+            <div className="Field2">
               <Input
                 name="Day"
                 id="Day"
                 style={{ width: '100px', height: '55px' }}
+                placeholder="01"
               />
-              <p class="Slash">/</p>
+              <p className="Slash">/</p>
               <Input
                 name="Month"
                 id="Month"
                 style={{ width: '100px', height: '55px' }}
+                placeholder="01"
               />
-              <p class="Slash">/</p>
+              <p className="Slash">/</p>
               <Input
                 name="Year"
                 id="Year"
                 style={{ width: '100px', height: '55px' }}
+                placeholder="2000"
               />
             </div>
           </div>
@@ -75,17 +79,18 @@ function ChangeInfoTeacher() {
             <p className="FieldToChange">
               Email: <Red>*</Red>
             </p>
-            <div class="Field2">
+            <div className="Field2">
               <Input
                 name="Email"
                 id="Email"
                 style={{ width: '400px', height: '55px;' }}
+                placeholder="nguyenvanquang@gmail.com"
               />
             </div>
           </div>
           <div className="Identifier">
             <p className="FieldToChange">Mã số giảng viên: </p>
-            <div class="Field2">
+            <div className="Field2">
               <Input
                 name="ConstID"
                 id="ConstID"
@@ -105,21 +110,23 @@ function ChangeInfoTeacher() {
         <div className="line">
           <div className="Major">
             <p className="FieldToChange">Chuyên ngành: </p>
-            <div class="Field2">
+            <div className="Field2">
               <Input
                 name="Major"
                 id="Major"
                 style={{ width: '400px', height: '55px;' }}
+                placeholder="Công nghệ thông tin"
               />
             </div>
           </div>
           <div className="Phone">
             <p className="FieldToChange">Số điện thoại: </p>
-            <div class="Field2">
+            <div className="Field2">
               <Input
                 name="Phone"
                 id="Phone"
                 style={{ width: '400px', height: '55px;' }}
+                placeholder="0123456789"
               />
             </div>
           </div>
@@ -128,13 +135,14 @@ function ChangeInfoTeacher() {
         <div className="desc">
           <div className="Description">
             <p className="FieldToChange">Giới thiệu: </p>
-            <div class="Field1">
-              <Input
+            <div className="Field1">
+              <Textarea
                 type="textarea"
                 name="Description"
                 id="Description"
                 style={{ width: '900px', height: '140px' }}
-              />
+                placeholder="Yêu màu hồng và ghét sự giả dối"
+              ></Textarea>
             </div>
           </div>
         </div>
@@ -158,6 +166,19 @@ function ChangeInfoTeacher() {
     </Wrapper>
   );
 }
+const Textarea = styled.textarea`
+  border: 1px solid #cddedf;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #ffffff;
+  font-size: 20px;
+  transition-timing-function: ease-in-out;
+  padding: 10px 10px;
+  margin: 0px 0px;
+  &:active {
+    border: 1px solid #0ba1f5;
+  }
+`;
 const Red = styled.span`
   color: red;
   margin-left: 0px;
