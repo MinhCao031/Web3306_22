@@ -16,3 +16,21 @@
   border-collapse: separate;
   box-shadow: inset 0px -1px 0px #c9cfda;
 }
+div.row.react-bootstrap-table-pagination {
+  width: 100%;
+}
+.table > :not(caption) > * > * {
+  background-color: white;
+  border: none;
+}
+#pageDropDown {
+  background-color: #33b633;
+}
+.saveButton {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.ListButton {
+  margin-right: 25px;
+}
