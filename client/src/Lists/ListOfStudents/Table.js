@@ -11,7 +11,6 @@ import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css
 import cellEditFactory, { Type } from 'react-bootstrap-table2-editor';
 import './ListOfStudents.css';
 import ClassName from './ClassName';
-import { MdFormatStrikethrough } from 'react-icons/md';
 const Table = () => {
   const [userList, setUserList] = useState([]);
   const filterData = {
@@ -180,9 +179,9 @@ const Table = () => {
   });
   useEffect(() => {
     axios
-      .get('http://localhost:3001/StudentIds')
+      .get('http://localhost:5000/classes/10012019/show')
       .then((res) => {
-        setUserList(res.data);
+        setUserList(res.data.studentIds);
       })
       .catch((err) => {
         console.log(err);
