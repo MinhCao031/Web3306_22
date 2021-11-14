@@ -1,24 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router';
 import axios from 'axios';
 const Body = () => {
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const handleChangeOldPass = (e) => {
+    setOldPassword(e.target.value);
+  };
+  const handleChangeNewPass = (e) => {
+    setNewPassword(e.target.value);
+  };
+  const handleChangeConfirmPass = (e) => {
+    setConfirmPassword(e.target.value);
+  };
   const history = useHistory();
   const handleSubmit = (e) => {
-    // axios
-    //   .post('http://localhost:5000/users/set_password', {
-    //     id: '19021353',
-    //     password: '123456',
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    history.push('/teacherHomepage');
+    if (oldPassword && newPassword && confirmPassword) {
+      if (oldPassword === newPassword) {
+        alert('Mật khẩu mới không được trùng với mật khẩu cũ');
+      } else if (newPassword !== confirmPassword) {
+        alert('Mật khẩu mới và xác nhận mật khẩu không trùng nhau');
+      } else {
+        // alert('Đổi mật khẩu thành công');
+        // setOldPassword('');
+        // setNewPassword('');
+        // setConfirmPassword('');
+        // axios
+        //   .post('http://localhost:5000/users/set_password', {
+        //     id: '19021353',
+        //     password: '123456',
+        //   })
+        //   .then((res) => {
+        //     console.log(res.data);
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   });
+      }
+    } else {
+      alert('Vui lòng nhập đầy đủ thông tin');
+    }
     e.preventDefault();
   };
   return (
@@ -28,15 +53,30 @@ const Body = () => {
       <div className="input-wrap">
         <InputField>
           <FontAwesomeIcon icon={faLock} size="lg" style={iconStyle} />
-          <Input type="text" placeholder="Mật khẩu cũ"></Input>
+          <Input
+            type="password"
+            placeholder="Mật khẩu cũ"
+            onChange={handleChangeOldPass}
+            value={oldPassword}
+          ></Input>
         </InputField>
         <InputField>
           <FontAwesomeIcon icon={faLock} size="lg" style={iconStyle} />
-          <Input type="text" placeholder="Mật khẩu mới"></Input>
+          <Input
+            type="password"
+            placeholder="Mật khẩu mới"
+            onChange={handleChangeNewPass}
+            value={newPassword}
+          ></Input>
         </InputField>
         <InputField>
           <FontAwesomeIcon icon={faLock} size="lg" style={iconStyle} />
-          <Input type="text" placeholder="Nhập lại mật khẩu mới"></Input>
+          <Input
+            type="password"
+            placeholder="Nhập lại mật khẩu mới"
+            onChange={handleChangeConfirmPass}
+            value={confirmPassword}
+          ></Input>
         </InputField>
       </div>
       <div className="button-wrap">
