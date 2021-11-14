@@ -1,31 +1,83 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 import NavigationBar from '../../HomePage/components/NavigationBar';
 import Sidebar from '../../HomePage/components/Sidebar';
-
+import validator from 'validator';
 function ChangeInfoTeacher() {
+  const [name, setName] = useState('Nguyễn Văn Quang');
+  const [email, setEmail] = useState('nguyenvanquang@gmail.com');
+  const [phone, setPhone] = useState('0123456789');
+  const [dateOfBirth, setDateOfBirth] = useState('2001-01-01');
+  const [fieldOfStudy, setFieldOfStudy] = useState('Công nghệ thông tin');
+  const [introduction, setIntroduction] = useState(
+    'Yêu màu hồng và ghét sự giả dối'
+  );
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const handlePhone = (e) => {
+    setPhone(e.target.value);
+  };
+  const handleDateOfBirth = (e) => {
+    setDateOfBirth(e.target.value);
+  };
+  const handleFieldOfStudy = (e) => {
+    setFieldOfStudy(e.target.value);
+  };
+  const handleIntroduction = (e) => {
+    setIntroduction(e.target.value);
+  };
+  const ref = useRef();
   const history = useHistory();
-  const handleSubmit = (e) => {};
-  //     axios
-  //       .post('http://localhost:5000/users/update', {
-  //         username: '19021363',
-  //         email: 'test@gmail.com',
-  //         name: 'Quang',
-  //         phoneNumber: '0123456789',
-  //         dateOfBirth: '01/01/2000',
-  //         fieldOfStudy: 'IT',
-  //         introduction: 'I am a student',
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data.status);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //     e.preventDefault();
-  //   };
+  const handleSubmit = (e) => {
+    //     axios
+    //       .post('http://localhost:5000/users/update', {
+    //         username: '19021363',
+    //         email: 'test@gmail.com',
+    //         name: 'Quang',
+    //         phoneNumber: '0123456789',
+    //         dateOfBirth: '01/01/2000',
+    //         fieldOfStudy: 'IT',
+    //         introduction: 'I am a student',
+    //       })
+    //       .then((res) => {
+    //         console.log(res.data.status);
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    if (validator.isEmail(email) && validator.isMobilePhone(phone, 'vi-VN')) {
+      alert('Thay đổi thông tin thành công');
+      // axios
+      //   .post('http://localhost:5000/users/update', {
+      //     username: '19021363',
+      //     email: email,
+      //     name: name,
+      //     phoneNumber: phone,
+      //     dateOfBirth: dateOfBirth,
+      //     fieldOfStudy: fieldOfStudy,
+      //     introduction: introduction,
+      //   })
+      //   .then((res) => {
+      //     console.log(res.data.status);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+    }
+    if (!validator.isEmail(email)) {
+      alert('Email không hợp lệ');
+    }
+    if (!validator.isMobilePhone(phone, 'vi-VN')) {
+      alert('Số điện thoại không hợp lệ');
+    }
+    e.preventDefault();
+  };
   return (
     <Wrapper>
       <NavigationBar />
@@ -41,7 +93,9 @@ function ChangeInfoTeacher() {
                 name="FullName"
                 id="FullName"
                 style={{ width: '400px', height: '55px;' }}
-                placeholder="Nguyễn Văn Quang"
+                value={name}
+                type="text"
+                onChange={handleName}
               />
             </div>
           </div>
@@ -50,7 +104,7 @@ function ChangeInfoTeacher() {
               Ngày sinh: <Red>*</Red>
             </p>
             <div className="Field2">
-              <Input
+              {/* <Input
                 name="Day"
                 id="Day"
                 style={{ width: '100px', height: '55px' }}
@@ -69,6 +123,20 @@ function ChangeInfoTeacher() {
                 id="Year"
                 style={{ width: '100px', height: '55px' }}
                 placeholder="2000"
+              /> */}
+              <Input
+                name="FullName"
+                id="FullName"
+                style={{ width: '400px', height: '55px;' }}
+                type="text"
+                value={dateOfBirth}
+                ref={ref}
+                onFocus={() => (ref.current.type = 'date')}
+                onBlur={() => {
+                  ref.current.type = 'text';
+                  ref.current.value = dateOfBirth;
+                }}
+                onChange={handleDateOfBirth}
               />
             </div>
           </div>
@@ -84,7 +152,9 @@ function ChangeInfoTeacher() {
                 name="Email"
                 id="Email"
                 style={{ width: '400px', height: '55px;' }}
-                placeholder="nguyenvanquang@gmail.com"
+                value={email}
+                type="email"
+                onChange={handleEmail}
               />
             </div>
           </div>
@@ -94,6 +164,7 @@ function ChangeInfoTeacher() {
               <Input
                 name="ConstID"
                 id="ConstID"
+                type="text"
                 value="GV21082102"
                 disabled
                 style={{
@@ -114,8 +185,10 @@ function ChangeInfoTeacher() {
               <Input
                 name="Major"
                 id="Major"
+                type="text"
                 style={{ width: '400px', height: '55px;' }}
-                placeholder="Công nghệ thông tin"
+                value={fieldOfStudy}
+                onChange={handleFieldOfStudy}
               />
             </div>
           </div>
@@ -125,8 +198,10 @@ function ChangeInfoTeacher() {
               <Input
                 name="Phone"
                 id="Phone"
+                type="tel"
                 style={{ width: '400px', height: '55px;' }}
-                placeholder="0123456789"
+                value={phone}
+                onChange={handlePhone}
               />
             </div>
           </div>
@@ -141,7 +216,8 @@ function ChangeInfoTeacher() {
                 name="Description"
                 id="Description"
                 style={{ width: '900px', height: '140px' }}
-                placeholder="Yêu màu hồng và ghét sự giả dối"
+                value={introduction}
+                onChange={handleIntroduction}
               ></Textarea>
             </div>
           </div>
