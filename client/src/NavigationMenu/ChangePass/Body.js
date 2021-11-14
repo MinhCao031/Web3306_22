@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router';
 import axios from 'axios';
+
+const Username = '19021353';
 const Body = () => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -31,7 +33,7 @@ const Body = () => {
         // setConfirmPassword('');
         // axios
         //   .post('http://localhost:5000/users/set_password', {
-        //     id: '19021353',
+        //     id: Username,
         //     password: '123456',
         //   })
         //   .then((res) => {

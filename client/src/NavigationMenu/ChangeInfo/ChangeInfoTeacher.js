@@ -5,15 +5,21 @@ import { useHistory } from 'react-router';
 import NavigationBar from '../../HomePage/components/NavigationBar';
 import Sidebar from '../../HomePage/components/Sidebar';
 import validator from 'validator';
+
+const Username = '19021363';
+const Name = 'Nguyễn Văn Quang';
+const Email = 'nguyenvanquang@gmail.com';
+const PhoneNumber = '0123456789';
+const DateOfBirth = '2001-01-01';
+const FieldOfStudy = 'Công nghệ thông tin';
+const Introduction = 'Yêu màu hồng và ghét sự giả dối';
 function ChangeInfoTeacher() {
-  const [name, setName] = useState('Nguyễn Văn Quang');
-  const [email, setEmail] = useState('nguyenvanquang@gmail.com');
-  const [phone, setPhone] = useState('0123456789');
-  const [dateOfBirth, setDateOfBirth] = useState('2001-01-01');
-  const [fieldOfStudy, setFieldOfStudy] = useState('Công nghệ thông tin');
-  const [introduction, setIntroduction] = useState(
-    'Yêu màu hồng và ghét sự giả dối'
-  );
+  const [name, setName] = useState(Name);
+  const [email, setEmail] = useState(Email);
+  const [phone, setPhone] = useState(PhoneNumber);
+  const [dateOfBirth, setDateOfBirth] = useState(DateOfBirth);
+  const [fieldOfStudy, setFieldOfStudy] = useState(FieldOfStudy);
+  const [introduction, setIntroduction] = useState(Introduction);
   const handleName = (e) => {
     setName(e.target.value);
   };
@@ -35,27 +41,11 @@ function ChangeInfoTeacher() {
   const ref = useRef();
   const history = useHistory();
   const handleSubmit = (e) => {
-    //     axios
-    //       .post('http://localhost:5000/users/update', {
-    //         username: '19021363',
-    //         email: 'test@gmail.com',
-    //         name: 'Quang',
-    //         phoneNumber: '0123456789',
-    //         dateOfBirth: '01/01/2000',
-    //         fieldOfStudy: 'IT',
-    //         introduction: 'I am a student',
-    //       })
-    //       .then((res) => {
-    //         console.log(res.data.status);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
     if (validator.isEmail(email) && validator.isMobilePhone(phone, 'vi-VN')) {
       alert('Thay đổi thông tin thành công');
       // axios
       //   .post('http://localhost:5000/users/update', {
-      //     username: '19021363',
+      //     username: Username,
       //     email: email,
       //     name: name,
       //     phoneNumber: phone,
