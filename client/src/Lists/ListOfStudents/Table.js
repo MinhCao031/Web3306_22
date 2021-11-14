@@ -11,6 +11,7 @@ import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css
 import cellEditFactory, { Type } from 'react-bootstrap-table2-editor';
 import './ListOfStudents.css';
 import ClassName from './ClassName';
+import Button from 'react-bootstrap/Button';
 const Table = () => {
   const [userList, setUserList] = useState([]);
   const filterData = {
@@ -148,7 +149,7 @@ const Table = () => {
   ];
   const pagination = paginationFactory({
     page: 1,
-    sizePerPage: 1,
+    sizePerPage: 10,
     lastPageText: '>>',
     firstPageText: '<<',
     nextPageText: '>',
@@ -179,14 +180,29 @@ const Table = () => {
   });
   useEffect(() => {
     axios
-      .get('http://localhost:5000/classes/10012019/show')
+      .get('http://localhost:3001/StudentIds')
       .then((res) => {
-        setUserList(res.data.studentIds);
+        setUserList(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+  const handleSaveAction = (e) => {
+    console.log(userList);
+    e.preventDefault();
+  };
+  const handleCancelAction = (e) => {
+    axios
+      .get('http://localhost:3001/StudentIds')
+      .then((res) => {
+        setUserList(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    e.preventDefault();
+  };
   return (
     <>
       <BootstrapTable
@@ -206,6 +222,22 @@ const Table = () => {
           autoSelectText: true,
         })}
       />
+      <div className="saveButton">
+        <Button
+          variant="primary"
+          onClick={handleSaveAction}
+          className="ListButton"
+        >
+          Lưu
+        </Button>
+        <Button
+          variant="danger"
+          onClick={handleCancelAction}
+          className="ListButton"
+        >
+          Hủy
+        </Button>
+      </div>
     </>
   );
 };

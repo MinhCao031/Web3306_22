@@ -8,6 +8,8 @@ import ChangeInfoTeacher from './NavigationMenu/ChangeInfo/ChangeInfoTeacher';
 import ChangePass from './NavigationMenu/ChangePass/ChangePass';
 import ListOfStudents from './Lists/ListOfStudents/ListOfStudents';
 import DropdownAva from './HomePage/components/DropdownAva';
+import DashBoard from './Dashboard/Dashboard';
+import Forum from './Forum/Forum';
 const App = () => {
   return (
     <Router>
@@ -22,13 +24,13 @@ const App = () => {
           <TeacherHomePage />
         </Route>
         <Route path="/teacherHomepage/forum">
-          <div>Day la forum</div>
+          <Forum />
         </Route>
         <Route path="/teacherHomepage/class-list">
           <ListOfStudents />
         </Route>
         <Route path="/teacherHomepage/dashboard">
-          <div>Day la dashboard</div>
+          <DashBoard />
         </Route>
         <Route path="/teacherHomepage/changeInfo">
           <ChangeInfoTeacher />

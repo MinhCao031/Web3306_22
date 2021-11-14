@@ -9,13 +9,15 @@ function NavigationBar() {
   const [dropdown, setDropdown] = useState(false);
   const showDropdown = () => {
     setDropdown(!dropdown);
-    console.log('Change to' + dropdown);
   };
 
   return (
     <div className="navigationbar">
       <div className="profile">
-        <IoIcons.IoMdNotifications style={{ color: '#404E68' }} size={30} />
+        <IoIcons.IoMdNotifications
+          style={{ color: '#404E68', cursor: 'pointer' }}
+          size={30}
+        />
         <span className="profile-text">{'Nguyen Van Quang'}</span>
         <div onClick={showDropdown}>
           <img className="avatar" alt={'Avatar'} src={boy} />

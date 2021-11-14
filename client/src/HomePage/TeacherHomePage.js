@@ -2,12 +2,14 @@ import React from 'react';
 import NavigationBar from './components/NavigationBar';
 import Sidebar from './components/Sidebar';
 import styled from 'styled-components';
+import Footer from './components/Footer';
 const TeacherHomePage = () => {
   return (
     <>
       <NavigationBar />
       <Container />
       <Sidebar />
+      <Footer />
     </>
   );
 };

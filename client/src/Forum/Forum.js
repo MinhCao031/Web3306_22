@@ -1,13 +1,14 @@
 import React from 'react';
 import Sidebar from '../HomePage/components/Sidebar';
 import NavigationBar from '../HomePage/components/NavigationBar';
-const DashBoard = () => {
+const Forum = () => {
   return (
     <>
       <NavigationBar />
-      <div>Day la Dashboard</div>
+      <div>Day la forum</div>
       <Sidebar />
     </>
   );
 };
-export default DashBoard;
+
+export default Forum;
