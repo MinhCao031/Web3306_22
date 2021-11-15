@@ -28,7 +28,7 @@ const Form = () => {
     //     .post('http://localhost:5000/login', user)
     //     .then((res) => {
     //       if (res.data.auth === false) {
-    //         setMessage('Tài khoản hoặc mật khẩu không hợp lệ!!!!!');
+    //         setMessage('Tài khoản hoặc mật khẩu không hợp lệ !');
     //       } else {
     //         if (res.data.role === 'Student') {
     //           history.push({
@@ -91,7 +91,7 @@ const Form = () => {
       </div>
       {message && (
         <div style={{ textAlign: 'center', color: 'red' }}>
-          Sai mật khẩu hoặc tài khoản !!!!
+          Sai mật khẩu hoặc tài khoản !
         </div>
       )}
     </Container>

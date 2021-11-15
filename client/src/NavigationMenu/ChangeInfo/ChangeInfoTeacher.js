@@ -149,7 +149,7 @@ function ChangeInfoTeacher() {
             </div>
           </div>
           <div className="Identifier">
-            <p className="FieldToChange">Mã số giảng viên: </p>
+            <p className="FieldToChange">Mã số giảng viên/sinh viên: </p>
             <div className="Field2">
               <Input
                 name="ConstID"
