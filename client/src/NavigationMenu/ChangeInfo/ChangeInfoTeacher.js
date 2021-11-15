@@ -11,7 +11,7 @@ function ChangeInfoTeacher() {
   const [name, setName] = useState('Nguyễn Văn Quang');
   const [email, setEmail] = useState('nguyenvanquang@gmail.com');
   const [phone, setPhone] = useState('0917172366');
-  const [dateOfBirth, setDateOfBirth] = useState('2001-01-01');
+  const [dateOfBirth, setDateOfBirth] = useState('2001-12-31');
   const [fieldOfStudy, setFieldOfStudy] = useState('Công nghệ thông tin');
   const [introduction, setIntroduction] = useState(
     'Yêu màu hồng và ghét sự giả dối'
