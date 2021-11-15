@@ -10,27 +10,31 @@ const Body = () => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState('');
   const handleChangeOldPass = (e) => {
     setOldPassword(e.target.value);
+    setMessage('');
   };
   const handleChangeNewPass = (e) => {
     setNewPassword(e.target.value);
+    setMessage('');
   };
   const handleChangeConfirmPass = (e) => {
     setConfirmPassword(e.target.value);
+    setMessage('');
   };
   const history = useHistory();
   const handleSubmit = (e) => {
     if (oldPassword && newPassword && confirmPassword) {
       if (oldPassword === newPassword) {
-        alert('Mật khẩu mới không được trùng với mật khẩu cũ');
+        setMessage('Mật khẩu mới không được trùng với mật khẩu cũ !');
       } else if (newPassword !== confirmPassword) {
-        alert('Mật khẩu mới và xác nhận mật khẩu không trùng nhau');
+        setMessage('Mật khẩu mới và xác nhận mật khẩu không trùng nhau !');
       } else {
-        // alert('Đổi mật khẩu thành công');
-        // setOldPassword('');
-        // setNewPassword('');
-        // setConfirmPassword('');
+        setMessage('Đổi mật khẩu thành công !');
+        setOldPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
         // axios
         //   .post('http://localhost:5000/users/set_password', {
         //     id: Username,
@@ -44,7 +48,7 @@ const Body = () => {
         //   });
       }
     } else {
-      alert('Vui lòng nhập đầy đủ thông tin');
+      setMessage('Vui lòng nhập đầy đủ thông tin');
     }
     e.preventDefault();
   };
@@ -81,6 +85,11 @@ const Body = () => {
           ></Input>
         </InputField>
       </div>
+      {message === 'Đổi mật khẩu thành công !' ? (
+        <Message style={{ color: 'blue' }}>{message}</Message>
+      ) : message ? (
+        <Message style={{ color: 'red' }}>{message}</Message>
+      ) : null}
       <div className="button-wrap">
         <Button onClick={handleSubmit}>Cập nhật</Button>
         <Button
@@ -159,5 +168,11 @@ const Input = styled.input`
 `;
 const InputField = styled.div`
   position: relative;
+`;
+const Message = styled.p`
+  font-size: 15px;
+  margin: 0;
+  padding-top: 12px;
+  text-align: center;
 `;
 export default Body;

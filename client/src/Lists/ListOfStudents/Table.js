@@ -58,6 +58,27 @@ const Table = () => {
           },
         ],
       },
+      style: (cell, row, rowIndex, colIndex) => {
+        if (row.level === 'Thành viên') {
+          return {
+            color: '#DF9941',
+            border: '1px solid #DF9941',
+            borderRadius: '15px',
+          };
+        } else if (row.level === 'Bí thư') {
+          return {
+            color: '#E4636F',
+            border: '1px solid #E4636F',
+            borderRadius: '15px',
+          };
+        } else if (row.level === 'Lớp trưởng') {
+          return {
+            color: '#7FC008',
+            border: '1px solid #7FC008',
+            borderRadius: '15px',
+          };
+        }
+      },
     },
     {
       dataField: 'dateOfBirth',
