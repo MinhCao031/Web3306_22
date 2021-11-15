@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useHistory } from 'react-router';
@@ -7,42 +7,71 @@ import Sidebar from '../../HomePage/components/Sidebar';
 import validator from 'validator';
 
 const Username = '19021363';
-const Name = 'Nguyễn Văn Quang';
-const Email = 'nguyenvanquang@gmail.com';
-const PhoneNumber = '0123456789';
-const DateOfBirth = '2001-01-01';
-const FieldOfStudy = 'Công nghệ thông tin';
-const Introduction = 'Yêu màu hồng và ghét sự giả dối';
 function ChangeInfoTeacher() {
-  const [name, setName] = useState(Name);
-  const [email, setEmail] = useState(Email);
-  const [phone, setPhone] = useState(PhoneNumber);
-  const [dateOfBirth, setDateOfBirth] = useState(DateOfBirth);
-  const [fieldOfStudy, setFieldOfStudy] = useState(FieldOfStudy);
-  const [introduction, setIntroduction] = useState(Introduction);
+  const [name, setName] = useState('Nguyễn Văn Quang');
+  const [email, setEmail] = useState('nguyenvanquang@gmail.com');
+  const [phone, setPhone] = useState('0917172366');
+  const [dateOfBirth, setDateOfBirth] = useState('2001-01-01');
+  const [fieldOfStudy, setFieldOfStudy] = useState('Công nghệ thông tin');
+  const [introduction, setIntroduction] = useState(
+    'Yêu màu hồng và ghét sự giả dối'
+  );
+  useEffect(() => {
+    // axios
+    //   .post('http://localhost:5000/api/teacher/get-info', {
+    //     id: Username,
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     //setData
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  }, []);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [nameErrorMessage, setNameErrorMessage] = useState('');
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
   const handleName = (e) => {
     setName(e.target.value);
+    setNameErrorMessage('');
+    setSuccessMessage('');
   };
   const handleEmail = (e) => {
     setEmail(e.target.value);
+    setEmailErrorMessage('');
+    setSuccessMessage('');
   };
   const handlePhone = (e) => {
     setPhone(e.target.value);
+    setPhoneErrorMessage('');
+    setSuccessMessage('');
   };
   const handleDateOfBirth = (e) => {
     setDateOfBirth(e.target.value);
+    setSuccessMessage('');
   };
   const handleFieldOfStudy = (e) => {
     setFieldOfStudy(e.target.value);
+    setSuccessMessage('');
   };
   const handleIntroduction = (e) => {
     setIntroduction(e.target.value);
+    setSuccessMessage('');
+  };
+  const stringContainsNumber = (_string) => {
+    return /\d/.test(_string);
   };
   const ref = useRef();
   const history = useHistory();
   const handleSubmit = (e) => {
-    if (validator.isEmail(email) && validator.isMobilePhone(phone, 'vi-VN')) {
-      alert('Thay đổi thông tin thành công');
+    if (
+      validator.isEmail(email) &&
+      validator.isMobilePhone(phone, 'vi-VN') &&
+      !stringContainsNumber(name)
+    ) {
+      setSuccessMessage('Thay đổi thông tin thành công');
       // axios
       //   .post('http://localhost:5000/users/update', {
       //     username: Username,
@@ -60,11 +89,14 @@ function ChangeInfoTeacher() {
       //     console.log(err);
       //   });
     }
+    if (stringContainsNumber(name)) {
+      setNameErrorMessage('Tên không được chứa số');
+    }
     if (!validator.isEmail(email)) {
-      alert('Email không hợp lệ');
+      setEmailErrorMessage('Email không hợp lệ');
     }
     if (!validator.isMobilePhone(phone, 'vi-VN')) {
-      alert('Số điện thoại không hợp lệ');
+      setPhoneErrorMessage('Số điện thoại không hợp lệ');
     }
     e.preventDefault();
   };
@@ -77,6 +109,9 @@ function ChangeInfoTeacher() {
           <div className="FullName">
             <p className="FieldToChange">
               Họ và tên: <Red>*</Red>
+              {nameErrorMessage && (
+                <ErrorMessage>{nameErrorMessage}</ErrorMessage>
+              )}
             </p>
             <div className="Field2">
               <Input
@@ -136,6 +171,9 @@ function ChangeInfoTeacher() {
           <div className="Email">
             <p className="FieldToChange">
               Email: <Red>*</Red>
+              {emailErrorMessage && (
+                <ErrorMessage>{emailErrorMessage}</ErrorMessage>
+              )}
             </p>
             <div className="Field2">
               <Input
@@ -183,7 +221,12 @@ function ChangeInfoTeacher() {
             </div>
           </div>
           <div className="Phone">
-            <p className="FieldToChange">Số điện thoại: </p>
+            <p className="FieldToChange">
+              Số điện thoại:
+              {phoneErrorMessage && (
+                <ErrorMessage>{phoneErrorMessage}</ErrorMessage>
+              )}
+            </p>
             <div className="Field2">
               <Input
                 name="Phone"
@@ -212,7 +255,9 @@ function ChangeInfoTeacher() {
             </div>
           </div>
         </div>
-
+        {successMessage && (
+          <SuccessMessage>Cập nhật thành công !</SuccessMessage>
+        )}
         <div className="wrapper">
           <Button id="submit" onClick={handleSubmit}>
             <p className="Submit">Cập nhật</p>
@@ -232,6 +277,17 @@ function ChangeInfoTeacher() {
     </Wrapper>
   );
 }
+const SuccessMessage = styled.p`
+  text-align: center;
+  font-size: 22px;
+  color: blue;
+  margin: 0;
+`;
+const ErrorMessage = styled.span`
+  text-align: center;
+  font-size: 18px;
+  color: red;
+`;
 const Textarea = styled.textarea`
   border: 1px solid #cddedf;
   box-sizing: border-box;
@@ -288,7 +344,7 @@ const Container = styled.div`
   div > div > .FieldToChange {
     position: left;
     line-height: 28px;
-    width: 300px;
+    width: 450px;
   }
 
   .line,

@@ -41,12 +41,6 @@ const App = () => {
         <Route path="/teacherHomepage/changePassword">
           <ChangePass />
         </Route>
-        <Route path="/studentHomepage" exact>
-          <StudentHomePage />
-        </Route>
-        <Route path="/teacherHomepage/test">
-          <DropdownAva />
-        </Route>
       </Switch>
     </Router>
   );

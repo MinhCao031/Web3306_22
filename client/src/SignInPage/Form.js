@@ -12,7 +12,7 @@ const Form = () => {
     username: '',
     password: '',
   });
-  let [message, setMessage] = useState(false);
+  let [message, setMessage] = useState('');
   const history = useHistory();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,32 +22,32 @@ const Form = () => {
     });
   };
   const signIn = (e) => {
-    // const { username, password } = user;
-    // if (username && password) {
-    //   axios
-    //     .post('http://localhost:5000/login', user)
-    //     .then((res) => {
-    //       if (res.data.auth === false) {
-    //         setMessage('Tài khoản hoặc mật khẩu không hợp lệ !');
-    //       } else {
-    //         if (res.data.role === 'Student') {
-    //           history.push({
-    //             pathname: '/studentHomepage',
-    //             state: res.data,
-    //           });
-    //         } else if (res.data.role === 'Teacher') {
-    //           history.push({
-    //             pathname: '/teacherHomepage',
-    //             state: res.data,
-    //           });
-    //         }
-    //       }
-    //     })
-    //     .catch((err) => console.log('error'));
-    // } else {
-    //   setMessage(true);
-    // }
-    history.push('/teacherHomepage');
+    const { username, password } = user;
+    if (username && password) {
+      // axios
+      //   .post('http://localhost:5000/login', user)
+      //   .then((res) => {
+      //     if (res.data.auth === false) {
+      //       setMessage('Tài khoản hoặc mật khẩu không hợp lệ !');
+      //     } else {
+      //       if (res.data.role === 'Student') {
+      //         history.push({
+      //           pathname: '/studentHomepage',
+      //           state: res.data,
+      //         });
+      //       } else if (res.data.role === 'Teacher') {
+      //         history.push({
+      //           pathname: '/teacherHomepage',
+      //           state: res.data,
+      //         });
+      //       }
+      //     }
+      //   })
+      //   .catch((err) => console.log('error'));
+      history.push('/teacherHomepage');
+    } else {
+      setMessage('Vui lòng nhập đầy đủ thông tin !');
+    }
     e.preventDefault();
   };
   return (
@@ -89,11 +89,7 @@ const Form = () => {
           </CustomDialog>
         </div>
       </div>
-      {message && (
-        <div style={{ textAlign: 'center', color: 'red' }}>
-          Sai mật khẩu hoặc tài khoản !
-        </div>
-      )}
+      {message && <Message>{message}</Message>}
     </Container>
   );
 };
@@ -103,6 +99,10 @@ const iconStyle = {
   left: '40px',
   color: '#808180',
 };
+const Message = styled.div`
+  text-align: center;
+  color: red;
+`;
 const Container = styled.form`
   h1 {
     color: rgba(53, 115, 171, 1);
