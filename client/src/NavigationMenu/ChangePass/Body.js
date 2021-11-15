@@ -48,7 +48,7 @@ const Body = () => {
         //   });
       }
     } else {
-      setMessage('Vui lòng nhập đầy đủ thông tin');
+      setMessage('Vui lòng nhập đầy đủ thông tin !');
     }
     e.preventDefault();
   };
