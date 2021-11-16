@@ -29,7 +29,7 @@ node server/UserSeeds.js
 
 ```bash
 # Import fake classes information to mongoDB.
-mongoimport --db uet-smta --collection classes --type json --file server/data/classes.json --jsonArray
+mongoimport --db uet-smta --collection classes --type json --file data/classes.json --jsonArray
 ```
 
 ## Collections and APIs routing table
