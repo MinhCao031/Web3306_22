@@ -16,6 +16,7 @@ import Button from 'react-bootstrap/Button';
 const Username = '10012019';
 const Table = () => {
   const [userList, setUserList] = useState([]);
+  const [deletedRows, setDeletedRows] = useState([]);
   const filterData = {
     delay: 100,
     style: {
@@ -87,7 +88,6 @@ const Table = () => {
       text: 'Ngày sinh',
       sort: true,
       filter: textFilter(filterData),
-      // editable: false,
       formatter: (cell) => {
         let dateObj = cell;
         if (typeof cell !== 'object') {
@@ -222,6 +222,29 @@ const Table = () => {
       },
     ],
   });
+  const selectRow = {
+    mode: 'checkbox',
+    selectionRenderer: ({ mode, ...rest }) => <input type={mode} {...rest} />,
+    selectColumnPosition: 'right',
+    style: { backgroundColor: '#c8e6c9' },
+    headerColumnStyle: {
+      textAlign: 'center',
+    },
+    onSelect: (row, isSelect, rowIndex, e) => {
+      if (isSelect) {
+        setDeletedRows([...deletedRows, row.username]);
+      } else {
+        setDeletedRows(deletedRows.filter((item) => item !== row.username));
+      }
+    },
+    onSelectAll: (isSelect, rows, e) => {
+      if (isSelect) {
+        setDeletedRows(rows.map((item) => item.username));
+      } else {
+        setDeletedRows([]);
+      }
+    },
+  };
   useEffect(() => {
     axios
       .get('http://localhost:3001/StudentIds')
@@ -234,6 +257,12 @@ const Table = () => {
   }, []);
   const handleSaveAction = (e) => {
     console.log(userList);
+    e.preventDefault();
+  };
+  const handleDeleteAction = (e) => {
+    setUserList(
+      userList.filter((item) => !deletedRows.includes(item.username))
+    );
     e.preventDefault();
   };
   const handleCancelAction = (e) => {
@@ -249,6 +278,13 @@ const Table = () => {
   };
   return (
     <>
+      <Button
+        variant="danger"
+        onClick={handleDeleteAction}
+        className="ListButton"
+      >
+        Xóa sinh viên
+      </Button>
       <BootstrapTable
         bootstrap4
         hover={true}
@@ -258,13 +294,14 @@ const Table = () => {
         pagination={pagination}
         filter={filterFactory()}
         noDataIndication="Không có sinh viên"
-        caption={<ClassName />}
+        caption={<ClassName>K64_CACLC4</ClassName>}
         bordered={false}
         cellEdit={cellEditFactory({
           mode: 'click',
           blurToSave: true,
           autoSelectText: true,
         })}
+        selectRow={selectRow}
       />
       <div className="saveButton">
         <Button

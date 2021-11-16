@@ -19,9 +19,9 @@
 div.row.react-bootstrap-table-pagination {
   width: 100%;
 }
-.table > :not(caption) > * > * {
+.table.table-hover tr,
+td {
   background-color: white;
-  border: none;
 }
 #pageDropDown {
   background-color: #33b633;
