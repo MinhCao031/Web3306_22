@@ -7,7 +7,6 @@ import TeacherHomePage from './HomePage/TeacherHomePage';
 import ChangeInfoTeacher from './NavigationMenu/ChangeInfo/ChangeInfoTeacher';
 import ChangePass from './NavigationMenu/ChangePass/ChangePass';
 import ListOfStudents from './Lists/ListOfStudents/ListOfStudents';
-import DropdownAva from './HomePage/components/DropdownAva';
 import DashBoard from './Dashboard/Dashboard';
 import Forum from './Forum/Forum';
 const App = () => {
