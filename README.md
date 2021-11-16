@@ -18,16 +18,19 @@ For Windows:
 For Linux:
  - Just need to follow the instructions in the [documentation page](https://docs.mongodb.com/manual/administration/install-on-linux/) for your Linux distro.
 
+Next step, make sure you are in /server/ directory. If you do, copy and paste these commands below to create testing data.
+
 **Users data**  
-Create fake user accounts.  
+Create testing user accounts in mongoDB.  
 ```bash
-node server/UserSeeds.js
+node UserSeeds.js
 ```
 
 **Classes data**  
-Import fake classes information to mongoDB.  
+Import testing classes information to mongoDB.  
 ```bash
-mongoimport --db uet-smta --collection classes --type json --file server/data/classes.json --jsonArray
+# Import fake classes information to mongoDB.
+mongoimport --db uet-smta --collection classes --type json --file data/classes.json --jsonArray
 ```
 
 ## Collections and APIs routing table
