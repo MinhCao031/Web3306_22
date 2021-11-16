@@ -54,7 +54,8 @@ mongoimport --db uet-smta --collection classes --type json --file data/classes.j
 	"hometown" : "Hải Dương",
 	"introduction": "A daily-updated person",
 	"fieldOfStudy": "Computer Science",
-	"gpa": 3.0
+	"gpa": 3.0,
+	"drl": 80
 }
 ```
 
@@ -70,7 +71,8 @@ mongoimport --db uet-smta --collection classes --type json --file data/classes.j
 			"19021363",
 			"19021364",
 			"19021365"
-	]
+	],
+	"leaderId": "19021365"
 }
 ```
 
@@ -84,6 +86,22 @@ mongoimport --db uet-smta --collection classes --type json --file data/classes.j
 |  | update | /:user_id/update | POST | Update user's profile |
 |  | change password | /:user_id/set_password | POST | Change user's password |
 | Classes | show | /classes/:user_id/show | GET | Get managed class and students |
+|  | show | /classes/:class_id/show/students | GET | Get students in a class |
+
+## How to run this application?
+This project is still under development process. If you want to run this application, you need to explicitly initialize two development server:
+- Change your current directory to the folder /client/ and initialize ReactJS development server (frontend server):
+```
+cd client
+npm start
+```
+- Change your current directory to the folder /server/ and initialize ExpressJS development server (backend server):
+```
+cd server
+node server.js
+```
+By default, frontend server runs on http://locahost:3000 and backend server runs on http://localhost:5000.
+Enjoy!
 
 ## Todo
 
