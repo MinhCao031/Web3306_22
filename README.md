@@ -90,11 +90,6 @@ mongoimport --db uet-smta --collection classes --type json --file data/classes.j
 - For frontend team:
    
 - For backend team:
-	- Update password based on new and old password
-	- Update database date format
-	- Change getClasses response into 2 APIs:
-		- Get all managed classes
-		- Get all students of a class
 	- Research on notification feature
 	- Research on real-time chat feature
 
