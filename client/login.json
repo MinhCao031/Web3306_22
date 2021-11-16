@@ -30,6 +30,26 @@
             "hometown": "Hải Dương",
             "gpa": 3.95,
             "drl": 100
+        },
+        {
+            "username": 19021082,
+            "name": "Nguyễn Trang",
+            "level": "Thành viên",
+            "dateOfBirth": "2001-02-28",
+            "gender": "Nữ",
+            "hometown": "Hải Phòng",
+            "gpa": 1.8,
+            "drl": 70
+        },
+        {
+            "username": 19021102,
+            "name": "Nguyễn Kiên",
+            "level": "Thành viên",
+            "dateOfBirth": "2001-02-28",
+            "gender": "Nữ",
+            "hometown": "Hải Hậu",
+            "gpa": 3.7,
+            "drl": 55
         }
     ]
 }
