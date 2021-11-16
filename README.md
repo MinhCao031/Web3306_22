@@ -18,18 +18,19 @@ For Windows:
 For Linux:
  - Just need to follow the instructions in the [documentation page](https://docs.mongodb.com/manual/administration/install-on-linux/) for your Linux distro.
 
-**Users data**
+Next step, make sure you are in /server/ directory. If you do, copy and paste these commands below to create testing data.
 
+**Users data**  
+Create testing user accounts in mongoDB.  
 ```bash
-# Create fake user accounts.
-node server/UserSeeds.js
+node UserSeeds.js
 ```
 
-**Classes data**
-
+**Classes data**  
+Import testing classes information to mongoDB.  
 ```bash
 # Import fake classes information to mongoDB.
-mongoimport --db uet-smta --collection classes --type json --file server/data/classes.json --jsonArray
+mongoimport --db uet-smta --collection classes --type json --file data/classes.json --jsonArray
 ```
 
 ## Collections and APIs routing table
@@ -89,3 +90,11 @@ mongoimport --db uet-smta --collection classes --type json --file server/data/cl
 - For frontend team:
    
 - For backend team:
+	- Update password based on new and old password
+	- Update database date format
+	- Change getClasses response into 2 APIs:
+		- Get all managed classes
+		- Get all students of a class
+	- Research on notification feature
+	- Research on real-time chat feature
+

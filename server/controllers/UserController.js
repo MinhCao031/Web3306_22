@@ -48,18 +48,29 @@ module.exports.update = async function(req, res) {
 
 module.exports.setPassword = async function(req, res) {
     const { user_id } = req.params;
-    const { password } = req.body;
-    const query = { username: user_id };
-    const update = { password: password };
-    const user = await User.findOneAndUpdate(query, update);
+    const { oldPassword, newPassword } = req.body;
 
-    await user.save().then(() => res.json({ status: 'OK' })).catch((err) => {
-        const response = {
-            error: err,
-            status: 'Failed'
-        };
-        res.json(response);
-    });
+    isValid = await User.findAndValidate(user_id, oldPassword);
+
+    if (isValid) {
+        const user = await User.findOne({ username: user_id });
+        user.password = newPassword;
+
+        await user
+            .save()
+            .then(() => {
+                res.json({ success: true });
+            })
+            .catch((err) => {
+                const response = {
+                    error: err,
+                    success: false
+                };
+                res.json(response);
+            });
+    } else {
+        res.json({ success: false });
+    }
 };
 
 module.exports.getInfo = async function(req, res) {

@@ -15,6 +15,8 @@ import Button from 'react-bootstrap/Button';
 
 const Username = '10012019';
 const Table = () => {
+  const [badFlip, setBadFlip] = useState(false);
+  const [goodFlip, setGoodFlip] = useState(false);
   const [userList, setUserList] = useState([]);
   const [deletedRows, setDeletedRows] = useState([]);
   const filterData = {
@@ -276,50 +278,87 @@ const Table = () => {
       });
     e.preventDefault();
   };
-  return (
-    <>
-      <Button
-        variant="danger"
-        onClick={handleDeleteAction}
-        className="ListButton"
-      >
-        Xóa sinh viên
-      </Button>
-      <BootstrapTable
-        bootstrap4
-        hover={true}
-        keyField="username"
-        columns={columns}
-        data={userList}
-        pagination={pagination}
-        filter={filterFactory()}
-        noDataIndication="Không có sinh viên"
-        caption={<ClassName>K64_CACLC4</ClassName>}
-        bordered={false}
-        cellEdit={cellEditFactory({
-          mode: 'click',
-          blurToSave: true,
-          autoSelectText: true,
-        })}
-        selectRow={selectRow}
-      />
-      <div className="saveButton">
-        <Button
-          variant="primary"
-          onClick={handleSaveAction}
-          className="ListButton"
-        >
-          Lưu
-        </Button>
-        <Button
-          variant="danger"
-          onClick={handleCancelAction}
-          className="ListButton"
-        >
-          Hủy
-        </Button>
-      </div>
-    </>
-  );
+    return (
+        <>
+           <Button
+            variant="danger"
+            onClick={handleDeleteAction}
+            className="ListButton"
+          >
+            Xóa sinh viên
+          </Button>
+            <ClassName />
+            <div className="filter">
+                <Button 
+                className="ListButton filter"
+                variant="outline-secondary"
+                onMouseEnter={() => setBadFlip(true)}
+                onMouseLeave={() => setBadFlip(false)}
+                > 
+                    {badFlip && (
+                        <span>
+                            GPA dưới 2.0 || ĐRL dưới 60
+                        </span>
+                    )}
+                    {!badFlip && (
+                        <span>
+                            Lọc: Thuộc diện nhắc nhở
+                        </span>
+                    )}
+                </Button>
+
+                <Button 
+                className="ListButton filter"
+                variant="outline-secondary"
+                onMouseEnter={() => setGoodFlip(true)}
+                onMouseLeave={() => setGoodFlip(false)}
+                > 
+                    {goodFlip && (
+                        <span>
+                            GPA trên 3.2 & ĐRL trên 80
+                        </span>
+                    )}
+                    {!goodFlip && (
+                        <span>
+                            Lọc: thuộc diện khen thưởng
+                        </span>
+                    )}
+                </Button>
+            </div>
+            <BootstrapTable
+                bootstrap4
+                hover={true}
+                keyField="username"
+                columns={columns}
+                data={userList}
+                pagination={pagination}
+                filter={filterFactory()}
+                noDataIndication="Không có sinh viên"
+                // caption={<ClassName />}
+                bordered={false}
+                cellEdit={cellEditFactory({
+                    mode: 'click',
+                    blurToSave: true,
+                    autoSelectText: true,
+            })}
+            />
+            <div className="saveButton">
+                <Button
+                variant="primary"
+                onClick={handleSaveAction}
+                className="ListButton"
+                >
+                Lưu
+                </Button>
+                <Button
+                variant="danger"
+                onClick={handleCancelAction}
+                className="ListButton"
+                >
+                Hủy
+                </Button>
+            </div>
+        </>
+    );
 };
 export default Table;

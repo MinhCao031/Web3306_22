@@ -62,6 +62,7 @@ const UserSchema = new Schema({
 
 UserSchema.statics.findAndValidate = async function(username, password) {
     const foundUser = await this.findOne({ username });
+
     if (foundUser) {
         return await bcrypt.compare(password, foundUser.password);
     }
