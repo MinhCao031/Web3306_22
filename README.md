@@ -18,17 +18,15 @@ For Windows:
 For Linux:
  - Just need to follow the instructions in the [documentation page](https://docs.mongodb.com/manual/administration/install-on-linux/) for your Linux distro.
 
-**Users data**
-
+**Users data**  
+Create fake user accounts.  
 ```bash
-# Create fake user accounts.
 node server/UserSeeds.js
 ```
 
-**Classes data**
-
+**Classes data**  
+Import fake classes information to mongoDB.  
 ```bash
-# Import fake classes information to mongoDB.
 mongoimport --db uet-smta --collection classes --type json --file server/data/classes.json --jsonArray
 ```
 
@@ -89,3 +87,11 @@ mongoimport --db uet-smta --collection classes --type json --file server/data/cl
 - For frontend team:
    
 - For backend team:
+	- Update password based on new and old password
+	- Update database date format
+	- Change getClasses response into 2 APIs:
+		- Get all managed classes
+		- Get all students of a class
+	- Research on notification feature
+	- Research on real-time chat feature
+
