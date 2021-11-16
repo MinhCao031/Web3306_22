@@ -21,15 +21,14 @@ For Linux:
 Next step, make sure you are in /server/ directory. If you do, copy and paste these commands below to create testing data.
 
 **Users data**  
-Create testing user accounts in mongoDB.  
 ```bash
+# Create testing user accounts in mongoDB.
 node UserSeeds.js
 ```
 
 **Classes data**  
-Import testing classes information to mongoDB.  
 ```bash
-# Import fake classes information to mongoDB.
+# Import testing classes information to mongoDB.
 mongoimport --db uet-smta --collection classes --type json --file data/classes.json --jsonArray
 ```
 
@@ -87,6 +86,8 @@ mongoimport --db uet-smta --collection classes --type json --file data/classes.j
 |  | change password | /:user_id/set_password | POST | Change user's password |
 | Classes | show | /classes/:user_id/show | GET | Get managed class and students |
 |  | show | /classes/:class_id/show/students | GET | Get students in a class |
+
+We also have Postman collection in server/data/uet-smta.postman_collection.json file, just import this file into Postman to test out API.
 
 ## How to run this application?
 This project is still under development process. If you want to run this application, you need to explicitly initialize two development server:
