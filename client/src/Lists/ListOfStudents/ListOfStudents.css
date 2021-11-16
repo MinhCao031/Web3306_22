@@ -9,28 +9,44 @@
 .dropdown-menu {
   left: 0px;
 }
+
 .sr-only {
   display: none;
 }
+
 .table {
   border-collapse: separate;
   box-shadow: inset 0px -1px 0px #c9cfda;
 }
+
 div.row.react-bootstrap-table-pagination {
   width: 100%;
 }
+
 .table > :not(caption) > * > * {
   background-color: white;
   border: none;
 }
+
 #pageDropDown {
   background-color: #33b633;
 }
+
 .saveButton {
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
+
 .ListButton {
   margin-right: 25px;
+}
+
+.filter {
+  margin-bottom: 7px;
+  margin-left: 10px;
+}
+
+.ListButton.filter {
+  width: 280px;
 }
