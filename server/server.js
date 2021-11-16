@@ -49,7 +49,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/', userRoutes);
-app.use('/classes', classRoutes);
+app.use('/classes/', classRoutes);
 
 app.listen(config.app.port, () => {
     console.log(`Server connected on port ${config.app.port}`);

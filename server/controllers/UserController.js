@@ -35,6 +35,7 @@ module.exports.update = async function(req, res) {
         fieldOfStudy: fieldOfStudy,
         introduction: introduction
     };
+    console.log(update);
     const user = await User.findOneAndUpdate(query, update);
 
     await user.save().then(() => res.json({ status: 'OK' })).catch((err) => {

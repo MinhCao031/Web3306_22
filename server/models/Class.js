@@ -1,4 +1,4 @@
-const mongooes = require("mongoose");
+const mongooes = require('mongoose');
 
 const classSchema = new mongooes.Schema({
     classId: {
@@ -10,16 +10,25 @@ const classSchema = new mongooes.Schema({
         type: String,
         required: true
     },
+    classType: {
+        type: String,
+        required: true,
+        enum: [ 'CLC', 'Thường' ]
+    },
     teacherId: {
         type: Number,
         required: true
     },
     studentIds: {
-        type: [Number],
+        type: [ Number ],
+        required: true
+    },
+    leaderId: {
+        type: Number,
         required: true
     }
-})
+});
 
-const Class = mongooes.model("Class", classSchema);
+const Class = mongooes.model('Class', classSchema);
 
 module.exports = Class;
