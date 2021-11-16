@@ -1,0 +1,35 @@
+{
+    "className": "K63_CACLC2",
+    "studentIds": [
+        {
+            "username": 19021363,
+            "name": "Nguyễn Thái",
+            "level": "Thành viên",
+            "dateOfBirth": "2001-02-02T17:00:00.000Z",
+            "gender": "Nam",
+            "homewtown": "Hà Nội",
+            "gpa": 3,
+            "drl": 100
+        },
+        {
+            "username": 19021364,
+            "name": "Nguyễn Quang",
+            "level": "Bí thư",
+            "dateOfBirth": "2001-02-02T17:00:00.000Z",
+            "gender": "Nam",
+            "homewtown": "Hải Hưng",
+            "gpa": 3.9,
+            "drl": 90
+        },
+        {
+            "username": 19021365,
+            "name": "Nguyễn Quỳnh",
+            "level": "Lớp trưởng",
+            "dateOfBirth": "2001-02-02T17:00:00.000Z",
+            "gender": "Nữ",
+            "homewtown": "Hải Dương",
+            "gpa": 3.95,
+            "drl": 80
+        }
+    ]
+}

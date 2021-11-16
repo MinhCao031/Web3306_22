@@ -1,23 +1,25 @@
-const user = require("./models/user");
+const express = require('express');
 const session = require('express-session');
 
+const User = require('./models/User');
 
 module.exports.authenticate = async function(req, res, next) {
     const { username, password } = req.body;
-    const foundUser = await user.findAndValidate(username, password);
+    const foundUser = await User.findAndValidate(username, password);
+
     if (foundUser) {
-        req.session.user_id = foundUser.username;
+        req.session.id = foundUser.username;
         return next();
     } else {
-        console.log("Error")
-        return res.redirect("/login")
+        res.send({
+            auth: false
+        });
     }
-}
+};
 
 module.exports.isLoggedIn = (req, res, next) => {
-    if (!req.session.user_id) {
-        return res.redirect("/login");
+    if (!req.session.id) {
+        res.json({ message: 'Login required' });
     }
-    next();
-}
-
+    return next();
+};
