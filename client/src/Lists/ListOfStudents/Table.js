@@ -126,6 +126,15 @@ const Table = () => {
       text: 'Nơi sinh',
       sort: true,
       filter: textFilter(filterData),
+      validator: (newValue, row, column) => {
+        if (!newValue) {
+          return {
+            valid: false,
+            message: 'Nơi sinh không được để trống',
+          };
+        }
+        return true;
+      },
     },
     {
       dataField: 'gpa',
@@ -133,6 +142,12 @@ const Table = () => {
       sort: true,
       filter: textFilter(filterData),
       validator: (newValue, row, column) => {
+        if (newValue.length <= 0) {
+          return {
+            valid: false,
+            message: 'GPA không được để trống',
+          };
+        }
         if (isNaN(newValue)) {
           return {
             valid: false,
@@ -154,6 +169,12 @@ const Table = () => {
       sort: true,
       filter: textFilter(filterData),
       validator: (newValue, row, column) => {
+        if (newValue.length <= 0) {
+          return {
+            valid: false,
+            message: 'ĐRL không được để trống',
+          };
+        }
         if (isNaN(newValue)) {
           return {
             valid: false,
