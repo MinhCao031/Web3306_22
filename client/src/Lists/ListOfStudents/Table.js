@@ -18,8 +18,6 @@ const Username = '10012019';
 const Table = () => {
   const [userList, setUserList] = useState([]);
   const [deletedRows, setDeletedRows] = useState([]);
-  // const [badFlip, setBadFlip] = useState(false);
-  // const [goodFlip, setGoodFlip] = useState(false);
   const filterData = {
     delay: 100,
     style: {
@@ -290,8 +288,8 @@ const Table = () => {
       </Button>
       <ClassName>{'K64_CACLC4'}</ClassName>
       <div className="filter">
-        <FilterButton type="good" />
-        <FilterButton type="bad" />
+        <FilterButton type="good" data={userList} setData={setUserList} />
+        <FilterButton type="bad" data={userList} setData={setUserList} />
       </div>
       <BootstrapTable
         bootstrap4
