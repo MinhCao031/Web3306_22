@@ -1,4 +1,3 @@
-// import essentials
 import React from 'react';
 import * as ImIcons from 'react-icons/im';
 import * as MdIcons from 'react-icons/md';
@@ -14,21 +13,19 @@ export const DropdownItems = [
     {
         title: 'Cập nhật thông tin',
         path: '/teacherHomepage/changeInfo',
-        //path: '/changeInfo',
-        icon: <ImIcons.ImWrench className="icon" />,
+        icon: <ImIcons.ImWrench/>,
         cname: 'dropdown-link'
     },
     {
         title: 'Cập nhật mật khẩu',
         path: '/teacherHomepage/changePassword',
-        //path: '/changePassword',
-        icon: <IoIcons.IoMdLock className="icon" />,
+        icon: <IoIcons.IoMdLock />,
         cname: 'dropdown-link'
     },
     {
         title: 'Đăng xuất',
         path: '/',
-        icon: <MdIcons.MdOutlineLogout className="icon" />,
+        icon: <MdIcons.MdOutlineLogout />,
         cname: 'dropdown-link'
     }
 ]

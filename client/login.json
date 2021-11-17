@@ -1,22 +1,35 @@
 {
-  "login": [
-    {
-      "id": 19021363,
-      "auth": true,
-      "firstName": "Nguyen",
-      "lastName": "Thai",
-      "role": "student"
-    },
-    {
-      "id": 10012019,
-      "auth": true,
-      "firstName": "Nguyen",
-      "lastName": "Van Quang",
-      "role": "teacher"
-    },
-    {
-      "id": 0,
-      "auth": false
-    }
-  ]
+    "className": ["K64_CACLC4"],
+    "studentIds": [
+        {
+            "username": 19021363,
+            "name": "Nguyễn Thái",
+            "level": "Thành viên",
+            "dateOfBirth": "2001-01-31",
+            "gender": "Nam",
+            "hometown": "Hà Nội",
+            "gpa": 3,
+            "drl": 80
+        },
+        {
+            "username": 19021364,
+            "name": "Nguyễn Quang",
+            "level": "Bí thư",
+            "dateOfBirth": "2001-01-31",
+            "gender": "Nam",
+            "hometown": "Hải Hưng",
+            "gpa": 3.9,
+            "drl": 90
+        },
+        {
+            "username": 19021365,
+            "name": "Nguyễn Quỳnh",
+            "level": "Lớp trưởng",
+            "dateOfBirth": "2001-01-31",
+            "gender": "Nữ",
+            "hometown": "Hải Dương",
+            "gpa": 3.95,
+            "drl": 100
+        }
+    ]
 }

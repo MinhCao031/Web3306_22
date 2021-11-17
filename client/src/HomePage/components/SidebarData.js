@@ -7,24 +7,24 @@ export const SidebarData = [
     title: 'Trang chủ',
     path: '/teacherHomepage',
     icon: <AiIcons.AiFillHome />,
-    cName: 'nav-text',
+    cName: 'side-text',
   },
   {
     title: 'Diễn đàn',
     path: '/teacherHomepage/forum',
     icon: <MdIcons.MdForum />,
-    cName: 'nav-text',
+    cName: 'side-text',
   },
   {
     title: 'Danh sách lớp',
     path: '/teacherHomepage/class-list',
     icon: <MdIcons.MdClass />,
-    cName: 'nav-text',
+    cName: 'side-text',
   },
   {
     title: 'Dashboard',
     path: '/teacherHomepage/dashboard',
     icon: <MdIcons.MdDashboard />,
-    cName: 'nav-text',
+    cName: 'side-text',
   },
 ];

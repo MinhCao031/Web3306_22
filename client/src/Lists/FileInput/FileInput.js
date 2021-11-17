@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
 class FileInput extends Component {
+    needInp = false;
+    showing = () => this.needInp = !this.needInp;
+
     dataStringLines = [];
     dataHeader = [];
     inputJson = null;
+    needInp = false;
 
     processData = dataString => {
       this.dataStringLines = dataString.split(/\r\n|\n/);
@@ -32,10 +39,11 @@ class FileInput extends Component {
         }
       }
       this.inputJson = JSON.parse(JSON.stringify(list));
-      console.log(this.inputJson);
+        console.log(this.inputJson);
     }
       
     showFile = async (e) => {
+      // inputJson = null;
       e.preventDefault()
       const reader = new FileReader()
       reader.onload = async (e) => { 
@@ -43,16 +51,30 @@ class FileInput extends Component {
         console.log(text)
         this.processData(text);
       };
-      reader.readAsText(e.target.files[0])
+      try {
+        reader.readAsText(e.target.files[0]);
+      } catch (error) {
+        console.log(error);
+        console.log("ERROR!!!!!!!!!!!!!!!");
+      }
     }
   
+    showing = needInput => {
+      if(needInput) needInput = false;
+      else needInput = true;
+    }
+
     render = () => {
-  
-      return (<div>
-        <input type="file" onChange={(e) => this.showFile(e)} />
-      </div>
+      return (
+        <div>           
+          <FontAwesomeIcon icon={faUpload} size="lg"/>
+          Tải file csv từ máy: 
+          <input type="file" onChange={(e) => this.showFile(e)}/>
+        </div>
       )
     }
 }
 
+
 export default FileInput;
+// style={'color: #BABABA, margin: 1px 1px'}

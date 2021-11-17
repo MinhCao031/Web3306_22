@@ -1,22 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-
+import { useHistory } from 'react-router';
 import axios from 'axios';
+
+const Username = '19021353';
 const Body = () => {
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const handleChangeOldPass = (e) => {
+    setOldPassword(e.target.value);
+    setMessage('');
+  };
+  const handleChangeNewPass = (e) => {
+    setNewPassword(e.target.value);
+    setMessage('');
+  };
+  const handleChangeConfirmPass = (e) => {
+    setConfirmPassword(e.target.value);
+    setMessage('');
+  };
+  const history = useHistory();
   const handleSubmit = (e) => {
-    axios
-      .post('http://localhost:5000/users/set_password', {
-        id: '19021353',
-        password: '123456',
-      })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (oldPassword && newPassword && confirmPassword) {
+      if (oldPassword === newPassword) {
+        setMessage('Mật khẩu mới không được trùng với mật khẩu cũ !');
+      } else if (newPassword !== confirmPassword) {
+        setMessage('Mật khẩu mới và xác nhận mật khẩu không trùng nhau !');
+      } else {
+        setMessage('Đổi mật khẩu thành công !');
+        setOldPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+        // axios
+        //   .post('http://localhost:5000/users/set_password', {
+        //     id: Username,
+        //     password: '123456',
+        //   })
+        //   .then((res) => {
+        //     console.log(res.data);
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   });
+      }
+    } else {
+      setMessage('Vui lòng nhập đầy đủ thông tin !');
+    }
     e.preventDefault();
   };
   return (
@@ -26,20 +59,47 @@ const Body = () => {
       <div className="input-wrap">
         <InputField>
           <FontAwesomeIcon icon={faLock} size="lg" style={iconStyle} />
-          <Input type="text" placeholder="Mật khẩu cũ"></Input>
+          <Input
+            type="password"
+            placeholder="Mật khẩu cũ"
+            onChange={handleChangeOldPass}
+            value={oldPassword}
+          ></Input>
         </InputField>
         <InputField>
           <FontAwesomeIcon icon={faLock} size="lg" style={iconStyle} />
-          <Input type="text" placeholder="Mật khẩu mới"></Input>
+          <Input
+            type="password"
+            placeholder="Mật khẩu mới"
+            onChange={handleChangeNewPass}
+            value={newPassword}
+          ></Input>
         </InputField>
         <InputField>
           <FontAwesomeIcon icon={faLock} size="lg" style={iconStyle} />
-          <Input type="text" placeholder="Nhập lại mật khẩu mới"></Input>
+          <Input
+            type="password"
+            placeholder="Nhập lại mật khẩu mới"
+            onChange={handleChangeConfirmPass}
+            value={confirmPassword}
+          ></Input>
         </InputField>
       </div>
+      {message === 'Đổi mật khẩu thành công !' ? (
+        <Message style={{ color: 'blue' }}>{message}</Message>
+      ) : message ? (
+        <Message style={{ color: 'red' }}>{message}</Message>
+      ) : null}
       <div className="button-wrap">
         <Button onClick={handleSubmit}>Cập nhật</Button>
-        <Button>Hủy</Button>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            history.push('/teacherHomepage');
+          }}
+        >
+          Hủy
+        </Button>
       </div>
     </Container>
   );
@@ -108,5 +168,11 @@ const Input = styled.input`
 `;
 const InputField = styled.div`
   position: relative;
+`;
+const Message = styled.p`
+  font-size: 15px;
+  margin: 0;
+  padding-top: 12px;
+  text-align: center;
 `;
 export default Body;

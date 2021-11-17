@@ -1,15 +1,6 @@
 import React from 'react';
 
 const Filters = () => {
-    return (
-        <>
-        </>
-    ); 
+  return <></>;
 };
-// function Filters() {
-//     return (
-//         <>
-//         </>
-//     ); 
-// };
 export default Filters;

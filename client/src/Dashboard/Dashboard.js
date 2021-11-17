@@ -1,12 +1,13 @@
 import React from 'react';
-
+import Sidebar from '../HomePage/components/Sidebar';
+import NavigationBar from '../HomePage/components/NavigationBar';
 const DashBoard = () => {
-  return <></>;
+  return (
+    <>
+      <NavigationBar />
+      <div>Day la Dashboard</div>
+      <Sidebar />
+    </>
+  );
 };
-// function DashBoard() {
-//     return (
-//         <>
-//         </>
-//     );
-// };
 export default DashBoard;
