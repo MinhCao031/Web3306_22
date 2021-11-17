@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import AddIcon from '@mui/icons-material/Add';
 import Fab from '@mui/material/Fab';
@@ -44,29 +45,34 @@ export default function AddStudentButton({ data, setData }) {
     },
   ];
   const [level, setLevel] = React.useState('Thành viên');
-  const [name, setName] = React.useState('');
-  const [username, setUsername] = React.useState('');
+  const [name, setName] = React.useState('Nguyễn Văn A');
+  const [username, setUsername] = React.useState(10000000);
   const [dateOfBirth, setDateOfBirth] = React.useState('2001-02-12');
   const [gender, setGender] = React.useState('Nam');
-  const [hometown, setHometown] = React.useState('');
-  const [gpa, setGpa] = React.useState('');
-  const [drl, setDrl] = React.useState('');
-  //console.log(name, username, level, dateOfBirth, gender, hometown, gpa, drl);
-  const [nameError, setNameError] = React.useState(true);
-  const [usernameError, setUsernameError] = React.useState(true);
-  const [hometownError, setHometownError] = React.useState(true);
-  const [gpaError, setGpaError] = React.useState(true);
-  const [drlError, setDrlError] = React.useState(true);
+  const [hometown, setHometown] = React.useState('Hà Nội');
+  const [gpa, setGpa] = React.useState(0);
+  const [drl, setDrl] = React.useState(0);
+  const [nameError, setNameError] = React.useState(false);
+  const [usernameError, setUsernameError] = React.useState(false);
+  const [hometownError, setHometownError] = React.useState(false);
+  const [gpaError, setGpaError] = React.useState(false);
+  const [drlError, setDrlError] = React.useState(false);
   const handleCancel = () => {
     setOpen(false);
+    setNameError(false);
+    setUsernameError(false);
+    setHometownError(false);
+    setGpaError(false);
+    setDrlError(false);
+
     setLevel('Thành viên');
-    setUsername();
-    setName('');
+    setUsername(10000000);
+    setName('Nguyễn Văn A');
     setDateOfBirth('2001-02-12');
     setGender('Nam');
-    setHometown('');
-    setGpa('');
-    setDrl('');
+    setHometown('Hà Nội');
+    setGpa(0);
+    setDrl(0);
   };
   const handleAdd = () => {
     if (
@@ -86,18 +92,18 @@ export default function AddStudentButton({ data, setData }) {
           dateOfBirth,
           gender,
           hometown,
-          gpa: parseInt(gpa),
+          gpa: parseFloat(gpa),
           drl: parseInt(drl),
         },
       ]);
       setLevel('Thành viên');
-      setUsername();
-      setName('');
+      setUsername(10000000);
+      setName('Nguyễn Văn A');
       setDateOfBirth('2001-02-12');
       setGender('Nam');
-      setHometown('');
-      setGpa('');
-      setDrl('');
+      setHometown('Hà Nội');
+      setGpa(0);
+      setDrl(0);
     }
   };
   const handleNameChange = (e) => {
@@ -176,6 +182,7 @@ export default function AddStudentButton({ data, setData }) {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle style={{ fontWeight: 'bold' }}>Thêm sinh viên</DialogTitle>
         <DialogContent>
+          <DialogContentText>Nhập thông tin sinh viên</DialogContentText>
           <Stack direction="row" spacing={3}>
             <TextField
               fullWidth
