@@ -19,6 +19,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SaveIcon from '@mui/icons-material/Save';
 import ClearIcon from '@mui/icons-material/Clear';
 import Fab from '@mui/material/Fab';
+import SpecificFilterButton from '../Filters/SpecificFilterButton';
 const Username = '10012019';
 const Table = () => {
   const [userList, setUserList] = useState([]);
@@ -252,7 +253,6 @@ const Table = () => {
       }
     },
   };
-  console.log(userList);
   useEffect(() => {
     axios
       .get('http://localhost:3001/StudentIds')
@@ -287,9 +287,10 @@ const Table = () => {
   return (
     <>
       <Stack spacing={1} direction="row">
+        <SpecificFilterButton data={userList} setData={setUserList} />
         <AddStudentButton data={userList} setData={setUserList} />
         <Fab
-          color="secondary"
+          //color="secondary"
           aria-label="delete"
           size="medium"
           onClick={handleDeleteAction}
