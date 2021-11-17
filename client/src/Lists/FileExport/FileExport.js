@@ -1,93 +1,67 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { CSVLink } from "react-csv";
-import AsyncCSV from './AsyncCSV';
 
+// Real
+// const headers = [
+//   { label: "Họ và tên", key: "name" },
+//   { label: "MSSV", key: "username" },
+//   { label: "Chức vụ", key: "level" },
+//   { label: "Ngày sinh", key: "dataOfBirth" },
+//   { label: "Giới tính", key: "gender" },
+//   { label: "Nơi sinh", key: "hometown" },
+//   { label: "GPA", key: "gpa" },
+//   { label: "ĐRL", key: "drl" },
+// ];
+
+// Experiment
 const headers = [
-  { label: "First Name", key: "firstName" },
-  { label: "Last Name", key: "lastName" },
+  { label: "Name", key: "name" },
+  { label: "Username", key: "username" },
   { label: "Email", key: "email" },
-  { label: "Age", key: "age" }
+  { label: "Phone", key: "phone" },
+  { label: "Website", key: "website" }
 ];
 
-const data = [
-  { firstName: "Warren", lastName: "Morrow", email: "sokyt@mailinator.com", age: "36" },
-  { firstName: "Gwendolyn", lastName: "Galloway", email: "weciz@mailinator.com", age: "76" },
-  { firstName: "Astra", lastName: "Wyatt", email: "quvyn@mailinator.com", age: "57" },
-  { firstName: "Jasmine", lastName: "Wong", email: "toxazoc@mailinator.com", age: "42" },
-  { firstName: "Brooke", lastName: "Mcconnell", email: "vyry@mailinator.com", age: "56" },
-  { firstName: "Christen", lastName: "Haney", email: "pagevolal@mailinator.com", age: "23" },
-  { firstName: "Tate", lastName: "Vega", email: "dycubo@mailinator.com", age: "87" },
-  { firstName: "Amber", lastName: "Brady", email: "vyconixy@mailinator.com", age: "78" },
-  { firstName: "Philip", lastName: "Whitfield", email: "velyfi@mailinator.com", age: "22" },
-  { firstName: "Kitra", lastName: "Hammond", email: "fiwiloqu@mailinator.com", age: "35" },
-  { firstName: "Charity", lastName: "Mathews", email: "fubigonero@mailinator.com", age: "63" }
-];
+class FileExport extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    }
+    this.csvLinkEl = React.createRef();
+  }
 
-const csvReport = {
-  data: data,
-  headers: headers,
-  filename: 'DSSV.csv'
-};
+  getUserList = () => {
+    return fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json());
+    // return fetch('localhost:3000...') điền link chứa file json cần download vào đây
+    //   .then(res => res.json());
+  }
 
-function FileExport() {
-  return (
-    <div className="App">
-      <CSVLink {...csvReport}>Export to CSV</CSVLink><br /><br />
-      <AsyncCSV />
-    </div>
-  );
+  downloadReport = async () => {
+    const data = await this.getUserList();
+    this.setState({ data: data }, () => {
+      setTimeout(() => {
+        this.csvLinkEl.current.link.click();
+      });
+    });
+  }
+
+  render() {
+    const { data } = this.state;
+
+    return (
+      <div>
+        <input type="button" value="Export to CSV" onClick={this.downloadReport} />
+        <CSVLink
+          headers={headers}
+          filename="DSSV2.csv"
+          data={data}
+          ref={this.csvLinkEl}
+        />
+      </div>
+    );
+  }
 }
 
 export default FileExport;
-// import ToolkitProvider, { CSVExport } from 'react-bootstrap-table2-toolkit';
-
-// const { ExportCSVButton } = CSVExport;
-
-// <ToolkitProvider
-//   keyField="id"
-//   data={ products }
-//   columns={ columns }
-//   exportCSV
-// >
-//   {
-//     props => (
-//       <div>
-//         <ExportCSVButton { ...props.csvProps }>Export CSV!!</ExportCSVButton>
-//         <hr />
-//         <BootstrapTable { ...props.baseProps } />
-//       </div>
-//     )
-//   }
-// </ToolkitProvider>
-// // This is my custom csv export component
-// const MyExportCSV = (props) => {
-//   const handleClick = () => {
-//     props.onExport();
-//   };
-//   return (
-//     <div>
-//       <button className="btn btn-success" onClick={ handleClick }>Click me to export CSV</button>
-//     </div>
-//   );
-// };
-
-// export const MyTable = () => (
-//   <ToolkitProvider
-//     keyField="id"
-//     data={ products }
-//     columns={ columns }
-//     exportCSV
-//   >
-//     {
-//       props => (
-//         <div>
-//           <BootstrapTable { ...props.baseProps } />
-//           <hr />
-//           <MyExportCSV { ...props.csvProps } />
-//         </div>
-//       )
-//     }
-//   </ToolkitProvider>
-// );
-
-// export default MyTable;
