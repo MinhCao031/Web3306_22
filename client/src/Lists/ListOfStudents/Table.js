@@ -11,9 +11,14 @@ import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css
 import cellEditFactory, { Type } from 'react-bootstrap-table2-editor';
 import './ListOfStudents.css';
 import ClassName from './ClassName';
-import Button from 'react-bootstrap/Button';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import FilterButton from '../Filters/FilterButton';
-
+import AddStudentButton from './AddStudentButton';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import SaveIcon from '@mui/icons-material/Save';
+import ClearIcon from '@mui/icons-material/Clear';
+import Fab from '@mui/material/Fab';
 const Username = '10012019';
 const Table = () => {
   const [userList, setUserList] = useState([]);
@@ -279,13 +284,17 @@ const Table = () => {
   };
   return (
     <>
-      <Button
-        variant="danger"
-        onClick={handleDeleteAction}
-        className="ListButton"
-      >
-        Xóa sinh viên
-      </Button>
+      <Stack spacing={1} direction="row">
+        <AddStudentButton>Thêm sinh viên</AddStudentButton>
+        <Fab
+          style={{ backgroundColor: '#d32f2f', color: 'white' }}
+          aria-label="delete"
+          size="medium"
+          onClick={handleDeleteAction}
+        >
+          <DeleteOutlineIcon />
+        </Fab>
+      </Stack>
       <ClassName>{'K64_CACLC4'}</ClassName>
       <div className="filter">
         <FilterButton type="good" data={userList} setData={setUserList} />
@@ -309,20 +318,24 @@ const Table = () => {
         })}
       />
       <div className="saveButton">
-        <Button
-          variant="primary"
-          onClick={handleSaveAction}
-          className="ListButton"
-        >
-          Lưu
-        </Button>
-        <Button
-          variant="danger"
-          onClick={handleCancelAction}
-          className="ListButton"
-        >
-          Hủy
-        </Button>
+        <Stack spacing={3} direction="row">
+          <Button
+            variant="contained"
+            onClick={handleSaveAction}
+            color="success"
+            startIcon={<SaveIcon />}
+          >
+            Lưu
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleCancelAction}
+            color="error"
+            startIcon={<ClearIcon />}
+          >
+            Hủy
+          </Button>
+        </Stack>
       </div>
     </>
   );
