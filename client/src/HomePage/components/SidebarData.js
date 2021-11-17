@@ -22,7 +22,7 @@ export const SidebarData = [
     cName: 'side-text',
   },
   {
-    title: 'Dashboard',
+    title: 'Thống kê',
     path: '/teacherHomepage/dashboard',
     icon: <MdIcons.MdDashboard />,
     cName: 'side-text',
