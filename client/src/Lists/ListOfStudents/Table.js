@@ -28,6 +28,7 @@ const Table = () => {
     style: {
       border: 'none',
       paddingLeft: 0,
+      margin: 0,
     },
     placeholder: 'Tìm kiếm',
   };
@@ -251,6 +252,7 @@ const Table = () => {
       }
     },
   };
+  console.log(userList);
   useEffect(() => {
     axios
       .get('http://localhost:3001/StudentIds')
@@ -287,7 +289,7 @@ const Table = () => {
       <Stack spacing={1} direction="row">
         <AddStudentButton>Thêm sinh viên</AddStudentButton>
         <Fab
-          style={{ backgroundColor: '#d32f2f', color: 'white' }}
+          color="secondary"
           aria-label="delete"
           size="medium"
           onClick={handleDeleteAction}
