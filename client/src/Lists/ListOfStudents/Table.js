@@ -287,7 +287,7 @@ const Table = () => {
   return (
     <>
       <Stack spacing={1} direction="row">
-        <AddStudentButton>Thêm sinh viên</AddStudentButton>
+        <AddStudentButton data={userList} setData={setUserList} />
         <Fab
           color="secondary"
           aria-label="delete"
