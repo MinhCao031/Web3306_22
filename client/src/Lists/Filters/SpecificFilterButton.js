@@ -95,7 +95,6 @@ export default function SpecificFilterButton({ data, setData }) {
       setOpen(false);
     }
   };
-  console.log(filterData);
   return (
     <div>
       <Fab

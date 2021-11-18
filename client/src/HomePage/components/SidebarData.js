@@ -17,7 +17,7 @@ export const SidebarData = [
   },
   {
     title: 'Danh sách lớp',
-    path: '/teacherHomepage/class-list',
+    path: '/teacherHomepage/classList',
     icon: <MdIcons.MdClass />,
     cName: 'side-text',
   },

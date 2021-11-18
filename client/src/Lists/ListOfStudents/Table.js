@@ -289,12 +289,7 @@ const Table = () => {
       <Stack spacing={1} direction="row">
         <SpecificFilterButton data={userList} setData={setUserList} />
         <AddStudentButton data={userList} setData={setUserList} />
-        <Fab
-          //color="secondary"
-          aria-label="delete"
-          size="medium"
-          onClick={handleDeleteAction}
-        >
+        <Fab aria-label="delete" size="medium" onClick={handleDeleteAction}>
           <DeleteOutlineIcon />
         </Fab>
       </Stack>
