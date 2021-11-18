@@ -24,27 +24,27 @@ const Form = () => {
   const signIn = (e) => {
     const { username, password } = user;
     if (username && password) {
-      axios
-        .post('http://localhost:5000/login', user)
-        .then((res) => {
-          if (res.data.auth === false) {
-            setMessage('Tài khoản hoặc mật khẩu không hợp lệ !');
-          } else {
-            if (res.data.role === 'Student') {
-              history.push({
-                pathname: '/studentHomepage',
-                state: res.data,
-              });
-            } else if (res.data.role === 'Teacher') {
-              history.push({
-                pathname: '/teacherHomepage',
-                state: res.data,
-              });
-            }
-          }
-        })
-        .catch((err) => console.log('error'));
-      history.push('/teacherHomepage');
+      // axios
+      //   .post('http://localhost:5000/login', user)
+      //   .then((res) => {
+      //     if (res.data.auth === false) {
+      //       setMessage('Tài khoản hoặc mật khẩu không hợp lệ !');
+      //     } else {
+      //       if (res.data.role === 'Student') {
+      //         history.push({
+      //           pathname: '/studentHomepage',
+      //           state: res.data,
+      //         });
+      //       } else if (res.data.role === 'Teacher') {
+      //         history.push({
+      //           pathname: '/teacherHomepage',
+      //           state: res.data,
+      //         });
+      //       }
+      //     }
+      //   })
+      //   .catch((err) => console.log('error'));
+      // history.push('/teacherHomepage');
     } else {
       setMessage('Vui lòng nhập đầy đủ thông tin !');
     }
