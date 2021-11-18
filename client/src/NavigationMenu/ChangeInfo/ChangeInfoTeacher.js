@@ -152,7 +152,7 @@ function ChangeInfoTeacher() {
               <Input
                 name="FullName"
                 id="FullName"
-                style={{ width: '400px', height: '55px;' }}
+                style={{ width: '400px', height: '55px' }}
                 type="text"
                 value={dateOfBirth}
                 ref={ref}

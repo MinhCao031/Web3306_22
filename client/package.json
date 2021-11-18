@@ -39,7 +39,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "testserver": "json-server --watch login.json --port 3001"
+    "class": "json-server --watch class.json --port 3001",
+    "classList": "json-server --watch classList.json --port 3002"
   },
   "eslintConfig": {
     "extends": [
