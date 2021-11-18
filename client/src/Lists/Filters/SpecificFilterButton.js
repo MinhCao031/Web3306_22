@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Fab from '@mui/material/Fab';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
+import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 export default function SpecificFilterButton({ data, setData }) {
   const [open, setOpen] = React.useState(false);
 
@@ -104,7 +104,7 @@ export default function SpecificFilterButton({ data, setData }) {
         size="medium"
         onClick={handleClickOpen}
       >
-        <FilterListOutlinedIcon />
+        <SavedSearchIcon />
       </Fab>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle style={{ fontWeight: 'bold' }}>
@@ -161,7 +161,7 @@ export default function SpecificFilterButton({ data, setData }) {
             />
           </Stack>
         </DialogContent>
-        <DialogActions style={{ alignItems: 'center' }}>
+        <DialogActions style={{ justifyContent: 'center' }}>
           <Button onClick={handleFilter}>Lọc</Button>
           <Button onClick={handleCancel}>Hủy</Button>
         </DialogActions>
