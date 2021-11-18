@@ -49,7 +49,8 @@ module.exports.update = async function(req, res) {
 
 //codeTT
 module.exports.importFile = async function(req, res) {
-    const arr = req.body;
+    
+    var arr = req.body.inpjson;
     for (var i = 0; i < arr.length; i++){
         var obj = arr[i];
         const { id, dateOfBirth, drl, gender, gpa, hometown, level, name, username } = obj;
@@ -64,7 +65,7 @@ module.exports.importFile = async function(req, res) {
                 gpa: gpa,
                 drl: drl
             });
-        
+            
             await user.save().then(() => res.json({ status: 'OK' })).catch((err) => {
                 const response = {
                     error: err,
