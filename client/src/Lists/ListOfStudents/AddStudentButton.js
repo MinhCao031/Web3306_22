@@ -57,6 +57,7 @@ export default function AddStudentButton({ data, setData }) {
   const [hometownError, setHometownError] = React.useState(false);
   const [gpaError, setGpaError] = React.useState(false);
   const [drlError, setDrlError] = React.useState(false);
+  const [usernameIsExist, setUsernameIsExist] = React.useState(false);
   const handleCancel = () => {
     setOpen(false);
     setNameError(false);
@@ -64,7 +65,7 @@ export default function AddStudentButton({ data, setData }) {
     setHometownError(false);
     setGpaError(false);
     setDrlError(false);
-
+    setUsernameIsExist(false);
     setLevel('Thành viên');
     setUsername(10000000);
     setName('Nguyễn Văn A');
@@ -75,12 +76,17 @@ export default function AddStudentButton({ data, setData }) {
     setDrl(0);
   };
   const handleAdd = () => {
+    if (data.some((student) => student.username == username)) {
+      setUsernameIsExist(true);
+      return;
+    }
     if (
       !nameError &&
       !usernameError &&
       !hometownError &&
       !gpaError &&
-      !drlError
+      !drlError &&
+      !usernameIsExist
     ) {
       setOpen(false);
       setData([
@@ -126,6 +132,7 @@ export default function AddStudentButton({ data, setData }) {
     } else {
       setUsernameError(false);
     }
+    setUsernameIsExist(false);
     setUsername(e.target.value);
   };
   const handleLevelChange = (e) => {
@@ -278,9 +285,16 @@ export default function AddStudentButton({ data, setData }) {
             />
           </Stack>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleAdd}>Thêm</Button>
-          <Button onClick={handleCancel}>Hủy</Button>
+        <DialogActions
+          style={{ justifyContent: 'space-evenly', alignItems: 'center' }}
+        >
+          {usernameIsExist && (
+            <p style={{ margin: '0', color: 'red' }}>MSSV đã tồn tại !</p>
+          )}
+          <div>
+            <Button onClick={handleAdd}>Thêm</Button>
+            <Button onClick={handleCancel}>Hủy</Button>
+          </div>
         </DialogActions>
       </Dialog>
     </div>
