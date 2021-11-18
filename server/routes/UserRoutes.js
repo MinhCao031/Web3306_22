@@ -15,4 +15,7 @@ router.route('/:user_id/update').post(users.update); // Login required
 
 router.route('/:user_id/set_password').post(users.setPassword); // Login required
 
+//codeTT
+router.route('/:user_id/importFile').post(users.importFile) // Login required and be teacherId
+
 module.exports = router;

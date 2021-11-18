@@ -145,3 +145,20 @@ registerNewUser(
     0.0,
     0.0
 );
+
+registerNewUser(
+    19020000,
+    'T123456',
+    'Student',
+    'Thành viên',
+    'Nguyễn Thái',
+    '2001-03-02',
+    'Nam',
+    0868466825,
+    'thainguyen.uet@gmail.com',
+    'Hà Nội',
+    'A daily-updated person',
+    'Computer Science',
+    3.0,
+    80
+);

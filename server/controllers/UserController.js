@@ -47,6 +47,43 @@ module.exports.update = async function(req, res) {
     });
 };
 
+//codeTT
+module.exports.importFile = async function(req, res) {
+    const arr = req.body;
+    for (var i = 0; i < arr.length; i++){
+        var obj = arr[i];
+        const { id, dateOfBirth, drl, gender, gpa, hometown, level, name, username } = obj;
+            const user = new User({
+                username: username,
+                password: username,
+                level: level,
+                name: name,
+                dateOfBirth: dateOfBirth,
+                gender: gender,
+                hometown: hometown,
+                gpa: gpa,
+                drl: drl
+            });
+        
+            await user.save().then(() => res.json({ status: 'OK' })).catch((err) => {
+                const response = {
+                    error: err,
+                    status: 'Failed'
+                };
+                return res.json(response);
+            });
+            // user
+            //     .save()
+            //     .then((data) => {
+            //         console.log(data);
+            //     })
+            //     .catch((err) => {
+            //         console.log(err);
+            //     });
+            }
+        
+};
+
 module.exports.setPassword = async function(req, res) {
     const { user_id } = req.params;
     const { oldPassword, newPassword } = req.body;
