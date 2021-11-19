@@ -22,6 +22,6 @@ const TeacherHomePage = () => {
 export const Container = styled.div`
   background-color: #f4f5fa;
   width: 100%;
-  height: 120vh;
+  height: 140vh;
 `;
 export default TeacherHomePage;

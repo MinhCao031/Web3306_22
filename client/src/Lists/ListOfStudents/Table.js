@@ -27,8 +27,6 @@ const Username = '10012019';
 const Table = () => {
   const [userList, setUserList] = useState([]);
   const [deletedRows, setDeletedRows] = useState([]);
-  // const [badFlip, setBadFlip] = useState(false);
-  // const [goodFlip, setGoodFlip] = useState(false);
   const filterData = {
     delay: 100,
     style: {
@@ -321,8 +319,12 @@ const Table = () => {
         })}
       />
       <div className="ioFile">
-        <div className="FileIn"><FileInput/></div>
-        <div className="FileOut"><FileExport/></div>
+        <div className="FileIn">
+          <FileInput />
+        </div>
+        <div className="FileOut">
+          <FileExport />
+        </div>
       </div>
       <div className="saveButton">
         <Stack spacing={3} direction="row">

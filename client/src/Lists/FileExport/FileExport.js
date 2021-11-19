@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CSVLink } from "react-csv";
+import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,28 +17,29 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 // Experiment
 const headers = [
-  { label: "Name", key: "name" },
-  { label: "Username", key: "username" },
-  { label: "Email", key: "email" },
-  { label: "Phone", key: "phone" },
-  { label: "Website", key: "website" }
+  { label: 'Name', key: 'name' },
+  { label: 'Username', key: 'username' },
+  { label: 'Email', key: 'email' },
+  { label: 'Phone', key: 'phone' },
+  { label: 'Website', key: 'website' },
 ];
 
 class FileExport extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
-    }
+      data: [],
+    };
     this.csvLinkEl = React.createRef();
   }
 
   getUserList = () => {
-    return fetch('https://jsonplaceholder.typicode.com/users')
-      .then(res => res.json());
+    return fetch('https://jsonplaceholder.typicode.com/users').then((res) =>
+      res.json()
+    );
     // return fetch('localhost:3000...') điền link chứa file json cần download vào đây
     //   .then(res => res.json());
-  }
+  };
 
   downloadReport = async () => {
     const data = await this.getUserList();
@@ -47,17 +48,21 @@ class FileExport extends Component {
         this.csvLinkEl.current.link.click();
       });
     });
-  }
+  };
 
   render() {
     const { data } = this.state;
 
     return (
-      <div>           
-        <FontAwesomeIcon icon={faDownload} size="lg"/>
+      <div>
+        <FontAwesomeIcon icon={faDownload} size="lg" />
         Tải file csv về máy:
         {/* <input type="button" value="Tải file csv về máy:" onClick={this.downloadReport} /> */}
-        <input type="button" value="Download File" onClick={this.downloadReport} />
+        <input
+          type="button"
+          value="Download File"
+          onClick={this.downloadReport}
+        />
         <CSVLink
           headers={headers}
           filename="DSSV2.csv"
