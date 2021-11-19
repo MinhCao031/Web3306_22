@@ -11,6 +11,7 @@ import DashBoard from './Dashboard/Dashboard';
 import Forum from './Forum/Forum';
 import FileInput from './Lists/FileInput/FileInput';
 import FileExport from './Lists/FileExport/FileExport';
+import ListOfClasses from './Lists/ListOfClasses/ListOfClasses';
 const App = () => {
   return (
     <Router>
@@ -27,7 +28,10 @@ const App = () => {
         <Route path="/teacherHomepage/forum">
           <Forum />
         </Route>
-        <Route path="/teacherHomepage/class-list">
+        <Route path="/teacherHomepage/classList" exact>
+          <ListOfClasses />
+        </Route>
+        <Route path="/teacherHomepage/classList/studentList">
           <ListOfStudents />
         </Route>
         <Route path="/teacherHomepage/dashboard">
@@ -42,7 +46,16 @@ const App = () => {
         <Route path="/teacherHomepage/FileExport">
           <FileExport />
         </Route>
+        {/*
+        <Route path="/changeInfo">
+          <ChangeInfoTeacher />
+        </Route>
+        <Route path="/teacherHomepage/FileInput">
+          <div>Day la FileInput</div>
+        </Route> 
         <Route path="/teacherHomepage/changePassword">
+        */}
+        <Route path="/changePassword">
           <ChangePass />
         </Route>
       </Switch>

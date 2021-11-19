@@ -1,5 +1,5 @@
 const config = require('./config/config');
-const User = require('./models/user.js');
+const User = require('./models/User.js');
 
 const mongoose = require('mongoose');
 
@@ -67,7 +67,7 @@ registerNewUser(
     'Student',
     'Thành viên',
     'Nguyễn Thái',
-    '02/03/2001',
+    '2001-03-02',
     'Nam',
     0868466825,
     'thainguyen.uet@gmail.com',
@@ -84,7 +84,7 @@ registerNewUser(
     'Student',
     'Bí thư',
     'Nguyễn Quang',
-    '02/03/2001',
+    '2001-03-02',
     'Nam',
     0868454985,
     'quangnguyen.uet@gmail.com',
@@ -101,7 +101,7 @@ registerNewUser(
     'Student',
     'Lớp trưởng',
     'Nguyễn Trung',
-    '02/03/2001',
+    '2001-03-02',
     'Nam',
     0868464023,
     'trungnguyen.uet@gmail.com',
@@ -118,7 +118,7 @@ registerNewUser(
     'Teacher',
     'None',
     'Nguyễn Tú',
-    '02/03/2001',
+    '2001-03-02',
     'Nữ',
     08684643573,
     'tunguyen.uet@gmail.com',
@@ -135,7 +135,7 @@ registerNewUser(
     'Teacher',
     'None',
     'Nguyễn Mai',
-    '02/03/2001',
+    '2001-03-02',
     'Nữ',
     08684643510,
     'mainguyen.uet@gmail.com',

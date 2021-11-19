@@ -104,7 +104,7 @@ function ChangeInfoTeacher() {
     <Wrapper>
       <NavigationBar />
       <Container>
-        <h1> Cập nhật thông tin </h1>
+        <h1> Thông tin cá nhân </h1>
         <div className="line">
           <div className="FullName">
             <p className="FieldToChange">
@@ -152,7 +152,7 @@ function ChangeInfoTeacher() {
               <Input
                 name="FullName"
                 id="FullName"
-                style={{ width: '400px', height: '55px;' }}
+                style={{ width: '400px', height: '55px' }}
                 type="text"
                 value={dateOfBirth}
                 ref={ref}

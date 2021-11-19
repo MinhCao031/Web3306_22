@@ -7,7 +7,13 @@ const TeacherHomePage = () => {
   return (
     <>
       <NavigationBar />
-      <Container />
+      <Container>
+        <img
+          src="https://uet.vnu.edu.vn/wp-content/uploads/2014/06/banner-web.jpg"
+          alt="logo"
+          style={{ width: '100%', height: 'auto' }}
+        />
+      </Container>
       <Sidebar />
       <Footer />
     </>
@@ -16,6 +22,6 @@ const TeacherHomePage = () => {
 export const Container = styled.div`
   background-color: #f4f5fa;
   width: 100%;
-  height: 100vh;
+  height: 120vh;
 `;
 export default TeacherHomePage;

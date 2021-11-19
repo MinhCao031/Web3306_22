@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "67862247-a877-448f-a2d4-270045964077",
+		"name": "uet-smta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get User info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/19021363/show",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"19021363",
+						"show"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Managed classes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/classes/10022019/show",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"classes",
+						"10022019",
+						"show"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Students in a class",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/classes/1/show/students",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"classes",
+						"1",
+						"show",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User info",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Nguyen Kim Long",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "thaitester.uet@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/19021363/update",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"19021363",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login to UET-SMTA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "19021363",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Thai25879",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/login",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change User password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "oldPassword",
+							"value": "Thai12345",
+							"type": "text"
+						},
+						{
+							"key": "newPassword",
+							"value": "Thai25879",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/19021363/set_password",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"19021363",
+						"set_password"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

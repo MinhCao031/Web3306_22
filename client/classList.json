@@ -1,0 +1,18 @@
+{
+    "class": [
+    {
+        "classId": 4,
+        "className": "K65_CACLC4",
+        "classType": "CLC",
+        "quantity": 20,
+        "leader": "Nguyễn Kim Long"
+    },
+    {
+        "classId": 3,
+        "className": "K63_CE",
+        "classType": "Thường",
+        "quantity": 25,
+        "leader": "Nguyễn Quang"
+    }
+    ]
+}   

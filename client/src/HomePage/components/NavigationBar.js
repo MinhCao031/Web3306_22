@@ -22,12 +22,10 @@ function NavigationBar() {
   return (
     <div className="navigationbar">
       <div className="profile">
-        <div onClick={showNotification}>
-          <IoIcons.IoMdNotifications
-            style={{ color: '#404E68', cursor: 'pointer' }}
-            size={30}
-          />
-        </div>
+        <IoIcons.IoMdNotifications onClick={showNotification}
+          style={{ color: '#404E68', cursor: 'pointer' }}
+          size={30}
+        />
         {showNoti && <DropNotification />}
         <span className="profile-text">{userName}</span>
         <div onClick={showDropdown}>

@@ -70,4 +70,3 @@ class FileExport extends Component {
 }
 
 export default FileExport;
-// style={'color: #BABABA, margin: 1px 1px'} 
