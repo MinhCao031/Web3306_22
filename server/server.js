@@ -8,6 +8,7 @@ const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 
 const config = require('./config/config');
+const authRoute = require('./routes/auth');
 const userRoute = require('./routes/users');
 const classRoute = require('./routes/classes');
 const conversationRoute = require('./routes/conversations');
@@ -50,8 +51,9 @@ app.use(session(sessionOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/', userRoute);
-app.use('/classes/', classRoute);
+app.use('/api/auth', authRoute);
+app.use('/api/users', userRoute);
+app.use('/api/classes/', classRoute);
 app.use('/api/conversations', conversationRoute);
 app.use('/api/messages', messageRoute);
 
