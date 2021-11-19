@@ -9,6 +9,8 @@ import ChangePass from './NavigationMenu/ChangePass/ChangePass';
 import ListOfStudents from './Lists/ListOfStudents/ListOfStudents';
 import DashBoard from './Dashboard/Dashboard';
 import Forum from './Forum/Forum';
+import FileInput from './Lists/FileInput/FileInput';
+import FileExport from './Lists/FileExport/FileExport';
 import ListOfClasses from './Lists/ListOfClasses/ListOfClasses';
 const App = () => {
   return (
@@ -35,12 +37,24 @@ const App = () => {
         <Route path="/teacherHomepage/dashboard">
           <DashBoard />
         </Route>
+        <Route path="/teacherHomepage/changeInfo">
+          <ChangeInfoTeacher />
+        </Route>
+        <Route path="/teacherHomepage/FileInput">
+          <FileInput />
+        </Route>
+        <Route path="/teacherHomepage/FileExport">
+          <FileExport />
+        </Route>
+        {/*
         <Route path="/changeInfo">
           <ChangeInfoTeacher />
         </Route>
         <Route path="/teacherHomepage/FileInput">
           <div>Day la FileInput</div>
-        </Route>
+        </Route> 
+        <Route path="/teacherHomepage/changePassword">
+        */}
         <Route path="/changePassword">
           <ChangePass />
         </Route>

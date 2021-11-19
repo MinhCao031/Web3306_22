@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { CSVLink } from "react-csv";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 // Real
 // const headers = [
@@ -51,8 +53,11 @@ class FileExport extends Component {
     const { data } = this.state;
 
     return (
-      <div>
-        <input type="button" value="Export to CSV" onClick={this.downloadReport} />
+      <div>           
+        <FontAwesomeIcon icon={faDownload} size="lg"/>
+        Tải file csv về máy:
+        {/* <input type="button" value="Tải file csv về máy:" onClick={this.downloadReport} /> */}
+        <input type="button" value="Download File" onClick={this.downloadReport} />
         <CSVLink
           headers={headers}
           filename="DSSV2.csv"

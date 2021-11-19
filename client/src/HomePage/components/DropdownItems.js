@@ -8,24 +8,24 @@ export const DropdownItems = [
     title: 'Tài khoản',
     path: '#',
     icon: null,
-    cname: 'dropdown-link',
+    cname: 'dropdown-link'
   },
   {
     title: 'Cập nhật thông tin',
     path: '/changeInfo',
     icon: <ImIcons.ImWrench />,
-    cname: 'dropdown-link',
+    cname: 'dropdown-link'
   },
   {
     title: 'Cập nhật mật khẩu',
     path: '/changePassword',
     icon: <IoIcons.IoMdLock />,
-    cname: 'dropdown-link',
+    cname: 'dropdown-link'
   },
   {
     title: 'Đăng xuất',
     path: '/',
     icon: <MdIcons.MdOutlineLogout />,
-    cname: 'dropdown-link',
-  },
+    cname: 'dropdown-link'
+  }
 ];

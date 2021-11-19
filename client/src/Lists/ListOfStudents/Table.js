@@ -20,10 +20,15 @@ import SaveIcon from '@mui/icons-material/Save';
 import ClearIcon from '@mui/icons-material/Clear';
 import Fab from '@mui/material/Fab';
 import SpecificFilterButton from '../Filters/SpecificFilterButton';
+
+import FileInput from '../FileInput/FileInput';
+import FileExport from '../FileExport/FileExport';
 const Username = '10012019';
 const Table = () => {
   const [userList, setUserList] = useState([]);
   const [deletedRows, setDeletedRows] = useState([]);
+  // const [badFlip, setBadFlip] = useState(false);
+  // const [goodFlip, setGoodFlip] = useState(false);
   const filterData = {
     delay: 100,
     style: {
@@ -315,6 +320,10 @@ const Table = () => {
           autoSelectText: true,
         })}
       />
+      <div className="ioFile">
+        <div className="FileIn"><FileInput/></div>
+        <div className="FileOut"><FileExport/></div>
+      </div>
       <div className="saveButton">
         <Stack spacing={3} direction="row">
           <Button
