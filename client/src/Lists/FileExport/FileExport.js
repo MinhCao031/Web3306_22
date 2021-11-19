@@ -55,14 +55,20 @@ class FileExport extends Component {
 
     return (
       <div>
-        <FontAwesomeIcon icon={faDownload} size="lg" />
-        Tải file csv về máy:
-        {/* <input type="button" value="Tải file csv về máy:" onClick={this.downloadReport} /> */}
-        <input
+        <button
+          id="file-download-button"
           type="button"
           value="Download File"
+          className="custom-file-download"
           onClick={this.downloadReport}
-        />
+        >
+          <FontAwesomeIcon
+            icon={faDownload}
+            size="lg"
+            style={{ marginRight: '10px' }}
+          />
+          Download File
+        </button>
         <CSVLink
           headers={headers}
           filename="DSSV2.csv"
