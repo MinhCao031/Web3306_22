@@ -7,9 +7,11 @@ const logger = require('morgan');
 const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 
-const config = require('./config/config.js');
-const userRoutes = require('./routes/UserRoutes.js');
-const classRoutes = require('./routes/ClassRoutes.js');
+const config = require('./config/config');
+const userRoute = require('./routes/users');
+const classRoute = require('./routes/classes');
+const conversationRoute = require('./routes/conversations');
+const messageRoute = require('./routes/messages');
 
 const { db: { host, port, name } } = config;
 const dbUrl = `mongodb://${host}:${port}/${name}`;
@@ -48,8 +50,10 @@ app.use(session(sessionOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/', userRoutes);
-app.use('/classes/', classRoutes);
+app.use('/', userRoute);
+app.use('/classes/', classRoute);
+app.use('/api/conversations', conversationRoute);
+app.use('/api/messages', messageRoute);
 
 app.listen(config.app.port, () => {
     console.log(`Server connected on port ${config.app.port}`);

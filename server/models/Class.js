@@ -1,6 +1,6 @@
 const mongooes = require('mongoose');
 
-const classSchema = new mongooes.Schema({
+const ClassSchema = new mongooes.Schema({
     classId: {
         type: Number,
         required: true,
@@ -29,6 +29,6 @@ const classSchema = new mongooes.Schema({
     }
 });
 
-const Class = mongooes.model('Class', classSchema);
+const Class = mongooes.model('Class', ClassSchema);
 
 module.exports = Class;
