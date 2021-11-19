@@ -3,14 +3,18 @@ const express = require('express');
 const session = require('express-session');
 
 module.exports.login = async function(req, res) {
-    const user = await User.findOne({ username: req.body.username });
-    const data = {
-        auth: true,
-        username: user.username,
-        name: user.name,
-        role: user.role
-    };
-    return res.json(data);
+    try {
+        const user = await User.findOne({ username: req.body.username });
+        const response = {
+            auth: true,
+            username: user.username,
+            name: user.name,
+            role: user.role
+        };
+        return res.status(200).json(response);
+    } catch (err) {
+        res.status(500).json(err);
+    }
     // res.redirect('/home');
 };
 
@@ -24,63 +28,56 @@ module.exports.logout = async function(req, res) {
 };
 
 module.exports.update = async function(req, res) {
-    const { name, email, phoneNumber, dateOfBirth, fieldOfStudy, introduction } = req.body;
-    const { user_id } = req.params;
-    const query = { username: user_id };
+    const query = { username: req.params.user_id };
     const update = {
-        name: name,
-        email: email,
-        phoneNumber: phoneNumber,
-        dateOfBirth: dateOfBirth,
-        fieldOfStudy: fieldOfStudy,
-        introduction: introduction
+        name: req.body.name,
+        email: req.body.email,
+        phoneNumber: req.body.phoneNumber,
+        dateOfBirth: req.body.dateOfBirth,
+        fieldOfStudy: req.body.fieldOfStudy,
+        introduction: req.body.introduction
     };
-    console.log(update);
-    const user = await User.findOneAndUpdate(query, update);
+    try {
+        const user = await User.findOneAndUpdate(query, update);
 
-    await user.save().then(() => res.json({ status: 'OK' })).catch((err) => {
-        const response = {
-            error: err,
-            status: 'Failed'
-        };
-        return res.json(response);
-    });
+        try {
+            await user.save();
+            res.status(200).json('Updated successfullly');
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
 };
 
 module.exports.setPassword = async function(req, res) {
-    const { user_id } = req.params;
-    const { oldPassword, newPassword } = req.body;
-
-    isValid = await User.findAndValidate(user_id, oldPassword);
+    isValid = await User.findAndValidate(user_id, req.body.oldPassword).catch((err) => {
+        res.status(500).json(err);
+    });
 
     if (isValid) {
-        const user = await User.findOne({ username: user_id });
-        user.password = newPassword;
+        const user = await User.findOne({ username: req.params.user_id }).catch((err) => {
+            res.status(500).json(err);
+        });
 
-        await user
-            .save()
-            .then(() => {
-                res.json({ success: true });
-            })
-            .catch((err) => {
-                const response = {
-                    error: err,
-                    success: false
-                };
-                res.json(response);
-            });
+        user.password = req.body.newPassword;
+        await user.save().catch((err) => {
+            res.status(500).json(err);
+        });
     } else {
-        res.json({ success: false });
+        res.status(200).json({ success: false });
     }
 };
 
 module.exports.getInfo = async function(req, res) {
-    const { user_id } = req.params;
-    const user = await User.findOne({ username: user_id });
+    const user = await User.findOne({ username: req.params.user_id }).catch((err) => {
+        return res.status(500).json(err);
+    });
 
     if (user) {
-        return res.json(user);
+        return res.status(200).json(user);
     } else {
-        return res.json({ message: 'Something went wrong!' });
+        return res.status(404).json({ message: 'Can not find required user' });
     }
 };
