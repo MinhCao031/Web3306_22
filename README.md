@@ -83,13 +83,18 @@ mongoimport --db uet-smta --collection classes --type json --file data/classes.j
 
 | Resources | Action          | Routes                           | Methods | Description                    |
 | --------- | --------------- | -------------------------------- | ------- | ------------------------------ |
-| login     | login           | /login                           | POST    | Log in                         |
-| logout    | logout          | /logout                          | GET     | Log out                        |
-| Users     | show            | /:user_id/show                   | GET     | Show user's profile            |
-|           | update          | /:user_id/update                 | POST    | Update user's profile          |
-|           | change password | /:user_id/set_password           | POST    | Change user's password         |
-| Classes   | show            | /classes/:user_id/show           | GET     | Get managed class and students |
-|           | show            | /classes/:class_id/show/students | GET     | Get students in a class        |
+| login | login | /api/auth/login | POST | Log in |
+| logout | logout | /api/auth/logout | GET | Log out |
+| Users | show | /api/users/:user_id/show | GET | Show user's profile |
+| | update | /api/users/:user_id/update | POST | Update user's profile |
+| | change password | /api/users/:user_id/set_password | POST | Change user's password |
+| Classes | show | /api/classes/:user_id/show | GET | Get managed class and students |
+| | show | /api/classes/:class_id/students | GET | Get students in a class |
+| Conversation   | show | /api/conversations/find/:firstUserId/:secondUserId | GET     | Get conversation between two users |
+| | show| /api/conversations/:userId | GET | Get all conversations  of an user |
+| | create| /api/conversations | POST | Create conversation |
+| Messages   | show            | /api/messages/:conversationId           | GET     | Get all messages in a conversation |
+| | create | /api/messages | POST | Add message |
 
 We also have Postman collection in server/data/uet-smta.postman_collection.json file, just import this file into Postman to test out API.
 
@@ -125,4 +130,4 @@ Enjoy!
   - Research on real-time chat feature
 - For backend team:
   - Research on notification feature
-  - Research on real-time chat feature
+  - Research on real-time chat feature [DONE]
