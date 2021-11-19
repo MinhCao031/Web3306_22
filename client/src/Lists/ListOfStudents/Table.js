@@ -11,13 +11,6 @@ import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css
 import cellEditFactory, { Type } from 'react-bootstrap-table2-editor';
 import './ListOfStudents.css';
 import ClassName from './ClassName';
-<<<<<<< HEAD
-import Button from 'react-bootstrap/Button';
-import FilterButton from '../Filters/FilterButton';
-import FileInput from '../FileInput/FileInput';
-import FileExport from '../FileExport/FileExport';
-
-=======
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import FilterButton from '../Filters/FilterButton';
@@ -27,25 +20,21 @@ import SaveIcon from '@mui/icons-material/Save';
 import ClearIcon from '@mui/icons-material/Clear';
 import Fab from '@mui/material/Fab';
 import SpecificFilterButton from '../Filters/SpecificFilterButton';
->>>>>>> main
+
+import FileInput from '../FileInput/FileInput';
+import FileExport from '../FileExport/FileExport';
 const Username = '10012019';
 const Table = () => {
   const [userList, setUserList] = useState([]);
   const [deletedRows, setDeletedRows] = useState([]);
-<<<<<<< HEAD
   // const [badFlip, setBadFlip] = useState(false);
   // const [goodFlip, setGoodFlip] = useState(false);
-=======
->>>>>>> main
   const filterData = {
     delay: 100,
     style: {
       border: 'none',
       paddingLeft: 0,
-<<<<<<< HEAD
-=======
       margin: 0,
->>>>>>> main
     },
     placeholder: 'Tìm kiếm',
   };
@@ -302,19 +291,6 @@ const Table = () => {
   };
   return (
     <>
-<<<<<<< HEAD
-      <Button
-        variant="danger"
-        onClick={handleDeleteAction}
-        className="ListButton"
-      >
-        Xóa sinh viên
-      </Button>
-      <ClassName>{'K64_CACLC4'}</ClassName>
-      <div className="filter">
-        <FilterButton type="good" />
-        <FilterButton type="bad" />
-=======
       <Stack spacing={1} direction="row">
         <SpecificFilterButton data={userList} setData={setUserList} />
         <AddStudentButton data={userList} setData={setUserList} />
@@ -326,7 +302,6 @@ const Table = () => {
       <div className="filter">
         <FilterButton type="good" data={userList} setData={setUserList} />
         <FilterButton type="bad" data={userList} setData={setUserList} />
->>>>>>> main
       </div>
       <BootstrapTable
         bootstrap4
@@ -345,27 +320,10 @@ const Table = () => {
           autoSelectText: true,
         })}
       />
-<<<<<<< HEAD
       <div className="ioFile">
         <div className="FileIn"><FileInput/></div>
         <div className="FileOut"><FileExport/></div>
       </div>
-      <div className="saveButton">
-        <Button
-          variant="primary"
-          onClick={handleSaveAction}
-          className="ListButton"
-        >
-          Lưu
-        </Button>
-        <Button
-          variant="danger"
-          onClick={handleCancelAction}
-          className="ListButton"
-        >
-          Hủy
-        </Button>
-=======
       <div className="saveButton">
         <Stack spacing={3} direction="row">
           <Button
@@ -385,7 +343,6 @@ const Table = () => {
             Hủy
           </Button>
         </Stack>
->>>>>>> main
       </div>
     </>
   );

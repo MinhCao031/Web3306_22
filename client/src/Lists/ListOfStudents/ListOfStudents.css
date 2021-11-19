@@ -28,11 +28,7 @@ td {
 }
 
 #pageDropDown {
-<<<<<<< HEAD
-  background-color: #33b633;
-=======
   background-color: #0d6efd;
->>>>>>> main
 }
 
 .saveButton {
@@ -44,7 +40,6 @@ td {
 .ListButton {
   margin-right: 25px;
 }
-<<<<<<< HEAD
 
 .ioFile {
   margin: 10px 10px;
@@ -65,5 +60,3 @@ td {
 .ListButton.filter {
   width: 280px;
 }
-=======
->>>>>>> main
