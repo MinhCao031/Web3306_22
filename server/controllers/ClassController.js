@@ -69,3 +69,31 @@ module.exports.getClassStudents = async function(req, res) {
         res.status(500).json(err);
     }
 };
+
+function statisticizeGPA(gpas) {}
+
+module.exports.getClassGradeStatistic = async function(req, res) {
+    const foundClass = await Class.findOne({ classId: req.params.class_id }).catch((err) => {
+        res.status(500).json(err);
+    });
+
+    if (foundClass) {
+        const gpas = [];
+        const drls = [];
+        try {
+            for (let i = 0; i < foundClass['studentIds'].length; ++i) {
+                const foundStudent = await User.findOne({ username: foundClass['studentIds'][i] });
+                const { gpa, drl } = foundStudent;
+                const grade = {
+                    gpa,
+                    drl
+                };
+                gpas.push(grade.gpa);
+                // gpas.push(grade.drl);
+            }
+            return res.status(200).json(gpas);
+        } catch (err) {
+            return res.status(500).json(err);
+        }
+    }
+};
