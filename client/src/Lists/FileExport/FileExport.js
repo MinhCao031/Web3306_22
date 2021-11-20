@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
-
+import axios from 'axios';
 // Real
 // const headers = [
 //   { label: "Họ và tên", key: "name" },
@@ -23,7 +23,9 @@ const headers = [
   { label: 'Phone', key: 'phone' },
   { label: 'Website', key: 'website' },
 ];
-
+let classId = JSON.parse(sessionStorage.getItem('classId'))
+  ? JSON.parse(sessionStorage.getItem('classId'))
+  : null;
 class FileExport extends Component {
   constructor(props) {
     super(props);
@@ -32,11 +34,15 @@ class FileExport extends Component {
     };
     this.csvLinkEl = React.createRef();
   }
-
   getUserList = () => {
-    return fetch('https://jsonplaceholder.typicode.com/users').then((res) =>
-      res.json()
-    );
+    axios
+      .get(`http://localhost:5000/api/classes/${classId}/students`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // return fetch('localhost:3000...') điền link chứa file json cần download vào đây
     //   .then(res => res.json());
   };

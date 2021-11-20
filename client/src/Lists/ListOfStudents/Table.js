@@ -23,8 +23,11 @@ import SpecificFilterButton from '../Filters/SpecificFilterButton';
 
 import FileInput from '../FileInput/FileInput';
 import FileExport from '../FileExport/FileExport';
-const Username = '10012019';
+let classId = 'Default';
 const Table = () => {
+  if (JSON.parse(sessionStorage.getItem('classId'))) {
+    classId = JSON.parse(sessionStorage.getItem('classId'));
+  }
   const [userList, setUserList] = useState([]);
   const [deletedRows, setDeletedRows] = useState([]);
   const filterData = {
@@ -258,7 +261,7 @@ const Table = () => {
   };
   useEffect(() => {
     axios
-      .get('http://localhost:3001/StudentIds')
+      .get(`http://localhost:5000/api/classes/${classId}/students`)
       .then((res) => {
         setUserList(res.data);
       })
@@ -278,7 +281,7 @@ const Table = () => {
   };
   const handleCancelAction = (e) => {
     axios
-      .get('http://localhost:3001/StudentIds')
+      .get(`http://localhost:5000/api/classes/${classId}/students`)
       .then((res) => {
         setUserList(res.data);
       })

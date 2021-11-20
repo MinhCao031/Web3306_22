@@ -6,8 +6,11 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.css';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 import { useHistory } from 'react-router-dom';
-const userId = '10012019';
+let username = 'Default';
 const Table = () => {
+  if (JSON.parse(sessionStorage.getItem('user'))) {
+    username = JSON.parse(sessionStorage.getItem('user')).username;
+  }
   const history = useHistory();
   const [data, setData] = useState([]);
   const filterData = {
@@ -21,7 +24,7 @@ const Table = () => {
   };
   useEffect(() => {
     axios
-      .get('http://localhost:3002/class')
+      .get(`http://localhost:5000/api/classes/${username}/show`)
       .then((res) => {
         setData(res.data);
       })
@@ -81,6 +84,7 @@ const Table = () => {
   ];
   const rowEvents = {
     onClick: (e, row, rowIndex) => {
+      sessionStorage.setItem('classId', row.classId);
       history.push('/teacherHomepage/classList/studentList');
     },
   };
