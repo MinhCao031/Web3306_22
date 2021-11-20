@@ -54,17 +54,21 @@ class FileInput extends Component {
     console.log(this.state.inpSuccess);
     const inpjson = this.state.inputJson;
     axios
-      .post('http://localhost:5000/users/importFile', {
+      .post('http://localhost:5000/api/users/importFile', {
         inpjson,
+        classId: JSON.parse(sessionStorage.getItem('classId'))
+          ? JSON.parse(sessionStorage.getItem('classId'))
+          : undefined,
       })
       .then((res) => {
         console.log(res.data.status);
-        if (res.data.status == 'ok') {
+        if (res.data.status == 'OK') {
           this.setState({
             inputJson: this.state.inputJson,
             inpSuccess: 'Import successfully',
           });
         }
+        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

@@ -6,28 +6,42 @@ import NavigationBar from '../../HomePage/components/NavigationBar';
 import Sidebar from '../../HomePage/components/Sidebar';
 import validator from 'validator';
 
-const Username = '19021363';
+let username = 'Default';
+function changeDateFormat(responseDate) {
+  var date = new Date(responseDate);
+  var day = date.getUTCDate();
+  var month = date.getUTCMonth() + 1;
+  var year = date.getFullYear();
+
+  month = (month > 9 ? '' : '0') + month;
+  day = (day > 9 ? '' : '0') + day;
+
+  return `${year}-${month}-${day}`;
+}
 function ChangeInfoTeacher() {
-  const [name, setName] = useState('Nguyễn Văn Quang');
-  const [email, setEmail] = useState('nguyenvanquang@gmail.com');
-  const [phone, setPhone] = useState('0917172366');
-  const [dateOfBirth, setDateOfBirth] = useState('2001-12-31');
-  const [fieldOfStudy, setFieldOfStudy] = useState('Công nghệ thông tin');
-  const [introduction, setIntroduction] = useState(
-    'Yêu màu hồng và ghét sự giả dối'
-  );
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [fieldOfStudy, setFieldOfStudy] = useState('');
+  const [introduction, setIntroduction] = useState('');
+  if (JSON.parse(sessionStorage.getItem('user'))) {
+    username = JSON.parse(sessionStorage.getItem('user')).username;
+  }
   useEffect(() => {
-    // axios
-    //   .post('http://localhost:5000/api/teacher/get-info', {
-    //     id: Username,
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     //setData
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axios
+      .get(`http://localhost:5000/api/users/${username}/show`)
+      .then((res) => {
+        setName(res.data.name);
+        setEmail(res.data.email);
+        setPhone(res.data.phoneNumber);
+        setDateOfBirth(changeDateFormat(res.data.dateOfBirth));
+        setFieldOfStudy(res.data.fieldOfStudy);
+        setIntroduction(res.data.introduction);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   const [successMessage, setSuccessMessage] = useState('');
   const [nameErrorMessage, setNameErrorMessage] = useState('');
@@ -71,23 +85,23 @@ function ChangeInfoTeacher() {
       validator.isMobilePhone(phone, 'vi-VN') &&
       !stringContainsNumber(name)
     ) {
-      setSuccessMessage('Thay đổi thông tin thành công');
-      // axios
-      //   .post('http://localhost:5000/users/update', {
-      //     username: Username,
-      //     email: email,
-      //     name: name,
-      //     phoneNumber: phone,
-      //     dateOfBirth: dateOfBirth,
-      //     fieldOfStudy: fieldOfStudy,
-      //     introduction: introduction,
-      //   })
-      //   .then((res) => {
-      //     console.log(res.data.status);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
+      axios
+        .post(`http://localhost:5000/api/users/${username}/update`, {
+          email: email,
+          name: name,
+          phoneNumber: phone,
+          dateOfBirth: dateOfBirth,
+          fieldOfStudy: fieldOfStudy,
+          introduction: introduction,
+        })
+        .then((res) => {
+          if (res.data.success) {
+            setSuccessMessage('Thay đổi thông tin thành công');
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
     if (stringContainsNumber(name)) {
       setNameErrorMessage('Tên không được chứa số');
@@ -193,7 +207,7 @@ function ChangeInfoTeacher() {
                 name="ConstID"
                 id="ConstID"
                 type="text"
-                value="GV21082102"
+                value={username}
                 disabled
                 style={{
                   width: '400px',
