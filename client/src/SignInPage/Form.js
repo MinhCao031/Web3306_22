@@ -21,6 +21,7 @@ const Form = () => {
       [name]: value,
     });
   };
+  console.log(user);
   const signIn = (e) => {
     const { username, password } = user;
     if (username && password) {

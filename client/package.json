@@ -43,7 +43,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "class": "json-server --watch class.json --port 3001",
-    "classList": "json-server --watch classList.json --port 3002"
+    "classList": "json-server --watch classList.json --port 3002",
+    "scores": "json-server --watch scores.json --port 3003"
   },
   "eslintConfig": {
     "extends": [

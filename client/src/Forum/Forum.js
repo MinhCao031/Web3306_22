@@ -5,7 +5,12 @@ const Forum = () => {
   return (
     <>
       <NavigationBar />
-      <div>Day la forum</div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <img
+          src="https://www.csp.org.uk/sites/default/files/media-image/2019-05/forum_discussion.jpg"
+          alt="Day la forum"
+        />
+      </div>
       <Sidebar />
     </>
   );

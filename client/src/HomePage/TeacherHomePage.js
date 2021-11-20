@@ -9,9 +9,9 @@ const TeacherHomePage = () => {
       <NavigationBar />
       <Container>
         <img
-          src="https://uet.vnu.edu.vn/wp-content/uploads/2014/06/banner-web.jpg"
-          alt="logo"
-          style={{ width: '100%', height: 'auto' }}
+          src="https://www.scoonews.com/uploads/news_images/collage16016254711601625471.jpg"
+          alt="picture"
+          width="100%"
         />
       </Container>
       <Sidebar />
