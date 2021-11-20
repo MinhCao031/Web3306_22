@@ -128,6 +128,10 @@ Enjoy!
   - Create more classes display for teacher(Done)
   - Research on notification feature
   - Research on real-time chat feature
+  - Add feature: redirect to login page when user haven't logged in yet 
 - For backend team:
   - Research on notification feature
   - Research on real-time chat feature [DONE]
+  - Add error handling for login
+  - Add quantity of students in a class
+  - Add new student in a class
