@@ -65,12 +65,15 @@ module.exports.importFile = async function(req, res) {
                 gpa: gpa,
                 drl: drl
             });
-            
-            await user.save().then(() => res.json({ status: 'OK' })).catch((err) => {
+           
+            await user.save()
+            .then(() => {return res.json({ status: 'OK' })})
+            .catch((err) => {
                 const response = {
                     error: err,
                     status: 'Failed'
                 };
+                console.log(response);
                 return res.json(response);
             });
             // user
