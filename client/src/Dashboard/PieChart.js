@@ -7,9 +7,10 @@ const PieChart = ({ selectedClassID }) => {
   useEffect(() => {
     if (selectedClassID !== undefined) {
       axios
-        .get('http://localhost:3003/drl')
+        .get(`http://localhost:5000/api/classes/${selectedClassID}/grades`)
         .then((res) => {
-          setDrlList(res.data);
+          setDrlList(res.data.drl);
+          //console.log(res.data);
         })
         .catch((err) => {
           console.log(err);

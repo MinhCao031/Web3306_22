@@ -255,8 +255,8 @@ const Table = () => {
       }
     },
   };
-  const classId = JSON.parse(sessionStorage.getItem('classId'))
-    ? JSON.parse(sessionStorage.getItem('classId'))
+  const classId = JSON.parse(sessionStorage.getItem('classIdTable'))
+    ? JSON.parse(sessionStorage.getItem('classIdTable'))
     : '';
   useEffect(() => {
     axios
