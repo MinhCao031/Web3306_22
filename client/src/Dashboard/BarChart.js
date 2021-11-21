@@ -7,9 +7,10 @@ const BarChart = ({ selectedClassID }) => {
   useEffect(() => {
     if (selectedClassID !== undefined) {
       axios
-        .get('http://localhost:3003/gpa')
+        .get(`http://localhost:5000/api/classes/${selectedClassID}/grades`)
         .then((res) => {
-          setGpaList(res.data);
+          setGpaList(res.data.gpa);
+          //console.log(res.data);
         })
         .catch((err) => {
           console.log(err);

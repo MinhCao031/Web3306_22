@@ -83,7 +83,7 @@ const Table = () => {
   ];
   const rowEvents = {
     onClick: (e, row, rowIndex) => {
-      sessionStorage.setItem('classId', row.classId);
+      sessionStorage.setItem('classIdTable', row.classId);
       history.push('/teacherHomepage/classList/studentList');
     },
   };
