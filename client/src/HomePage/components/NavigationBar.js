@@ -5,13 +5,10 @@ import './NavigationBar.css';
 import boy from '../../assets/boy_ava.png';
 import DropdownAva from './DropdownAva';
 import DropNotification from './DropNotification';
-import { useHistory } from 'react-router-dom';
-let userName = 'Default';
 function NavigationBar() {
-  const history = useHistory();
-  if (JSON.parse(sessionStorage.getItem('user'))) {
-    userName = JSON.parse(sessionStorage.getItem('user')).name;
-  }
+  const name = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).name
+    : 'Anonymous';
   const [dropdown, setDropdown] = useState(false);
   const [showNoti, setShowNoti] = useState(false);
   const showDropdown = () => {
@@ -31,7 +28,7 @@ function NavigationBar() {
           size={30}
         />
         {showNoti && <DropNotification />}
-        <span className="profile-text">{userName}</span>
+        <span className="profile-text">{name}</span>
         <div onClick={showDropdown}>
           <img className="avatar" alt={'Avatar'} src={boy} />
           {dropdown && <DropdownAva />}

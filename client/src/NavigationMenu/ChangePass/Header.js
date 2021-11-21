@@ -4,11 +4,10 @@ import uet from '../../assets/uet.png';
 import boy from '../../assets/boy_ava.png';
 import './ChangePass.css';
 
-let name = 'Default';
 const Header = () => {
-  if (JSON.parse(sessionStorage.getItem('user'))) {
-    name = JSON.parse(sessionStorage.getItem('user')).name;
-  }
+  const name = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).name
+    : 'Anonymous';
   return (
     <Container>
       <div className="logo">
