@@ -17,6 +17,7 @@ module.exports.getClasses = async function(req, res) {
                         classId: foundClasses[i]['classId'],
                         className: foundClasses[i]['className'],
                         classType: foundClasses[i]['classType'],
+                        quantity: foundClasses[i]['studentIds'].length,
                         leader: foundUser.name
                     };
                     result.push(foundClass);
@@ -75,28 +76,6 @@ module.exports.getClassStudents = async function(req, res) {
     }
 };
 
-function statisticizeGrades(grades, gradeRanges) {
-    gradeGroups = new Array(gradeRanges.length).fill(0);
-
-    for (let i = 0; i < grades.length; ++i) {
-        for (let j = 0; j < gradeRanges.length; ++j) {
-            let condition;
-            if (j == 0) {
-                condition = 0 <= grades[i] && grades[i] < gradeRanges[0];
-            } else if (j == gradeRanges.length - 1) {
-                condition = gradeRanges[j - 1] <= grades[i] && grades[i] <= gradeRanges[j];
-            } else {
-                condition = gradeRanges[j - 1] <= grades[i] && grades[i] < gradeRanges[j];
-            }
-            if (condition) {
-                gradeGroups[j] += 1;
-                break;
-            }
-        }
-    }
-    return gradeGroups;
-}
-
 module.exports.getClassGradeStatistic = async function(req, res) {
     const foundClass = await Class.findOne({ classId: req.params.class_id }).catch((err) => {
         res.status(500).json(err);
@@ -145,3 +124,89 @@ module.exports.getClassGradeStatistic = async function(req, res) {
         }
     }
 };
+
+module.exports.importStudents = async function(req, res) {
+    var users = req.body;
+
+    const update = {
+        studentIds: []
+    };
+
+    const foundClass = await Class.findOneAndUpdate({ classId: req.params.class_id }, update).catch((err) => {
+        return res.status(500).json(err);
+    });
+
+    try {
+        for (var i = 0; i < users.length; i++) {
+            const user = users[i];
+            const foundUser = await User.findOne({ username: user.username });
+
+            if (foundUser) {
+                const update = {
+                    level: user.level,
+                    name: user.name,
+                    dateOfBirth: user.dateOfBirth,
+                    gender: user.gender,
+                    hometown: user.hometown,
+                    gpa: user.gpa,
+                    drl: user.drl
+                };
+
+                const updatedUser = await User.findOneAndUpdate({ username: user.username }, update);
+                await updatedUser.save().catch((err) => {
+                    return res.status(500).json({ success: false });
+                });
+
+                foundClass['studentIds'].push(foundUser.username);
+                await foundClass.save().catch((err) => {
+                    return res.status(500).json({ success: false });
+                });
+            } else {
+                const newUser = new User({
+                    username: user.username,
+                    password: user.username,
+                    level: user.level,
+                    name: user.name,
+                    dateOfBirth: user.dateOfBirth,
+                    gender: user.gender,
+                    hometown: user.hometown,
+                    gpa: user.gpa,
+                    drl: user.drl
+                });
+                await newUser.save().catch((err) => {
+                    return res.status(500).json({ success: false });
+                });
+
+                foundClass['studentIds'].push(newUser.username);
+                await foundClass.save().catch((err) => {
+                    return res.status(500).json({ success: false });
+                });
+            }
+        }
+        return res.status(200).json({ success: true });
+    } catch (err) {
+        return res.status(500).json({ success: false });
+    }
+};
+
+function statisticizeGrades(grades, gradeRanges) {
+    gradeGroups = new Array(gradeRanges.length).fill(0);
+
+    for (let i = 0; i < grades.length; ++i) {
+        for (let j = 0; j < gradeRanges.length; ++j) {
+            let condition;
+            if (j == 0) {
+                condition = 0 <= grades[i] && grades[i] < gradeRanges[0];
+            } else if (j == gradeRanges.length - 1) {
+                condition = gradeRanges[j - 1] <= grades[i] && grades[i] <= gradeRanges[j];
+            } else {
+                condition = gradeRanges[j - 1] <= grades[i] && grades[i] < gradeRanges[j];
+            }
+            if (condition) {
+                gradeGroups[j] += 1;
+                break;
+            }
+        }
+    }
+    return gradeGroups;
+}
