@@ -38,21 +38,6 @@ const App = () => {
           }}
         />
         <Route
-          exact
-          path="/studentHomepage"
-          render={() => {
-            return JSON.parse(sessionStorage.getItem('user')) &&
-              JSON.parse(sessionStorage.getItem('user')).role === 'Student' ? (
-              <StudentHomePage />
-            ) : (
-              <>
-                {sessionStorage.clear()}
-                <Redirect to="/" />
-              </>
-            );
-          }}
-        />
-        <Route
           path="/teacherHomepage/forum"
           render={() => {
             return JSON.parse(sessionStorage.getItem('user')) &&
@@ -128,6 +113,32 @@ const App = () => {
             return JSON.parse(sessionStorage.getItem('user')) ? (
               <ChangePass />
             ) : (
+              <>
+                {sessionStorage.clear()}
+                <Redirect to="/" />
+              </>
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/studentHomepage"
+          render={() => {
+            return JSON.parse(sessionStorage.getItem('user')) &&
+              JSON.parse(sessionStorage.getItem('user')).role === 'Student' ? (
+              <StudentHomePage />
+            ) : (
+              <>
+                {sessionStorage.clear()}
+                <Redirect to="/" />
+              </>
+            );
+          }}
+        />
+        <Route
+          path="*"
+          render={() => {
+            return (
               <>
                 {sessionStorage.clear()}
                 <Redirect to="/" />
