@@ -1,6 +1,6 @@
 import React from 'react';
 import NavigationBar from './components/NavigationBar';
-import Sidebar from './components/Sidebar';
+import SidebarStudent from './components/SidebarStudent';
 import { Container } from './TeacherHomePage';
 import Footer from './components/Footer';
 function StudentHomePage() {
@@ -8,7 +8,7 @@ function StudentHomePage() {
     <>
       <NavigationBar />
       <Container />
-      <Sidebar />
+      <SidebarStudent />
       <Footer />
     </>
   );
