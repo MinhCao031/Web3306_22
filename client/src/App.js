@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 
 import SignInForm from './SignInPage/SignInForm';
 import StudentHomePage from './HomePage/StudentHomePage';
@@ -14,36 +19,122 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact>
+        <Route exact path="/">
           <SignInForm />
         </Route>
-        <Route path="/studentHomepage" exact>
-          <StudentHomePage />
-        </Route>
-        <Route path="/teacherHomepage" exact>
-          <TeacherHomePage />
-        </Route>
-        <Route path="/teacherHomepage/forum">
-          <Forum />
-        </Route>
-        <Route path="/teacherHomepage/classList" exact>
-          <ListOfClasses />
-        </Route>
-        <Route path="/teacherHomepage/classList/studentList">
-          <ListOfStudents />
-        </Route>
-        <Route path="/teacherHomepage/dashboard">
-          <DashBoard />
-        </Route>
-        <Route path="/teacherHomepage/changeInfo">
-          <ChangeInfoTeacher />
-        </Route>
-        <Route path="/changeInfo">
-          <ChangeInfoTeacher />
-        </Route>
-        <Route path="/changePassword">
-          <ChangePass />
-        </Route>
+        <Route
+          exact
+          path="/teacherHomepage"
+          render={() => {
+            return JSON.parse(sessionStorage.getItem('user')) &&
+              JSON.parse(sessionStorage.getItem('user')).role === 'Teacher' ? (
+              <TeacherHomePage />
+            ) : (
+              <>
+                {sessionStorage.clear()}
+                <Redirect to="/" />
+              </>
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/studentHomepage"
+          render={() => {
+            return JSON.parse(sessionStorage.getItem('user')) &&
+              JSON.parse(sessionStorage.getItem('user')).role === 'Student' ? (
+              <StudentHomePage />
+            ) : (
+              <>
+                {sessionStorage.clear()}
+                <Redirect to="/" />
+              </>
+            );
+          }}
+        />
+        <Route
+          path="/teacherHomepage/forum"
+          render={() => {
+            return JSON.parse(sessionStorage.getItem('user')) &&
+              JSON.parse(sessionStorage.getItem('user')).role === 'Teacher' ? (
+              <Forum />
+            ) : (
+              <>
+                {sessionStorage.clear()}
+                <Redirect to="/" />
+              </>
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/teacherHomepage/classList"
+          render={() => {
+            return JSON.parse(sessionStorage.getItem('user')) &&
+              JSON.parse(sessionStorage.getItem('user')).role === 'Teacher' ? (
+              <ListOfClasses />
+            ) : (
+              <>
+                {sessionStorage.clear()}
+                <Redirect to="/" />
+              </>
+            );
+          }}
+        />
+        <Route
+          path="/teacherHomepage/classList/studentList"
+          render={() => {
+            return JSON.parse(sessionStorage.getItem('user')) &&
+              JSON.parse(sessionStorage.getItem('user')).role === 'Teacher' ? (
+              <ListOfStudents />
+            ) : (
+              <>
+                {sessionStorage.clear()}
+                <Redirect to="/" />
+              </>
+            );
+          }}
+        />
+        <Route
+          path="/teacherHomepage/dashboard"
+          render={() => {
+            return JSON.parse(sessionStorage.getItem('user')) &&
+              JSON.parse(sessionStorage.getItem('user')).role === 'Teacher' ? (
+              <DashBoard />
+            ) : (
+              <>
+                {sessionStorage.clear()}
+                <Redirect to="/" />
+              </>
+            );
+          }}
+        />
+        <Route
+          path="/changeInfo"
+          render={() => {
+            return JSON.parse(sessionStorage.getItem('user')) ? (
+              <ChangeInfoTeacher />
+            ) : (
+              <>
+                {sessionStorage.clear()}
+                <Redirect to="/" />
+              </>
+            );
+          }}
+        />
+        <Route
+          path="/changePassword"
+          render={() => {
+            return JSON.parse(sessionStorage.getItem('user')) ? (
+              <ChangePass />
+            ) : (
+              <>
+                {sessionStorage.clear()}
+                <Redirect to="/" />
+              </>
+            );
+          }}
+        />
       </Switch>
     </Router>
   );
