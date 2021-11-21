@@ -10,7 +10,6 @@ const BarChart = ({ selectedClassID }) => {
         .get(`http://localhost:5000/api/classes/${selectedClassID}/grades`)
         .then((res) => {
           setGpaList(res.data.gpa);
-          //console.log(res.data);
         })
         .catch((err) => {
           console.log(err);

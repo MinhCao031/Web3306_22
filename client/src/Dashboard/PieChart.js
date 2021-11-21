@@ -10,7 +10,6 @@ const PieChart = ({ selectedClassID }) => {
         .get(`http://localhost:5000/api/classes/${selectedClassID}/grades`)
         .then((res) => {
           setDrlList(res.data.drl);
-          //console.log(res.data);
         })
         .catch((err) => {
           console.log(err);
