@@ -5,7 +5,6 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router';
 import axios from 'axios';
 
-let username = 'Default';
 const Body = () => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -24,9 +23,9 @@ const Body = () => {
     setMessage('');
   };
   const history = useHistory();
-  if (JSON.parse(sessionStorage.getItem('user'))) {
-    username = JSON.parse(sessionStorage.getItem('user')).username;
-  }
+  const username = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).username
+    : '';
   const handleSubmit = (e) => {
     if (oldPassword && newPassword && confirmPassword) {
       if (oldPassword === newPassword) {
@@ -34,17 +33,12 @@ const Body = () => {
       } else if (newPassword !== confirmPassword) {
         setMessage('Mật khẩu mới và xác nhận mật khẩu không trùng nhau !');
       } else {
-        setMessage('Đổi mật khẩu thành công !');
-        setOldPassword('');
-        setNewPassword('');
-        setConfirmPassword('');
         axios
           .post(`http://localhost:5000/api/users/${username}/set_password`, {
             oldPassword: oldPassword,
             newPassword: newPassword,
           })
           .then((res) => {
-            console.log(res.data);
             if (res.data.success) {
               setMessage('Đổi mật khẩu thành công !');
               setOldPassword('');
@@ -55,6 +49,7 @@ const Body = () => {
             }
           })
           .catch((err) => {
+            setMessage('Đổi mật khẩu thất bại !');
             console.log(err);
           });
       }

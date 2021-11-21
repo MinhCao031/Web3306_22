@@ -6,11 +6,10 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.css';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 import { useHistory } from 'react-router-dom';
-let username = 'Default';
 const Table = () => {
-  if (JSON.parse(sessionStorage.getItem('user'))) {
-    username = JSON.parse(sessionStorage.getItem('user')).username;
-  }
+  const username = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).username
+    : '';
   const history = useHistory();
   const [data, setData] = useState([]);
   const filterData = {

@@ -5,8 +5,6 @@ import { useHistory } from 'react-router';
 import NavigationBar from '../../HomePage/components/NavigationBar';
 import Sidebar from '../../HomePage/components/Sidebar';
 import validator from 'validator';
-
-let username = 'Default';
 function changeDateFormat(responseDate) {
   var date = new Date(responseDate);
   var day = date.getUTCDate();
@@ -25,9 +23,9 @@ function ChangeInfoTeacher() {
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [fieldOfStudy, setFieldOfStudy] = useState('');
   const [introduction, setIntroduction] = useState('');
-  if (JSON.parse(sessionStorage.getItem('user'))) {
-    username = JSON.parse(sessionStorage.getItem('user')).username;
-  }
+  const username = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).username
+    : '';
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/users/${username}/show`)
@@ -96,10 +94,11 @@ function ChangeInfoTeacher() {
         })
         .then((res) => {
           if (res.data.success) {
-            setSuccessMessage('Thay đổi thông tin thành công');
+            setSuccessMessage('Cập nhật thông tin thành công');
           }
         })
         .catch((err) => {
+          setSuccessMessage('Cập nhật thông tin thất bại');
           console.log(err);
         });
     }
@@ -269,9 +268,16 @@ function ChangeInfoTeacher() {
             </div>
           </div>
         </div>
-        {successMessage && (
-          <SuccessMessage>Cập nhật thành công !</SuccessMessage>
-        )}
+        {successMessage &&
+          (successMessage === 'Cập nhật thông tin thành công' ? (
+            <SuccessMessage style={{ color: 'blue' }}>
+              {successMessage}
+            </SuccessMessage>
+          ) : (
+            <SuccessMessage style={{ color: 'red' }}>
+              {successMessage}
+            </SuccessMessage>
+          ))}
         <div className="wrapper">
           <Button id="submit" onClick={handleSubmit}>
             <p className="Submit">Cập nhật</p>
@@ -294,7 +300,6 @@ function ChangeInfoTeacher() {
 const SuccessMessage = styled.p`
   text-align: center;
   font-size: 22px;
-  color: blue;
   margin: 0;
 `;
 const ErrorMessage = styled.span`

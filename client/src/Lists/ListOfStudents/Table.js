@@ -23,11 +23,7 @@ import SpecificFilterButton from '../Filters/SpecificFilterButton';
 
 import FileInput from '../FileInput/FileInput';
 import FileExport from '../FileExport/FileExport';
-let classId = 'Default';
 const Table = () => {
-  if (JSON.parse(sessionStorage.getItem('classId'))) {
-    classId = JSON.parse(sessionStorage.getItem('classId'));
-  }
   const [userList, setUserList] = useState([]);
   const [deletedRows, setDeletedRows] = useState([]);
   const filterData = {
@@ -259,6 +255,9 @@ const Table = () => {
       }
     },
   };
+  const classId = JSON.parse(sessionStorage.getItem('classId'))
+    ? JSON.parse(sessionStorage.getItem('classId'))
+    : '';
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/classes/${classId}/students`)

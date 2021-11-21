@@ -21,7 +21,6 @@ const Form = () => {
       [name]: value,
     });
   };
-  console.log(user);
   const signIn = (e) => {
     const { username, password } = user;
     if (username && password) {
@@ -29,7 +28,7 @@ const Form = () => {
         .post('http://localhost:5000/api/auth/login', user)
         .then((res) => {
           if (res.data.auth === false) {
-            setMessage('Tài khoản hoặc mật khẩu không hợp lệ !');
+            setMessage('Tài khoản hoặc mật khẩu không chính xác !');
           } else {
             sessionStorage.setItem('user', JSON.stringify(res.data));
             if (res.data.role === 'Student') {
