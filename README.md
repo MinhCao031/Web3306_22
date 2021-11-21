@@ -132,6 +132,7 @@ Enjoy!
 - For backend team:
   - Research on notification feature
   - Research on real-time chat feature [DONE]
-  - Add error handling for login
-  - Add quantity of students in a class
+  - Add error handling for login [DONE]
+  - Add quantity of students in a class [DONE]
   - Add new student in a class
+  - Add import students feature [DONE]
