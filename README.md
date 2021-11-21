@@ -122,13 +122,14 @@ Enjoy!
 ## Todo
 
 - For frontend team:
-  - Create dashboard
-  - Create filter function for table(Done)
-  - CRUD for table(Done)
-  - Create more classes display for teacher(Done)
-  - Research on notification feature
-  - Research on real-time chat feature
-  - Add feature: redirect to login page when user haven't logged in yet 
+  [ ] Create dashboard
+  [x] Add sidebar for student
+  [x] Create filter function for table
+  [x] CRUD for table
+  [x] Create more classes display for teacher
+  [ ] Research on notification feature
+  [ ] Research on real-time chat feature
+  [ ] Add feature: redirect to login page when user haven't logged in yet 
 - For backend team:
   - Research on notification feature
   - Research on real-time chat feature [DONE]
