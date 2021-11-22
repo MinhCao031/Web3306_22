@@ -33,7 +33,7 @@ node UserSeeds.js
 
 ```bash
 # Import testing classes information to mongoDB.
-mongoimport --db uet-smta --collection classes --type json --file data/classes.json --jsonArray
+node ClassSeeds.js
 ```
 
 ## Collections and APIs routing table
@@ -50,10 +50,10 @@ mongoimport --db uet-smta --collection classes --type json --file data/classes.j
 	"role" : "Student",
 	"level": "Thành viên",
 	"name" : "Nguyễn Thái",
-	"dateOfBirth": 02/03/2001,
+	"dateOfBirth": 2001-03-02,
 	"gender": "Nam",
 	"phoneNumber" : 868466825,
-	"email" : "thainguyen.uet@gmail.com",
+	"email" : "19021363@gmail.com",
 	"hometown" : "Hải Dương",
 	"introduction": "A daily-updated person",
 	"fieldOfStudy": "Computer Science",
@@ -68,7 +68,8 @@ mongoimport --db uet-smta --collection classes --type json --file data/classes.j
 {
 	"_id" : ObjectId("617b919ddc4b7befae44dab2"),
 	"classId" : 1,
-	"className":"K64_CACLC2",
+	"className": "K64_CACLC2",
+	"classType": "CLC",
 	"teacherId" : 10012019,
 	"studentIDs" : [
 			"19021363",
@@ -90,6 +91,8 @@ mongoimport --db uet-smta --collection classes --type json --file data/classes.j
 | | change password | /api/users/:user_id/set_password | POST | Change user's password |
 | Classes | show | /api/classes/:user_id/show | GET | Get managed class and students |
 | | show | /api/classes/:class_id/students | GET | Get students in a class |
+| | show | /api/classes/:class_id/grades | GET | Get grade statistic |
+| | create | /api/classes/:class_id/import | POST | Import students to a class |
 | Conversation   | show | /api/conversations/find/:firstUserId/:secondUserId | GET     | Get conversation between two users |
 | | show| /api/conversations/:userId | GET | Get all conversations  of an user |
 | | create| /api/conversations | POST | Create conversation |
@@ -131,9 +134,10 @@ Enjoy!
   - [ ] Research on real-time chat feature  
   - [ ] Add feature: redirect to login page when user haven't logged in yet   
 - For backend team:
-  - Research on notification feature
+  - [ ] Research on notification feature
   - [x] Research on real-time chat feature 
   - [x] Add error handling for login 
   - [x] Add quantity of students in a class 
   - [ ] Add new student in a class
   - [x] Add import students feature
+  - [x] Add new auto generate users and classes data
