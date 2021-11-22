@@ -58,6 +58,9 @@ const Body = () => {
     }
     e.preventDefault();
   };
+  const role = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).role
+    : '';
   return (
     <Container>
       <h1>Cập nhật mật khẩu</h1>
@@ -100,8 +103,12 @@ const Body = () => {
         <Button onClick={handleSubmit}>Cập nhật</Button>
         <Button
           onClick={(e) => {
+            if (role === 'Student') {
+              history.push('/studentHomepage');
+            } else if (role === 'Teacher') {
+              history.push('/teacherHomepage');
+            }
             e.preventDefault();
-            history.push('/teacherHomepage');
           }}
         >
           Hủy

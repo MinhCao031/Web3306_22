@@ -1,7 +1,7 @@
 import React from 'react';
-import Sidebar from '../HomePage/components/Sidebar';
+import SidebarStudent from '../HomePage/components/SidebarStudent';
 import NavigationBar from '../HomePage/components/NavigationBar';
-const Forum = () => {
+const StudentForum = () => {
   return (
     <>
       <NavigationBar />
@@ -11,9 +11,9 @@ const Forum = () => {
           alt="Day la forum"
         />
       </div>
-      <Sidebar />
+      <SidebarStudent />
     </>
   );
 };
 
-export default Forum;
+export default StudentForum;

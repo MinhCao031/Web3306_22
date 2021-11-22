@@ -8,8 +8,14 @@ function StudentHomePage() {
   return (
     <>
       <NavigationBar />
+      <Container>
+        <img
+          src="https://www.thelawofattraction.com/wp-content/uploads/quote1.jpg"
+          alt="picture"
+          width="100%"
+        />
+      </Container>
       <SidebarStudent />
-      <Container />
       <Footer />
     </>
   );

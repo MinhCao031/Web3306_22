@@ -11,7 +11,10 @@ const DashBoard = () => {
     <>
       <NavigationBar />
       <ClassesDropDown setSelectedClassID={setSelectedClassID} />
+      <br />
       <BarChart selectedClassID={selectedClassID} />
+      <br />
+      <br />
       <PieChart selectedClassID={selectedClassID} />
       <Sidebar />
       <Footer />
