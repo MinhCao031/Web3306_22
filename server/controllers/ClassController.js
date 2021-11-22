@@ -37,9 +37,17 @@ module.exports.getClasses = async function(req, res) {
 };
 
 module.exports.getClassStudents = async function(req, res) {
-    const foundClass = await Class.findOne({ classId: req.params.class_id }).catch((err) => {
-        return res.stature(500).json(err);
-    });
+    var foundClass;
+    if (req.query.role == 'Teacher') {
+        foundClass = await Class.findOne({ teacherId: req.query.user_id }).catch((err) => {
+            return res.status(500).json(err);
+        });
+    } else {
+        foundClass = await Class.findOne({ studentIds: req.query.user_id }).catch((err) => {
+            return res.status(500).json(err);
+        });
+    }
+
     if (foundClass) {
         const result = [];
 

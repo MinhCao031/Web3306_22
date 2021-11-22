@@ -90,7 +90,7 @@ node ClassSeeds.js
 | | update | /api/users/:user_id/update | POST | Update user's profile |
 | | change password | /api/users/:user_id/set_password | POST | Change user's password |
 | Classes | show | /api/classes/:user_id/show | GET | Get managed class and students |
-| | show | /api/classes/:class_id/students | GET | Get students in a class |
+| | show | /api/classes/students?role=&user_id= | POST | Get students in a class |
 | | show | /api/classes/:class_id/grades | GET | Get grade statistic |
 | | create | /api/classes/:class_id/import | POST | Import students to a class |
 | Conversation   | show | /api/conversations/find/:firstUserId/:secondUserId | GET     | Get conversation between two users |
