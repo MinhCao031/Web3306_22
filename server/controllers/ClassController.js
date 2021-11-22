@@ -128,11 +128,12 @@ module.exports.getClassGradeStatistic = async function(req, res) {
 module.exports.importStudents = async function(req, res) {
     var users = req.body;
 
-    const update = {
-        studentIds: []
-    };
-
-    const foundClass = await Class.findOneAndUpdate({ classId: req.params.class_id }, update).catch((err) => {
+    const foundClass = await Class.findOneAndUpdate(
+        { classId: req.params.class_id },
+        {
+            studentIds: []
+        }
+    ).catch((err) => {
         return res.status(500).json(err);
     });
 
