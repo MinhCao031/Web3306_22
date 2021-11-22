@@ -6,14 +6,14 @@ import axios from 'axios';
 
 // Real
 const headers = [
-  { label: "Họ và tên", key: "name" },
-  { label: "MSSV", key: "username" },
-  { label: "Chức vụ", key: "level" },
-  { label: "Ngày sinh", key: "dataOfBirth" },
-  { label: "Giới tính", key: "gender" },
-  { label: "Nơi sinh", key: "hometown" },
-  { label: "GPA", key: "gpa" },
-  { label: "ĐRL", key: "drl" },
+  { label: 'Họ và tên', key: 'name' },
+  { label: 'MSSV', key: 'username' },
+  { label: 'Chức vụ', key: 'level' },
+  { label: 'Ngày sinh', key: 'dateOfBirth' },
+  { label: 'Giới tính', key: 'gender' },
+  { label: 'Nơi sinh', key: 'hometown' },
+  { label: 'GPA', key: 'gpa' },
+  { label: 'ĐRL', key: 'drl' },
 ];
 
 // Experiment
@@ -23,8 +23,8 @@ const headers = [
 //   { label: 'Title', key: 'title' },
 // ];
 
-let classId = JSON.parse(sessionStorage.getItem('classId'))
-  ? JSON.parse(sessionStorage.getItem('classId'))
+let classId = JSON.parse(sessionStorage.getItem('classIdTable'))
+  ? JSON.parse(sessionStorage.getItem('classIdTable'))
   : null;
 class FileExport extends Component {
   constructor(props) {
@@ -45,7 +45,7 @@ class FileExport extends Component {
           setTimeout(() => {
             this.csvLinkEl.current.link.click();
           });
-        });        
+        });
       })
       .catch((err) => {
         console.log(err);
