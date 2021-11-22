@@ -149,6 +149,12 @@
 									"key": "email",
 									"value": "thaitester.uet@gmail.com",
 									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "03203001692urtsfgsdfg233",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -184,7 +190,7 @@
 							"urlencoded": [
 								{
 									"key": "oldPassword",
-									"value": "Thai12345",
+									"value": "19021363",
 									"type": "text"
 								},
 								{
@@ -231,12 +237,12 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "19021363",
+									"value": "19021366",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "Thai25879",
+									"value": "19021366",
 									"type": "text"
 								}
 							]
@@ -274,7 +280,7 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "{{host}}:{{port}}/api/classes/:user_id/show",
+							"raw": "{{host}}:{{port}}/api/classes/:user_id/",
 							"host": [
 								"{{host}}"
 							],
@@ -283,12 +289,39 @@
 								"api",
 								"classes",
 								":user_id",
-								"show"
+								""
 							],
 							"variable": [
 								{
 									"key": "user_id",
-									"value": "10012019"
+									"value": "20191001"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Grade statistic",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/classes/:class_id/grades",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"classes",
+								":class_id",
+								"grades"
+							],
+							"variable": [
+								{
+									"key": "class_id",
+									"value": "1"
 								}
 							]
 						}
@@ -298,10 +331,49 @@
 				{
 					"name": "Get Students in a class",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{host}}:{{port}}/api/classes/:class_id/students",
+							"raw": "{{host}}:{{port}}/api/classes/students?role=Teacher&user_id=20191001",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"classes",
+								"students"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": "Teacher"
+								},
+								{
+									"key": "user_id",
+									"value": "20191001"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import Students to a class",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"name\": \"Hương\",\n        \"username\": \"19021310\",\n        \"level\": \"Lớp trưởng\",\n        \"dateOfBirth\": \"2001-03-02\",\n        \"gender\": \"Nam\",\n        \"hometown\": \"HD\",\n        \"gpa\": 4.0,\n        \"drl\": 100\n    },\n    {\n        \"name\": \"Trang\",\n        \"username\": \"19021311\",\n        \"level\": \"Lớp trưởng\",\n        \"dateOfBirth\": \"2001-03-02\",\n        \"gender\": \"Nam\",\n        \"hometown\": \"HN\",\n        \"gpa\": 4.0,\n        \"drl\": 100\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/classes/:class_id/import",
 							"host": [
 								"{{host}}"
 							],
@@ -310,7 +382,7 @@
 								"api",
 								"classes",
 								":class_id",
-								"students"
+								"import"
 							],
 							"variable": [
 								{
