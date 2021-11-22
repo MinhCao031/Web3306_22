@@ -2,7 +2,7 @@ const mongooes = require('mongoose');
 
 const ClassSchema = new mongooes.Schema({
     classId: {
-        type: Number,
+        type: String,
         required: true,
         unique: true
     },
@@ -16,15 +16,15 @@ const ClassSchema = new mongooes.Schema({
         enum: [ 'CLC', 'Thường' ]
     },
     teacherId: {
-        type: Number,
+        type: String,
         required: true
     },
     studentIds: {
-        type: [ Number ],
+        type: [ String ],
         required: true
     },
     leaderId: {
-        type: Number,
+        type: String,
         required: true
     }
 });
