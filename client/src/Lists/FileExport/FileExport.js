@@ -3,26 +3,26 @@ import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+
 // Real
-// const headers = [
-//   { label: "Họ và tên", key: "name" },
-//   { label: "MSSV", key: "username" },
-//   { label: "Chức vụ", key: "level" },
-//   { label: "Ngày sinh", key: "dataOfBirth" },
-//   { label: "Giới tính", key: "gender" },
-//   { label: "Nơi sinh", key: "hometown" },
-//   { label: "GPA", key: "gpa" },
-//   { label: "ĐRL", key: "drl" },
-// ];
+const headers = [
+  { label: "Họ và tên", key: "name" },
+  { label: "MSSV", key: "username" },
+  { label: "Chức vụ", key: "level" },
+  { label: "Ngày sinh", key: "dataOfBirth" },
+  { label: "Giới tính", key: "gender" },
+  { label: "Nơi sinh", key: "hometown" },
+  { label: "GPA", key: "gpa" },
+  { label: "ĐRL", key: "drl" },
+];
 
 // Experiment
-const headers = [
-  { label: 'Name', key: 'name' },
-  { label: 'Username', key: 'username' },
-  { label: 'Email', key: 'email' },
-  { label: 'Phone', key: 'phone' },
-  { label: 'Website', key: 'website' },
-];
+// const headers = [
+//   { label: 'UserID', key: 'userID' },
+//   { label: 'Id', key: 'id' },
+//   { label: 'Title', key: 'title' },
+// ];
+
 let classId = JSON.parse(sessionStorage.getItem('classId'))
   ? JSON.parse(sessionStorage.getItem('classId'))
   : null;
@@ -34,26 +34,22 @@ class FileExport extends Component {
     };
     this.csvLinkEl = React.createRef();
   }
-  getUserList = () => {
+
+  downloadReport = async () => {
     axios
       .get(`http://localhost:5000/api/classes/${classId}/students`)
+      //.get(`https://jsonplaceholder.typicode.com/albums`)
       .then((res) => {
         console.log(res.data);
+        this.setState({ data: res.data }, () => {
+          setTimeout(() => {
+            this.csvLinkEl.current.link.click();
+          });
+        });        
       })
       .catch((err) => {
         console.log(err);
       });
-    // return fetch('localhost:3000...') điền link chứa file json cần download vào đây
-    //   .then(res => res.json());
-  };
-
-  downloadReport = async () => {
-    const data = await this.getUserList();
-    this.setState({ data: data }, () => {
-      setTimeout(() => {
-        this.csvLinkEl.current.link.click();
-      });
-    });
   };
 
   render() {
