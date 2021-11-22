@@ -7,6 +7,10 @@ const BarChart = ({ selectedClassID }) => {
   useEffect(() => {
     if (selectedClassID !== undefined) {
       axios
+        // .get('http://localhost:3001/gpa')
+        // .then((res) => {
+        //   setGpaList(res.data);
+        // })
         .get(`http://localhost:5000/api/classes/${selectedClassID}/grades`)
         .then((res) => {
           setGpaList(res.data.gpa);
@@ -46,14 +50,14 @@ const BarChart = ({ selectedClassID }) => {
         label: 'Số lượng điểm GPA',
         data: gpaList,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.85)',
+          'rgba(54, 162, 235, 0.85)',
+          'rgba(255, 206, 86, 0.85)',
+          'rgba(75, 192, 192, 0.85)',
+          'rgba(153, 102, 255, 0.85)',
+          'rgba(255, 159, 64, 0.85)',
         ],
-        borderColor: [
+        hoverBackgroundColor: [
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
           'rgba(255, 206, 86, 1)',
@@ -61,13 +65,12 @@ const BarChart = ({ selectedClassID }) => {
           'rgba(153, 102, 255, 1)',
           'rgba(255, 159, 64, 1)',
         ],
-        borderWidth: 1,
       },
     ],
   };
   return (
     <>
-      <h1 style={{ textAlign: 'center' }}>GPA</h1>
+      <h1 style={{ textAlign: 'center', fontSize: '50px' }}>GPA</h1>
       <Bar data={data} height={50} gpaList={gpaList} setGpaList={setGpaList} />
     </>
   );

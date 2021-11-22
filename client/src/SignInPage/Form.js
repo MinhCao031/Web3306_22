@@ -20,6 +20,7 @@ const Form = () => {
       ...user,
       [name]: value,
     });
+    setMessage('');
   };
   const signIn = (e) => {
     const { username, password } = user;
@@ -30,6 +31,7 @@ const Form = () => {
           if (res.data.auth === false) {
             setMessage('Tài khoản hoặc mật khẩu không chính xác !');
           } else {
+            localStorage.clear();
             sessionStorage.setItem('user', JSON.stringify(res.data));
             if (res.data.role === 'Student') {
               history.push({
@@ -42,7 +44,9 @@ const Form = () => {
             }
           }
         })
-        .catch((err) => console.log('error'));
+        .catch((err) => {
+          setMessage('Đăng nhập thất bại !');
+        });
     } else {
       setMessage('Vui lòng nhập đầy đủ thông tin !');
     }
@@ -61,7 +65,6 @@ const Form = () => {
             name="username"
             value={user.username}
             onChange={handleChange}
-            onClick={() => setMessage('')}
           />
         </InputField>
         <InputField>
@@ -72,7 +75,6 @@ const Form = () => {
             name="password"
             value={user.password}
             onChange={handleChange}
-            onClick={() => setMessage('')}
           />
         </InputField>
         <div className="wrapper">

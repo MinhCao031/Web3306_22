@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router';
 import NavigationBar from '../../HomePage/components/NavigationBar';
 import Sidebar from '../../HomePage/components/Sidebar';
+import SidebarStudent from '../../HomePage/components/SidebarStudent';
 import validator from 'validator';
 function changeDateFormat(responseDate) {
   var date = new Date(responseDate);
@@ -17,6 +18,9 @@ function changeDateFormat(responseDate) {
   return `${year}-${month}-${day}`;
 }
 function ChangeInfoTeacher() {
+  const role = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).role
+    : '';
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -38,7 +42,7 @@ function ChangeInfoTeacher() {
         setIntroduction(res.data.introduction);
       })
       .catch((err) => {
-        console.log(err);
+        setSuccessMessage('Cập nhật thông tin thất bại !');
       });
   }, []);
   const [successMessage, setSuccessMessage] = useState('');
@@ -285,15 +289,19 @@ function ChangeInfoTeacher() {
           <Button
             id="cancel"
             onClick={(e) => {
+              if (role === 'Student') {
+                history.push('/studentHomepage');
+              } else if (role === 'Teacher') {
+                history.push('/teacherHomepage');
+              }
               e.preventDefault();
-              history.push('/teacherHomepage');
             }}
           >
             <p className="Cancel">Hủy</p>
           </Button>
         </div>
       </Container>
-      <Sidebar />
+      {role === 'Teacher' ? <Sidebar /> : <SidebarStudent />}
     </Wrapper>
   );
 }

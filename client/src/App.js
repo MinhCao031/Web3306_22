@@ -13,8 +13,10 @@ import ChangeInfoTeacher from './NavigationMenu/ChangeInfo/ChangeInfoTeacher';
 import ChangePass from './NavigationMenu/ChangePass/ChangePass';
 import ListOfStudents from './Lists/ListOfStudents/ListOfStudents';
 import DashBoard from './Dashboard/Dashboard';
-import Forum from './Forum/Forum';
+import TeacherForum from './Forum/TeacherForum';
+import StudentForum from './Forum/StudentForum';
 import ListOfClasses from './Lists/ListOfClasses/ListOfClasses';
+import ClassList from './Lists/ClassList/ClassList';
 const App = () => {
   return (
     <Router>
@@ -42,7 +44,7 @@ const App = () => {
           render={() => {
             return JSON.parse(sessionStorage.getItem('user')) &&
               JSON.parse(sessionStorage.getItem('user')).role === 'Teacher' ? (
-              <Forum />
+              <TeacherForum />
             ) : (
               <>
                 {sessionStorage.clear()}
@@ -127,6 +129,35 @@ const App = () => {
             return JSON.parse(sessionStorage.getItem('user')) &&
               JSON.parse(sessionStorage.getItem('user')).role === 'Student' ? (
               <StudentHomePage />
+            ) : (
+              <>
+                {sessionStorage.clear()}
+                <Redirect to="/" />
+              </>
+            );
+          }}
+        />
+        <Route
+          path="/studentHomepage/forum"
+          render={() => {
+            return JSON.parse(sessionStorage.getItem('user')) &&
+              JSON.parse(sessionStorage.getItem('user')).role === 'Student' ? (
+              <StudentForum />
+            ) : (
+              <>
+                {sessionStorage.clear()}
+                <Redirect to="/" />
+              </>
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/studentHomepage/classList"
+          render={() => {
+            return JSON.parse(sessionStorage.getItem('user')) &&
+              JSON.parse(sessionStorage.getItem('user')).role === 'Student' ? (
+              <ClassList />
             ) : (
               <>
                 {sessionStorage.clear()}
