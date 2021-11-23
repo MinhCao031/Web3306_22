@@ -5,7 +5,6 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router';
 import axios from 'axios';
 
-const Username = '19021353';
 const Body = () => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -24,6 +23,9 @@ const Body = () => {
     setMessage('');
   };
   const history = useHistory();
+  const username = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).username
+    : '';
   const handleSubmit = (e) => {
     if (oldPassword && newPassword && confirmPassword) {
       if (oldPassword === newPassword) {
@@ -31,27 +33,34 @@ const Body = () => {
       } else if (newPassword !== confirmPassword) {
         setMessage('Mật khẩu mới và xác nhận mật khẩu không trùng nhau !');
       } else {
-        setMessage('Đổi mật khẩu thành công !');
-        setOldPassword('');
-        setNewPassword('');
-        setConfirmPassword('');
-        // axios
-        //   .post('http://localhost:5000/users/set_password', {
-        //     id: Username,
-        //     password: '123456',
-        //   })
-        //   .then((res) => {
-        //     console.log(res.data);
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //   });
+        axios
+          .post(`http://localhost:5000/api/users/${username}/set_password`, {
+            oldPassword: oldPassword,
+            newPassword: newPassword,
+          })
+          .then((res) => {
+            if (res.data.success) {
+              setMessage('Đổi mật khẩu thành công !');
+              setOldPassword('');
+              setNewPassword('');
+              setConfirmPassword('');
+            } else {
+              setMessage('Mật khẩu cũ không đúng !');
+            }
+          })
+          .catch((err) => {
+            setMessage('Đổi mật khẩu thất bại !');
+            console.log(err);
+          });
       }
     } else {
       setMessage('Vui lòng nhập đầy đủ thông tin !');
     }
     e.preventDefault();
   };
+  const role = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).role
+    : '';
   return (
     <Container>
       <h1>Cập nhật mật khẩu</h1>
@@ -94,8 +103,12 @@ const Body = () => {
         <Button onClick={handleSubmit}>Cập nhật</Button>
         <Button
           onClick={(e) => {
+            if (role === 'Student') {
+              history.push('/studentHomepage');
+            } else if (role === 'Teacher') {
+              history.push('/teacherHomepage');
+            }
             e.preventDefault();
-            history.push('/teacherHomepage');
           }}
         >
           Hủy

@@ -20,31 +20,33 @@ const Form = () => {
       ...user,
       [name]: value,
     });
+    setMessage('');
   };
   const signIn = (e) => {
     const { username, password } = user;
     if (username && password) {
-      // axios
-      //   .post('http://localhost:5000/login', user)
-      //   .then((res) => {
-      //     if (res.data.auth === false) {
-      //       setMessage('Tài khoản hoặc mật khẩu không hợp lệ !');
-      //     } else {
-      //       if (res.data.role === 'Student') {
-      //         history.push({
-      //           pathname: '/studentHomepage',
-      //           state: res.data,
-      //         });
-      //       } else if (res.data.role === 'Teacher') {
-      //         history.push({
-      //           pathname: '/teacherHomepage',
-      //           state: res.data,
-      //         });
-      //       }
-      //     }
-      //   })
-      //   .catch((err) => console.log('error'));
-      // history.push('/teacherHomepage');
+      axios
+        .post('http://localhost:5000/api/auth/login', user)
+        .then((res) => {
+          if (res.data.auth === false) {
+            setMessage('Tài khoản hoặc mật khẩu không chính xác !');
+          } else {
+            localStorage.clear();
+            sessionStorage.setItem('user', JSON.stringify(res.data));
+            if (res.data.role === 'Student') {
+              history.push({
+                pathname: '/studentHomepage',
+              });
+            } else if (res.data.role === 'Teacher') {
+              history.push({
+                pathname: '/teacherHomepage',
+              });
+            }
+          }
+        })
+        .catch((err) => {
+          setMessage('Đăng nhập thất bại !');
+        });
     } else {
       setMessage('Vui lòng nhập đầy đủ thông tin !');
     }
@@ -63,7 +65,6 @@ const Form = () => {
             name="username"
             value={user.username}
             onChange={handleChange}
-            onClick={() => setMessage('')}
           />
         </InputField>
         <InputField>
@@ -74,7 +75,6 @@ const Form = () => {
             name="password"
             value={user.password}
             onChange={handleChange}
-            onClick={() => setMessage('')}
           />
         </InputField>
         <div className="wrapper">

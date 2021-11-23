@@ -1,5 +1,6 @@
 const config = require('./config/config');
 const User = require('./models/User.js');
+const Class = require('./models/Class');
 
 const mongoose = require('mongoose');
 
@@ -18,147 +19,115 @@ mongoose
         console.log(err);
     });
 
-const registerNewUser = (
-    username,
-    password,
-    role,
-    level,
-    name,
-    dateOfBirth,
-    gender,
-    phoneNumber,
-    email,
-    hometown,
-    introduction,
-    fieldOfStudy,
-    gpa,
-    drl
-) => {
-    const user = new User({
-        username: username,
-        password: password,
-        role: role,
-        level: level,
-        name: name,
-        dateOfBirth: dateOfBirth,
-        gender: gender,
-        phoneNumber: phoneNumber,
-        email: email,
-        hometown: hometown,
-        introduction: introduction,
-        fieldOfStudy: fieldOfStudy,
-        gpa: gpa,
-        drl: drl
-    });
+var studentUsername = 19021300;
+var teacherUsername = 20191000;
 
-    user
-        .save()
-        .then((data) => {
-            console.log(data);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-};
+const studentQuantity = 270;
+const teacherQuantity = 3;
+const classQuantity = teacherQuantity * 3;
 
-registerNewUser(
-    19021363,
-    'Thai25879',
-    'Student',
-    'Thành viên',
-    'Nguyễn Thái',
-    '2001-03-02',
-    'Nam',
-    0868466825,
-    'thainguyen.uet@gmail.com',
-    'Hà Nội',
-    'A daily-updated person',
-    'Computer Science',
+const studentIds = [];
+const teacherIds = [];
+
+const firstName = [ 'Nguyễn', 'Trần', 'Lê', 'Phạm', 'Phí', 'Hồ', 'Bùi', 'Mai', 'Đinh', 'Ngô' ];
+const middleName = [ 'Đình', 'Nhật', 'Văn', 'Trúc', 'Thị', 'Quang', 'Tiến', 'Đức', 'Hoàng', 'Thúy' ];
+const lastName = [ 'Thái', 'Quang', 'Minh', 'Trọng Thành', 'Tùng', 'Vũ', 'Tuyên', 'Quần', 'Sơn', 'Ngọc' ];
+
+const level = [ 'Thành viên', 'Bí thư', 'Lớp trưởng' ];
+const gender = [ 'Nam', 'Nữ' ];
+
+const gpas = [
+    2.0,
+    2.1,
+    2.2,
+    2.3,
+    2.4,
+    2.5,
+    2.6,
+    2.7,
+    2.8,
+    2.9,
     3.0,
-    80
-);
-
-registerNewUser(
-    19021364,
-    'Quang25879',
-    'Student',
-    'Bí thư',
-    'Nguyễn Quang',
-    '2001-03-02',
-    'Nam',
-    0868454985,
-    'quangnguyen.uet@gmail.com',
-    'Hà Nội',
-    'A daily-updated person',
-    'Computer Science',
+    3.1,
+    3.2,
+    3.3,
+    3.4,
     3.5,
-    55
-);
+    3.6,
+    3.7,
+    3.8,
+    3.9,
+    4.0
+];
 
-registerNewUser(
-    19021365,
-    'Trung25879',
-    'Student',
-    'Lớp trưởng',
-    'Nguyễn Trung',
-    '2001-03-02',
-    'Nam',
-    0868464023,
-    'trungnguyen.uet@gmail.com',
-    'Hà Nội',
-    'A daily-updated person',
-    'Computer Science',
-    3.95,
-    95
-);
+function rand(upper, lower = 0) {
+    return Math.floor(Math.random() * (upper - lower)) + lower;
+}
 
-registerNewUser(
-    10012019,
-    'Tu25879',
-    'Teacher',
-    'None',
-    'Nguyễn Tú',
-    '2001-03-02',
-    'Nữ',
-    08684643573,
-    'tunguyen.uet@gmail.com',
-    'Hà Nội',
-    'A daily-updated person',
-    'Computer Science',
-    0.0,
-    0.0
-);
+function genName() {
+    const fNameIndex = rand(firstName.length);
+    const mNameIndex = rand(middleName.length);
+    const lNameIndex = rand(lastName.length);
 
-registerNewUser(
-    10022019,
-    'Mai25879',
-    'Teacher',
-    'None',
-    'Nguyễn Mai',
-    '2001-03-02',
-    'Nữ',
-    08684643510,
-    'mainguyen.uet@gmail.com',
-    'Hà Nội',
-    'A daily-updated person',
-    'Computer Science',
-    0.0,
-    0.0
-);
+    return `${firstName[fNameIndex]} ${middleName[mNameIndex]} ${lastName[lNameIndex]}`;
+}
 
-registerNewUser(
-    19020000,
-    'T123456',
-    'Student',
-    'Thành viên',
-    'Nguyễn Thái',
-    '2001-03-02',
-    'Nam',
-    0868466825,
-    'thainguyen.uet@gmail.com',
-    'Hà Nội',
-    'A daily-updated person',
-    'Computer Science',
-    3.0,
-    80
-);
+function genDateOfBirth() {
+    let day = rand(31);
+    while (day == 0) {
+        day = rand(31);
+    }
+    let month = rand(13);
+    while (month == 0) {
+        month = rand(13);
+    }
+    return `2001-${month}-${day}`;
+}
+
+function genPhoneNumber() {
+    return `0${rand(345678912, 987654321)}`;
+}
+
+function genEmail(username) {
+    return `${username}@gmail.com`;
+}
+
+async function generateUsers(quantity, role) {
+    console.log('Hi');
+    const isTeacher = role == 'Teacher';
+    let errorCheck = false;
+    let username = isTeacher ? teacherUsername : studentUsername;
+
+    while (quantity != 0 && !errorCheck) {
+        const user = new User({
+            username: username,
+            password: username,
+            role: role,
+            level: isTeacher ? 'None' : level[0],
+            name: genName(),
+            dateOfBirth: genDateOfBirth(),
+            gender: gender[rand(2)],
+            phoneNumber: genPhoneNumber(),
+            email: genEmail(username),
+            gpa: isTeacher ? 0 : gpas[rand(gpas.length)],
+            drl: isTeacher ? 0 : rand(100, 30)
+        });
+        isTeacher ? teacherIds.push(user.username) : studentIds.push(user.username);
+        await user
+            .save()
+            .then(() => {
+                console.log(user);
+            })
+            .catch((err) => {
+                console.log(err);
+                errorCheck = true;
+            });
+        username++;
+        quantity--;
+    }
+    errorCheck ? console.log('Something went wrong') : console.log(`Imported ${role} data successfully`);
+    return errorCheck;
+}
+
+generateUsers(studentQuantity, 'Student');
+generateUsers(teacherQuantity, 'Teacher');

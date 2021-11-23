@@ -1,0 +1,145 @@
+.drop-noti {
+  z-index: 2;
+  width: 500px;
+  position: absolute;
+  right: 150px;
+  top: 55px;
+  list-style: none;
+  text-align: start;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding-left: 0;
+}
+
+.noti-header {
+  height:60px;
+  color: #ebebeb;
+  background-color: #a0a0a0;
+  cursor: default;
+  display: flex;
+}
+
+.notification {
+  align-items: center;
+  color: #000;
+  display: flex;
+  font-size: 30px;
+  justify-content:flex-start;
+  padding: 20px;
+  width: 260px;
+  height: 60px;
+}
+
+.set-all-read {
+  align-items: center;
+  color: #101055;
+  display: flex;
+  font-size: 18px;
+  justify-content:flex-end;
+  padding: 10px;
+  height: 60px;
+}
+
+.set-all-read:hover {
+  cursor:pointer;
+}
+
+/* .action-noti .time-noti {
+  margin-bottom: 1px;
+} */
+
+.dropnoti-link-seen {
+  height: 100px;
+  width: 100%;
+  font-weight: bolder;
+  padding: 0px;
+  background-color: #f0f0f0;
+}
+
+.dropnoti-link-unseen {
+  height: 100px;
+  width: 100%;
+  font-weight: bolder;
+  padding: 0px;
+  display: flex;  
+  background-color: #d0d0d0;
+}
+
+.dropnoti-link-seen a {
+  text-decoration: none;
+  background-color: none;
+  color: #000;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px;
+  /* margin-right: 20px; */
+}
+
+.dropnoti-link-unseen a {
+  text-decoration: none;
+  background-color: none;
+  color: #000;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px;
+  /* margin-right: 20px; */
+}
+
+.dropnoti-link-seen span {
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.dropnoti-link-unseen span {
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.old-noti {
+  display: none;
+}
+
+/* .dropnoti-link a {
+  text-decoration: none;
+  background-color: none;
+  color: #000;
+  font-size: 18px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropnoti-link:first-child a {
+  font-family: Signika;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+} 
+
+.dropnoti-link:first-child {
+  height:60px;
+  color: #ebebeb;
+  background-color: #404e68;
+  cursor: default;
+}
+
+.dropnoti-link:first-child:hover {
+  background-color: #ebebeb;
+}
+.dropnoti-link:hover svg,
+.dropnoti-link:hover span {
+  color: #f1f1f1;
+}
+
+.dropnoti-link:hover {
+  background-color: #404e68;
+} */

@@ -4,8 +4,10 @@ import uet from '../../assets/uet.png';
 import boy from '../../assets/boy_ava.png';
 import './ChangePass.css';
 
-const Name = 'Nguyen Van Quang';
 const Header = () => {
+  const name = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).name
+    : 'Anonymous';
   return (
     <Container>
       <div className="logo">
@@ -13,7 +15,7 @@ const Header = () => {
         <span>UET - SMTA</span>
       </div>
       <div className="profile">
-        <span className="profile-text">{Name}</span>
+        <span className="profile-text">{name}</span>
         <img alt="Avatar" src={boy} />
       </div>
     </Container>

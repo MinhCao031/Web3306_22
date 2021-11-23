@@ -20,7 +20,9 @@ import SaveIcon from '@mui/icons-material/Save';
 import ClearIcon from '@mui/icons-material/Clear';
 import Fab from '@mui/material/Fab';
 import SpecificFilterButton from '../Filters/SpecificFilterButton';
-const Username = '10012019';
+
+import FileInput from '../FileInput/FileInput';
+import FileExport from '../FileExport/FileExport';
 const Table = () => {
   const [userList, setUserList] = useState([]);
   const [deletedRows, setDeletedRows] = useState([]);
@@ -253,9 +255,12 @@ const Table = () => {
       }
     },
   };
+  const classId = JSON.parse(sessionStorage.getItem('classIdTable'))
+    ? JSON.parse(sessionStorage.getItem('classIdTable'))
+    : '';
   useEffect(() => {
     axios
-      .get('http://localhost:3001/StudentIds')
+      .get(`http://localhost:5000/api/classes/${classId}/students`)
       .then((res) => {
         setUserList(res.data);
       })
@@ -275,7 +280,7 @@ const Table = () => {
   };
   const handleCancelAction = (e) => {
     axios
-      .get('http://localhost:3001/StudentIds')
+      .get(`http://localhost:5000/api/classes/${classId}/students`)
       .then((res) => {
         setUserList(res.data);
       })
@@ -289,12 +294,7 @@ const Table = () => {
       <Stack spacing={1} direction="row">
         <SpecificFilterButton data={userList} setData={setUserList} />
         <AddStudentButton data={userList} setData={setUserList} />
-        <Fab
-          //color="secondary"
-          aria-label="delete"
-          size="medium"
-          onClick={handleDeleteAction}
-        >
+        <Fab aria-label="delete" size="medium" onClick={handleDeleteAction}>
           <DeleteOutlineIcon />
         </Fab>
       </Stack>
@@ -320,6 +320,14 @@ const Table = () => {
           autoSelectText: true,
         })}
       />
+      <div className="ioFile">
+        <div className="FileIn">
+          <FileInput />
+        </div>
+        <div className="FileOut">
+          <FileExport />
+        </div>
+      </div>
       <div className="saveButton">
         <Stack spacing={3} direction="row">
           <Button

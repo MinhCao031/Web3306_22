@@ -4,30 +4,46 @@ import axios from 'axios';
 import { useHistory } from 'react-router';
 import NavigationBar from '../../HomePage/components/NavigationBar';
 import Sidebar from '../../HomePage/components/Sidebar';
+import SidebarStudent from '../../HomePage/components/SidebarStudent';
 import validator from 'validator';
+function changeDateFormat(responseDate) {
+  var date = new Date(responseDate);
+  var day = date.getUTCDate();
+  var month = date.getUTCMonth() + 1;
+  var year = date.getFullYear();
 
-const Username = '19021363';
+  month = (month > 9 ? '' : '0') + month;
+  day = (day > 9 ? '' : '0') + day;
+
+  return `${year}-${month}-${day}`;
+}
 function ChangeInfoTeacher() {
-  const [name, setName] = useState('Nguyễn Văn Quang');
-  const [email, setEmail] = useState('nguyenvanquang@gmail.com');
-  const [phone, setPhone] = useState('0917172366');
-  const [dateOfBirth, setDateOfBirth] = useState('2001-12-31');
-  const [fieldOfStudy, setFieldOfStudy] = useState('Công nghệ thông tin');
-  const [introduction, setIntroduction] = useState(
-    'Yêu màu hồng và ghét sự giả dối'
-  );
+  const role = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).role
+    : '';
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [fieldOfStudy, setFieldOfStudy] = useState('');
+  const [introduction, setIntroduction] = useState('');
+  const username = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).username
+    : '';
   useEffect(() => {
-    // axios
-    //   .post('http://localhost:5000/api/teacher/get-info', {
-    //     id: Username,
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     //setData
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axios
+      .get(`http://localhost:5000/api/users/${username}/show`)
+      .then((res) => {
+        setName(res.data.name);
+        setEmail(res.data.email);
+        setPhone(res.data.phoneNumber);
+        setDateOfBirth(changeDateFormat(res.data.dateOfBirth));
+        setFieldOfStudy(res.data.fieldOfStudy);
+        setIntroduction(res.data.introduction);
+      })
+      .catch((err) => {
+        setSuccessMessage('Cập nhật thông tin thất bại !');
+      });
   }, []);
   const [successMessage, setSuccessMessage] = useState('');
   const [nameErrorMessage, setNameErrorMessage] = useState('');
@@ -71,23 +87,24 @@ function ChangeInfoTeacher() {
       validator.isMobilePhone(phone, 'vi-VN') &&
       !stringContainsNumber(name)
     ) {
-      setSuccessMessage('Thay đổi thông tin thành công');
-      // axios
-      //   .post('http://localhost:5000/users/update', {
-      //     username: Username,
-      //     email: email,
-      //     name: name,
-      //     phoneNumber: phone,
-      //     dateOfBirth: dateOfBirth,
-      //     fieldOfStudy: fieldOfStudy,
-      //     introduction: introduction,
-      //   })
-      //   .then((res) => {
-      //     console.log(res.data.status);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
+      axios
+        .post(`http://localhost:5000/api/users/${username}/update`, {
+          email: email,
+          name: name,
+          phoneNumber: phone,
+          dateOfBirth: dateOfBirth,
+          fieldOfStudy: fieldOfStudy,
+          introduction: introduction,
+        })
+        .then((res) => {
+          if (res.data.success) {
+            setSuccessMessage('Cập nhật thông tin thành công');
+          }
+        })
+        .catch((err) => {
+          setSuccessMessage('Cập nhật thông tin thất bại');
+          console.log(err);
+        });
     }
     if (stringContainsNumber(name)) {
       setNameErrorMessage('Tên không được chứa số');
@@ -152,7 +169,7 @@ function ChangeInfoTeacher() {
               <Input
                 name="FullName"
                 id="FullName"
-                style={{ width: '400px', height: '55px;' }}
+                style={{ width: '400px', height: '55px' }}
                 type="text"
                 value={dateOfBirth}
                 ref={ref}
@@ -193,7 +210,7 @@ function ChangeInfoTeacher() {
                 name="ConstID"
                 id="ConstID"
                 type="text"
-                value="GV21082102"
+                value={username}
                 disabled
                 style={{
                   width: '400px',
@@ -255,9 +272,16 @@ function ChangeInfoTeacher() {
             </div>
           </div>
         </div>
-        {successMessage && (
-          <SuccessMessage>Cập nhật thành công !</SuccessMessage>
-        )}
+        {successMessage &&
+          (successMessage === 'Cập nhật thông tin thành công' ? (
+            <SuccessMessage style={{ color: 'blue' }}>
+              {successMessage}
+            </SuccessMessage>
+          ) : (
+            <SuccessMessage style={{ color: 'red' }}>
+              {successMessage}
+            </SuccessMessage>
+          ))}
         <div className="wrapper">
           <Button id="submit" onClick={handleSubmit}>
             <p className="Submit">Cập nhật</p>
@@ -265,22 +289,25 @@ function ChangeInfoTeacher() {
           <Button
             id="cancel"
             onClick={(e) => {
+              if (role === 'Student') {
+                history.push('/studentHomepage');
+              } else if (role === 'Teacher') {
+                history.push('/teacherHomepage');
+              }
               e.preventDefault();
-              history.push('/teacherHomepage');
             }}
           >
             <p className="Cancel">Hủy</p>
           </Button>
         </div>
       </Container>
-      <Sidebar />
+      {role === 'Teacher' ? <Sidebar /> : <SidebarStudent />}
     </Wrapper>
   );
 }
 const SuccessMessage = styled.p`
   text-align: center;
   font-size: 22px;
-  color: blue;
   margin: 0;
 `;
 const ErrorMessage = styled.span`

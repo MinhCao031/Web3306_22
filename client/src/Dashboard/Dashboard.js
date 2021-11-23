@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../HomePage/components/Sidebar';
 import NavigationBar from '../HomePage/components/NavigationBar';
+import Footer from '../HomePage/components/Footer';
+import BarChart from './BarChart';
+import PieChart from './PieChart';
+import ClassesDropDown from './ClassesDropDown';
 const DashBoard = () => {
+  const [selectedClassID, setSelectedClassID] = useState();
   return (
     <>
       <NavigationBar />
-      <div>Day la Dashboard</div>
+      <ClassesDropDown setSelectedClassID={setSelectedClassID} />
+      <br />
+      <BarChart selectedClassID={selectedClassID} />
+      <br />
+      <br />
+      <PieChart selectedClassID={selectedClassID} />
       <Sidebar />
+      <Footer />
     </>
   );
 };

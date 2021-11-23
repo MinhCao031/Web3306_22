@@ -7,7 +7,13 @@ const TeacherHomePage = () => {
   return (
     <>
       <NavigationBar />
-      <Container />
+      <Container>
+        <img
+          src="https://www.scoonews.com/uploads/news_images/collage16016254711601625471.jpg"
+          alt="picture"
+          width="100%"
+        />
+      </Container>
       <Sidebar />
       <Footer />
     </>
@@ -16,6 +22,6 @@ const TeacherHomePage = () => {
 export const Container = styled.div`
   background-color: #f4f5fa;
   width: 100%;
-  height: 100vh;
+  height: 150vh;
 `;
 export default TeacherHomePage;
