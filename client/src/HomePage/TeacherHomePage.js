@@ -9,7 +9,7 @@ const TeacherHomePage = () => {
       <NavigationBar />
       <Container>
         <img
-          src="https://www.scoonews.com/uploads/news_images/collage16016254711601625471.jpg"
+          src="https://www.thelawofattraction.com/wp-content/uploads/quote1.jpg"
           alt="picture"
           width="100%"
         />

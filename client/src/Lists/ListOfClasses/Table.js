@@ -23,7 +23,7 @@ const Table = () => {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/classes/${username}/show`)
+      .get(`http://localhost:5000/api/classes/${username}`)
       .then((res) => {
         setData(res.data);
       })
@@ -48,7 +48,6 @@ const Table = () => {
       text: 'Lớp',
       filter: textFilter(filterData),
       style: (cell, row, rowIndex, colIndex) => {
-        console.log(row);
         if (row.classType === 'Thường') {
           return {
             color: '#DF9941',
@@ -83,7 +82,13 @@ const Table = () => {
   ];
   const rowEvents = {
     onClick: (e, row, rowIndex) => {
-      sessionStorage.setItem('classIdTable', row.classId);
+      sessionStorage.setItem(
+        'TableInfo',
+        JSON.stringify({
+          classId: row.classId,
+          className: row.className,
+        })
+      );
       history.push('/teacherHomepage/classList/studentList');
     },
   };

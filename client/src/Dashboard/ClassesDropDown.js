@@ -7,7 +7,7 @@ const ClassesDropDown = ({ setSelectedClassID }) => {
     : '';
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/classes/${username}/show`)
+      .get(`http://localhost:5000/api/classes/${username}`)
       .then((res) => {
         setClassList(
           res.data.map((item) => {
@@ -31,7 +31,7 @@ const ClassesDropDown = ({ setSelectedClassID }) => {
           backgroundColor: '#FF7A96',
           color: 'white',
           border: 'none',
-          borderRadius: '10px',
+          borderRadius: '5px',
         }}
         onChange={(e) => {
           const classData = classList.filter((item) => {

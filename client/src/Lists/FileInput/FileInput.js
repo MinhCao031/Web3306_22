@@ -50,29 +50,31 @@ class FileInput extends Component {
       inputJson: JSON.parse(JSON.stringify(list)),
       inpSuccess: 'Server not received',
     });
-    console.log(this.state.inputJson);
-    console.log(this.state.inpSuccess);
+    const classId = JSON.parse(sessionStorage.getItem('TableInfo'))
+      ? JSON.parse(sessionStorage.getItem('TableInfo')).classId
+      : '';
     const inpjson = this.state.inputJson;
+    console.log(inpjson);
     axios
-      .post('http://localhost:5000/api/users/importFile', {
+      .post(`http://localhost:5000/api/classes/${classId}/import`, {
         inpjson,
-        classId: JSON.parse(sessionStorage.getItem('classId'))
-          ? JSON.parse(sessionStorage.getItem('classId'))
-          : undefined,
       })
       .then((res) => {
-        console.log(res.data.status);
-        if (res.data.status == 'OK') {
-          this.setState({
-            inputJson: this.state.inputJson,
-            inpSuccess: 'Import successfully',
-          });
-        }
+        console.log(res.data);
+        this.props.setData(res.data);
+        // if (res.data.status == 'OK') {
+        //   this.setState({
+        //     inputJson: this.state.inputJson,
+        //     inpSuccess: 'Import successfully',
+        //   });
+        // }
         // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
+    console.log(this.state.inputJson);
+    console.log(this.state.inpSuccess);
   };
 
   showFile = async (e) => {
@@ -100,8 +102,8 @@ class FileInput extends Component {
   //   if(needInput) needInput = false;
   //   else needInput = true;
   // }
-
   render = () => {
+    //console.log(this.props.setData());
     return (
       <div>
         <label for="file-upload" className="custom-file-upload">
