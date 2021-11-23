@@ -35,6 +35,7 @@ const lastName = [ 'Thái', 'Quang', 'Minh', 'Trọng Thành', 'Tùng', 'Vũ', '
 
 const level = [ 'Thành viên', 'Bí thư', 'Lớp trưởng' ];
 const gender = [ 'Nam', 'Nữ' ];
+const hometown = [ 'Hải Dương', 'Vĩnh Phúc', 'Hà Nội', 'Tp.Hồ Chí Minh', 'Đà Nẵng', 'Hải Phòng', 'Nam Định' ];
 
 const gpas = [
     2.0,
@@ -73,7 +74,7 @@ function genName() {
 }
 
 function genDateOfBirth() {
-    let day = rand(31);
+    let day = rand(30);
     while (day == 0) {
         day = rand(31);
     }
@@ -107,6 +108,7 @@ async function generateUsers(quantity, role) {
             name: genName(),
             dateOfBirth: genDateOfBirth(),
             gender: gender[rand(2)],
+            hometown: hometown[rand(hometown.length)],
             phoneNumber: genPhoneNumber(),
             email: genEmail(username),
             gpa: isTeacher ? 0 : gpas[rand(gpas.length)],
