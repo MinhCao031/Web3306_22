@@ -39,7 +39,10 @@ module.exports.getClasses = async function(req, res) {
 module.exports.getClassStudents = async function(req, res) {
     var foundClass;
     if (req.query.role == 'Teacher') {
-        foundClass = await Class.findOne({ teacherId: req.query.user_id }).catch((err) => {
+        foundClass = await Class.findOne({
+            classId: req.query.class_id,
+            teacherId: req.query.user_id
+        }).catch((err) => {
             return res.status(500).json(err);
         });
     } else {
@@ -74,6 +77,7 @@ module.exports.getClassStudents = async function(req, res) {
         }
 
         if (result.length > 0) {
+            result.push({ className: foundClass.className });
             return res.status(200).json(result);
         }
     }
@@ -132,7 +136,7 @@ module.exports.getClassGradeStatistic = async function(req, res) {
 module.exports.importStudents = async function(req, res) {
     var users = req.body;
 
-    const foundClass = await Class.findOneAndUpdate(
+    const foundClass = await Class.findOne(
         { classId: req.params.class_id },
         {
             studentIds: []
@@ -191,6 +195,81 @@ module.exports.importStudents = async function(req, res) {
         return res.status(200).json({ success: true });
     } catch (err) {
         return res.status(500).json({ success: false });
+    }
+};
+
+module.exports.addStudent = async function(req, res) {
+    const foundClass = await Class.findOne({ classId: req.params.class_id }).catch((err) => {
+        console.log(err);
+        return res.status(500).json({ success: false });
+    });
+
+    if (foundClass && !foundClass['studentIds'].includes(req.body.username)) {
+        const newUser = new User({
+            username: req.body.username,
+            password: req.body.username,
+            level: req.body.level,
+            name: req.body.name,
+            dateOfBirth: req.body.dateOfBirth,
+            gender: req.body.gender,
+            hometown: req.body.hometown,
+            gpa: req.body.gpa,
+            drl: req.body.drl
+        });
+        await newUser.save().catch((err) => {
+            console.log(err);
+            return res.status(500).json({ success: false });
+        });
+        foundClass['studentIds'].push(newUser.username);
+
+        foundClass.save().catch((err) => {
+            console.log(err);
+            return res.status(500).json({ success: false });
+        });
+        return res.json({ success: true });
+    } else {
+        return res.status(200).json({ success: false });
+    }
+};
+
+module.exports.updateClassStudents = async function(req, res) {
+    const foundClass = await Class.findOne({ classId: req.params.class_id }).catch((err) => {
+        console.log(err);
+        return res.status(500).json({ success: false });
+    });
+
+    if (foundClass) {
+        const removedStudents = req.body.removed;
+        const edittedStudents = req.body.editted;
+
+        for (let i = 0; i < removedStudents.length; ++i) {
+            foundClass['studentIds'].filter((item) => item != removedStudents[i]);
+        }
+        console.log(foundClass['studentIds']);
+
+        // for (let i = 0; i < edittedStudents; ++i) {
+        //     const foundStudent = await User.findOne({ username: edittedStudents[i].username });
+
+        //     if (foundStudent) {
+        //         foundStudent.level = edittedStudents[i].level;
+        //         foundStudent.gpa = edittedStudents[i].gpa;
+        //         foundStudent.drl = edittedStudents[i].drl;
+
+        //         await foundStudent.save().catch((err) => {
+        //             console.log(err);
+        //             return res.status(500).json({ success: false });
+        //         });
+        //     } else {
+        //         return res.status(400).json({ message: 'Editted student not found' });
+        //     }
+        // }
+
+        // await foundClass.save().catch((err) => {
+        //     console.log(err);
+        //     return res.status(500).json({ success: false });
+        // });
+    } else {
+        return res.status(200).json({ message: 'No class found.' });
     }
 };
 

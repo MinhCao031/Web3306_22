@@ -11,6 +11,10 @@ router.get('/:class_id/grades', ClassController.getClassGradeStatistic); // Logi
 
 router.post('/students', ClassController.getClassStudents); // Login required
 
+router.post('/:class_id/update', ClassController.updateClassStudents); // Login required
+
+router.post('/:class_id/add-student', ClassController.addStudent); // Login required
+
 router.post('/:class_id/import', ClassController.importStudents); // Login required and be teacherId
 
 module.exports = router;
