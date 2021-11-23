@@ -5,15 +5,25 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 // Real
+// const headers = [
+//   { label: 'Họ và tên', key: 'name' },
+//   { label: 'MSSV', key: 'username' },
+//   { label: 'Chức vụ', key: 'level' },
+//   { label: 'Ngày sinh', key: 'dateOfBirth' },
+//   { label: 'Giới tính', key: 'gender' },
+//   { label: 'Nơi sinh', key: 'hometown' },
+//   { label: 'GPA', key: 'gpa' },
+//   { label: 'ĐRL', key: 'drl' },
+// ];
 const headers = [
-  { label: 'Họ và tên', key: 'name' },
-  { label: 'MSSV', key: 'username' },
-  { label: 'Chức vụ', key: 'level' },
-  { label: 'Ngày sinh', key: 'dateOfBirth' },
-  { label: 'Giới tính', key: 'gender' },
-  { label: 'Nơi sinh', key: 'hometown' },
-  { label: 'GPA', key: 'gpa' },
-  { label: 'ĐRL', key: 'drl' },
+  { label: 'name', key: 'name' },
+  { label: 'username', key: 'username' },
+  { label: 'level', key: 'level' },
+  { label: 'dateOfBirth', key: 'dateOfBirth' },
+  { label: 'gender', key: 'gender' },
+  { label: 'hometown', key: 'hometown' },
+  { label: 'gpa', key: 'gpa' },
+  { label: 'drl', key: 'drl' },
 ];
 
 // Experiment
@@ -23,9 +33,12 @@ const headers = [
 //   { label: 'Title', key: 'title' },
 // ];
 
-let classId = JSON.parse(sessionStorage.getItem('classIdTable'))
-  ? JSON.parse(sessionStorage.getItem('classIdTable'))
-  : null;
+const classId = JSON.parse(sessionStorage.getItem('TableInfo'))
+  ? JSON.parse(sessionStorage.getItem('TableInfo')).classId
+  : '';
+const username = JSON.parse(sessionStorage.getItem('user'))
+  ? JSON.parse(sessionStorage.getItem('user')).username
+  : '';
 class FileExport extends Component {
   constructor(props) {
     super(props);
@@ -37,8 +50,13 @@ class FileExport extends Component {
 
   downloadReport = async () => {
     axios
-      .get(`http://localhost:5000/api/classes/${classId}/students`)
-      //.get(`https://jsonplaceholder.typicode.com/albums`)
+      .post(`http://localhost:5000/api/classes/students`, null, {
+        params: {
+          class_id: classId,
+          role: 'Teacher',
+          user_id: username,
+        },
+      })
       .then((res) => {
         console.log(res.data);
         this.setState({ data: res.data }, () => {

@@ -17,7 +17,7 @@ import DashBoard from './Dashboard/Dashboard';
 import TeacherForum from './Forum/TeacherForum';
 import StudentForum from './Forum/StudentForum';
 import ListOfClasses from './Lists/ListOfClasses/ListOfClasses';
-import ClassList from './Lists/ClassList/ClassList';
+import ClassList from './Lists/StudentClassList/ClassList';
 const App = () => {
   return (
     <Router>

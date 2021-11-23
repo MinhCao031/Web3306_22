@@ -10,7 +10,11 @@ import AddIcon from '@mui/icons-material/Add';
 import Fab from '@mui/material/Fab';
 import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
+import axios from 'axios';
 export default function AddStudentButton({ data, setData }) {
+  const classId = JSON.parse(sessionStorage.getItem('TableInfo'))
+    ? JSON.parse(sessionStorage.getItem('TableInfo')).classId
+    : '';
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -102,6 +106,23 @@ export default function AddStudentButton({ data, setData }) {
           drl: parseInt(drl),
         },
       ]);
+      axios
+        .post(`http://localhost:5000/api/classes/${classId}/add-student`, {
+          username: parseInt(username),
+          name,
+          level,
+          dateOfBirth,
+          gender,
+          hometown,
+          gpa: parseFloat(gpa),
+          drl: parseInt(drl),
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       setLevel('Thành viên');
       setUsername(10000000);
       setName('Nguyễn Văn A');

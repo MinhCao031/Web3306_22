@@ -26,6 +26,10 @@ import FileExport from '../FileExport/FileExport';
 const Table = () => {
   const [userList, setUserList] = useState([]);
   const [deletedRows, setDeletedRows] = useState([]);
+  const [editedRows, setEditedRows] = useState([]);
+  const getUniqueListBy = (arr, key) => {
+    return [...new Map(arr.map((item) => [item[key], item])).values()];
+  };
   const filterData = {
     delay: 100,
     style: {
@@ -99,14 +103,18 @@ const Table = () => {
       sort: true,
       filter: textFilter(filterData),
       formatter: (cell) => {
-        let dateObj = cell;
+        let date = cell;
         if (typeof cell !== 'object') {
-          dateObj = new Date(cell);
+          date = new Date(cell);
         }
-        return `${('0' + dateObj.getUTCDate()).slice(-2)}/${(
-          '0' +
-          (dateObj.getUTCMonth() + 1)
-        ).slice(-2)}/${dateObj.getUTCFullYear()}`;
+        let day = date.getUTCDate();
+        let month = date.getUTCMonth() + 1;
+        let year = date.getFullYear();
+
+        month = (month > 9 ? '' : '0') + month;
+        day = (day > 9 ? '' : '0') + day;
+
+        return `${year}-${month}-${day}`;
       },
       editor: {
         type: Type.DATE,
@@ -255,12 +263,24 @@ const Table = () => {
       }
     },
   };
-  const classId = JSON.parse(sessionStorage.getItem('classIdTable'))
-    ? JSON.parse(sessionStorage.getItem('classIdTable'))
+  const classId = JSON.parse(sessionStorage.getItem('TableInfo'))
+    ? JSON.parse(sessionStorage.getItem('TableInfo')).classId
     : '';
+  const username = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).username
+    : '';
+  const classNameTable = JSON.parse(sessionStorage.getItem('TableInfo'))
+    ? JSON.parse(sessionStorage.getItem('TableInfo')).className
+    : 'Loading...';
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/classes/${classId}/students`)
+      .post(`http://localhost:5000/api/classes/students`, null, {
+        params: {
+          class_id: classId,
+          role: 'Teacher',
+          user_id: username,
+        },
+      })
       .then((res) => {
         setUserList(res.data);
       })
@@ -269,7 +289,14 @@ const Table = () => {
       });
   }, []);
   const handleSaveAction = (e) => {
-    console.log(userList);
+    axios
+      .post(`http://localhost:5000/api/classes/${classId}/update`, {
+        removed: deletedRows,
+        edited: editedRows,
+      })
+      .then((res) => {})
+      .catch((err) => console.log(err));
+    console.log(getUniqueListBy(editedRows, 'username'));
     e.preventDefault();
   };
   const handleDeleteAction = (e) => {
@@ -280,7 +307,13 @@ const Table = () => {
   };
   const handleCancelAction = (e) => {
     axios
-      .get(`http://localhost:5000/api/classes/${classId}/students`)
+      .post(`http://localhost:5000/api/classes/students`, null, {
+        params: {
+          class_id: classId,
+          role: 'Teacher',
+          user_id: username,
+        },
+      })
       .then((res) => {
         setUserList(res.data);
       })
@@ -298,7 +331,7 @@ const Table = () => {
           <DeleteOutlineIcon />
         </Fab>
       </Stack>
-      <ClassName>{'K64_CACLC4'}</ClassName>
+      <ClassName>{classNameTable}</ClassName>
       <div className="filter">
         <FilterButton type="good" data={userList} setData={setUserList} />
         <FilterButton type="bad" data={userList} setData={setUserList} />
@@ -318,11 +351,16 @@ const Table = () => {
           mode: 'click',
           blurToSave: true,
           autoSelectText: true,
+          afterSaveCell: (oldValue, newValue, row, column) => {
+            if (oldValue != newValue) {
+              setEditedRows([...editedRows, row]);
+            }
+          },
         })}
       />
       <div className="ioFile">
         <div className="FileIn">
-          <FileInput />
+          <FileInput setData={setUserList} />
         </div>
         <div className="FileOut">
           <FileExport />
