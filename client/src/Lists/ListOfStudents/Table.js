@@ -292,11 +292,12 @@ const Table = () => {
     axios
       .post(`http://localhost:5000/api/classes/${classId}/update`, {
         removed: deletedRows,
-        edited: editedRows,
+        edited: getUniqueListBy(editedRows, 'username'),
       })
-      .then((res) => {})
+      .then((res) => {
+        console.log(res);
+      })
       .catch((err) => console.log(err));
-    console.log(getUniqueListBy(editedRows, 'username'));
     e.preventDefault();
   };
   const handleDeleteAction = (e) => {
