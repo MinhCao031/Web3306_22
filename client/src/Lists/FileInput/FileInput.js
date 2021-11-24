@@ -37,6 +37,18 @@ class FileInput extends Component {
             if (d[d.length - 1] === '"') d = d.substring(d.length - 2, 1);
           }
           if (this.headers[j]) {
+            if (this.headers[j].length > 0) {
+              if (this.headers[j][0] === '"')
+                this.headers[j] = this.headers[j].substring(
+                  1,
+                  this.headers[j].length - 1
+                );
+              if (this.headers[j][this.headers[j].length - 1] === '"')
+                this.headers[j] = this.headers[j].substring(
+                  this.headers[j].length - 2,
+                  1
+                );
+            }
             obj[this.headers[j]] = d;
           }
         }
@@ -47,7 +59,7 @@ class FileInput extends Component {
       }
     }
     this.setState({
-      inputJson: JSON.parse(JSON.stringify(list)),
+      inputJson: list,
       inpSuccess: 'Server not received',
     });
     const classId = JSON.parse(sessionStorage.getItem('TableInfo'))
@@ -73,8 +85,8 @@ class FileInput extends Component {
       .catch((err) => {
         console.log(err);
       });
-    console.log(this.state.inputJson);
-    console.log(this.state.inpSuccess);
+    // console.log(this.state.inputJson);
+    // console.log(this.state.inpSuccess);
   };
 
   showFile = async (e) => {
@@ -120,7 +132,7 @@ class FileInput extends Component {
           onChange={(e) => this.showFile(e)}
           style={{ width: '260px', display: 'none' }}
         />
-        {this.state.inpSuccess == 'Import successfully' ? (
+        {/* {this.state.inpSuccess == 'Import successfully' ? (
           <p style={{ color: 'blue' }}>Nhập file thành công</p>
         ) : this.state.inpSuccess == 'Server not received' ? (
           <p style={{ color: 'red' }}>Lỗi máy chủ. Xin vui lòng thử lại</p>
@@ -130,7 +142,7 @@ class FileInput extends Component {
           </p>
         ) : (
           <></>
-        )}
+        )} */}
       </div>
     );
   };
