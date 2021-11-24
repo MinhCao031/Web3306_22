@@ -363,7 +363,7 @@ const Table = () => {
           <FileInput setData={setUserList} />
         </div>
         <div className="FileOut">
-          <FileExport />
+          <FileExport data={userList} />
         </div>
       </div>
       <div className="saveButton">

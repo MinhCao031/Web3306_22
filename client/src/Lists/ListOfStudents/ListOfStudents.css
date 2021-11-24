@@ -45,6 +45,7 @@ td {
 .ioFile {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .FileIn,
@@ -68,13 +69,15 @@ td {
   border-radius: 10px;
 }
 .custom-file-download {
-  padding: 5px 20px;
+  padding: 7px 20px;
   border: none;
   border-radius: 10px;
   color: white;
   background-color: #0d6efd;
+  text-decoration: none;
 }
 .custom-file-upload:hover,
 .custom-file-download:hover {
   opacity: 0.9;
+  cursor: pointer;
 }
