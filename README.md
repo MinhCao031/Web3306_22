@@ -82,22 +82,22 @@ node ClassSeeds.js
 
 ### APIs routing table
 
-| Resources | Action          | Routes                           | Methods | Description                    |
-| --------- | --------------- | -------------------------------- | ------- | ------------------------------ |
-| login | login | /api/auth/login | POST | Log in |
-| logout | logout | /api/auth/logout | GET | Log out |
-| Users | show | /api/users/:user_id/show | GET | Show user's profile |
-| | update | /api/users/:user_id/update | POST | Update user's profile |
-| | change password | /api/users/:user_id/set_password | POST | Change user's password |
-| Classes | show | /api/classes/:user_id/show | GET | Get managed class and students |
-| | show | /api/classes/students?role=&user_id= | POST | Get students in a class |
-| | show | /api/classes/:class_id/grades | GET | Get grade statistic |
-| | create | /api/classes/:class_id/import | POST | Import students to a class |
-| Conversation   | show | /api/conversations/find/:firstUserId/:secondUserId | GET     | Get conversation between two users |
-| | show| /api/conversations/:userId | GET | Get all conversations  of an user |
-| | create| /api/conversations | POST | Create conversation |
-| Messages   | show            | /api/messages/:conversationId           | GET     | Get all messages in a conversation |
-| | create | /api/messages | POST | Add message |
+| Resources    | Action          | Routes                                             | Methods | Description                        |
+| ------------ | --------------- | -------------------------------------------------- | ------- | ---------------------------------- |
+| login        | login           | /api/auth/login                                    | POST    | Log in                             |
+| logout       | logout          | /api/auth/logout                                   | GET     | Log out                            |
+| Users        | show            | /api/users/:user_id/show                           | GET     | Show user's profile                |
+|              | update          | /api/users/:user_id/update                         | POST    | Update user's profile              |
+|              | change password | /api/users/:user_id/set_password                   | POST    | Change user's password             |
+| Classes      | show            | /api/classes/:user_id/show                         | GET     | Get managed class and students     |
+|              | show            | /api/classes/students?role=&user_id=               | POST    | Get students in a class            |
+|              | show            | /api/classes/:class_id/grades                      | GET     | Get grade statistic                |
+|              | create          | /api/classes/:class_id/import                      | POST    | Import students to a class         |
+| Conversation | show            | /api/conversations/find/:firstUserId/:secondUserId | GET     | Get conversation between two users |
+|              | show            | /api/conversations/:userId                         | GET     | Get all conversations of an user   |
+|              | create          | /api/conversations                                 | POST    | Create conversation                |
+| Messages     | show            | /api/messages/:conversationId                      | GET     | Get all messages in a conversation |
+|              | create          | /api/messages                                      | POST    | Add message                        |
 
 We also have Postman collection in server/data/uet-smta.postman_collection.json file, just import this file into Postman to test out API.
 
@@ -124,20 +124,20 @@ Enjoy!
 
 ## Todo
 
-- For frontend team:  
-  - [ ] Create dashboard  
-  - [x] Add sidebar for student  
-  - [x] Create filter function for table  
-  - [x] CRUD for table  
-  - [x] Create more classes display for teacher  
-  - [ ] Research on notification feature  
-  - [ ] Research on real-time chat feature  
-  - [ ] Add feature: redirect to login page when user haven't logged in yet   
+- For frontend team:
+  - [x] Create dashboard
+  - [x] Add sidebar for student
+  - [x] Create filter function for table
+  - [x] CRUD for table
+  - [x] Create more classes display for teacher
+  - [ ] Research on notification feature
+  - [ ] Research on real-time chat feature
+  - [x] Add feature: redirect to login page when user haven't logged in yet
 - For backend team:
   - [ ] Research on notification feature
-  - [x] Research on real-time chat feature 
-  - [x] Add error handling for login 
-  - [x] Add quantity of students in a class 
-  - [ ] Add new student in a class
+  - [x] Research on real-time chat feature
+  - [x] Add error handling for login
+  - [x] Add quantity of students in a class
+  - [ ] Edit and delete students in a class
   - [x] Add import students feature
   - [x] Add new auto generate users and classes data
