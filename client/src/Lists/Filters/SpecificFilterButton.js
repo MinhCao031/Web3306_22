@@ -10,7 +10,8 @@ import Fab from '@mui/material/Fab';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
-export default function SpecificFilterButton({ data, setData }) {
+import axios from 'axios';
+export default function SpecificFilterButton({ setData }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -64,6 +65,12 @@ export default function SpecificFilterButton({ data, setData }) {
       drlEnd: 100,
     });
   };
+  const classId = JSON.parse(sessionStorage.getItem('TableInfo'))
+    ? JSON.parse(sessionStorage.getItem('TableInfo')).classId
+    : '';
+  const username = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).username
+    : '';
   const handleFilter = () => {
     if (!error.gpaStart && !error.gpaEnd && !error.drlStart && !error.drlEnd) {
       const gpaStart =
@@ -74,18 +81,31 @@ export default function SpecificFilterButton({ data, setData }) {
         filterData.drlStart !== '' ? parseInt(filterData.drlStart) : 0;
       const drlEnd =
         filterData.drlEnd !== '' ? parseInt(filterData.drlEnd) : 100;
-      setData(
-        data.filter((student) => {
-          if (
-            student.gpa >= gpaStart &&
-            student.gpa <= gpaEnd &&
-            student.drl >= drlStart &&
-            student.drl <= drlEnd
-          ) {
-            return student;
-          }
+      axios
+        .post(`http://localhost:5000/api/classes/students`, null, {
+          params: {
+            class_id: classId,
+            role: 'Teacher',
+            user_id: username,
+          },
         })
-      );
+        .then((res) => {
+          setData(
+            res.data.filter((student) => {
+              if (
+                student.gpa >= gpaStart &&
+                student.gpa <= gpaEnd &&
+                student.drl >= drlStart &&
+                student.drl <= drlEnd
+              ) {
+                return student;
+              }
+            })
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       setFilterData({
         gpaStart: 0,
         gpaEnd: 4,
