@@ -289,11 +289,13 @@ const Table = () => {
       });
   }, []);
   const handleSaveAction = (e) => {
+    const req = {
+      removed: deletedRows,
+      edited: getUniqueListBy(editedRows, 'username')
+    }
+    console.log(JSON.stringify(req));
     axios
-      .post(`http://localhost:5000/api/classes/${classId}/update`, {
-        removed: deletedRows,
-        edited: getUniqueListBy(editedRows, 'username'),
-      })
+      .post(`http://localhost:5000/api/classes/${classId}/update`, req)
       .then((res) => {
         console.log(res);
       })

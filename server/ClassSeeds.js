@@ -75,6 +75,7 @@ async function generateClasses(quantity) {
     while (quantity != 0 && !errorCheck) {
         let type = classType[rand(classType.length)];
         studentIdRange = studentIds.slice(startStudentId, endStudentId);
+
         const newClass = new Class({
             classId: classId,
             className: genClassName(type),
@@ -83,6 +84,7 @@ async function generateClasses(quantity) {
             studentIds: studentIdRange,
             leaderId: studentIdRange[rand(studentIdRange.length)]
         });
+
         await newClass
             .save()
             .then(() => {
@@ -92,6 +94,9 @@ async function generateClasses(quantity) {
                 errorCheck = true;
                 console.log(err);
             });
+
+        // const newConversation = new Conversation({});
+
         startStudentId = endStudentId;
         endStudentId += parseInt(studentQuantity / classQuantity);
         classId++;
