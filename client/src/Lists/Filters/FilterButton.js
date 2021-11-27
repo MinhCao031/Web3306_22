@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import './Filter.css';
-const FilterButton = ({ type, data, setData }) => {
+import axios from 'axios';
+const FilterButton = ({ type, setData }) => {
   const [badFlip, setBadFlip] = useState(false);
   const [goodFlip, setGoodFlip] = useState(false);
-
+  const classId = JSON.parse(sessionStorage.getItem('TableInfo'))
+    ? JSON.parse(sessionStorage.getItem('TableInfo')).classId
+    : '';
+  const username = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).username
+    : '';
   function isBad(rec) {
     if (rec.gpa < 2.0 || rec.drl < 60) {
       return true;
@@ -12,7 +18,20 @@ const FilterButton = ({ type, data, setData }) => {
     return false;
   }
   const handleBadClick = (e) => {
-    setData(data.filter(isBad));
+    axios
+      .post(`http://localhost:5000/api/classes/students`, null, {
+        params: {
+          class_id: classId,
+          role: 'Teacher',
+          user_id: username,
+        },
+      })
+      .then((res) => {
+        setData(res.data.filter(isBad));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     e.preventDefault();
   };
 
@@ -23,7 +42,20 @@ const FilterButton = ({ type, data, setData }) => {
     return false;
   }
   const handleGoodClick = (e) => {
-    setData(data.filter(isGood));
+    axios
+      .post(`http://localhost:5000/api/classes/students`, null, {
+        params: {
+          class_id: classId,
+          role: 'Teacher',
+          user_id: username,
+        },
+      })
+      .then((res) => {
+        setData(res.data.filter(isGood));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     e.preventDefault();
   };
 

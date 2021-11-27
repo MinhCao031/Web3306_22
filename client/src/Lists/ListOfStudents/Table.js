@@ -291,8 +291,8 @@ const Table = () => {
   const handleSaveAction = (e) => {
     const req = {
       removed: deletedRows,
-      edited: getUniqueListBy(editedRows, 'username')
-    }
+      edited: getUniqueListBy(editedRows, 'username'),
+    };
     console.log(JSON.stringify(req));
     axios
       .post(`http://localhost:5000/api/classes/${classId}/update`, req)
@@ -328,7 +328,7 @@ const Table = () => {
   return (
     <>
       <Stack spacing={1} direction="row">
-        <SpecificFilterButton data={userList} setData={setUserList} />
+        <SpecificFilterButton setData={setUserList} />
         <AddStudentButton data={userList} setData={setUserList} />
         <Fab aria-label="delete" size="medium" onClick={handleDeleteAction}>
           <DeleteOutlineIcon />
@@ -336,8 +336,8 @@ const Table = () => {
       </Stack>
       <ClassName>{classNameTable}</ClassName>
       <div className="filter">
-        <FilterButton type="good" data={userList} setData={setUserList} />
-        <FilterButton type="bad" data={userList} setData={setUserList} />
+        <FilterButton type="good" setData={setUserList} />
+        <FilterButton type="bad" setData={setUserList} />
       </div>
       <BootstrapTable
         bootstrap4
