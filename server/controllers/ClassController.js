@@ -139,7 +139,6 @@ module.exports.getClassGradeStatistic = async function(req, res) {
 };
 
 module.exports.importStudents = async function(req, res) {
-    console.log(req.body.inpjson);
     var users = req.body.inpjson;
 
     const foundClass = await Class.findOneAndUpdate(
@@ -149,6 +148,10 @@ module.exports.importStudents = async function(req, res) {
         }
     ).catch((err) => {
         return res.status(500).json(err);
+    });
+
+    await foundClass.save().catch((err) => {
+        return res.status(500).json({ success: false });
     });
 
     try {
@@ -192,6 +195,14 @@ module.exports.importStudents = async function(req, res) {
                     return res.status(500).json({ success: false });
                 });
 
+                const newConversation = new Conversation({
+                    members: [ foundClass.teacherId, newUser.username ]
+                });
+
+                await newConversation.save().catch((err) => {
+                    return res.json({ success: false });
+                });
+
                 foundClass['studentIds'].push(newUser.username);
                 await foundClass.save().catch((err) => {
                     return res.status(500).json({ success: false });
@@ -225,14 +236,22 @@ module.exports.addStudent = async function(req, res) {
             drl: req.body.drl
         });
         await newUser.save().catch((err) => {
-            console.log(err);
+            return res.json({ success: false });
         });
-        foundClass['studentIds'].push(newUser.username);
 
-        foundClass.save().catch((err) => {
-            console.log(err);
-            return res.status(500).json({ success: false });
+        const newConversation = new Conversation({
+            members: [ foundClass.teacherId, studentId ]
         });
+
+        await newConversation.save().catch((err) => {
+            return res.json({ success: false });
+        });
+
+        foundClass['studentIds'].push(newUser.username);
+        await foundClass.save().catch((err) => {
+            return res.json({ success: false });
+        });
+
         return res.json({ success: true });
     } else {
         return res.status(200).json({ success: false });

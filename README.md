@@ -141,3 +141,4 @@ Enjoy!
   - [ ] Edit and delete students in a class
   - [x] Add import students feature
   - [x] Add new auto generate users and classes data
+  - [ ] Agreement on feature: Adding new student into a class
