@@ -30,6 +30,7 @@ const Table = () => {
   const getUniqueListBy = (arr, key) => {
     return [...new Map(arr.map((item) => [item[key], item])).values()];
   };
+  console.log(userList);
   const filterData = {
     delay: 100,
     style: {
@@ -95,6 +96,25 @@ const Table = () => {
             borderRadius: '15px',
           };
         }
+      },
+      validator: (newValue, row, column) => {
+        if (newValue === 'Lớp trưởng') {
+          if (userList.some((user) => user.level === 'Lớp trưởng')) {
+            return {
+              valid: false,
+              message: 'Lớp trưởng đã tồn tại',
+            };
+          }
+        }
+        if (newValue === 'Bí thư') {
+          if (userList.some((user) => user.level === 'Bí thư')) {
+            return {
+              valid: false,
+              message: 'Bí thư đã tồn tại',
+            };
+          }
+        }
+        return true;
       },
     },
     {
