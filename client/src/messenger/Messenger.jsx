@@ -40,14 +40,14 @@ export default function Messenger() {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get("/conversations/" + user._id);
+        const res = await axios.get("/conversations/" + user.username);
         setConversations(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     getConversations();
-  }, [user._id]);
+  }, [user.username]);
 
   useEffect(() => {
     const getMessages = async () => {
@@ -64,17 +64,17 @@ export default function Messenger() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {
-      sender: user._id,
+      sender: user.username,
       text: newMessage,
       conversationId: currentChat._id,
     };
-
+    console.log("chat +", user);
     const receiverId = currentChat.members.find(
-      (member) => member !== user._id
+      (member) => member !== user.username
     );
 
     socket.current.emit("sendMessage", {
-      senderId: user._id,
+      senderId: user.username,
       receiverId,
       text: newMessage,
     });
@@ -117,7 +117,7 @@ export default function Messenger() {
                 <div className="chatBoxTop">
                   {messages.map((m) => (
                     <div ref={scrollRef}>
-                      <Message message={m} own={m.sender === user._id} />
+                      <Message message={m} own={m.sender === user.username} />
                     </div>
                   ))}
                 </div>
