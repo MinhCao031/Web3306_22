@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useContext} from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
@@ -6,8 +6,12 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 import CustomDialog from './CustomDialog';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import { AuthContext } from "../context/AuthContext";
+
+
 
 const Form = () => {
+  const { isFetching, dispatch } = useContext(AuthContext);
   const [user, setUser] = useState({
     username: '',
     password: '',
@@ -30,9 +34,13 @@ const Form = () => {
         .then((res) => {
           if (res.data.auth === false) {
             setMessage('Tài khoản hoặc mật khẩu không chính xác !');
+
           } else {
             localStorage.clear();
             sessionStorage.setItem('user', JSON.stringify(res.data));
+                        //codeTT
+                        //console.log(res.data);
+                        dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
             if (res.data.role === 'Student') {
               history.push({
                 pathname: '/studentHomepage',
