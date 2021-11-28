@@ -1,5 +1,6 @@
 const config = require('./config/config');
 const Class = require('./models/Class');
+const Conversation = require('./models/Conversation');
 
 const mongoose = require('mongoose');
 
@@ -85,17 +86,21 @@ async function generateClasses(quantity) {
             leaderId: studentIdRange[rand(studentIdRange.length)]
         });
 
-        await newClass
-            .save()
-            .then(() => {
-                console.log(newClass);
-            })
-            .catch((err) => {
+        await newClass.save().catch((err) => {
+            errorCheck = true;
+            console.log(err);
+        });
+
+        for (const studentId of studentIdRange) {
+            const newConversation = new Conversation({
+                members: [ teacherIds[teacherIdCount], studentId ]
+            });
+
+            await newConversation.save().catch((err) => {
                 errorCheck = true;
                 console.log(err);
             });
-
-        // const newConversation = new Conversation({});
+        }
 
         startStudentId = endStudentId;
         endStudentId += parseInt(studentQuantity / classQuantity);
