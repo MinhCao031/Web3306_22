@@ -1,9 +1,10 @@
 const User = require('../models/User');
 const Post = require('../models/Post');
+const Comment = require('../models/Comment');
 
 const result = {
-    message,
-    success
+    message: 'A message from server',
+    success: false
 };
 
 function getResult(status, msg = 'Something went wrong') {
@@ -14,17 +15,17 @@ function getResult(status, msg = 'Something went wrong') {
 
 module.exports.getPosts = async function(req, res) {
     const posts = await Post.find();
-    const results = [];
 
     if (posts.length) {
-        for (const post of posts) {
-            const foundUser = User.findOne({ username: post.ownerId });
+        const results = [];
 
+        for (const post of posts) {
+            const foundUser = await User.findOne({ username: post.ownerId });
             if (foundUser) {
                 const result = {
                     id: post._id,
                     owner: foundUser.name,
-                    content: post.content
+                    title: post.title
                 };
 
                 results.push(result);
@@ -32,15 +33,52 @@ module.exports.getPosts = async function(req, res) {
                 return res.json(getResult(false));
             }
         }
+
+        return res.json(results);
     } else {
         return res.json(getResult(true, 'No posts found'));
+    }
+};
+
+module.exports.getPost = async function(req, res) {
+    const foundPost = await Post.findById(req.params.post_id).catch((err) => {
+        return res.json(getResult(false, err));
+    });
+
+    if (foundPost) {
+        const foundOwner = await User.findOne({ username: foundPost.ownerId }).catch((err) => {
+            return res.json(getResult(false, err));
+        });
+
+        const result = {
+            id: foundPost._id,
+            owner: foundOwner.name,
+            title: foundPost.title,
+            content: foundPost.content,
+            comments: [],
+            createdAt: foundPost.createdAt
+        };
+
+        for (const id of foundPost.commentIds) {
+            const foundComment = await Comment.findOne({ commentId: id }).catch((err) => {
+                return res.json(getResult(false, err));
+            });
+            if (foundComment) {
+                result.comments.push(foundComment.content);
+            }
+        }
+
+        return res.json(result);
+    } else {
+        return res.json(getResult(true, 'No post found'));
     }
 };
 
 module.exports.createPost = async function(req, res) {
     const newPost = new Post({
         ownerId: req.params.user_id,
-        content: req.body.content
+        content: req.body.content,
+        title: req.body.title
     });
 
     await newPost.save().catch((err) => {
@@ -54,7 +92,12 @@ module.exports.updatePost = async function(req, res) {
     const foundPost = Post.findById(req.params.post_id);
 
     if (foundPost) {
-        foundPost.content = req.body.content;
+        if (foundPost.title != req.body.title) {
+            foundPost.title = req.body.title;
+        }
+        if (foundPost.content != req.body.content) {
+            foundPost.content = req.body.content;
+        }
 
         foundPost.save().catch((err) => {
             return res.json(getResult(false, err));

@@ -13,35 +13,35 @@ const userRoute = require('./routes/users');
 const classRoute = require('./routes/classes');
 const conversationRoute = require('./routes/conversations');
 const messageRoute = require('./routes/messages');
+const postRoute = require('./routes/posts');
+const commentRoute = require('./routes/comments');
 
-const {
-  db: { host, port, name },
-} = config;
+const { db: { host, port, name } } = config;
 const dbUrl = `mongodb://${host}:${port}/${name}`;
 const dbOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 };
 const corsOptions = {
-  origin: '*',
-  credentials: true,
-  optionSuccessStatus: 200,
+    origin: '*',
+    credentials: true,
+    optionSuccessStatus: 200
 };
 const sessionOptions = {
-  store: MongoStore.create({ mongoUrl: dbUrl }),
-  secret: 'testing',
-  resave: false,
-  saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: dbUrl }),
+    secret: 'testing',
+    resave: false,
+    saveUninitialized: true
 };
 
 mongoose
-  .connect(dbUrl, dbOptions)
-  .then(() => {
-    console.log('Connection openned!');
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+    .connect(dbUrl, dbOptions)
+    .then(() => {
+        console.log('Connection openned!');
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -55,10 +55,12 @@ app.use(express.json());
 
 app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
-app.use('/api/classes/', classRoute);
+app.use('/api/classes', classRoute);
 app.use('/api/conversations', conversationRoute);
 app.use('/api/messages', messageRoute);
+app.use('/api/posts', postRoute);
+app.use('/api/comments', commentRoute);
 
 app.listen(config.app.port, () => {
-  console.log(`Server connected on port ${config.app.port}`);
+    console.log(`Server connected on port ${config.app.port}`);
 });
