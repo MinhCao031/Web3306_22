@@ -25,13 +25,15 @@ const ClassesDropDown = ({ setSelectedClassID }) => {
   return (
     <>
       <select
+        id="dropDownClass"
         style={{
           marginLeft: '10px',
           padding: '5px 17px',
-          backgroundColor: '#FF7A96',
+          backgroundColor: '#404E68',
           color: 'white',
           border: 'none',
-          borderRadius: '5px',
+          borderRadius: '4px',
+          cursor: 'pointer',
         }}
         onChange={(e) => {
           const classData = classList.filter((item) => {
