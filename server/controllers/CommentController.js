@@ -40,3 +40,35 @@ module.exports.createComment = async function(req, res) {
         return res.json(getResult(true, 'OK'));
     }
 };
+
+module.exports.updateComment = async function(req, res) {
+    const foundPost = await Post.findById(req.params.post_id).catch((err) => {
+        return res.json(getResult(false, err));
+    });
+
+    if (foundPost) {
+        const foundComment = await Comment.findOne({ commentId: req.params.comment_id }).catch((err) => {
+            return res.json(false, err);
+        });
+
+        if (foundComment) {
+            foundComment.content = req.body.content;
+
+            await foundComment.save().catch((err) => {
+                return res.json(getResult(false, err));
+            });
+
+            return res.json(getResult(true, 'OK'));
+        }
+    } else {
+        return res.json(true, 'No post found');
+    }
+};
+
+module.exports.deleteComment = async function(req, res) {
+    await Comment.findOneAndRemove({ commentId: req.params.comment_id }).catch((err) => {
+        return res.json(getResult(false, err));
+    });
+
+    return res.json(getResult(true, 'OK'));
+};
