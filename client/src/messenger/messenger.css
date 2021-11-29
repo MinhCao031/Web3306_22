@@ -42,6 +42,7 @@
   width: 90%;
   height: 90px;
   padding: 10px;
+  border-radius: 15px;
 }
 
 .chatSubmitButton {
@@ -53,7 +54,9 @@
   background-color: teal;
   color: white;
 }
-
+.chatSubmitButton:hover {
+  background-color: #00bcd4;
+}
 .chatOnline {
   flex: 3;
 }
@@ -83,11 +86,11 @@
     display: none;
   }
 
-  .chatBox{
+  .chatBox {
     flex: 10;
   }
 
-  .chatOnline{
+  .chatOnline {
     flex: 1px;
   }
 }
