@@ -55,6 +55,7 @@ module.exports.getPost = async function(req, res) {
             owner: foundOwner.name,
             title: foundPost.title,
             content: foundPost.content,
+            commentIds: foundPost.commentIds,
             comments: [],
             createdAt: foundPost.createdAt
         };
