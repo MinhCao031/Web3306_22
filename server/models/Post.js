@@ -5,11 +5,14 @@ const PostSchema = new mongoose.Schema(
         ownerId: {
             type: String
         },
+        title: {
+            type: String
+        },
         content: {
             type: String
         },
         commentIds: {
-            type: [ mongoose.Schema.Types.ObjectId ]
+            type: [ String ]
         }
     },
     { timestamps: true }
