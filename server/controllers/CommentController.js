@@ -21,6 +21,7 @@ module.exports.createComment = async function(req, res) {
         ownerId: req.params.user_id,
         content: req.body.content
     });
+
     await newComment.save().catch((err) => {
         return res.json(getResult(false, err));
     });
@@ -35,6 +36,7 @@ module.exports.createComment = async function(req, res) {
         await foundPost.save().catch((err) => {
             return res.json(false, err);
         });
+
         return res.json(getResult(true, 'OK'));
     }
 };
