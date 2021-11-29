@@ -1,6 +1,6 @@
 import "./messenger.css";
-import Conversation from "../components/conversations/Conversation";
-import Message from "../components/message/Message";
+import Conversation from "./components/conversations/Conversation";
+import Message from "./components/message/Message";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
@@ -109,6 +109,7 @@ export default function Messenger() {
   return (
     <>
     <NavigationBar />
+    <div >
     <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
@@ -150,6 +151,7 @@ export default function Messenger() {
             )}
           </div>
         </div>
+      </div>
       </div>
       {role === 'Teacher' ? <Sidebar/> : <SidebarStudent/>}
     </>
