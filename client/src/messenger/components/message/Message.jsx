@@ -1,6 +1,6 @@
 import "./message.css";
 import { format } from "timeago.js";
-import boy from '../../assets/boy_ava.png';
+import boy from '../../../assets/boy_ava.png';
 
 export default function Message({ message, own }) {
   return (
