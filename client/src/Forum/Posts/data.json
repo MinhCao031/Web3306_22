@@ -2,35 +2,33 @@
     {
       "userId": "01a",
       "comId": "012",
-      "fullName": "Riya Negi",
-      "text": "Hey, Loved your blog! ",
+      "fullName": "Bạn nữ 1",
+      "timeAgo": "9 phút trước",
+      "text": "U là trời. Bạn giỏi vậy, làm ny tớ nhé <3",
       "replies": [
         {
           "userId": "02a",
           "comId": "013",
-          "fullName": "Adam Scott",
-          "text": "Thanks! It took me 1 month to finish this project but I am glad it helped out someone!🥰"
+          "fullName": "Bạn nữ 2",
+          "timeAgo": "4 phút trước",
+          "text": "Bạn nữ 1 ơi, mình cho vào giỏ hàng của mình lâu rùi, bạn chờ turn sau nha"
         },
         {
           "userId": "01a",
           "comId": "014",
-          "fullName": "Riya Negi",
-          "text": "thanks!😊"
+          "fullName": "Bạn nữ 1",
+          "timeAgo": "1 phút trước",
+          "text": "Hicc"
         }
       ]
     },
     {
       "userId": "02b",
       "comId": "017",
-      "fullName": "Lily",
-      "text": "I have a doubt about the 4th point🤔",
+      "fullName": "Thầy cố vấn",
+      "timeAgo": "12 phút trước",
+      "text": "$60000 là số tiền em nhận được hàng năm nhé. Thế này kiếm 10 ny cùng lúc còn được nữa là. Sau này (chắc là vài tháng nữa) có giàu thì cũng đừng quên thầy nhé em. À mà con gái nhà thầy năm nay cũng mới lên Đại học, có gì nhờ em kèm cặp giúp.",
       "replies": [
       ]
-    },
-    {
-      "userId": "01c",
-      "comId": "018",
-      "fullName": "Derek",
-      "text": "Great explanation!!!"
     }
   ]

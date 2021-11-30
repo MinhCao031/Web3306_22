@@ -1,29 +1,30 @@
 import React, { PureComponent, useState } from 'react'
 import data from "./data.json"
+import './editSrc'
 import { CommentSection } from './editSrc'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import 'react-comments-section/dist/index.css'
-// import "./Comment.css"
+import "./Comment.css"
 
 const Comment = () => {
     const [comment, setComment] = useState(data)
-
     const userId = "01a"
-    const avatarUrl = "https://ui-avatars.com/api/name=Riya&background=random"
     const name = "xyz"
-
     const signinUrl = "/"
     const signupUrl = "/"
     let count = 0
     comment.map(i => {count+=1; i.replies && i.replies.map(i=> count+=1)} )
 
     return (
-      <>  
+      <div className="pop-up-post">  
         <div className="Author">
-            <p>Nguyễn Minh Thái</p>
-            <p>13 giờ trước</p>
-            <hr/>
+          <div className="cmt-header">
+            <p className="cmtOfSb">Nguyễn Minh Thái</p>
+            <div className="separator"></div>
+            <p className="time-taken">13 giờ trước</p>
+          </div> 
+          <hr/>
             <p>
                 Kính gửi thầy,
                 Em tên là Nguyễn Minh Thái, MSSV 19021420
@@ -31,16 +32,16 @@ const Comment = () => {
             </p>
             <hr/>
         </div>
-        <div className="commentSection2">
+        <div className="comment-section">
             <div className="header">{count} Comments</div>
-            <CommentSection currentUser={userId && { userId: userId, avatarUrl: avatarUrl, name: name }} 
+            <CommentSection currentUser={userId && { userId: userId, name: name }} 
                 commentsArray={comment}
                 setComment={setComment} 
                 signinUrl={signinUrl} 
                 signupUrl={signupUrl}
             />
         </div>
-      </>  
+      </div>  
     )
 }
 

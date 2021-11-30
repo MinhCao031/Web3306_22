@@ -6,7 +6,7 @@ var uuid = _interopDefault(require('react-uuid'));
 require('reactjs-popup/dist/index.css');
 var Popup = _interopDefault(require('reactjs-popup'));
 
-var styles = {"section":"_12xdX","inputBox":"_2STY7","inputActions":"_9-5lp","postBtn":"_3oc4k","cancelBtn":"_36TCS","form":"_CXD_f","postComment":"_1blCt","displayComments":"_1SugS","halfDiv":"_qWiSF","userInfo":"_1i6uS","commentsTwo":"_155_V","fullName":"_2Axcq","replyBtn":"_1Njvz","userActions":"_34q_J","actionsBtn":"_3ypnz","replySection":"_l0opN","actionDiv":"_yEQPV","editBtn":"_333BI","deleteBtn":"_2YYVO","signBox":"_1Vv8n","signLine":"_1Ogr8","loginBtn":"_1Oc7K","signBtn":"_20VaH"};
+var styles = {"section":"_12xdX","inputBox":"_2STY7","inputActions":"_9-5lp","postBtn":"_3oc4k","cancelBtn":"_36TCS","form":"_CXD_f","postComment":"_1blCt","displayComments":"_1SugS","timeAgo":"AgeAgo","halfDiv":"_qWiSF","userInfo":"_1i6uS","commentsTwo":"_155_V","fullName":"_2Axcq","replyBtn":"_1Njvz","userActions":"_34q_J","actionsBtn":"_3ypnz","replySection":"_l0opN","actionDiv":"_yEQPV","editBtn":"_333BI","deleteBtn":"_2YYVO","signBox":"_1Vv8n","signLine":"_1Ogr8","loginBtn":"_1Oc7K","signBtn":"_20VaH"};
 
 var ActionContext = React.createContext();
 
@@ -201,7 +201,9 @@ var InputField = function InputField(_ref) {
   React.useEffect(function () {
     setText(value);
   }, [value]);
+
   var actions = React.useContext(ActionContext);
+
   return /*#__PURE__*/React__default.createElement("form", {
     className: styles.form,
     style: !child && !edit && main === undefined ? {
@@ -212,9 +214,10 @@ var InputField = function InputField(_ref) {
   }, /*#__PURE__*/React__default.createElement("input", {
     className: styles.postComment,
     type: "text",
-    placeholder: "Type your reply here.",
+    placeholder: "Nhập bình luận của bạn.",
     component: "input",
     value: text,
+    style: {'font-family':'mulish'},
     onChange: handleChange
   }), /*#__PURE__*/React__default.createElement("div", {
     className: styles.inputActions
@@ -226,22 +229,27 @@ var InputField = function InputField(_ref) {
     type: "button",
     disabled: !text,
     style: !text ? {
-      backgroundColor: '#84dcff'
+      backgroundColor: '#84dcff',
+      'font-family':'mulish'
     } : {
-      backgroundColor: '#30c3fd'
+      backgroundColor: '#30c3fd',
+      'font-family':'mulish'
     }
-  }, "Post"), (text || parentId) && /*#__PURE__*/React__default.createElement("button", {
-    className: styles.cancelBtn,
+  }, "Trả Lời"), (text || parentId) && /*#__PURE__*/React__default.createElement("button", {
+    className: styles.cancelBtn, style: {'font-family':'mulish'},
     onClick: function onClick() {
       return edit ? actions.handleCancel(cancellor, edit) : actions.handleCancel(cancellor);
     }
-  }, "Cancel")));
+  }, "Hủy")));
 };
 
 var modal = {
+  color: 'purple',
+  fontfamily: 'Mulish',
   fontSize: '16px'
 };
 var modalClose = {
+  color: 'purple',
   cursor: 'pointer',
   position: 'absolute',
   display: 'block',
@@ -249,6 +257,7 @@ var modalClose = {
   lineHeight: '20px',
   right: '-10px',
   top: '-10px',
+  fontfamily: 'Mulish',
   fontSize: '24px',
   background: '#ffffff',
   borderRadius: '18px',
@@ -256,23 +265,31 @@ var modalClose = {
   outline: 'none'
 };
 var modalHeader = {
+  color: 'purple',
   width: '100%',
   borderBottom: '1px solid gray',
+  fontfamily: 'Mulish',
   fontSize: '18px',
   textAlign: 'center',
   padding: '5px'
 };
 var modalContent = {
+  color: 'purple',
+  fontfamily: 'Mulish',
   width: '100%',
   padding: '10px 10px'
 };
 var modalActions = {
+  color: 'red',
+  fontfamily: 'Mulish',
   width: ' 100%',
   padding: ' 10px 5px',
   margin: ' auto',
   textAlign: ' center'
 };
 var modalActionBtn = {
+  color: 'red',
+  fontfamily: 'Mulish',
   backgroundColor: 'transparent',
   outline: 'none',
   border: '1px solid gray',
@@ -280,6 +297,8 @@ var modalActionBtn = {
   cursor: 'pointer'
 };
 var modalDelBtn = {
+  color: 'red',
+  fontfamily: 'Mulish',
   backgroundColor: 'transparent',
   outline: 'none',
   border: '1px solid gray',
@@ -287,6 +306,36 @@ var modalDelBtn = {
   padding: '4px 12px',
   cursor: 'pointer'
 };
+var cmtFullName = {
+  'font-family': 'Mulish',
+  'font-style': 'normal',
+  'font-weight': 'bold',
+  'font-size': '18px',
+  'line-height': '23px',
+  'display': 'flex',
+  'align-items': 'center',
+  'letter-spacing': '0.3px',
+  'color': '#404E68'
+};
+var cmtTimeAgo = {
+  'font-family': 'Mulish',
+  'font-style': 'normal',
+  'font-weight': 600,
+  'font-size': '10px',
+  'line-height': '13px',
+  'display': 'flex',
+  'align-items': 'center',
+  'letter-spacing': '0.05em',
+  'color': '#404E68'
+}
+var cmtContent = {
+  'font-family': 'Mulish',
+  'font-style': 'normal',
+  'font-weight': 'bold',
+  'font-size': '13px',
+  'line-height': '16px',
+  'letter-spacing': '0.05em'
+}
 
 var CommentStructure = function CommentStructure(_ref) {
   var i = _ref.i,
@@ -294,25 +343,34 @@ var CommentStructure = function CommentStructure(_ref) {
       parentId = _ref.parentId;
   var actions = React.useContext(ActionContext);
   var edit = true;
-  return /*#__PURE__*/React__default.createElement("div", {
-    className: styles.halfDiv
-  }, /*#__PURE__*/React__default.createElement("div", {
-    className: styles.userInfo,
-    style: reply && {
-      marginLeft: 15,
-      marginTop: '6px'
-    }
-  }, /*#__PURE__*/React__default.createElement("div", null, i.text), /*#__PURE__*/React__default.createElement("div", {
-    className: styles.commentsTwo
-  }, /*#__PURE__*/React__default.createElement("div", {
-    className: styles.fullName
-  }, i.fullName, " "), /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("button", {
-    className: styles.replyBtn,
-    onClick: function onClick() {
-      return actions.handleAction(i.comId);
-    },
-    disabled: !actions.user
-  }, ' ', " Reply")))), /*#__PURE__*/React__default.createElement("div", {
+  return /*#__PURE__*/React__default.createElement("div", 
+  {className: styles.halfDiv}, 
+  /*#__PURE__*/React__default.createElement("div", 
+    {
+      className: styles.userInfo,
+      style: reply && {
+        marginLeft: 15,
+        marginTop: '6px'
+      }
+    }, 
+    /*#__PURE__*/React__default.createElement("div", {className: styles.commentsTwo}, 
+      /*#__PURE__*/React__default.createElement("div", {className: styles.fullName, style:cmtFullName}, i.fullName, " "),
+      /*#__PURE__*/React__default.createElement("div", {className: styles.fullName, style:cmtTimeAgo}, i.timeAgo, " "),
+    ),
+    /*#__PURE__*/React__default.createElement("div", {style:cmtContent}, i.text),
+    /*#__PURE__*/React__default.createElement("div", {className: styles.commentsTwo}, 
+      /*#__PURE__*/React__default.createElement("div", {className: styles.fullName}, " "), 
+        /*#__PURE__*/React__default.createElement("div", {className: styles.fullName}, 
+          /*#__PURE__*/React__default.createElement("button", 
+            {className: styles.replyBtn, style: {'font-family':'mulish'}, onClick: function onClick() 
+            { return actions.handleAction(i.comId); },
+            disabled: !actions.user
+          }, ' ', " Trả lời"
+        )
+      )    
+    ),  
+  ), 
+  /*#__PURE__*/React__default.createElement("div", {
     className: styles.userActions
   }, actions.userId === i.userId && actions.user && /*#__PURE__*/React__default.createElement(Popup, {
     role: "tooltip",
@@ -372,76 +430,87 @@ var DisplayComments = function DisplayComments(_ref) {
   var comments = _ref.comments;
   var actions = React.useContext(ActionContext);
   return /*#__PURE__*/React__default.createElement("div", null, comments.map(function (i, index) {
-    return /*#__PURE__*/React__default.createElement("div", {
-      key: i.comId
-    }, actions.editArr.filter(function (id) {
-      return id === i.comId;
-    }).length !== 0 ? actions.customInput ? actions.customInput({
-      cancellor: i.comId,
-      value: i.text,
-      handleCancel: actions.handleCancel,
-      submit: actions.submit,
-      edit: true
-    }) : /*#__PURE__*/React__default.createElement(InputField, {
-      cancellor: i.comId,
-      value: i.text,
-      edit: true
-    }) : /*#__PURE__*/React__default.createElement(CommentStructure, {
+    return /*#__PURE__*/React__default.createElement("div",
+    {key: i.comId}, 
+    actions.editArr.filter(function (id) {return id === i.comId;}).length !== 0
+    ? actions.customInput
+      ? actions.customInput({
+        cancellor: i.comId,
+        value: i.text,
+        handleCancel: actions.handleCancel,
+        submit: actions.submit,
+        edit: true
+      })
+      : /*#__PURE__*/React__default.createElement(InputField, {
+        cancellor: i.comId,
+        value: i.text,
+        edit: true
+      })
+    : /*#__PURE__*/React__default.createElement(CommentStructure, {
       i: i,
       handleEdit: function handleEdit() {
         return actions.handleAction;
       }
-    }), actions.replies.filter(function (id) {
-      return id === i.comId;
-    }).length !== 0 && (actions.customInput ? actions.customInput({
-      cancellor: i.comId,
-      parentId: i.comId,
-      submit: actions.submit,
-      handleCancel: actions.handleCancel,
-      edit: false
-    }) : /*#__PURE__*/React__default.createElement(InputField, {
-      cancellor: i.comId,
-      parentId: i.comId
-    })), /*#__PURE__*/React__default.createElement("div", {
-      className: styles.replySection
-    }, i.replies && i.replies.map(function (a, index) {
-      return /*#__PURE__*/React__default.createElement("div", {
-        key: a.comId
-      }, actions.editArr.filter(function (id) {
-        return id === a.comId;
-      }).length !== 0 ? actions.customInput ? actions.customInput({
-        cancellor: a.comId,
-        value: a.text,
-        handleCancel: actions.handleCancel,
-        edit: true,
-        parentId: i.comId,
-        submit: actions.submit
-      }) : /*#__PURE__*/React__default.createElement(InputField, {
-        cancellor: a.comId,
-        value: a.text,
-        edit: true,
-        parentId: i.comId
-      }) : /*#__PURE__*/React__default.createElement(CommentStructure, {
-        i: a,
-        reply: true,
-        parentId: i.comId,
-        handleEdit: function handleEdit() {
-          return actions.handleAction;
-        }
-      }), actions.replies.filter(function (id) {
-        return id === a.comId;
-      }).length !== 0 && (actions.customInput ? actions.customInput({
-        cancellor: a.comId,
-        parentId: i.comId,
-        child: true,
-        submit: actions.submit,
-        handleCancel: actions.handleCancel,
-        edit: false
-      }) : /*#__PURE__*/React__default.createElement(InputField, {
-        cancellor: a.comId,
-        parentId: i.comId,
-        child: true
-      })));
+    }), 
+    actions.replies.filter(function (id) {return id === i.comId;}).length !== 0
+      && (actions.customInput 
+        ? actions.customInput({
+          cancellor: i.comId,
+          parentId: i.comId,
+          submit: actions.submit,
+          handleCancel: actions.handleCancel,
+          edit: false
+        })
+        : /*#__PURE__*/React__default.createElement(InputField, {
+          cancellor: i.comId,
+          parentId: i.comId
+        })
+      ),
+    /*#__PURE__*/React__default.createElement("div", {className: styles.replySection}, 
+      i.replies && i.replies.map(function (a, index) {
+        return /*#__PURE__*/React__default.createElement("div", 
+        {key: a.comId}, 
+        actions.editArr.filter(function (id) {
+          return id === a.comId;
+        }).length !== 0 
+          ? actions.customInput 
+            ? actions.customInput({
+              cancellor: a.comId,
+              value: a.text,
+              handleCancel: actions.handleCancel,
+              edit: true,
+              parentId: i.comId,
+              submit: actions.submit
+            })
+            : /*#__PURE__*/React__default.createElement(InputField, {
+              cancellor: a.comId,
+              value: a.text,
+              edit: true,
+              parentId: i.comId
+            })
+          : /*#__PURE__*/React__default.createElement(CommentStructure, {
+            i: a,
+            reply: true,
+            parentId: i.comId,
+            handleEdit: function handleEdit() {
+              return actions.handleAction;
+            }
+          }), 
+        actions.replies.filter(function (id) {return id === a.comId;}).length !== 0 
+          && (actions.customInput
+            ? actions.customInput({
+              cancellor: a.comId,
+              parentId: i.comId,
+              child: true,
+              submit: actions.submit,
+              handleCancel: actions.handleCancel,
+              edit: false
+            })
+            : /*#__PURE__*/React__default.createElement(InputField, {
+              cancellor: a.comId,
+              parentId: i.comId,
+            child: true
+        })));
     })));
   }));
 };
@@ -514,7 +583,8 @@ var CommentSection = function CommentSection(_ref) {
     className: styles.displayComments
   }, /*#__PURE__*/React__default.createElement(DisplayComments, {
     comments: comments
-  }))));
+  })
+  )));
 };
 
 exports.CommentSection = CommentSection;
