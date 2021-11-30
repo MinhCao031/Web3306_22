@@ -3,6 +3,8 @@ import { format } from "timeago.js";
 import pen from '../../assets/pen.png';
 import boy from '../../assets/bin.png';
 
+
+
 export default function BoxPost() {
 
     return (
