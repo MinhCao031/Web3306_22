@@ -23,7 +23,7 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   background-color: #f4f5fa;
-  height: 120vh;
+  height: 100vh;
   display: flex;
 `;
 export default SignInForm;
