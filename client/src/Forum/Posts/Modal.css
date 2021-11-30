@@ -1,0 +1,8 @@
+.btn-forum {
+    display: flex;
+    align-items: center;
+    margin-top: 1.3rem;
+    left: 70%;
+    cursor: default;
+    justify-content: end;
+}
