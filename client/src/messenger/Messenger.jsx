@@ -109,6 +109,7 @@ export default function Messenger() {
   return (
     <>
     <NavigationBar />
+    <div >
     <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
@@ -150,6 +151,7 @@ export default function Messenger() {
             )}
           </div>
         </div>
+      </div>
       </div>
       {role === 'Teacher' ? <Sidebar/> : <SidebarStudent/>}
     </>

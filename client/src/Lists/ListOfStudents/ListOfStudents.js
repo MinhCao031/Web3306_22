@@ -7,12 +7,10 @@ import Footer from '../../HomePage/components/Footer';
 const ListOfStudents = () => {
   return (
     <>
-      <Container>
-        <NavigationBar />
-        <Table />
-        <Sidebar />
-        <Footer />
-      </Container>
+      <NavigationBar />
+      <Table />
+      <Sidebar />
+      <Footer />
     </>
   );
 };
