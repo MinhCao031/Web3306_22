@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -45,6 +46,18 @@ function editBtn({handleClickOpen}) {
     )
 }
 
+//codeTT
+function deleteBtn({handleClickOpen}) {
+    return (
+        <IconButton
+            color="default" 
+            aria-label="delete" 
+            onClick={handleClickOpen}
+        >
+            <DeleteIcon />
+        </IconButton>
+    )
+}
 
 function ModalBtn({ 
     btnName,
@@ -122,3 +135,4 @@ function ModalBtn({
 }
 
 export default ModalBtn
+

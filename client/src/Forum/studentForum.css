@@ -3,11 +3,7 @@
 }
 
 .postMenuWrapper {
-    display: inline-block;
-    justify-content: space-between;
-    align-items: center;
     margin: 35px 40px;
-    padding-top: 25px;
 }
 
 .titleText {
@@ -16,5 +12,5 @@
     justify-content: center;
     font-size: 30px;
     color: #404e68;
-    font-weight:normal;
+    font-weight:bold;
 }

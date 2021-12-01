@@ -18,17 +18,11 @@ const StudentForum = () => {
                 title="TẠO MỘT BÀI ĐĂNG MỚI"
                 submitBtn="Đăng bài"
             />
-            <ModalBtn 
-                btnName=""
-                title="SỬA BÀI ĐĂNG"
-                submitBtn="Cập nhật"
-                headingText="Hỏi thông tin học bổng 100 củ"
-                contentText="Em được biết là trường đang phát tiền miễn phí, cho em hỏi thêm thông tin với ạ"
-                edit='true'
-            />
         </div>
         <div style = {{justifyContent: 'center', display: 'flex'}}>
         <div className = "postMenuWrapper"> 
+            <BoxPost />
+            <BoxPost />
             <BoxPost />
         </div>
         </div>
