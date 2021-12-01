@@ -223,7 +223,7 @@ var InputField = function InputField(_ref) {
   }, /*#__PURE__*/React__default.createElement("button", {
     className: styles.postBtn,
     onClick: function onClick() {
-      /*EDIT*/console.log(comments);
+      /*EDITconsole.log(comments);*/
       return edit === true ? actions.submit(cancellor, text, parentId, true, setText) : actions.submit(cancellor, text, parentId, false, setText);
     },
     type: "button",
