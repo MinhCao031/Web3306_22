@@ -7,14 +7,7 @@ const TeacherHomePage = () => {
   return (
     <>
       <NavigationBar />
-      <Container>
-        <img
-          src="https://www.thelawofattraction.com/wp-content/uploads/quote1.jpg"
-          alt="picture"
-          width="50%"
-        />
-        <Footer />
-      </Container>
+      <Footer />
       <Sidebar />
     </>
   );
@@ -22,5 +15,6 @@ const TeacherHomePage = () => {
 export const Container = styled.div`
   background-color: #f4f5fa;
   width: 100%;
+  height: 100vh;
 `;
 export default TeacherHomePage;

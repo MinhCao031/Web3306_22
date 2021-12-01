@@ -7,12 +7,10 @@ import Footer from '../../HomePage/components/Footer';
 const ListOfClasses = () => {
   return (
     <>
-      <Container style={{ height: '100vh' }}>
-        <NavigationBar />
-        <Table />
-        <Sidebar />
-        <Footer />
-      </Container>
+      <NavigationBar />
+      <Table />
+      <Footer />
+      <Sidebar />
     </>
   );
 };
