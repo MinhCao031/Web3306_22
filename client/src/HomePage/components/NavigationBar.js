@@ -5,6 +5,7 @@ import './NavigationBar.css';
 import boy from '../../assets/boy_ava.png';
 import DropdownAva from './DropdownAva';
 import DropNotification from './DropNotification';
+
 function NavigationBar() {
   const name = JSON.parse(sessionStorage.getItem('user'))
     ? JSON.parse(sessionStorage.getItem('user')).name
