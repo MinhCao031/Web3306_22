@@ -6,12 +6,12 @@ import Footer from '../../HomePage/components/Footer';
 import Table from './Table';
 const ClassList = () => {
   return (
-    <Container>
+    <>
       <NavigationBar />
       <Table />
       <SidebarStudent />
       <Footer />
-    </Container>
+    </>
   );
 };
 

@@ -51,20 +51,14 @@ const Table = () => {
         if (row.classType === 'Thường') {
           return {
             color: '#DF9941',
-            border: '1px solid #DF9941',
-            borderRadius: '15px',
           };
         } else if (row.classType === 'CLC') {
           return {
             color: '#E4636F',
-            border: '1px solid #E4636F',
-            borderRadius: '15px',
           };
         } else if (row.classType === 'CLCTT23') {
           return {
             color: '#7FC008',
-            border: '1px solid #7FC008',
-            borderRadius: '15px',
           };
         }
       },
@@ -103,7 +97,7 @@ const Table = () => {
         data={data}
         columns={columns}
         hover
-        bordered={false}
+        bordered={true}
         filter={filterFactory()}
         noDataIndication="Không có lớp"
         rowEvents={rowEvents}

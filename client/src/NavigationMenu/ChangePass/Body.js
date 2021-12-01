@@ -100,7 +100,6 @@ const Body = () => {
         <Message style={{ color: 'red' }}>{message}</Message>
       ) : null}
       <div className="button-wrap">
-        <Button onClick={handleSubmit}>Cập nhật</Button>
         <Button
           onClick={(e) => {
             if (role === 'Student') {
@@ -113,6 +112,7 @@ const Body = () => {
         >
           Hủy
         </Button>
+        <Button onClick={handleSubmit}>Cập nhật</Button>
       </div>
     </Container>
   );
