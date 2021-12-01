@@ -12,6 +12,11 @@
     margin-top: 20px;
   }
 
+  .feildClick {
+    height: 80px;
+    width: 800px;
+  }
+
 .time {
     font-size: 10px;
 }
