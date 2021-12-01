@@ -66,7 +66,6 @@ var ActionProvider = function ActionProvider(_ref) {
         setComment([].concat(comments, [{
           userId: currentUser.userId,
           comId: uuid(),
-          avatarUrl: currentUser.avatarUrl,
           fullName: currentUser.name,
           text: text
         }]));
@@ -78,7 +77,6 @@ var ActionProvider = function ActionProvider(_ref) {
         newList[index].replies.push({
           userId: currentUser.userId,
           comId: uuid(),
-          avatarUrl: currentUser.avatarUrl,
           fullName: currentUser.name,
           text: text
         });
@@ -94,7 +92,6 @@ var ActionProvider = function ActionProvider(_ref) {
         newReplies.push({
           userId: currentUser.userId,
           comId: uuid(),
-          avatarUrl: currentUser.avatarUrl,
           fullName: currentUser.name,
           text: text
         });
@@ -102,6 +99,7 @@ var ActionProvider = function ActionProvider(_ref) {
         setComment(_newList2);
       }
     }
+/*EDITconsole.log(comments);*/
   };
 
   var editText = function editText(id, text, parentId) {
@@ -161,6 +159,7 @@ var ActionProvider = function ActionProvider(_ref) {
       handleCancel(cancellor);
       setText('');
     }
+  /*EDIT*/console.log(_ref.comments);
   };
 
   return /*#__PURE__*/React__default.createElement(ActionContext.Provider, {
@@ -224,6 +223,7 @@ var InputField = function InputField(_ref) {
   }, /*#__PURE__*/React__default.createElement("button", {
     className: styles.postBtn,
     onClick: function onClick() {
+      /*EDIT*/console.log(comments);
       return edit === true ? actions.submit(cancellor, text, parentId, true, setText) : actions.submit(cancellor, text, parentId, false, setText);
     },
     type: "button",
@@ -235,14 +235,13 @@ var InputField = function InputField(_ref) {
       backgroundColor: '#30c3fd',
       'font-family':'mulish'
     }
-  }, "Trả Lời"), (text || parentId) && /*#__PURE__*/React__default.createElement("button", {
+  }, "Bình luận"), (text || parentId) && /*#__PURE__*/React__default.createElement("button", {
     className: styles.cancelBtn, style: {'font-family':'mulish'},
     onClick: function onClick() {
       return edit ? actions.handleCancel(cancellor, edit) : actions.handleCancel(cancellor);
     }
   }, "Hủy")));
 };
-
 var modal = {
   color: 'purple',
   fontfamily: 'Mulish',
