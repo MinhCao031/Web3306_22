@@ -8,7 +8,7 @@ import NavigationBar from '../../HomePage/components/NavigationBar';
 const ChangePass = () => {
   return (
     <>
-      <Container>
+      <Container style={{ height: '100vh' }}>
         {/* <Header></Header> */}
         <NavigationBar />
         <Body></Body>

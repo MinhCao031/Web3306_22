@@ -11,17 +11,16 @@ const TeacherHomePage = () => {
         <img
           src="https://www.thelawofattraction.com/wp-content/uploads/quote1.jpg"
           alt="picture"
-          width="100%"
+          width="50%"
         />
+        <Footer />
       </Container>
       <Sidebar />
-      <Footer />
     </>
   );
 };
 export const Container = styled.div`
   background-color: #f4f5fa;
   width: 100%;
-  height: 150vh;
 `;
 export default TeacherHomePage;

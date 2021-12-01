@@ -12,11 +12,11 @@ function StudentHomePage() {
         <img
           src="https://www.thelawofattraction.com/wp-content/uploads/quote1.jpg"
           alt="picture"
-          width="100%"
+          width="50%"
         />
+        <Footer />
       </Container>
       <SidebarStudent />
-      <Footer />
     </>
   );
 }
