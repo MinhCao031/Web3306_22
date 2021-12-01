@@ -77,7 +77,11 @@ function ChangeInfoTeacher() {
     setSuccessMessage('');
   };
   const stringContainsNumber = (_string) => {
-    return /\d/.test(_string);
+    if (_string.length <= 0) {
+      return true;
+    } else {
+      return /\d/.test(_string);
+    }
   };
   const ref = useRef();
   const history = useHistory();
@@ -107,7 +111,7 @@ function ChangeInfoTeacher() {
         });
     }
     if (stringContainsNumber(name)) {
-      setNameErrorMessage('Tên không được chứa số');
+      setNameErrorMessage('Tên không hợp lệ');
     }
     if (!validator.isEmail(email)) {
       setEmailErrorMessage('Email không hợp lệ');
