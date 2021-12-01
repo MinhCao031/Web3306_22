@@ -77,7 +77,11 @@ function ChangeInfoTeacher() {
     setSuccessMessage('');
   };
   const stringContainsNumber = (_string) => {
-    return /\d/.test(_string);
+    if (_string.length <= 0) {
+      return true;
+    } else {
+      return /\d/.test(_string);
+    }
   };
   const ref = useRef();
   const history = useHistory();
@@ -107,7 +111,7 @@ function ChangeInfoTeacher() {
         });
     }
     if (stringContainsNumber(name)) {
-      setNameErrorMessage('Tên không được chứa số');
+      setNameErrorMessage('Tên không hợp lệ');
     }
     if (!validator.isEmail(email)) {
       setEmailErrorMessage('Email không hợp lệ');
@@ -204,7 +208,11 @@ function ChangeInfoTeacher() {
             </div>
           </div>
           <div className="Identifier">
-            <p className="FieldToChange">Mã số giảng viên/sinh viên: </p>
+            {role === 'Teacher' ? (
+              <p className="FieldToChange">Mã số giảng viên: </p>
+            ) : (
+              <p className="FieldToChange">Mã số sinh viên: </p>
+            )}
             <div className="Field2">
               <Input
                 name="ConstID"
@@ -258,14 +266,17 @@ function ChangeInfoTeacher() {
         </div>
 
         <div className="desc">
-          <div className="Description">
+          <div>
             <p className="FieldToChange">Giới thiệu: </p>
             <div className="Field1">
               <Textarea
                 type="textarea"
                 name="Description"
                 id="Description"
-                style={{ width: '900px', height: '140px' }}
+                style={{
+                  width: '100%',
+                  height: '140px',
+                }}
                 value={introduction}
                 onChange={handleIntroduction}
               ></Textarea>
@@ -283,9 +294,6 @@ function ChangeInfoTeacher() {
             </SuccessMessage>
           ))}
         <div className="wrapper">
-          <Button id="submit" onClick={handleSubmit}>
-            <p className="Submit">Cập nhật</p>
-          </Button>
           <Button
             id="cancel"
             onClick={(e) => {
@@ -298,6 +306,9 @@ function ChangeInfoTeacher() {
             }}
           >
             <p className="Cancel">Hủy</p>
+          </Button>
+          <Button id="submit" onClick={handleSubmit}>
+            <p className="Submit">Cập nhật</p>
           </Button>
         </div>
       </Container>
@@ -316,6 +327,7 @@ const ErrorMessage = styled.span`
   color: red;
 `;
 const Textarea = styled.textarea`
+  width: 100%;
   border: 1px solid #cddedf;
   box-sizing: border-box;
   border-radius: 5px;
@@ -358,13 +370,11 @@ const Container = styled.div`
   }
   div > div {
     position: relative;
-    display: flex;
     flex-direction: column;
     margin: 0px 50px;
   }
   div > div > div {
     position: relative;
-    display: flex;
     flex-direction: row;
     margin: 0px 0px;
   }
@@ -374,12 +384,14 @@ const Container = styled.div`
     width: 450px;
   }
 
-  .line,
+  .line {
+    margin: 50px 0px 50px 0px;
+  }
   .desc {
     margin: 50px 0px 50px 0px;
   }
   .wrapper {
-    width: 100%;
+    width: 95%;
     margin: 10px 0px 10px 0px;
     display: flex;
     justify-content: flex-end;

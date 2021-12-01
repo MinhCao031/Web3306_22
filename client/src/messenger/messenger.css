@@ -1,4 +1,6 @@
 .messenger {
+  position: relative;
+  z-index: 0;
   height: calc(100vh - 70px);
   display: flex;
 }
@@ -23,12 +25,14 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  z-index: 0;
 }
 
 .chatBoxTop {
   height: 100%;
   overflow-y: scroll;
   padding-right: 10px;
+  z-index: 1;
 }
 
 .chatBoxBottom {
@@ -67,10 +71,13 @@
   padding: 10px;
   height: 100%;
   overflow-y: scroll;
+  z-index: 1;
 }
 
 .noConversationText {
+  z-index: 1;
   position: absolute;
+  z-index: -1;
   top: 10%;
   font-size: 50px;
   color: rgb(224, 220, 220);

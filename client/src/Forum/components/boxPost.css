@@ -2,29 +2,27 @@
 
 .boxPost {
     background-color: #fff;
+    position:relative;
+    z-index: 1;
     height: 80px;
     width: 800px;
-    position: relative;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
   }
-
-.postsitive {
-    position:relative;
-    top: 18px;
-    
-}
-
-.postsitive-name {
-    position:absolute;
-    left:74px;
-    bottom:25px;
-    margin-left: auto;
-    text-align: left;
-    
-}
 
 .time {
     font-size: 10px;
+}
+
+
+.postsitive-name {
+  position:absolute;
+  left: 10%;
+  top: 20%;
+  margin-left: auto;
+  text-align: left;
 }
 
 .name-text {
@@ -34,8 +32,8 @@
 
   .heading-text{
     position:absolute;
-    left:90px;
-    bottom:-9px;
+    left: 12%;
+    bottom: 10%;
     text-align: left;
     margin-left: auto;
     color:  #000000;
@@ -43,29 +41,24 @@
   }
 
   .view-number {
+    position:absolute;
+    left:0px;
+    bottom:15px;
     border-right: 1px solid #404e68;
     padding-right: 15px;
     font-size: 30px;
-    padding-left: 10px;
     color: #404e68;
     font-weight: bold;
   }
 
-  .penImg {
+  .penButton {
     position:absolute;
-    left:762px;
-    bottom:30px;
-    width: 25px;
-    height: 25px;
-    object-fit: cover;
-    margin-right: 20px;
+    left:95%;
+    top:0%;
   }
-  .binImg {
+  .binButton {
     position:absolute;
-    left:760px;
-    bottom:-10px;
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
-    margin-right: 20px;
+    left:96%;
+    bottom:5%;
+    opacity: 0.6;
   }

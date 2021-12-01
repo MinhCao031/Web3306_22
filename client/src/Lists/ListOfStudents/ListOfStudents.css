@@ -15,11 +15,6 @@
   display: none;
 }
 
-.table {
-  border-collapse: separate;
-  box-shadow: inset 0px -1px 0px #c9cfda;
-}
-
 div.row.react-bootstrap-table-pagination {
   width: 100%;
 }
@@ -33,7 +28,7 @@ td {
 }
 
 .saveButton {
-  width: 100%;
+  width: 98.5%;
   display: flex;
   justify-content: flex-end;
 }
