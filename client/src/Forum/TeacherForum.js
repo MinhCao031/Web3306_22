@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from '../HomePage/components/Sidebar';
 import NavigationBar from '../HomePage/components/NavigationBar';
+
 const TeacherForum = () => {
   return (
     <>

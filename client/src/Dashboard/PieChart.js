@@ -23,7 +23,7 @@ const PieChart = ({ selectedClassID }) => {
         label: 'Số lượng ĐRL',
         data: drlList,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.85)',
+          'rgba(64, 78, 104, 0.85)',
           'rgba(54, 162, 235, 0.85)',
           'rgba(255, 206, 86, 0.85)',
           'rgba(75, 192, 192, 0.85)',
@@ -31,7 +31,7 @@ const PieChart = ({ selectedClassID }) => {
           'rgba(255, 159, 64, 0.85)',
         ],
         hoverBackgroundColor: [
-          'rgba(255, 99, 132, 1)',
+          'rgba(64, 78, 104, 1)',
           'rgba(54, 162, 235, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
