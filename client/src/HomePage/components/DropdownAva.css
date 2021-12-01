@@ -30,7 +30,7 @@
   background-color: #f1f1f1;
 }
 
-.dropdown-link a {
+.dropdown-link div {
   text-decoration: none;
   background-color: none;
   color: #000;
@@ -47,7 +47,7 @@
   background-color: #404e68;
 }
 
-.dropdown-link:first-child a {
+.dropdown-link:first-child div {
   color: #f1f1f1;
   cursor: default;
 }
@@ -67,4 +67,9 @@
 
 .dropdown-link:hover {
   background-color: #404e68;
+  cursor: pointer;
+}
+
+.dropdown-link:first-child:hover {
+  cursor: default;
 }

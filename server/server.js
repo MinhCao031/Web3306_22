@@ -2,19 +2,38 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const cors = require('cors');
+const logger = require('morgan');
+
+const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 
-const config = require('./config/config.js');
-const userRoutes = require('./routes/userRoutes.js');
-const classRoutes = require('./routes/classRoutes.js');
+const config = require('./config/config');
+const authRoute = require('./routes/auth');
+const userRoute = require('./routes/users');
+const classRoute = require('./routes/classes');
+const conversationRoute = require('./routes/conversations');
+const messageRoute = require('./routes/messages');
+const postRoute = require('./routes/posts');
+const commentRoute = require('./routes/comments');
 
-// Connect to database
 const { db: { host, port, name } } = config;
 const dbUrl = `mongodb://${host}:${port}/${name}`;
 const dbOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true
 };
+const corsOptions = {
+    origin: '*',
+    credentials: true,
+    optionSuccessStatus: 200
+};
+const sessionOptions = {
+    store: MongoStore.create({ mongoUrl: dbUrl }),
+    secret: 'testing',
+    resave: false,
+    saveUninitialized: true
+};
+
 mongoose
     .connect(dbUrl, dbOptions)
     .then(() => {
@@ -24,34 +43,24 @@ mongoose
         console.log(err);
     });
 
-// Set up application
 const app = express();
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-const corsOptions = {
-    origin: '*',
-    credentials: true,
-    optionSuccessStatus: 200
-};
+app.use(logger('dev'));
 app.use(cors(corsOptions));
-
-const sessionOptions = {
-    name: 'session',
-    secret: 'testing',
-    resave: false,
-    saveUninitialized: true
-};
 app.use(session(sessionOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Set up routes
-app.use('/', userRoutes);
-app.use('/classes', classRoutes);
+app.use('/api/auth', authRoute);
+app.use('/api/users', userRoute);
+app.use('/api/classes', classRoute);
+app.use('/api/conversations', conversationRoute);
+app.use('/api/messages', messageRoute);
+app.use('/api/posts', postRoute);
+app.use('/api/comments', commentRoute);
 
-// Set up listen port
 app.listen(config.app.port, () => {
     console.log(`Server connected on port ${config.app.port}`);
 });

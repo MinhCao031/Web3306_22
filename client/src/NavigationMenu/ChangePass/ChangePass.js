@@ -3,11 +3,14 @@ import Header from './Header';
 import Body from './Body';
 import './ChangePass.css';
 import { Container } from '../../HomePage/TeacherHomePage';
+import NavigationBar from '../../HomePage/components/NavigationBar';
+
 const ChangePass = () => {
   return (
     <>
       <Container>
-        <Header></Header>
+        {/* <Header></Header> */}
+        <NavigationBar />
         <Body></Body>
       </Container>
     </>

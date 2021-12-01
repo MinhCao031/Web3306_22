@@ -1,0 +1,470 @@
+{
+	"info": {
+		"_postman_id": "67862247-a877-448f-a2d4-270045964077",
+		"name": "uet-smta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Conversation",
+			"item": [
+				{
+					"name": "Get Specific conversation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/conversations/find/:firstUserId/:secondUserId",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"conversations",
+								"find",
+								":firstUserId",
+								":secondUserId"
+							],
+							"variable": [
+								{
+									"key": "firstUserId",
+									"value": "19021363"
+								},
+								{
+									"key": "secondUserId",
+									"value": "19021364"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All conversations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/conversations/:userId",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"conversations",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "19021363"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Conversation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "senderId",
+									"value": "19021363",
+									"type": "text"
+								},
+								{
+									"key": "receiverId",
+									"value": "19021364",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/conversations",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"conversations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get User info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/users/:user_id/show",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"users",
+								":user_id",
+								"show"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "19021363"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User info",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Nguyen Kim Long",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "thaitester.uet@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "03203001692urtsfgsdfg233",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/users/:user_id/update",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"users",
+								":user_id",
+								"update"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "19021363"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change User password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "oldPassword",
+									"value": "19021363",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "Thai25879",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/users/:user_id/set_password",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"users",
+								":user_id",
+								"set_password"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "19021363"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Auth",
+			"item": [
+				{
+					"name": "Login to UET-SMTA",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "19021366",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "19021366",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Class",
+			"item": [
+				{
+					"name": "Get Managed classes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/classes/:user_id/",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"classes",
+								":user_id",
+								""
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "20191001"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Grade statistic",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/classes/:class_id/grades",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"classes",
+								":class_id",
+								"grades"
+							],
+							"variable": [
+								{
+									"key": "class_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Students in a class",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/classes/students?role=Teacher&user_id=20191001",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"classes",
+								"students"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": "Teacher"
+								},
+								{
+									"key": "user_id",
+									"value": "20191001"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import Students to a class",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"name\": \"Hương\",\n        \"username\": \"19021310\",\n        \"level\": \"Lớp trưởng\",\n        \"dateOfBirth\": \"2001-03-02\",\n        \"gender\": \"Nam\",\n        \"hometown\": \"HD\",\n        \"gpa\": 4.0,\n        \"drl\": 100\n    },\n    {\n        \"name\": \"Trang\",\n        \"username\": \"19021311\",\n        \"level\": \"Lớp trưởng\",\n        \"dateOfBirth\": \"2001-03-02\",\n        \"gender\": \"Nam\",\n        \"hometown\": \"HN\",\n        \"gpa\": 4.0,\n        \"drl\": 100\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/classes/:class_id/import",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"classes",
+								":class_id",
+								"import"
+							],
+							"variable": [
+								{
+									"key": "class_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "Get All messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/messages/:conversationId",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"messages",
+								":conversationId"
+							],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "6198033efea823b54adf8050"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "conversationId",
+									"value": "6198033efea823b54adf8050",
+									"type": "text"
+								},
+								{
+									"key": "sender",
+									"value": "19021364",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "Hello from Tung",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/messages",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -16,13 +16,19 @@ export const SidebarData = [
     cName: 'side-text',
   },
   {
+    title: 'ChatOnline',
+    path: '/Messenger',
+    icon: <MdIcons.MdForum />,
+    cName: 'side-text',
+  },
+  {
     title: 'Danh sách lớp',
-    path: '/teacherHomepage/class-list',
+    path: '/teacherHomepage/classList',
     icon: <MdIcons.MdClass />,
     cName: 'side-text',
   },
   {
-    title: 'Dashboard',
+    title: 'Thống kê',
     path: '/teacherHomepage/dashboard',
     icon: <MdIcons.MdDashboard />,
     cName: 'side-text',

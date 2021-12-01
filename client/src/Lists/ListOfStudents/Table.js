@@ -11,22 +11,32 @@ import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css
 import cellEditFactory, { Type } from 'react-bootstrap-table2-editor';
 import './ListOfStudents.css';
 import ClassName from './ClassName';
-import Button from 'react-bootstrap/Button';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import FilterButton from '../Filters/FilterButton';
+import AddStudentButton from './AddStudentButton';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import SaveIcon from '@mui/icons-material/Save';
+import ClearIcon from '@mui/icons-material/Clear';
+import Fab from '@mui/material/Fab';
+import SpecificFilterButton from '../Filters/SpecificFilterButton';
+
 import FileInput from '../FileInput/FileInput';
 import FileExport from '../FileExport/FileExport';
-
-const Username = '10012019';
 const Table = () => {
   const [userList, setUserList] = useState([]);
   const [deletedRows, setDeletedRows] = useState([]);
-  // const [badFlip, setBadFlip] = useState(false);
-  // const [goodFlip, setGoodFlip] = useState(false);
+  const [editedRows, setEditedRows] = useState([]);
+  const getUniqueListBy = (arr, key) => {
+    return [...new Map(arr.map((item) => [item[key], item])).values()];
+  };
+  console.log(userList);
   const filterData = {
     delay: 100,
     style: {
       border: 'none',
       paddingLeft: 0,
+      margin: 0,
     },
     placeholder: 'Tìm kiếm',
   };
@@ -87,6 +97,25 @@ const Table = () => {
           };
         }
       },
+      validator: (newValue, row, column) => {
+        if (newValue === 'Lớp trưởng') {
+          if (userList.some((user) => user.level === 'Lớp trưởng')) {
+            return {
+              valid: false,
+              message: 'Lớp trưởng đã tồn tại',
+            };
+          }
+        }
+        if (newValue === 'Bí thư') {
+          if (userList.some((user) => user.level === 'Bí thư')) {
+            return {
+              valid: false,
+              message: 'Bí thư đã tồn tại',
+            };
+          }
+        }
+        return true;
+      },
     },
     {
       dataField: 'dateOfBirth',
@@ -94,14 +123,18 @@ const Table = () => {
       sort: true,
       filter: textFilter(filterData),
       formatter: (cell) => {
-        let dateObj = cell;
+        let date = cell;
         if (typeof cell !== 'object') {
-          dateObj = new Date(cell);
+          date = new Date(cell);
         }
-        return `${('0' + dateObj.getUTCDate()).slice(-2)}/${(
-          '0' +
-          (dateObj.getUTCMonth() + 1)
-        ).slice(-2)}/${dateObj.getUTCFullYear()}`;
+        let day = date.getUTCDate();
+        let month = date.getUTCMonth() + 1;
+        let year = date.getFullYear();
+
+        month = (month > 9 ? '' : '0') + month;
+        day = (day > 9 ? '' : '0') + day;
+
+        return `${year}-${month}-${day}`;
       },
       editor: {
         type: Type.DATE,
@@ -250,9 +283,24 @@ const Table = () => {
       }
     },
   };
+  const classId = JSON.parse(sessionStorage.getItem('TableInfo'))
+    ? JSON.parse(sessionStorage.getItem('TableInfo')).classId
+    : '';
+  const username = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).username
+    : '';
+  const classNameTable = JSON.parse(sessionStorage.getItem('TableInfo'))
+    ? JSON.parse(sessionStorage.getItem('TableInfo')).className
+    : 'Loading...';
   useEffect(() => {
     axios
-      .get('http://localhost:3001/StudentIds')
+      .post(`http://localhost:5000/api/classes/students`, null, {
+        params: {
+          class_id: classId,
+          role: 'Teacher',
+          user_id: username,
+        },
+      })
       .then((res) => {
         setUserList(res.data);
       })
@@ -261,7 +309,17 @@ const Table = () => {
       });
   }, []);
   const handleSaveAction = (e) => {
-    console.log(userList);
+    const req = {
+      removed: deletedRows,
+      edited: getUniqueListBy(editedRows, 'username'),
+    };
+    console.log(JSON.stringify(req));
+    axios
+      .post(`http://localhost:5000/api/classes/${classId}/update`, req)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
     e.preventDefault();
   };
   const handleDeleteAction = (e) => {
@@ -272,7 +330,13 @@ const Table = () => {
   };
   const handleCancelAction = (e) => {
     axios
-      .get('http://localhost:3001/StudentIds')
+      .post(`http://localhost:5000/api/classes/students`, null, {
+        params: {
+          class_id: classId,
+          role: 'Teacher',
+          user_id: username,
+        },
+      })
       .then((res) => {
         setUserList(res.data);
       })
@@ -283,17 +347,17 @@ const Table = () => {
   };
   return (
     <>
-      <Button
-        variant="danger"
-        onClick={handleDeleteAction}
-        className="ListButton"
-      >
-        Xóa sinh viên
-      </Button>
-      <ClassName>{'K64_CACLC4'}</ClassName>
+      <Stack spacing={1} direction="row">
+        <SpecificFilterButton setData={setUserList} />
+        <AddStudentButton data={userList} setData={setUserList} />
+        <Fab aria-label="delete" size="medium" onClick={handleDeleteAction}>
+          <DeleteOutlineIcon />
+        </Fab>
+      </Stack>
+      <ClassName>{classNameTable}</ClassName>
       <div className="filter">
-        <FilterButton type="good" />
-        <FilterButton type="bad" />
+        <FilterButton type="good" setData={setUserList} />
+        <FilterButton type="bad" setData={setUserList} />
       </div>
       <BootstrapTable
         bootstrap4
@@ -310,27 +374,40 @@ const Table = () => {
           mode: 'click',
           blurToSave: true,
           autoSelectText: true,
+          afterSaveCell: (oldValue, newValue, row, column) => {
+            if (oldValue != newValue) {
+              setEditedRows([...editedRows, row]);
+            }
+          },
         })}
       />
       <div className="ioFile">
-        <div className="FileIn"><FileInput/></div>
-        <div className="FileOut"><FileExport/></div>
+        <div className="FileIn">
+          <FileInput setData={setUserList} />
+        </div>
+        <div className="FileOut">
+          <FileExport data={userList} />
+        </div>
       </div>
       <div className="saveButton">
-        <Button
-          variant="primary"
-          onClick={handleSaveAction}
-          className="ListButton"
-        >
-          Lưu
-        </Button>
-        <Button
-          variant="danger"
-          onClick={handleCancelAction}
-          className="ListButton"
-        >
-          Hủy
-        </Button>
+        <Stack spacing={3} direction="row">
+          <Button
+            variant="contained"
+            onClick={handleSaveAction}
+            color="success"
+            startIcon={<SaveIcon />}
+          >
+            Lưu
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleCancelAction}
+            color="error"
+            startIcon={<ClearIcon />}
+          >
+            Hủy
+          </Button>
+        </Stack>
       </div>
     </>
   );
