@@ -3,34 +3,32 @@ import SidebarStudent from '../HomePage/components/SidebarStudent';
 import NavigationBar from '../HomePage/components/NavigationBar';
 import ModalBtn from './Posts/ModalBtn';
 import BoxPost from './components/Boxpost';
-import './studentForum.css'
-import { display } from '@mui/system';
+import './studentForum.css';
 
 const StudentForum = () => {
-    return (
-        <>
-        <div style={{ bgolor: '#E5E5E5', }}>
+  return (
+    <>
+      <div style={{ bgolor: '#E5E5E5' }}>
         <NavigationBar />
-        <div className = "titleText" >Diễn Đàn </div> 
+        <div className="titleText">Diễn Đàn </div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <ModalBtn 
-                btnName="Đăng bài"
-                title="TẠO MỘT BÀI ĐĂNG MỚI"
-                submitBtn="Đăng bài"
-            />
+          <ModalBtn
+            btnName="Đăng bài"
+            title="TẠO MỘT BÀI ĐĂNG MỚI"
+            submitBtn="Đăng bài"
+          />
         </div>
-        <div style = {{justifyContent: 'center', display: 'flex'}}>
-        <div className = "postMenuWrapper"> 
+        <div style={{ justifyContent: 'center', display: 'flex' }}>
+          <div className="postMenuWrapper">
             <BoxPost />
             <BoxPost />
             <BoxPost />
-        </div>
+          </div>
         </div>
         <SidebarStudent />
-        </div>
-        </>
-    );
-
+      </div>
+    </>
+  );
 };
 
 export default StudentForum;
