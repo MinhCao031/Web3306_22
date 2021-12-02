@@ -80,6 +80,55 @@ node ClassSeeds.js
 }
 ```
 
+**Conversations**
+```json
+{ 
+	"_id" : ObjectId("61a38e6c244d68ec88352f10"),
+	"members" : [ "20191000", "19021319" ], 
+	"createdAt" : ISODate("2021-11-28T14:13:00.960Z"),
+	"updatedAt" : ISODate("2021-11-28T14:13:00.960Z")
+}
+```
+
+**Conversations**
+```json
+{ 
+	"_id" : ObjectId("61a89b33bae553ad23527369"),
+	"conversationId" : "6198033efea823b54adf8050",
+	"sender" : "19021364", "text" : "Hello from Tung",
+	"createdAt" : ISODate("2021-12-02T10:08:51.042Z"),
+	"updatedAt" : ISODate("2021-12-02T10:08:51.042Z"),
+}
+```
+
+
+**Posts**
+```json
+{ 
+	"_id" : ObjectId("61a89b49bae553ad2352737b"),
+	"ownerId" : "61a4af1267f7a7acc91bb1f1",
+	"title" : "The way to valley",
+	"content" : "Qua thung lũng đi lối nào hả các bác?",
+	"commentIds" : [ ],
+	"createdAt" : ISODate("2021-12-02T10:09:13.415Z"),
+	"updatedAt" : ISODate("2021-12-02T10:09:13.415Z")
+}
+```
+
+**Comments**
+
+```json
+{ 
+	"_id" : ObjectId("61a89b59bae553ad23527381"),
+	"commentId" : "OnawCz5dt6OQNOPS7DZXO", 
+	"postId" : "61a4e059ad98aaf524155c27",
+	"ownerId" : "6JS3HuluT2tduc9ksy31z",
+	"content" : "This is a new comment",
+	"createdAt" : ISODate("2021-12-02T10:09:29.027Z"),
+	"updatedAt" : ISODate("2021-12-02T10:09:29.027Z")
+}
+```
+
 ### APIs routing table
 
 | Resources    | Action          | Routes                                             | Methods | Description                        |
@@ -90,12 +139,21 @@ node ClassSeeds.js
 |              | update          | /api/users/:user_id/update                         | POST    | Update user's profile              |
 |              | change password | /api/users/:user_id/set_password                   | POST    | Change user's password             |
 | Classes      | show            | /api/classes/:user_id/show                         | GET     | Get managed class and students     |
-|              | show            | /api/classes/students?role=&user_id=               | POST    | Get students in a class            |
+|              | show            | /api/classes/students?role=&user_id=&class_id=     | POST    | Get students in a class            |
 |              | show            | /api/classes/:class_id/grades                      | GET     | Get grade statistic                |
 |              | create          | /api/classes/:class_id/import                      | POST    | Import students to a class         |
+|              | create          | /api/classes/:class_id/add-student                 | POST    | Add a student to a class           |
+|              | create          | /api/classes/:class_id/update                      | POST    | Update students to a class         |
 | Conversation | show            | /api/conversations/find/:firstUserId/:secondUserId | GET     | Get conversation between two users |
 |              | show            | /api/conversations/:userId                         | GET     | Get all conversations of an user   |
 |              | create          | /api/conversations                                 | POST    | Create conversation                |
+| Messages     | show            | /api/messages/:conversationId                      | GET     | Get all messages in a conversation |
+|              | create          | /api/messages                                      | POST    | Add a message                      |
+| Post         | show            | /api/posts                                         | GET     | Get all posts                      |
+|              | show            | /api/posts/show/:post_id                           | GET     | Get a post                         |
+|              | create          | /api/posts/create/:user_id                         | POST    | Create new post                    |
+|              | update          | /api/posts/update/:post_id                         | GET     | Update a post                      |
+|              | delete          | /api/posts/delete/:post_id                         | GET     | Delete a post                      |
 | Messages     | show            | /api/messages/:conversationId                      | GET     | Get all messages in a conversation |
 |              | create          | /api/messages                                      | POST    | Add message                        |
 
@@ -121,24 +179,3 @@ node server.js
 
 By default, frontend server runs on http://locahost:3000 and backend server runs on http://localhost:5000.
 Enjoy!
-
-## Todo
-
-- For frontend team:
-  - [x] Create dashboard
-  - [x] Add sidebar for student
-  - [x] Create filter function for table
-  - [x] CRUD for table
-  - [x] Create more classes display for teacher
-  - [ ] Research on notification feature
-  - [ ] Research on real-time chat feature
-  - [x] Add feature: redirect to login page when user haven't logged in yet
-- For backend team:
-  - [ ] Research on notification feature
-  - [x] Research on real-time chat feature
-  - [x] Add error handling for login
-  - [x] Add quantity of students in a class
-  - [x] Edit and delete students in a class
-  - [x] Add import students feature
-  - [x] Add new auto generate users and classes data
-  - [ ] Agreement on feature: Adding new student into a class

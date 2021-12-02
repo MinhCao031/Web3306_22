@@ -16,7 +16,7 @@ function getResult(status, msg = 'Something went wrong') {
 module.exports.getPosts = async function(req, res) {
     const posts = await Post.find();
 
-    if (posts.length) {
+    if (posts.length > 0) {
         const results = [];
 
         for (const post of posts) {
