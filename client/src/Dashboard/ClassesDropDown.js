@@ -7,7 +7,7 @@ const ClassesDropDown = ({ setSelectedClassID }) => {
     : '';
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/classes/${username}`)
+      .get(`http://localhost:5000/api/classes/${username}/show`)
       .then((res) => {
         setClassList(
           res.data.map((item) => {
