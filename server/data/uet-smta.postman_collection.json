@@ -29,11 +29,13 @@
 							"variable": [
 								{
 									"key": "firstUserId",
-									"value": "19021363"
+									"value": "20191000",
+									"description": "Change this value to suit your database"
 								},
 								{
 									"key": "secondUserId",
-									"value": "19021364"
+									"value": "19021300",
+									"description": "Change this value to suit your database"
 								}
 							]
 						}
@@ -329,12 +331,12 @@
 					"response": []
 				},
 				{
-					"name": "Get Students in a class",
+					"name": "Get Students",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{host}}:{{port}}/api/classes/students?role=Teacher&user_id=20191001",
+							"raw": "{{host}}:{{port}}/api/classes/students?role=Teacher&user_id=20191001&class_id=1",
 							"host": [
 								"{{host}}"
 							],
@@ -352,6 +354,10 @@
 								{
 									"key": "user_id",
 									"value": "20191001"
+								},
+								{
+									"key": "class_id",
+									"value": "1"
 								}
 							]
 						}
@@ -359,7 +365,7 @@
 					"response": []
 				},
 				{
-					"name": "Import Students to a class",
+					"name": "Import Students",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -383,6 +389,78 @@
 								"classes",
 								":class_id",
 								"import"
+							],
+							"variable": [
+								{
+									"key": "class_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"19022222\",\n    \"level\": \"Thành viên\",\n    \"name\": \"Kim Jong Un\",\n    \"gpa\": 3.2,\n    \"drl\": 80,\n    \"dateOfBirth\": \"\",\n    \"hometown\": \"\",\n    \"gender\": \"Nam\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/classes/:class_id/add-student",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"classes",
+								":class_id",
+								"add-student"
+							],
+							"variable": [
+								{
+									"key": "class_id",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Students in class",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"removed\":[\"19021335\",\"19021334\"],\n    \"edited\":[\n        {\"name\":\"Nguyễn Hoàng Sơn\",\"username\":\"19021330\",\"level\":\"Thành viên\",\"dateOfBirth\":\"2001-07-11\",\"gender\":\"Nam\",\"hometown\":\"Đà Nẵng\",\"gpa\":2,\"drl\":88},\n        {\"name\":\"Mai Nhật Tùng\",\"username\":\"19021331\",\"level\":\"Thành viên\",\"dateOfBirth\":\"2001-05-18\",\"gender\":\"Nam\",\"hometown\":\"Đà Nẵng\",\"gpa\":2.1,\"drl\":69},\n        {\"name\":\"Ngô Văn Tùng\",\"username\":\"19021333\",\"level\":\"Thành viên\",\"dateOfBirth\":\"2001-08-04\",\"gender\":\"Nam\",\"hometown\":\"Tp.Hồ Chí Minh\",\"gpa\":\"4.0\",\"drl\":82},\n        {\"name\":\"Phí Thúy Vũ\",\"username\":\"19021336\",\"level\":\"Thành viên\",\"dateOfBirth\":\"2001-07-12\",\"gender\":\"Nam\",\"hometown\":\"Nam Định\",\"gpa\":\"3.2\",\"drl\":53},\n        {\"name\":\"Phạm Thị Trọng Thành\",\"username\":\"19021337\",\"level\":\"Thành viên\",\"dateOfBirth\":\"2001-03-16T17:00:00.000Z\",\"gender\":\"Nữ\",\"hometown\":\"Đà Nẵng\",\"gpa\":\"4.0\",\"drl\":81}\n        ]\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/classes/:class_id/update",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"classes",
+								":class_id",
+								"update"
 							],
 							"variable": [
 								{
@@ -459,6 +537,254 @@
 							"path": [
 								"api",
 								"messages"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Get Post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/posts/:post_id",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"posts",
+								":post_id"
+							],
+							"variable": [
+								{
+									"key": "post_id",
+									"value": "61a4e059ad98aaf524155c27"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/posts",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Xin thông tin lối đi qua thung lũng\",\n    \"content\": \"Muốn qua thung lũng thì đường nào các bạn nhở?\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/posts/:user_id",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"posts",
+								":user_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "19021363"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Sửa title nè\",\n    \"content\": \"Sửa content nè\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/posts/:post_id",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"posts",
+								":post_id"
+							],
+							"variable": [
+								{
+									"key": "post_id",
+									"value": "61a4af1267f7a7acc91bb1f1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Huyeahhhhhhhh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/comments/:post_id/:user_id",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"comments",
+								":post_id",
+								":user_id"
+							],
+							"variable": [
+								{
+									"key": "post_id",
+									"value": "61a4e059ad98aaf524155c27"
+								},
+								{
+									"key": "user_id",
+									"value": "19021363"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"This is a new comment\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/comments/:post_id/:comment_id",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"comments",
+								":post_id",
+								":comment_id"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "61a4e059ad98aaf524155c27",
+									"disabled": true
+								},
+								{
+									"key": "comment_id",
+									"value": "6JS3HuluT2tduc9ksy31z",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "post_id",
+									"value": "61a4e059ad98aaf524155c27"
+								},
+								{
+									"key": "comment_id",
+									"value": "6JS3HuluT2tduc9ksy31z"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/comments/:post_id/:comment_id",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"comments",
+								":post_id",
+								":comment_id"
+							],
+							"variable": [
+								{
+									"key": "post_id",
+									"value": "61a4e059ad98aaf524155c27"
+								},
+								{
+									"key": "comment_id",
+									"value": "61a4e060ad98aaf524155c29"
+								}
 							]
 						}
 					},
