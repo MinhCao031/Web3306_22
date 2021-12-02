@@ -138,7 +138,7 @@ Enjoy!
   - [x] Research on real-time chat feature
   - [x] Add error handling for login
   - [x] Add quantity of students in a class
-  - [ ] Edit and delete students in a class
+  - [x] Edit and delete students in a class
   - [x] Add import students feature
   - [x] Add new auto generate users and classes data
   - [ ] Agreement on feature: Adding new student into a class
