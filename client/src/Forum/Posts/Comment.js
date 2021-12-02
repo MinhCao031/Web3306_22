@@ -1,7 +1,6 @@
 import React, { PureComponent, useState } from 'react'
 import OnlyCmt from './onlyCmt'
 import data from "./data.json"
-import './editSrc'
 import 'react-comments-section/dist/index.css'
 import "./Comment.css"
 
