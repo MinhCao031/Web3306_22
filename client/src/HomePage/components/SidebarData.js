@@ -16,7 +16,7 @@ export const SidebarData = [
     cName: 'side-text',
   },
   {
-    title: 'ChatOnline',
+    title: 'Chat online',
     path: '/Messenger',
     icon: <MdIcons.MdForum />,
     cName: 'side-text',

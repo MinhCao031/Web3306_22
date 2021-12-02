@@ -6,7 +6,6 @@ import boy from '../../../assets/boy_ava.png';
 export default function Conversation({ conversation, currentUser }) {
   const [user, setUser] = useState(null);
 
-
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser.username);
    // console.log(friendId);

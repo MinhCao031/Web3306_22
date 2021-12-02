@@ -7,5 +7,4 @@ const ClassName = ({ children }) => {
     </h1>
   );
 };
-
 export default ClassName;

@@ -391,7 +391,7 @@ const Container = styled.div`
     margin: 50px 0px 50px 0px;
   }
   .wrapper {
-    width: 72%;
+    width: 90%;
     margin: 10px 0px 10px 0px;
     display: flex;
     justify-content: flex-end;

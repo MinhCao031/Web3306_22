@@ -11,7 +11,6 @@ import ModalUnstyled from '@mui/base/ModalUnstyled';
 import React from 'react';
 import Comment from "../Posts/Comment";
 import Posts from "../Posts/Posts";
-
 //codeTT
 function deleteBtn({handleClickOpen}) {
     return (
