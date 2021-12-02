@@ -3,9 +3,17 @@ const session = require('express-session');
 const path = require('path');
 const cors = require('cors');
 const logger = require('morgan');
+const http = require('http');
+const { Server } = require('socket.io');
 
 const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
+
+const registerNotificationHandler = require('./notification/NotificationHandler');
 
 const config = require('./config/config');
 const authRoute = require('./routes/auth');
@@ -33,6 +41,10 @@ const sessionOptions = {
     resave: false,
     saveUninitialized: true
 };
+const onConnection = (socket) => {
+    console.log('New socket connected');
+    registerNotificationHandler(io, socket);
+};
 
 mongoose
     .connect(dbUrl, dbOptions)
@@ -43,7 +55,10 @@ mongoose
         console.log(err);
     });
 
-const app = express();
+io.on('connection', (socket) => {
+    console.log('Socket connected');
+});
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
