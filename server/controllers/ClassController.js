@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Class = require('../models/Class');
+const Conversation = require('../models/Conversation');
 
 module.exports.getClasses = async function(req, res) {
     try {
@@ -50,7 +51,9 @@ module.exports.getClassStudents = async function(req, res) {
         });
     }
 
+    console.log('Hmmm');
     if (foundClass) {
+        console.log('Found');
         const result = [];
 
         try {
@@ -240,7 +243,7 @@ module.exports.addStudent = async function(req, res) {
         });
 
         const newConversation = new Conversation({
-            members: [ foundClass.teacherId, studentId ]
+            members: [ foundClass.teacherId, newUser.username ]
         });
 
         await newConversation.save().catch((err) => {
