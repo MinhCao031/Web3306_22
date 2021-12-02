@@ -6,14 +6,46 @@ import 'react-comments-section/dist/index.css'
 import "./Comment.css"
 
 const Comment = () => {
-    const [comment, setComment] = useState(data)
+    const [comment, setComment] = useState(Array.from(data))
+    const [yourCmt, setYourCmt] = useState({
+      "id": 0,
+      "cmtId": "",
+      "fullName": "",
+      "timeAgo": "1 phút trước",
+      "text": ""    
+    })
+    const [cmtComponent, setCmtComponent] = useState(<OnlyCmt data={comment}/>)
+
+
     const userId = "01a"
     const name = "xyz"
     const signinUrl = "/"
     const signupUrl = "/"
-    let count = 0
-    comment.map(i => {count+=1;} )
 
+    let count = 0
+    comment.map(each => {count+=1})
+
+    const postCmt = () => {
+      let newCmt = comment;
+      newCmt.push(yourCmt);
+      setComment(newCmt);
+      setCmtComponent(<OnlyCmt data={comment}/>)
+      count += 1;
+      console.log(comment);
+      document.getElementById("commentDetail").value = "";
+    }
+  
+    const saveCmt = () => {
+      setYourCmt({
+        id: count+1,
+        cmtId: "",
+        fullName: name,
+        timeAgo: "1 phút trước",
+        text: document.getElementById("commentDetail").value,
+      })
+      console.log(document.getElementById("commentDetail").value)
+    }
+  
     return (
       <div className="pop-up-post">  
         <div className="post-content">
@@ -35,8 +67,19 @@ const Comment = () => {
           </p>
           <hr/>
         </div>
-        <p> {count} Comments</p>
-        <OnlyCmt data={comment} />
+        <div className="typeComment">
+          <input 
+            type="text" 
+            name="commentDetail" 
+            id="commentDetail" 
+            placeholder="Nhập bình luận..."
+            onChange={saveCmt}
+          />
+          <input type="submit" onClick={postCmt} value="Trả lời"/>
+        </div>        
+        <p> {count} Comments </p>
+        {/* <OnlyCmt data={comment} /> */}
+        {cmtComponent}
       </div>  
     )
 }

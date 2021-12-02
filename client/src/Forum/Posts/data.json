@@ -1,23 +1,23 @@
 [
-    {
-      "id": "01",
-      "cmtId": "012",
-      "fullName": "Bạn nữ 1",
-      "timeAgo": "9 phút trước",
-      "text": "U là trời. Bạn giỏi vậy, làm ny tớ nhé <3"
-    },
-    {
-      "id": "02",
-      "cmtId": "013",
-      "fullName": "Bạn nữ 2",
-      "timeAgo": "4 phút trước",
-      "text": "Bạn nữ 1 ơi, mình cho vào giỏ hàng của mình lâu rùi, bạn chờ turn sau nha"
-    },
-    {
-      "id": "02",
-      "cmtId": "017",
-      "fullName": "Thầy cố vấn",
-      "timeAgo": "12 phút trước",
-      "text": "$60000 là số tiền em nhận được hàng năm nhé. Thế này kiếm 10 ny cùng lúc còn được nữa là. Sau này (chắc là vài tháng nữa) có giàu thì cũng đừng quên thầy nhé em. À mà con gái nhà thầy năm nay cũng mới lên Đại học, có gì nhờ em kèm cặp giúp."
-    }
-  ]
+  {
+    "id": 1,
+    "cmtId": "012",
+    "fullName": "Bạn nữ 1",
+    "timeAgo": "9 phút trước",
+    "text": "U là trời. Bạn giỏi vậy, làm ny tớ nhé <3"
+  },
+  {
+    "id": 2,
+    "cmtId": "013",
+    "fullName": "Bạn nữ 2",
+    "timeAgo": "4 phút trước",
+    "text": "Bạn nữ 1 ơi, mình cho vào giỏ hàng của mình lâu rùi, bạn chờ turn sau nha"
+  },
+  {
+    "id": 3,
+    "cmtId": "017",
+    "fullName": "Thầy cố vấn",
+    "timeAgo": "12 phút trước",
+    "text": "$60000 là số tiền em nhận được hàng năm nhé. Thế này kiếm 10 ny cùng lúc còn được nữa là. Sau này (chắc là vài tháng nữa) có giàu thì cũng đừng quên thầy nhé em. À mà con gái nhà thầy năm nay cũng mới lên Đại học, có gì nhờ em kèm cặp giúp."
+  }
+]

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Remarkable } from 'remarkable';
 import "./Comment.css";
+import count from "./Comment";
 
 //Original way to add markups that React prevents
 class Comment extends Component {
@@ -9,7 +10,7 @@ class Comment extends Component {
     console.log(props);
   }
   render = () => {
-    var md = new Remarkable();
+    // var md = new Remarkable();
     return (
       <div className="single-comment">
         <div className="comment-header">
@@ -35,19 +36,33 @@ class CommentList extends Component {
     super(props);
   }
   render = () => {
-    var commentNodes = this.props.data.map(function(comment) {
-      return (
+    var listOfComments = []
+    for (let i in this.props.data) {
+      listOfComments.push(
         <Comment 
-          fullName={comment.fullName}
-          timeAgo={comment.timeAgo}
-          key={comment.id}
-          text={comment.text}
+          fullName={i.fullName}
+          timeAgo={i.timeAgo}
+          key={i.id}
+          text={i.text}
         />
       );
-    });
+    };
+    var commentNodes = Array.isArray(this.props.data)
+    ? this.props.data.map(function(cmt) {
+      return (
+        <Comment 
+          fullName={cmt.fullName}
+          timeAgo={cmt.timeAgo}
+          key={cmt.id}
+          text={cmt.text}
+        />
+      );
+    })
+    : null
+    ;
     return (
       <div className="commentList">
-        {commentNodes}
+        {commentNodes == null ? listOfComments : commentNodes}
       </div>
     );
   }
@@ -58,7 +73,27 @@ class CommentList extends Component {
 class OnlyCmt extends Component {
   constructor(props) {
     super(props);
+
   }
+  // postCmt = () => {
+  //   let newCmt = this.props.data;
+  //   console.log(newCmt)
+  //   newCmt = newCmt.push(this.state.yourCmt)
+  //   this.props = newCmt
+  //   // count += 1
+  //   console.log(this.props);
+  // }
+
+  // saveCmt = () => {
+  //   this.state.yourCmt = {
+  //     id: count+1,
+  //     cmtId: "",
+  //     fullName: this.state.name,
+  //     timeAgo: "1 phút trước",
+  //     text: document.getElementById("commentDetail").value,
+  //   }
+  //   console.log(document.getElementById("commentDetail").value)
+  // }
   render = () => {
     return (
       <div className="only-cmt">

@@ -3,6 +3,9 @@
 }
 .pop-up-post {
     padding: 20px;
+    /* height: 600px;
+    width: 1200px; */
+    overflow: auto;
 }
 /* .post-content {
 } */
@@ -65,6 +68,7 @@
 
 .comment-detail {
     font-weight: 700;
+    font-size: 18px;
     color: black;
 }
 
