@@ -74,7 +74,7 @@ export default function BoxPost() {
                 <span className="time">{format("1h ago")}</span>
             </div>
             <div >
-                <div className = "heading-text"> Hoi thoi gian phat nguoi yeu </div>
+                <div className = "heading-text"> Hoi thoi gian phat nguoi yeu aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
             </div>
             </div>
             <div className = "penButton">            
