@@ -13,7 +13,6 @@ const Comment = ({ commentData }) => {
   //   updatedAt: '',
   // });
   const [comments, setComments] = useState(commentData.comments);
-  console.log(commentData.comments);
   //const [cmtComponent, setCmtComponent] = useState(<OnlyCmt data={comment} />);
 
   const userId = '01a';

@@ -9,20 +9,19 @@ const TeacherForum = () => {
   const [posts, setPosts] = useState([]);
   const [headingText, setHeadingText] = useState('');
   const [contentText, setContentText] = useState('');
-  const username = JSON.parse(sessionStorage.getItem('user'))
-    ? JSON.parse(sessionStorage.getItem('user')).username
-    : '';
   useEffect(async () => {
     await axios
       .get('http://localhost:5000/api/posts')
       .then((res) => {
-        console.log(res.data);
-        setPosts(res.data);
+        if (res.data.message !== 'No posts found') {
+          setPosts(res.data);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+  console.log(posts);
   return (
     <>
       <div style={{ bgolor: '#E5E5E5' }}>
@@ -43,7 +42,7 @@ const TeacherForum = () => {
         </div>
         <div style={{ justifyContent: 'center', display: 'flex' }}>
           <div className="postMenuWrapper">
-            {posts &&
+            {posts.length > 0 ? (
               posts.map((post) => {
                 return (
                   <BoxPost
@@ -53,7 +52,10 @@ const TeacherForum = () => {
                     setPosts={setPosts}
                   />
                 );
-              })}
+              })
+            ) : (
+              <div>Không có bài đăng</div>
+            )}
           </div>
         </div>
         <Sidebar />

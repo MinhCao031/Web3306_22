@@ -10,7 +10,6 @@ import Button from '@mui/material/Button';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import React, {useEffect, useState} from 'react';
 import Comment from "../Posts/Comment";
-import Posts from "../Posts/Posts";
 import axios from 'axios';
 //codeTT
 function deleteBtn({handleClickOpen}) {
@@ -42,11 +41,14 @@ const handleClick = (event) => {
     console.log("delete");
 }   
 
-export default function BoxPost({post, posts = [], setPosts}) {
+export default function BoxPost({post, posts, setPosts}) {
   const [open, setOpen] = React.useState(false);
-  const [headingText, setHeadingText] = useState('Sửa bài đăng');
-  const [contentText, setContentText] = useState('Sửa bài đăng');
+  const [headingText, setHeadingText] = useState('');
+  const [contentText, setContentText] = useState('');
   const [commentData, setCommentData] = useState({});
+   const username = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).username
+    : '';
     const handleOpen = () => {
         setOpen(true)
         axios.get(`/posts/show/${post.id}`)
@@ -59,20 +61,12 @@ export default function BoxPost({post, posts = [], setPosts}) {
         })
     };
     const handleClose = () => setOpen(false);
-    //type = "button" onClick = {handleOpen}
-    const handleEdit = () => {
-        axios.get(`/posts/show/${post.id}`)
-        .then((res) => {
-            setHeadingText(res.data.title);
-            setContentText(res.data.content);
-        }
-        )
-        .catch(err => console.log(err));
-    }
     const handleDelete = () => {
         axios.delete(`/posts/delete/${post.id}`)
         .then((res) => {
-            setPosts(Array.from(posts.filter(p => p.id !== post.id)));
+            if(posts.length > 0){
+                setPosts(posts.filter(p => p.id !== post.id));
+            }
         })
         .catch(err => console.log(err));
     }
@@ -108,9 +102,9 @@ export default function BoxPost({post, posts = [], setPosts}) {
                 <div className = "heading-text">{post.title}</div>
             </div>
             </div>
-            <div className = "penButton"
-                onClick = {handleEdit}
-            >            
+            {username == post.ownerId &&
+                <>
+            <div className = "penButton">            
                 <ModalBtn 
                 btnName=""
                 title="SỬA BÀI ĐĂNG"
@@ -120,6 +114,7 @@ export default function BoxPost({post, posts = [], setPosts}) {
                 setHeadingText={setHeadingText}
                 setContentText={setContentText}
                 edit='true'
+                post = {post}
                 />
             </div>
             <div type = "button" onclick = {handleClick} >
@@ -127,7 +122,8 @@ export default function BoxPost({post, posts = [], setPosts}) {
                 onClick={handleDelete}
             /> 
             </div>
-            </div>
+            </div></>
+            }   
         </div>
         </div>
       );
