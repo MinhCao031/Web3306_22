@@ -1,58 +1,52 @@
 import React, { PureComponent, useState } from 'react';
 import OnlyCmt from './OnlyCmt';
-import data from './data.json';
 import './Comment.css';
-
-const Comment = ({ commentData }) => {
-  //const [comment, setComment] = useState(Array.from(commentData.comments));
-  // const [yourCmt, setYourCmt] = useState({
-  //   content: '',
-  //   createdAt: '',
-  //   id: '',
-  //   owner: '',
-  //   updatedAt: '',
-  // });
-  const [comments, setComments] = useState(commentData.comments);
-  //const [cmtComponent, setCmtComponent] = useState(<OnlyCmt data={comment} />);
-
-  const userId = '01a';
-  const name = 'xyz';
-  const signinUrl = '/';
-  const signupUrl = '/';
-
-  // let count = 0;
-  // comment.map((each) => {
-  //   count += 1;
-  // });
-
-  // const postCmt = () => {
-  //   let newCmt = comment;
-  //   newCmt.push(yourCmt);
-  //   setComment(newCmt);
-  //   setCmtComponent(<OnlyCmt data={comment} />);
-  //   count += 1;
-  //   console.log(comment);
-  //   document.getElementById('commentDetail').value = '';
-  // };
-
-  // const saveCmt = () => {
-  //   setYourCmt({
-  //     id: count + 1,
-  //     cmtId: '',
-  //     fullName: name,
-  //     timeAgo: '1 phút trước',
-  //     text: document.getElementById('commentDetail').value,
-  //   });
-  //   console.log(document.getElementById('commentDetail').value);
-  // };
-
+import axios from 'axios';
+import CommentList from './CommentList';
+const Comment = ({ commentData, comments, setComments }) => {
+  const [newComment, setNewComment] = useState('');
+  const username = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).username
+    : '';
+  const name = JSON.parse(sessionStorage.getItem('user'))
+    ? JSON.parse(sessionStorage.getItem('user')).name
+    : '';
+  console.log(comments);
+  const handleAnswer = (e) => {
+    if (newComment.length > 0) {
+      axios
+        .post(`/comments/${commentData.id}/${username}`, {
+          content: newComment,
+        })
+        .then((res) => {
+          setNewComment('');
+          setComments([
+            ...comments,
+            {
+              content: newComment,
+              createdAt: 'Just now',
+              id: 'sadfffffsdfasdfsda',
+              owner: name,
+              createdAt: 'Just now',
+            },
+          ]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert('Bạn chưa nhập nội dung');
+    }
+    e.preventDefault();
+  };
+  console.log(newComment);
   return (
     <div className="pop-up-post">
       <div className="post-content">
         <div className="post-author-and-time">
           <p className="post-of-sb">{commentData.owner}</p>
           <div className="separator"></div>
-          <p className="time-taken">{commentData.createdAt}</p>
+          <p className="time-taken">. {commentData.createdAt}</p>
         </div>
         <div className="post-header">
           <p>Tiêu đề: </p>
@@ -69,22 +63,22 @@ const Comment = ({ commentData }) => {
           name="commentDetail"
           id="commentDetail"
           placeholder="Nhập bình luận..."
-          //onChange={saveCmt}
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
         />
         <input
           type="submit"
-          //onClick={postCmt}
           value="Trả lời"
+          id="answerCommentButton"
+          onClick={handleAnswer}
         />
       </div>
-      <p> Comments </p>
-      {/* {comments &&
-        comments.length > 0 &&
-        comments.map((comment, index) => {
-          return <OnlyCmt key={index} data={comment} />;
-        })} */}
-      {/* <OnlyCmt data={comment} /> */}
-      {/* {cmtComponent} */}
+      {/* <OnlyCmt data={commentData.comments} postId={commentData.id} /> */}
+      <CommentList
+        comments={comments}
+        setComments={setComments}
+        postId={commentData.id}
+      />
     </div>
   );
 };
