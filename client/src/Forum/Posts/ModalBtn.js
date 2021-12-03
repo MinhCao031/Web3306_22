@@ -141,8 +141,6 @@ function ModalBtn({
             console.log(err);
           });
         handleClose();
-        setHeadingText('');
-        setContentText('');
       }
     } else {
       if (textEdit.headingText === '' || textEdit.contentText === '') {
@@ -154,23 +152,23 @@ function ModalBtn({
             content: textEdit.contentText,
           })
           .then((res) => {
-            console.log(res.data);
             setPosts([
-              ...posts,
+              ...posts.filter((p) => p.id !== post.id),
               {
                 createdAt: post.createdAt,
                 id: post.id,
                 owner: name,
-                quantityComments: post.commentIds.length,
+                ownerId: username,
+                quantityComments: post.quantityComments,
                 title: textEdit.headingText,
               },
             ]);
-            console.log(posts);
           })
           .catch((err) => console.log(err));
+        setOpen(false);
       }
-      e.preventDefault();
     }
+    e.preventDefault();
   };
   return (
     <div>

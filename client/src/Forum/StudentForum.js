@@ -21,7 +21,6 @@ const StudentForum = () => {
         console.log(err);
       });
   }, []);
-  console.log(posts);
   return (
     <>
       <div style={{ bgolor: '#E5E5E5' }}>
