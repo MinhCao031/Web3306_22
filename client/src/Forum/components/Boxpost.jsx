@@ -29,23 +29,25 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  height: 800,
+  height: 700,
   width: 1000,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  overflowX: 'hidden',
+  overflowY: 'auto',
 };
 
 const handleClick = (event) => {
     console.log("delete");
 }   
-
 export default function BoxPost({post, posts, setPosts}) {
   const [open, setOpen] = React.useState(false);
   const [headingText, setHeadingText] = useState('');
   const [contentText, setContentText] = useState('');
   const [commentData, setCommentData] = useState({});
+  const [comments, setComments] = useState([]);
    const username = JSON.parse(sessionStorage.getItem('user'))
     ? JSON.parse(sessionStorage.getItem('user')).username
     : '';
@@ -53,8 +55,8 @@ export default function BoxPost({post, posts, setPosts}) {
         setOpen(true)
         axios.get(`/posts/show/${post.id}`)
         .then(res => {
-            console.log(commentData);
             setCommentData(res.data);
+            setComments(res.data.comments);
         })
         .catch(err => {
             console.log(err);
@@ -81,7 +83,7 @@ export default function BoxPost({post, posts, setPosts}) {
 
             >
                 <Box sx={style}>
-                    <Comment commentData={commentData}/>
+                    <Comment commentData={commentData} comments={comments} setComments={setComments}/>
                 </Box>
             </Modal>
             </div>
@@ -96,7 +98,7 @@ export default function BoxPost({post, posts, setPosts}) {
             <span className ="view-number">{post.quantityComments}</span>
             <div className = "postsitive-name"> 
                 <span className = "name-text">{post.owner}</span>
-                <span className="time">{post.createdAt}</span>
+                <span className="time">. {post.createdAt}</span>
             </div>
             <div >
                 <div className = "heading-text">{post.title}</div>
