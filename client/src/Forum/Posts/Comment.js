@@ -1,17 +1,16 @@
 import React, { PureComponent, useState } from 'react'
 import OnlyCmt from './onlyCmt'
 import data from "./data.json"
-import 'react-comments-section/dist/index.css'
 import "./Comment.css"
 
 const Comment = () => {
     const [comment, setComment] = useState(Array.from(data))
     const [yourCmt, setYourCmt] = useState({
-      "id": 0,
-      "cmtId": "",
-      "fullName": "",
-      "timeAgo": "1 phút trước",
-      "text": ""    
+      "quantityComments": 0,
+      "id": "",
+      "owner": "",
+      "createdAt": "1 phút trước",
+      "title": ""    
     })
     const [cmtComponent, setCmtComponent] = useState(<OnlyCmt data={comment}/>)
 
@@ -36,11 +35,11 @@ const Comment = () => {
   
     const saveCmt = () => {
       setYourCmt({
-        id: count+1,
-        cmtId: "",
-        fullName: name,
-        timeAgo: "1 phút trước",
-        text: document.getElementById("commentDetail").value,
+        quantityComments: count+1,
+        id: "",
+        owner: name,
+        createdAt: "1 phút trước",
+        title: document.getElementById("commentDetail").value,
       })
       console.log(document.getElementById("commentDetail").value)
     }

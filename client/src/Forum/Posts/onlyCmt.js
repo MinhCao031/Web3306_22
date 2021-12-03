@@ -15,16 +15,16 @@ class Comment extends Component {
       <div className="single-comment">
         <div className="comment-header">
           <p className="comment-author">
-            {this.props.fullName}
+            {this.props.owner}
           </p>
           <div className="separator"></div>
           <p className="time-ago">
-            {this.props.timeAgo}
+            {this.props.createdAt}
           </p>
         </div>
         {/* {md.render(this.props.children.toString())} */}
         <div className="comment-detail">
-            {this.props.text}
+            {this.props.title}
         </div>
       </div>
     );
@@ -40,10 +40,10 @@ class CommentList extends Component {
     for (let i in this.props.data) {
       listOfComments.push(
         <Comment 
-          fullName={i.fullName}
-          timeAgo={i.timeAgo}
-          key={i.id}
-          text={i.text}
+          owner={i.owner}
+          createdAt={i.createdAt}
+          key={i.quantityComments}
+          title={i.title}
         />
       );
     };
@@ -51,10 +51,10 @@ class CommentList extends Component {
     ? this.props.data.map(function(cmt) {
       return (
         <Comment 
-          fullName={cmt.fullName}
-          timeAgo={cmt.timeAgo}
-          key={cmt.id}
-          text={cmt.text}
+          owner={cmt.owner}
+          createdAt={cmt.createdAt}
+          key={cmt.quantityComments}
+          title={cmt.title}
         />
       );
     })
@@ -73,27 +73,7 @@ class CommentList extends Component {
 class OnlyCmt extends Component {
   constructor(props) {
     super(props);
-
   }
-  // postCmt = () => {
-  //   let newCmt = this.props.data;
-  //   console.log(newCmt)
-  //   newCmt = newCmt.push(this.state.yourCmt)
-  //   this.props = newCmt
-  //   // count += 1
-  //   console.log(this.props);
-  // }
-
-  // saveCmt = () => {
-  //   this.state.yourCmt = {
-  //     id: count+1,
-  //     cmtId: "",
-  //     fullName: this.state.name,
-  //     timeAgo: "1 phút trước",
-  //     text: document.getElementById("commentDetail").value,
-  //   }
-  //   console.log(document.getElementById("commentDetail").value)
-  // }
   render = () => {
     return (
       <div className="only-cmt">
