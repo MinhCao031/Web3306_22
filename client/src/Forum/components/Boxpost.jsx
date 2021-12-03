@@ -53,8 +53,8 @@ export default function BoxPost({post, posts, setPosts}) {
         setOpen(true)
         axios.get(`/posts/show/${post.id}`)
         .then(res => {
+            console.log(commentData);
             setCommentData(res.data);
-            console.log(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -95,7 +95,7 @@ export default function BoxPost({post, posts, setPosts}) {
                 > 
             <span className ="view-number">{post.quantityComments}</span>
             <div className = "postsitive-name"> 
-                <span className = "name-text">{post.owner}</span> . 
+                <span className = "name-text">{post.owner}</span>
                 <span className="time">{post.createdAt}</span>
             </div>
             <div >
@@ -114,7 +114,9 @@ export default function BoxPost({post, posts, setPosts}) {
                 setHeadingText={setHeadingText}
                 setContentText={setContentText}
                 edit='true'
-                post = {post}
+                post ={post}
+                posts={posts}
+                setPosts={setPosts}
                 />
             </div>
             <div type = "button" onclick = {handleClick} >
