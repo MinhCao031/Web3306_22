@@ -1,6 +1,6 @@
 import React, { PureComponent, useState } from 'react';
-import OnlyCmt from './OnlyCmt';
-import data from './data.json';
+//import OnlyCmt from './OnlyCmt';
+//import data from './data.json';
 import './Comment.css';
 
 const Comment = ({ commentData }) => {

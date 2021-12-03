@@ -13,6 +13,7 @@ export default function Conversation({ conversation, currentUser }) {
       try {
         const res = await axios.get(`/users/${friendId}/show` );
         setUser(res.data);
+        console.log(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -27,7 +28,7 @@ export default function Conversation({ conversation, currentUser }) {
         src={boy}
         alt=""
       />
-      <span className="conversationName">{user?.username}</span>
+      <span className="conversationName">{user?.username} - {user?.name}  </span>
     </div>
   );
 }
