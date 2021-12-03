@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
@@ -52,13 +52,14 @@ function ModalBtn({
   btnName,
   title,
   submitBtn,
-  headingText = '',
-  contentText = '',
+  headingText,
+  contentText,
   setHeadingText,
   setContentText,
   setPosts,
-  posts = [],
+  posts,
   edit = false,
+  post,
 }) {
   const [open, setOpen] = React.useState(false);
   const username = JSON.parse(sessionStorage.getItem('user'))
@@ -67,14 +68,42 @@ function ModalBtn({
   const name = JSON.parse(sessionStorage.getItem('user'))
     ? JSON.parse(sessionStorage.getItem('user')).name
     : '';
+  const [textEdit, setTextEdit] = useState({
+    headingText: '',
+    contentText: '',
+  });
+  useEffect(() => {
+    if (edit) {
+      axios
+        .get(`/posts/show/${post.id}`)
+        .then((res) => {
+          setTextEdit({
+            headingText: res.data.title,
+            contentText: res.data.content,
+          });
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []);
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
-    setHeadingText('');
-    setContentText('');
+    if (!edit) {
+      setHeadingText('');
+      setContentText('');
+    } else {
+      axios
+        .get(`/posts/show/${post.id}`)
+        .then((res) => {
+          setTextEdit({
+            headingText: res.data.title,
+            contentText: res.data.content,
+          });
+        })
+        .catch((err) => console.log(err));
+    }
   };
   const handleHeadingChange = (e) => {
     setHeadingText(e.target.value);
@@ -82,35 +111,66 @@ function ModalBtn({
   const handleContentChange = (e) => {
     setContentText(e.target.value);
   };
+  const handleTextEditChange = (e) => {
+    setTextEdit({ ...textEdit, [e.target.name]: e.target.value });
+  };
   const handleSubmit = (e) => {
-    if (headingText === '' || contentText === '') {
-      alert('Please fill all the fields');
+    if (!edit) {
+      if (headingText === '' || contentText === '') {
+        alert('Vui lòng điền đầy đủ thông tin');
+      } else {
+        axios
+          .post(`http://localhost:5000/api/posts/create/${username}`, {
+            title: headingText,
+            content: contentText,
+          })
+          .then((res) => {
+            setPosts([
+              ...posts,
+              {
+                createdAt: res.data.createdAt,
+                id: res.data._id,
+                owner: name,
+                ownerId: username,
+                quantityComments: res.data.commentIds.length,
+                title: headingText,
+              },
+            ]);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        handleClose();
+        setHeadingText('');
+        setContentText('');
+      }
     } else {
-      axios
-        .post(`http://localhost:5000/api/posts/create/${username}`, {
-          title: headingText,
-          content: contentText,
-        })
-        .then((res) => {
-          setPosts([
-            ...posts,
-            {
-              createdAt: res.data.createdAt,
-              id: res.data._id,
-              owner: name,
-              quantityComments: res.data.commentIds.length,
-              title: headingText,
-            },
-          ]);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      handleClose();
-      setHeadingText('');
-      setContentText('');
+      if (textEdit.headingText === '' || textEdit.contentText === '') {
+        alert('Vui lòng điền đầy đủ thông tin');
+      } else {
+        axios
+          .post(`/posts/update/${post.id}`, {
+            title: textEdit.headingText,
+            content: textEdit.contentText,
+          })
+          .then((res) => {
+            console.log(res.data);
+            setPosts([
+              ...posts,
+              {
+                createdAt: post.createdAt,
+                id: post.id,
+                owner: name,
+                quantityComments: post.commentIds.length,
+                title: textEdit.headingText,
+              },
+            ]);
+            console.log(posts);
+          })
+          .catch((err) => console.log(err));
+      }
+      e.preventDefault();
     }
-    e.preventDefault();
   };
   return (
     <div>
@@ -134,29 +194,62 @@ function ModalBtn({
             {title}
           </Typography>
 
-          <TextField
-            required
-            id="filled-basic"
-            label="Tiêu đề"
-            variant="filled"
-            defaultValue={headingText}
-            fullWidth
-            sx={{ mb: 2.5 }}
-            inputProps={{ maxLength: 80 }}
-            onChange={handleHeadingChange}
-          />
+          {!edit ? (
+            <>
+              <TextField
+                required
+                id="filled-basic"
+                label="Tiêu đề"
+                variant="filled"
+                defaultValue={headingText}
+                fullWidth
+                sx={{ mb: 2.5 }}
+                inputProps={{ maxLength: 80 }}
+                onChange={handleHeadingChange}
+              />
 
-          <TextField
-            required
-            id="filled-basic"
-            label="Nội dung"
-            variant="filled"
-            defaultValue={contentText}
-            rows={12}
-            fullWidth
-            multiline
-            onChange={handleContentChange}
-          />
+              <TextField
+                required
+                id="filled-basic"
+                label="Nội dung"
+                variant="filled"
+                defaultValue={contentText}
+                rows={12}
+                fullWidth
+                multiline
+                onChange={handleContentChange}
+              />
+            </>
+          ) : (
+            <>
+              <TextField
+                required
+                id="filled-basic"
+                label="Tiêu đề"
+                variant="filled"
+                defaultValue={textEdit.headingText}
+                fullWidth
+                sx={{ mb: 2.5 }}
+                inputProps={{ maxLength: 80 }}
+                name="headingText"
+                onChange={handleTextEditChange}
+              />
+
+              <TextField
+                required
+                id="filled-basic"
+                label="Nội dung"
+                variant="filled"
+                defaultValue={textEdit.contentText}
+                rows={12}
+                fullWidth
+                multiline
+                name="contentText"
+                onChange={handleTextEditChange}
+              />
+            </>
+          )}
+
           <div className="btn-forum">
             <Button variant="contained" color="error" onClick={handleClose}>
               Hủy

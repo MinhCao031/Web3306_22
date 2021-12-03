@@ -9,20 +9,19 @@ const StudentForum = () => {
   const [posts, setPosts] = useState([]);
   const [headingText, setHeadingText] = useState('');
   const [contentText, setContentText] = useState('');
-  useEffect(() => {
-    axios
+  useEffect(async () => {
+    await axios
       .get('http://localhost:5000/api/posts')
       .then((res) => {
-        setPosts(res.data);
+        if (res.data.message !== 'No posts found') {
+          setPosts(res.data);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
-  const handleAddPost = (e) => {
-    e.preventDefault();
-  };
+  console.log(posts);
   return (
     <>
       <div style={{ bgolor: '#E5E5E5' }}>
@@ -37,14 +36,26 @@ const StudentForum = () => {
             contentText={contentText}
             setHeadingText={setHeadingText}
             setContentText={setContentText}
-            onClick={handleAddPost}
+            posts={posts}
+            setPosts={setPosts}
           />
         </div>
         <div style={{ justifyContent: 'center', display: 'flex' }}>
           <div className="postMenuWrapper">
-            {posts.map((post) => {
-              return <BoxPost key={post.id} post={post} />;
-            })}
+            {posts.length > 0 ? (
+              posts.map((post) => {
+                return (
+                  <BoxPost
+                    key={post.id}
+                    post={post}
+                    posts={posts}
+                    setPosts={setPosts}
+                  />
+                );
+              })
+            ) : (
+              <div>Không có bài đăng</div>
+            )}
           </div>
         </div>
         <SidebarStudent />
