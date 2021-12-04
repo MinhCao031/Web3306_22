@@ -51,9 +51,7 @@ module.exports.getClassStudents = async function(req, res) {
         });
     }
 
-    console.log('Hmmm');
     if (foundClass) {
-        console.log('Found');
         const result = [];
 
         try {
@@ -61,18 +59,7 @@ module.exports.getClassStudents = async function(req, res) {
                 const foundStudent = await User.findOne({
                     username: foundClass['studentIds'][i]
                 });
-                const { name, username, level, dateOfBirth, gender, hometown, gpa, drl } = foundStudent;
-                const student = {
-                    name,
-                    username,
-                    level,
-                    dateOfBirth,
-                    gender,
-                    hometown,
-                    gpa,
-                    drl
-                };
-                result.push(student);
+                result.push(foundStudent);
             }
         } catch (err) {
             return res.status(500).json(err);
