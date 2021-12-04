@@ -8,6 +8,9 @@ import SidebarStudent from '../../HomePage/components/SidebarStudent';
 import validator from 'validator';
 function changeDateFormat(responseDate) {
   var date = new Date(responseDate);
+  var min = date.getMinutes();
+  var hour = date.getHours();
+  var second = date.getSeconds();
   var day = date.getUTCDate();
   var month = date.getUTCMonth() + 1;
   var year = date.getFullYear();
@@ -83,12 +86,18 @@ function ChangeInfoTeacher() {
       return /\d/.test(_string);
     }
   };
+  const phoneNumberValidator = (_phone) => {
+    if (/[a-zA-Z]/g.test(_phone) || _phone.length != 10) {
+      return false;
+    }
+    return true;
+  };
   const ref = useRef();
   const history = useHistory();
   const handleSubmit = (e) => {
     if (
       validator.isEmail(email) &&
-      validator.isMobilePhone(phone, 'vi-VN') &&
+      phoneNumberValidator(phone) &&
       !stringContainsNumber(name)
     ) {
       axios
@@ -116,7 +125,7 @@ function ChangeInfoTeacher() {
     if (!validator.isEmail(email)) {
       setEmailErrorMessage('Email không hợp lệ');
     }
-    if (!validator.isMobilePhone(phone, 'vi-VN')) {
+    if (!phoneNumberValidator(phone)) {
       setPhoneErrorMessage('Số điện thoại không hợp lệ');
     }
     e.preventDefault();

@@ -129,7 +129,7 @@ function ModalBtn({
               ...posts,
               {
                 createdAt: res.data.createdAt,
-                id: res.data._id,
+                id: res.data.postId,
                 owner: name,
                 ownerId: username,
                 quantityComments: res.data.commentIds.length,

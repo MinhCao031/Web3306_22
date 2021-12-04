@@ -20,7 +20,6 @@ import SaveIcon from '@mui/icons-material/Save';
 import ClearIcon from '@mui/icons-material/Clear';
 import Fab from '@mui/material/Fab';
 import SpecificFilterButton from '../Filters/SpecificFilterButton';
-
 import FileInput from '../FileInput/FileInput';
 import FileExport from '../FileExport/FileExport';
 const Table = () => {
@@ -55,63 +54,6 @@ const Table = () => {
       filter: textFilter(filterData),
     },
     {
-      dataField: 'level',
-      text: 'Chức vụ',
-      sort: true,
-      filter: textFilter(filterData),
-      editor: {
-        type: Type.SELECT,
-        options: [
-          {
-            value: 'Thành viên',
-            label: 'Thành viên',
-          },
-          {
-            value: 'Bí thư',
-            label: 'Bí thư',
-          },
-          {
-            value: 'Lớp trưởng',
-            label: 'Lớp trưởng',
-          },
-        ],
-      },
-      style: (cell, row, rowIndex, colIndex) => {
-        if (row.level === 'Thành viên') {
-          return {
-            color: '#DF9941',
-          };
-        } else if (row.level === 'Bí thư') {
-          return {
-            color: '#E4636F',
-          };
-        } else if (row.level === 'Lớp trưởng') {
-          return {
-            color: '#7FC008',
-          };
-        }
-      },
-      validator: (newValue, row, column) => {
-        if (newValue === 'Lớp trưởng') {
-          if (userList.some((user) => user.level === 'Lớp trưởng')) {
-            return {
-              valid: false,
-              message: 'Lớp trưởng đã tồn tại',
-            };
-          }
-        }
-        if (newValue === 'Bí thư') {
-          if (userList.some((user) => user.level === 'Bí thư')) {
-            return {
-              valid: false,
-              message: 'Bí thư đã tồn tại',
-            };
-          }
-        }
-        return true;
-      },
-    },
-    {
       dataField: 'dateOfBirth',
       text: 'Ngày sinh',
       sort: true,
@@ -130,39 +72,64 @@ const Table = () => {
 
         return `${year}-${month}-${day}`;
       },
-      editor: {
-        type: Type.DATE,
-      },
+      // editor: {
+      //   type: Type.DATE,
+      // },
+      editable: false,
     },
+    // {
+    //   dataField: 'gender',
+    //   text: 'Giới tính',
+    //   sort: true,
+    //   filter: textFilter(filterData),
+    //   editor: {
+    //     type: Type.SELECT,
+    //     options: [
+    //       {
+    //         value: 'Nam',
+    //         label: 'Nam',
+    //       },
+    //       {
+    //         value: 'Nữ',
+    //         label: 'Nữ',
+    //       },
+    //     ],
+    //   },
+    // },
     {
-      dataField: 'gender',
-      text: 'Giới tính',
+      dataField: 'email',
+      text: 'Email',
       sort: true,
       filter: textFilter(filterData),
-      editor: {
-        type: Type.SELECT,
-        options: [
-          {
-            value: 'Nam',
-            label: 'Nam',
-          },
-          {
-            value: 'Nữ',
-            label: 'Nữ',
-          },
-        ],
-      },
+      editable: false,
     },
     {
-      dataField: 'hometown',
-      text: 'Nơi sinh',
+      dataField: 'phoneNumber',
+      text: 'Số điện thoại',
       sort: true,
       filter: textFilter(filterData),
+      editable: false,
       validator: (newValue, row, column) => {
-        if (!newValue) {
+        if (/[a-zA-Z]/g.test(newValue) || newValue.length != 10) {
           return {
             valid: false,
-            message: 'Nơi sinh không được để trống',
+            message: 'Số điện thoại không hợp lệ',
+          };
+        }
+        return true;
+      },
+    },
+    {
+      dataField: 'parentPhoneNumber',
+      text: 'Số điện thoại PH',
+      sort: true,
+      filter: textFilter(filterData),
+      editable: false,
+      validator: (newValue, row, column) => {
+        if (/[a-zA-Z]/g.test(newValue) || newValue.length != 10) {
+          return {
+            valid: false,
+            message: 'Số điện thoại không hợp lệ',
           };
         }
         return true;
@@ -232,10 +199,6 @@ const Table = () => {
     prevPageText: '<',
     alwaysShowAllBtns: true,
     sizePerPageList: [
-      {
-        text: '5',
-        value: 5,
-      },
       {
         text: '10',
         value: 10,
@@ -307,7 +270,6 @@ const Table = () => {
       removed: deletedRows,
       edited: getUniqueListBy(editedRows, 'username'),
     };
-    console.log(JSON.stringify(req));
     axios
       .post(`http://localhost:5000/api/classes/${classId}/update`, req)
       .then((res) => {

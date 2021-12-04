@@ -48,34 +48,44 @@ export default function AddStudentButton({ data, setData }) {
       label: 'Nữ',
     },
   ];
-  const [level, setLevel] = React.useState('Thành viên');
+  // const [level, setLevel] = React.useState('Thành viên');
+  // const [gender, setGender] = React.useState('Nam');
+  // const [hometownError, setHometownError] = React.useState(false);
+  // const [hometown, setHometown] = React.useState('Hà Nội');
+
   const [name, setName] = React.useState('Nguyễn Văn A');
-  const [username, setUsername] = React.useState(10000000);
+  const [username, setUsername] = React.useState('10000000');
   const [dateOfBirth, setDateOfBirth] = React.useState('2001-02-12');
-  const [gender, setGender] = React.useState('Nam');
-  const [hometown, setHometown] = React.useState('Hà Nội');
+  const [phoneNumber, setPhoneNumber] = React.useState('0000000000');
+  const [parentPhoneNumber, setParentPhoneNumber] =
+    React.useState('0000000000');
   const [gpa, setGpa] = React.useState(0);
   const [drl, setDrl] = React.useState(0);
   const [nameError, setNameError] = React.useState(false);
   const [usernameError, setUsernameError] = React.useState(false);
-  const [hometownError, setHometownError] = React.useState(false);
+  const [usernameIsExist, setUsernameIsExist] = React.useState(false);
+  const [phoneNumberError, setPhoneNumberError] = React.useState(false);
+  const [parentPhoneNumberError, setParentPhoneNumberError] =
+    React.useState(false);
   const [gpaError, setGpaError] = React.useState(false);
   const [drlError, setDrlError] = React.useState(false);
-  const [usernameIsExist, setUsernameIsExist] = React.useState(false);
   const handleCancel = () => {
+    // setHometownError(false);
+    // setLevel('Thành viên');
+    // setGender('Nam');
+    // setHometown('Hà Nội');
+
     setOpen(false);
     setNameError(false);
     setUsernameError(false);
-    setHometownError(false);
+    setPhoneNumberError(false);
+    setParentPhoneNumberError(false);
     setGpaError(false);
     setDrlError(false);
     setUsernameIsExist(false);
-    setLevel('Thành viên');
-    setUsername(10000000);
+    setUsername('10000000');
     setName('Nguyễn Văn A');
     setDateOfBirth('2001-02-12');
-    setGender('Nam');
-    setHometown('Hà Nội');
     setGpa(0);
     setDrl(0);
   };
@@ -85,9 +95,11 @@ export default function AddStudentButton({ data, setData }) {
       return;
     }
     if (
+      // !hometownError &&
       !nameError &&
       !usernameError &&
-      !hometownError &&
+      !phoneNumberError &&
+      !parentPhoneNumberError &&
       !gpaError &&
       !drlError &&
       !usernameIsExist
@@ -96,24 +108,32 @@ export default function AddStudentButton({ data, setData }) {
       setData([
         ...data,
         {
+          // level,
+          // hometown,
+          // gender,
+
           username: parseInt(username),
           name,
-          level,
           dateOfBirth,
-          gender,
-          hometown,
+          email: `${username}@vnu.edu.vn`,
+          phoneNumber,
+          parentPhoneNumber,
           gpa: parseFloat(gpa),
           drl: parseInt(drl),
         },
       ]);
       axios
         .post(`http://localhost:5000/api/classes/${classId}/add-student`, {
+          // level,
+          // gender,
+          // hometown,
+
           username: parseInt(username),
           name,
-          level,
           dateOfBirth,
-          gender,
-          hometown,
+          email: `${username}@vnu.edu.vn`,
+          phoneNumber,
+          parentPhoneNumber,
           gpa: parseFloat(gpa),
           drl: parseInt(drl),
         })
@@ -123,16 +143,34 @@ export default function AddStudentButton({ data, setData }) {
         .catch((err) => {
           console.log(err);
         });
-      setLevel('Thành viên');
-      setUsername(10000000);
+      // setLevel('Thành viên');
+      // setGender('Nam');
+      // setHometown('Hà Nội');
+
+      setUsername('10000000');
       setName('Nguyễn Văn A');
       setDateOfBirth('2001-02-12');
-      setGender('Nam');
-      setHometown('Hà Nội');
+      setPhoneNumber('0000000000');
+      setParentPhoneNumber('0000000000');
       setGpa(0);
       setDrl(0);
     }
   };
+  // const handleLevelChange = (e) => {
+  //   setLevel(e.target.value);
+  // };
+  // const handleGenderChange = (e) => {
+  //   setGender(e.target.value);
+  // };
+  // const handleHometownChange = (e) => {
+  //   if (e.target.value === '') {
+  //     setHometownError(true);
+  //   } else {
+  //     setHometownError(false);
+  //   }
+  //   setHometown(e.target.value);
+  // };
+
   const handleNameChange = (e) => {
     if (e.target.value === '') {
       setNameError(true);
@@ -156,23 +194,28 @@ export default function AddStudentButton({ data, setData }) {
     setUsernameIsExist(false);
     setUsername(e.target.value);
   };
-  const handleLevelChange = (e) => {
-    setLevel(e.target.value);
-  };
   const handleDateOfBirthChange = (e) => {
     setDateOfBirth(e.target.value);
   };
-  const handleGenderChange = (e) => {
-    setGender(e.target.value);
-  };
-  const handleHometownChange = (e) => {
-    if (e.target.value === '') {
-      setHometownError(true);
+  const handlePhoneNumberChange = (e) => {
+    let newValue = e.target.value;
+    if (/[a-zA-Z]/g.test(newValue) || newValue.length != 10) {
+      setPhoneNumberError(true);
     } else {
-      setHometownError(false);
+      setPhoneNumberError(false);
     }
-    setHometown(e.target.value);
+    setPhoneNumber(newValue);
   };
+  const handleParentPhoneNumberChange = (e) => {
+    let newValue = e.target.value;
+    if (/[a-zA-Z]/g.test(newValue) || newValue.length != 10) {
+      setParentPhoneNumberError(true);
+    } else {
+      setParentPhoneNumberError(false);
+    }
+    setParentPhoneNumber(newValue);
+  };
+
   const handleGpaChange = (e) => {
     if (e.target.value === '') {
       setGpaError(true);
@@ -235,7 +278,7 @@ export default function AddStudentButton({ data, setData }) {
           </Stack>
           <br />
           <Stack direction="row" spacing={3}>
-            <TextField
+            {/* <TextField
               fullWidth
               variant="standard"
               select
@@ -248,7 +291,7 @@ export default function AddStudentButton({ data, setData }) {
                   {option.label}
                 </MenuItem>
               ))}
-            </TextField>
+            </TextField> */}
             <TextField
               type="date"
               fullWidth
@@ -257,10 +300,30 @@ export default function AddStudentButton({ data, setData }) {
               value={dateOfBirth}
               onChange={handleDateOfBirthChange}
             />
+            <TextField
+              fullWidth
+              required
+              label="Số điện thoại"
+              variant="standard"
+              value={phoneNumber}
+              onChange={handlePhoneNumberChange}
+              error={phoneNumberError}
+              helperText={phoneNumberError ? 'Không hợp lệ' : ''}
+            />
           </Stack>
           <br />
           <Stack direction="row" spacing={3}>
             <TextField
+              fullWidth
+              required
+              label="Số điện thoại phụ huynh"
+              variant="standard"
+              value={parentPhoneNumber}
+              onChange={handleParentPhoneNumberChange}
+              error={parentPhoneNumberError}
+              helperText={parentPhoneNumberError ? 'Không hợp lệ' : ''}
+            />
+            {/* <TextField
               fullWidth
               variant="standard"
               select
@@ -282,10 +345,7 @@ export default function AddStudentButton({ data, setData }) {
               onChange={handleHometownChange}
               error={hometownError}
               helperText={hometownError ? 'Không hợp lệ' : ''}
-            />
-          </Stack>
-          <br />
-          <Stack direction="row" spacing={3}>
+            /> */}
             <TextField
               fullWidth
               label="GPA"
@@ -295,8 +355,11 @@ export default function AddStudentButton({ data, setData }) {
               error={gpaError}
               helperText={gpaError ? 'Không hợp lệ' : ''}
             />
+          </Stack>
+          <br />
+          <Stack direction="row" spacing={3}>
             <TextField
-              fullWidth
+              //fullWidth
               label="ĐRL"
               variant="standard"
               value={drl}
