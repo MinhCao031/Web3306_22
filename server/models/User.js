@@ -59,12 +59,10 @@ const UserSchema = new Schema(
             type: Number
         },
         credit: {
-            type: String,
-            enum: [ 'Đủ', 'Thiếu' ]
+            type: String
         },
         tuition: {
-            type: String,
-            enum: [ 'Đủ', 'Thiếu' ]
+            type: String
         },
         parentPhoneNumber: {
             type: String
