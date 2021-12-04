@@ -90,19 +90,15 @@ module.exports.createPost = async function(req, res) {
 };
 
 module.exports.updatePost = async function(req, res) {
-    const foundPost = Post.findById(req.params.post_id);
+    const foundPost = await Post.findById(req.params.post_id);
 
     if (foundPost) {
-        if (foundPost.title != req.body.title) {
-            foundPost.title = req.body.title;
-        }
-        if (foundPost.content != req.body.content) {
-            foundPost.content = req.body.content;
-        }
-
-        foundPost.save().catch((err) => {
+        foundPost.title = req.body.title;
+        foundPost.content = req.body.content;
+        await foundPost.save().catch((err) => {
             return res.json(getResult(false, err));
         });
+        return res.json(getResult(true, 'OK'));
     } else {
         return res.json(getResult(false));
     }
