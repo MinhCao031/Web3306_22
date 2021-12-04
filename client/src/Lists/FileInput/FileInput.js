@@ -65,8 +65,25 @@ class FileInput extends Component {
     const classId = JSON.parse(sessionStorage.getItem('TableInfo'))
       ? JSON.parse(sessionStorage.getItem('TableInfo')).classId
       : '';
-    const inpjson = this.state.inputJson;
-    console.log(inpjson);
+    let inpjson = this.state.inputJson;
+    const cleanPhoneNumber = (phoneNumber) => {
+      if (phoneNumber[0] === "'") {
+        phoneNumber = phoneNumber.substring(1, phoneNumber.length);
+      }
+      return phoneNumber;
+    };
+    inpjson = inpjson.map((student) => {
+      return {
+        dateOfBirth: student.dateOfBirth,
+        drl: student.drl,
+        email: student.email,
+        gpa: student.gpa,
+        name: student.name,
+        username: student.username,
+        phoneNumber: cleanPhoneNumber(student.phoneNumber),
+        parentPhoneNumber: cleanPhoneNumber(student.parentPhoneNumber),
+      };
+    });
     axios
       .post(`http://localhost:5000/api/classes/${classId}/import`, {
         inpjson,

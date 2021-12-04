@@ -11,7 +11,6 @@ const Comment = ({ commentData, comments, setComments }) => {
   const name = JSON.parse(sessionStorage.getItem('user'))
     ? JSON.parse(sessionStorage.getItem('user')).name
     : '';
-  console.log(comments);
   const handleAnswer = (e) => {
     if (newComment.length > 0) {
       axios
@@ -24,10 +23,9 @@ const Comment = ({ commentData, comments, setComments }) => {
             ...comments,
             {
               content: newComment,
-              createdAt: 'Just now',
-              id: 'sadfffffsdfasdfsda',
+              createdAt: res.data.createdAt,
+              id: res.data.commentId,
               owner: name,
-              createdAt: 'Just now',
             },
           ]);
         })
@@ -39,7 +37,6 @@ const Comment = ({ commentData, comments, setComments }) => {
     }
     e.preventDefault();
   };
-  console.log(newComment);
   return (
     <div className="pop-up-post">
       <div className="post-content">

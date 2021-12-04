@@ -6,6 +6,7 @@ const CommentList = ({ comments, setComments, postId }) => {
     <>
       {comments &&
         comments.map((cmt) => {
+          console.log(cmt);
           return (
             <CommentChildren
               id={cmt.id}

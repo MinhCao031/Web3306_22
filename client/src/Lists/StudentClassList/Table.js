@@ -64,8 +64,8 @@ const Table = () => {
       text: 'Giới tính',
     },
     {
-      dataField: 'hometown',
-      text: 'Nơi sinh',
+      dataField: 'phoneNumber',
+      text: 'Số điện thoại',
     },
   ];
   const pagination = paginationFactory({
@@ -77,10 +77,6 @@ const Table = () => {
     prevPageText: '<',
     alwaysShowAllBtns: true,
     sizePerPageList: [
-      {
-        text: '5',
-        value: 5,
-      },
       {
         text: '10',
         value: 10,
@@ -108,6 +104,7 @@ const Table = () => {
         },
       })
       .then((res) => {
+        console.log(res.data);
         setData(res.data.filter((item) => !item.className));
         setClassName(res.data[res.data.length - 1].className);
       })

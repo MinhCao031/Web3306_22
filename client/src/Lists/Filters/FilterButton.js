@@ -69,17 +69,65 @@ const FilterButton = ({ setData }) => {
       });
     e.preventDefault();
   };
-
   const handleFeeClick = (e) => {
     console.log('Thiếu học phí');
+    axios
+      .post(`http://localhost:5000/api/classes/students`, null, {
+        params: {
+          class_id: classId,
+          role: 'Teacher',
+          user_id: username,
+        },
+      })
+      .then((res) => {
+        setData(res.data.filter((student) => student.tuition == true));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    e.preventDefault();
   };
 
   const handleCreditsClick = (e) => {
     console.log('Thiếu tín chỉ');
+    axios
+      .post(`http://localhost:5000/api/classes/students`, null, {
+        params: {
+          class_id: classId,
+          role: 'Teacher',
+          user_id: username,
+        },
+      })
+      .then((res) => {
+        setData(res.data.filter((student) => student.credit == false));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    e.preventDefault();
   };
 
   const handleExpelledClick = (e) => {
     console.log('Nguy cơ nghỉ học');
+    axios
+      .post(`http://localhost:5000/api/classes/students`, null, {
+        params: {
+          class_id: classId,
+          role: 'Teacher',
+          user_id: username,
+        },
+      })
+      .then((res) => {
+        setData(
+          res.data.filter((student) => {
+            return !student.credit && !student.tuition && isBad(student);
+          })
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    e.preventDefault();
   };
 
   return (

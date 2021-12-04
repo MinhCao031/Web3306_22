@@ -47,6 +47,8 @@
   height: 90px;
   padding: 10px;
   border-radius: 15px;
+  border: none;
+  background-color: #e8eaf1;
 }
 
 .chatSubmitButton {

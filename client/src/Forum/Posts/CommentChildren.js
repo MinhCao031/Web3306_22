@@ -17,7 +17,6 @@ const CommentChildren = ({
     axios
       .delete(`/comments/${postId}/${id}`)
       .then((res) => {
-        console.log(res);
         setComments(comments.filter((comment) => comment.id !== id));
       })
       .catch((err) => {
