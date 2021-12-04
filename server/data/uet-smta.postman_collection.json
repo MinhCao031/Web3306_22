@@ -282,7 +282,7 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "{{host}}:{{port}}/api/classes/:user_id/",
+							"raw": "{{host}}:{{port}}/api/classes/:user_id/show",
 							"host": [
 								"{{host}}"
 							],
@@ -291,7 +291,7 @@
 								"api",
 								"classes",
 								":user_id",
-								""
+								"show"
 							],
 							"variable": [
 								{
@@ -553,7 +553,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}:{{port}}/api/posts/:post_id",
+							"raw": "{{host}}:{{port}}/api/posts/show/:post_id",
 							"host": [
 								"{{host}}"
 							],
@@ -561,12 +561,13 @@
 							"path": [
 								"api",
 								"posts",
+								"show",
 								":post_id"
 							],
 							"variable": [
 								{
 									"key": "post_id",
-									"value": "61a4e059ad98aaf524155c27"
+									"value": "61a8a3c8d982996d1aece7e6"
 								}
 							]
 						}
@@ -607,7 +608,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}:{{port}}/api/posts/:user_id",
+							"raw": "{{host}}:{{port}}/api/posts/create/:user_id",
 							"host": [
 								"{{host}}"
 							],
@@ -615,12 +616,13 @@
 							"path": [
 								"api",
 								"posts",
+								"create",
 								":user_id"
 							],
 							"variable": [
 								{
 									"key": "user_id",
-									"value": "19021363"
+									"value": "20191000"
 								}
 							]
 						}
@@ -642,7 +644,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}:{{port}}/api/posts/:post_id",
+							"raw": "{{host}}:{{port}}/api/posts/update/:post_id",
 							"host": [
 								"{{host}}"
 							],
@@ -650,12 +652,40 @@
 							"path": [
 								"api",
 								"posts",
+								"update",
 								":post_id"
 							],
 							"variable": [
 								{
 									"key": "post_id",
-									"value": "61a4af1267f7a7acc91bb1f1"
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/posts/delete/:post_id",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"posts",
+								"delete",
+								":post_id"
+							],
+							"variable": [
+								{
+									"key": "post_id",
+									"value": ""
 								}
 							]
 						}
@@ -722,7 +752,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}:{{port}}/api/comments/:post_id/:comment_id",
+							"raw": "{{host}}:{{port}}/api/comments/:post_id/:user_id/:comment_id",
 							"host": [
 								"{{host}}"
 							],
@@ -731,6 +761,7 @@
 								"api",
 								"comments",
 								":post_id",
+								":user_id",
 								":comment_id"
 							],
 							"query": [
@@ -751,8 +782,12 @@
 									"value": "61a4e059ad98aaf524155c27"
 								},
 								{
+									"key": "user_id",
+									"value": ""
+								},
+								{
 									"key": "comment_id",
-									"value": "6JS3HuluT2tduc9ksy31z"
+									"value": ""
 								}
 							]
 						}
