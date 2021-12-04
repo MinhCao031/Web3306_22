@@ -40,6 +40,10 @@
   margin-left: auto;
   color: #000000;
   font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 350px;
 }
 
 .view-number {

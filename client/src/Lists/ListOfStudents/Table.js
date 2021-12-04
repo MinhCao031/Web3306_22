@@ -350,8 +350,7 @@ const Table = () => {
       </Stack>
       <ClassName>{classNameTable}</ClassName>
       <div className="filter">
-        <FilterButton type="good" setData={setUserList} />
-        <FilterButton type="bad" setData={setUserList} />
+        <FilterButton setData={setUserList} />
       </div>
       <BootstrapTable
         bootstrap4

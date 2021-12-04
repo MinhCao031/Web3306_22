@@ -1,7 +1,7 @@
 .messenger {
   position: relative;
   z-index: 0;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 80px);
   display: flex;
 }
 
