@@ -26,7 +26,7 @@ module.exports.createComment = async function(req, res) {
         return res.json(getResult(false, err));
     });
 
-    const foundPost = await Post.findById(req.params.post_id).catch((err) => {
+    const foundPost = await Post.findOne({ postId: req.params.post_id }).catch((err) => {
         return res.json(getResult(false, err));
     });
 
@@ -42,7 +42,7 @@ module.exports.createComment = async function(req, res) {
 };
 
 module.exports.updateComment = async function(req, res) {
-    const foundPost = await Post.findById(req.params.post_id).catch((err) => {
+    const foundPost = await Post.findOne({ postId: req.params.post_id }).catch((err) => {
         return res.json(getResult(false, err));
     });
 
