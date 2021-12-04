@@ -57,6 +57,17 @@ const UserSchema = new Schema(
         },
         drl: {
             type: Number
+        },
+        credit: {
+            type: String,
+            enum: [ 'Đủ', 'Thiếu' ]
+        },
+        tuition: {
+            type: String,
+            enum: [ 'Đủ', 'Thiếu' ]
+        },
+        parentPhoneNumber: {
+            type: String
         }
     },
     { timestamps: true }

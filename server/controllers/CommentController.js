@@ -26,7 +26,7 @@ module.exports.createComment = async function(req, res) {
         return res.json(getResult(false, err));
     });
 
-    const foundPost = await Post.findById(req.params.post_id).catch((err) => {
+    const foundPost = await Post.findOne({ postId: req.params.post_id }).catch((err) => {
         return res.json(getResult(false, err));
     });
 
@@ -42,7 +42,7 @@ module.exports.createComment = async function(req, res) {
 };
 
 module.exports.updateComment = async function(req, res) {
-    const foundPost = await Post.findById(req.params.post_id).catch((err) => {
+    const foundPost = await Post.findOne({ postId: req.params.post_id }).catch((err) => {
         return res.json(getResult(false, err));
     });
 
@@ -52,13 +52,17 @@ module.exports.updateComment = async function(req, res) {
         });
 
         if (foundComment) {
-            foundComment.content = req.body.content;
+            if (foundComment.ownerId == req.params.user_id) {
+                foundComment.content = req.body.content;
 
-            await foundComment.save().catch((err) => {
-                return res.json(getResult(false, err));
-            });
+                await foundComment.save().catch((err) => {
+                    return res.json(getResult(false, err));
+                });
 
-            return res.json(getResult(true, 'OK'));
+                return res.json(getResult(true, 'OK'));
+            } else {
+                return res.json(getResult(false, 'User is not the post owner.'));
+            }
         }
     } else {
         return res.json(true, 'No post found');

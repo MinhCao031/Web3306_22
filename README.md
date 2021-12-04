@@ -154,8 +154,9 @@ node ClassSeeds.js
 |              | create          | /api/posts/create/:user_id                         | POST    | Create new post                    |
 |              | update          | /api/posts/update/:post_id                         | GET     | Update a post                      |
 |              | delete          | /api/posts/delete/:post_id                         | GET     | Delete a post                      |
-| Messages     | show            | /api/messages/:conversationId                      | GET     | Get all messages in a conversation |
-|              | create          | /api/messages                                      | POST    | Add message                        |
+| Comment      | create          | /api/comments/:post_id/:user_id                    | POST    | Create a comment                   |
+|              | update          | /api/comments/:post_id/:user_id/:comment_id        | POST    | Update a comment                   |
+|              | delete          | /api/comments/:post_id/:comment_id                 | DELETE  | Delete a comment                   |
 
 We also have Postman collection in server/data/uet-smta.postman_collection.json file, just import this file into Postman to test out API.
 

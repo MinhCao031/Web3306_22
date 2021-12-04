@@ -60,6 +60,9 @@ const gpas = [
     4.0
 ];
 
+const credit = [ 'Đủ', 'Thiếu' ];
+const tuition = [ 'Đủ', 'Thiếu' ];
+
 function rand(upper, lower = 0) {
     return Math.floor(Math.random() * (upper - lower)) + lower;
 }
@@ -106,11 +109,14 @@ async function generateUsers(quantity, role) {
             name: genName(),
             dateOfBirth: genDateOfBirth(),
             hometown: hometown[rand(hometown.length)],
-            gender: gender[rand(2)],
+            gender: gender[rand(gender.length)],
             phoneNumber: genPhoneNumber(),
             email: genEmail(username),
             gpa: isTeacher ? 0 : gpas[rand(gpas.length)],
-            drl: isTeacher ? 0 : rand(100, 30)
+            drl: isTeacher ? 0 : rand(100, 30),
+            credit: isTeacher ? 0 : credit[rand(credit.length)],
+            tuition: isTeacher ? 0 : tuition[rand(tuition.length)],
+            parentPhoneNumber: genPhoneNumber()
         });
         isTeacher ? teacherIds.push(user.username) : studentIds.push(user.username);
 
