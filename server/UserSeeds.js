@@ -137,5 +137,5 @@ async function generateUsers(quantity, role) {
     return errorCheck;
 }
 
-generateUsers(studentQuantity, 'Student');
+// generateUsers(studentQuantity, 'Student');
 generateUsers(teacherQuantity, 'Teacher');
