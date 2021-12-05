@@ -1,6 +1,20 @@
 import React from 'react';
 import './Comment.css';
 import axios from 'axios';
+function changeDateFormat(responseDate) {
+  var date = new Date(responseDate);
+  var min = date.getMinutes();
+  var hour = date.getHours();
+  var second = date.getSeconds();
+  var day = date.getUTCDate();
+  var month = date.getUTCMonth() + 1;
+  var year = date.getFullYear();
+
+  month = (month > 9 ? '' : '0') + month;
+  day = (day > 9 ? '' : '0') + day;
+
+  return `${year}-${month}-${day} ${hour}:${min}:${second}`;
+}
 const CommentChildren = ({
   id,
   owner,
@@ -29,7 +43,7 @@ const CommentChildren = ({
       <div className="comment-header">
         <p className="comment-author">{owner}</p>
         <div className="separator"></div>
-        <p className="time-ago">{createdAt}</p>
+        <p className="time-ago">{changeDateFormat(createdAt)}</p>
         {role === 'Teacher' && (
           <span
             style={{ textDecoration: 'underline', cursor: 'pointer' }}
