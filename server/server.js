@@ -23,6 +23,7 @@ const conversationRoute = require('./routes/conversations');
 const messageRoute = require('./routes/messages');
 const postRoute = require('./routes/posts');
 const commentRoute = require('./routes/comments');
+const notificationRoute = require('./routes/notifications');
 
 const { db: { host, port, name } } = config;
 const dbUrl = `mongodb://${host}:${port}/${name}`;
@@ -75,6 +76,7 @@ app.use('/api/conversations', conversationRoute);
 app.use('/api/messages', messageRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/comments', commentRoute);
+app.use('/api/notifications', notificationRoute);
 
 app.listen(config.app.port, () => {
     console.log(`Server connected on port ${config.app.port}`);
