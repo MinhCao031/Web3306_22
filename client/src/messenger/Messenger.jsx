@@ -108,9 +108,8 @@ export default function Messenger() {
 
   return (
     <>
-    <NavigationBar />
-    <div >
-    <div className="messenger">
+      <NavigationBar />
+      <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             {conversations.map((c) => (
@@ -139,18 +138,17 @@ export default function Messenger() {
                     value={newMessage}
                   ></textarea>
                   <button className="chatSubmitButton" onClick={handleSubmit}>
-                    Send
+                    Gửi
                   </button>
                 </div>
               </>
             ) : (
               <span className="noConversationText">
-                Open a conversation to start a chat.
+                Hãy bắt đầu một cuộc hội thoại!
               </span>
             )}
           </div>
         </div>
-      </div>
       </div>
       {role === 'Teacher' ? <Sidebar/> : <SidebarStudent/>}
     </>

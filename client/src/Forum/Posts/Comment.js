@@ -1,5 +1,4 @@
 import React, { PureComponent, useState } from 'react';
-import OnlyCmt from './OnlyCmt';
 import './Comment.css';
 import axios from 'axios';
 import CommentList from './CommentList';

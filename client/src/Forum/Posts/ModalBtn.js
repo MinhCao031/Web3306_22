@@ -39,15 +39,6 @@ function editBtn({ handleClickOpen }) {
   );
 }
 
-//codeTT
-function deleteBtn({ handleClickOpen }) {
-  return (
-    <IconButton color="default" aria-label="delete" onClick={handleClickOpen}>
-      <DeleteIcon />
-    </IconButton>
-  );
-}
-
 function ModalBtn({
   btnName,
   title,
