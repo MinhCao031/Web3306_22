@@ -41,7 +41,21 @@ const style = {
 
 const handleClick = (event) => {
     console.log("delete");
-}   
+}  
+function changeDateFormat(responseDate) {
+  var date = new Date(responseDate);
+  var min = date.getMinutes();
+  var hour = date.getHours();
+  var second = date.getSeconds();
+  var day = date.getUTCDate();
+  var month = date.getUTCMonth() + 1;
+  var year = date.getFullYear();
+
+  month = (month > 9 ? '' : '0') + month;
+  day = (day > 9 ? '' : '0') + day;
+
+  return `${year}-${month}-${day} ${hour}:${min}:${second}`;
+}
 export default function BoxPost({post, posts, setPosts}) {
   const [open, setOpen] = React.useState(false);
   const [headingText, setHeadingText] = useState('');
@@ -98,7 +112,7 @@ export default function BoxPost({post, posts, setPosts}) {
             <span className ="view-number">{post.quantityComments}</span>
             <div className = "postsitive-name"> 
                 <span className = "name-text">{post.owner}</span>
-                <span className="time">. {post.createdAt}</span>
+                <span className="time">. {changeDateFormat(post.createdAt)}</span>
             </div>
             <div >
                 <div className = "heading-text">{post.title}</div>

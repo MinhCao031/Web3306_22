@@ -3,6 +3,20 @@ import OnlyCmt from './OnlyCmt';
 import './Comment.css';
 import axios from 'axios';
 import CommentList from './CommentList';
+function changeDateFormat(responseDate) {
+  var date = new Date(responseDate);
+  var min = date.getMinutes();
+  var hour = date.getHours();
+  var second = date.getSeconds();
+  var day = date.getUTCDate();
+  var month = date.getUTCMonth() + 1;
+  var year = date.getFullYear();
+
+  month = (month > 9 ? '' : '0') + month;
+  day = (day > 9 ? '' : '0') + day;
+
+  return `${year}-${month}-${day} ${hour}:${min}:${second}`;
+}
 const Comment = ({ commentData, comments, setComments }) => {
   const [newComment, setNewComment] = useState('');
   const username = JSON.parse(sessionStorage.getItem('user'))
@@ -32,8 +46,6 @@ const Comment = ({ commentData, comments, setComments }) => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
-      alert('Bạn chưa nhập nội dung');
     }
     e.preventDefault();
   };
@@ -43,7 +55,9 @@ const Comment = ({ commentData, comments, setComments }) => {
         <div className="post-author-and-time">
           <p className="post-of-sb">{commentData.owner}</p>
           <div className="separator"></div>
-          <p className="time-taken">. {commentData.createdAt}</p>
+          <p className="time-taken">
+            . {changeDateFormat(commentData.createdAt)}
+          </p>
         </div>
         <div className="post-header">
           <p>Tiêu đề: </p>

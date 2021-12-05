@@ -62,6 +62,8 @@ function ModalBtn({
   post,
 }) {
   const [open, setOpen] = React.useState(false);
+  const [addErrorMessage, setAddErrorMessage] = useState(false);
+  const [editErrorMessage, setEditErrorMessage] = useState(false);
   const username = JSON.parse(sessionStorage.getItem('user'))
     ? JSON.parse(sessionStorage.getItem('user')).username
     : '';
@@ -93,6 +95,7 @@ function ModalBtn({
     if (!edit) {
       setHeadingText('');
       setContentText('');
+      setAddErrorMessage(false);
     } else {
       axios
         .get(`/posts/show/${post.id}`)
@@ -103,21 +106,25 @@ function ModalBtn({
           });
         })
         .catch((err) => console.log(err));
+      setEditErrorMessage(false);
     }
   };
   const handleHeadingChange = (e) => {
+    setAddErrorMessage(false);
     setHeadingText(e.target.value);
   };
   const handleContentChange = (e) => {
+    setAddErrorMessage(false);
     setContentText(e.target.value);
   };
   const handleTextEditChange = (e) => {
+    setEditErrorMessage(false);
     setTextEdit({ ...textEdit, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     if (!edit) {
       if (headingText === '' || contentText === '') {
-        alert('Vui lòng điền đầy đủ thông tin');
+        setAddErrorMessage(true);
       } else {
         axios
           .post(`http://localhost:5000/api/posts/create/${username}`, {
@@ -144,7 +151,7 @@ function ModalBtn({
       }
     } else {
       if (textEdit.headingText === '' || textEdit.contentText === '') {
-        alert('Vui lòng điền đầy đủ thông tin');
+        setEditErrorMessage(true);
       } else {
         axios
           .post(`/posts/update/${post.id}`, {
@@ -249,6 +256,16 @@ function ModalBtn({
           )}
 
           <div className="btn-forum">
+            {edit && editErrorMessage && (
+              <p style={{ margin: '0px 70px 0px 0px', color: 'red' }}>
+                Vui lòng điền đầy đủ thông tin
+              </p>
+            )}
+            {!edit && addErrorMessage && (
+              <p style={{ margin: '0px 70px 0px 0px', color: 'red' }}>
+                Vui lòng điền đầy đủ thông tin
+              </p>
+            )}
             <Button variant="contained" color="error" onClick={handleClose}>
               Hủy
             </Button>
