@@ -138,6 +138,14 @@ function ModalBtn({
           .catch((err) => {
             console.log(err);
           });
+        axios
+          .post(`/notifications/create/${username}?type=bài đăng`)
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         handleClose();
       }
     } else {
