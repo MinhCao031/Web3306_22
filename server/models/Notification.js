@@ -8,6 +8,9 @@ const NotificationSchema = new mongoose.Schema(
         ownerId: {
             type: String
         },
+        teacherId: {
+            type: String
+        },
         content: {
             type: String
         }
