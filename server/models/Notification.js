@@ -1,21 +1,21 @@
 const mongoose = require('mongoose');
 
 const NotificationSchema = new mongoose.Schema(
-    {
-        notificationId: {
-            type: String
-        },
-        ownerId: {
-            type: String
-        },
-        teacherId: {
-            type: String
-        },
-        content: {
-            type: String
-        }
+  {
+    notificationId: {
+      type: String,
     },
-    { timestamps: true }
+    ownerId: {
+      type: String,
+    },
+    teacherId: {
+      type: String,
+    },
+    content: {
+      type: String,
+    },
+  },
+  { timestamps: true }
 );
 
 const Notification = mongoose.model('Notification', NotificationSchema);

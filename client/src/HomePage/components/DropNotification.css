@@ -1,6 +1,6 @@
 .drop-noti {
   z-index: 2;
-  width: 500px;
+  width: 310px;
   position: absolute;
   right: 150px;
   top: 55px;
@@ -11,11 +11,13 @@
 }
 
 .noti-header {
-  height:60px;
+  height: 60px;
   color: #ebebeb;
   background-color: #a0a0a0;
   cursor: default;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .notification {
@@ -23,10 +25,12 @@
   color: #000;
   display: flex;
   font-size: 30px;
-  justify-content:flex-start;
+  justify-content: flex-start;
   padding: 20px;
   width: 260px;
   height: 60px;
+  justify-content: center;
+  align-items: center;
 }
 
 .set-all-read {
@@ -34,13 +38,13 @@
   color: #101055;
   display: flex;
   font-size: 18px;
-  justify-content:flex-end;
+  justify-content: flex-end;
   padding: 10px;
   height: 60px;
 }
 
 .set-all-read:hover {
-  cursor:pointer;
+  cursor: pointer;
 }
 
 /* .action-noti .time-noti {
@@ -56,12 +60,15 @@
 }
 
 .dropnoti-link-unseen {
-  height: 100px;
+  height: 70px;
   width: 100%;
   font-weight: bolder;
   padding: 0px;
-  display: flex;  
+  display: flex;
   background-color: #d0d0d0;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid white;
 }
 
 .dropnoti-link-seen a {
