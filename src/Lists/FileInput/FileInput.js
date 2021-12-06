@@ -141,7 +141,7 @@ class FileInput extends Component {
             size="lg"
             style={{ marginRight: '10px' }}
           />
-          Upload file
+          Upload File
         </label>
         <input
           id="file-upload"

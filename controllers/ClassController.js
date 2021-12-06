@@ -222,6 +222,7 @@ module.exports.addStudent = async function(req, res) {
             password: req.body.username,
             level: req.body.level,
             name: req.body.name,
+            role: "Student",
             dateOfBirth: req.body.dateOfBirth,
             gender: req.body.gender,
             hometown: req.body.hometown,
