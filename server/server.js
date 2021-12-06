@@ -1,19 +1,16 @@
+const MongoStore = require('connect-mongo');
+const mongoose = require('mongoose');
+
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const cors = require('cors');
 const logger = require('morgan');
-const http = require('http');
-const { Server } = require('socket.io');
-
-const MongoStore = require('connect-mongo');
-const mongoose = require('mongoose');
-
-const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
-
-const registerNotificationHandler = require('./notification/NotificationHandler');
+const io = require('socket.io')(8900, {
+    cors: {
+        origin: 'http://localhost:3000'
+    }
+});
 
 const config = require('./config/config');
 const authRoute = require('./routes/auth');
@@ -24,6 +21,8 @@ const messageRoute = require('./routes/messages');
 const postRoute = require('./routes/posts');
 const commentRoute = require('./routes/comments');
 const notificationRoute = require('./routes/notifications');
+
+const MessageHandler = require('./socket/MessageHandler');
 
 const { db: { host, port, name } } = config;
 const dbUrl = `mongodb://${host}:${port}/${name}`;
@@ -42,10 +41,6 @@ const sessionOptions = {
     resave: false,
     saveUninitialized: true
 };
-const onConnection = (socket) => {
-    console.log('New socket connected');
-    registerNotificationHandler(io, socket);
-};
 
 mongoose
     .connect(dbUrl, dbOptions)
@@ -56,9 +51,7 @@ mongoose
         console.log(err);
     });
 
-io.on('connection', (socket) => {
-    console.log('Socket connected');
-});
+const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -80,4 +73,8 @@ app.use('/api/notifications', notificationRoute);
 
 app.listen(config.app.port, () => {
     console.log(`Server connected on port ${config.app.port}`);
+});
+
+io.on('connection', (socket) => {
+    MessageHandler(io, socket);
 });
