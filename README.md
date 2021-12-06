@@ -53,6 +53,7 @@ git clone https://github.com/MinhCao031/Web3306_22.git
 ```
 - Start front-end and back-end dev server:
 ``` bash
+npm install
 npm start
 npm run server
 ```
