@@ -90,7 +90,7 @@ node ClassSeeds.js
 }
 ```
 
-**Conversations**
+**Messages**
 ```json
 { 
 	"_id" : ObjectId("61a89b33bae553ad23527369"),
@@ -157,6 +157,8 @@ node ClassSeeds.js
 | Comment      | create          | /api/comments/:post_id/:user_id                    | POST    | Create a comment                   |
 |              | update          | /api/comments/:post_id/:user_id/:comment_id        | POST    | Update a comment                   |
 |              | delete          | /api/comments/:post_id/:comment_id                 | DELETE  | Delete a comment                   |
+| Notifcation  | create          | /api/notifications/create/:user_id                 | POST    | Create a notificatio               |
+|              | show            | /api/notifications/show/:user_id                   | GET     | Get all notification               |
 
 We also have Postman collection in server/data/uet-smta.postman_collection.json file, just import this file into Postman to test out API.
 
