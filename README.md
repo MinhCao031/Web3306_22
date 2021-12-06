@@ -29,20 +29,20 @@ For Linux:
 
 ## Create testing data
 
-No application can run without data, so the next step, make sure your current directory is /data/ directory, then copy and paste these below commands to create testing data.
+No application can run without data, so the next step, make sure your current directory is the project root directory, then copy and paste these below commands to create testing data.
 
 **Users data**
 
 ```bash
 # Create testing user accounts in mongoDB.
-node UserSeeds.js
+node data/UserSeeds.js
 ```
 
 **Classes data**
 
 ```bash
 # Import testing classes information to mongoDB.
-node ClassSeeds.js
+node data/ClassSeeds.js
 ```
 
 ## How to run this application?
