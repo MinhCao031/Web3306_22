@@ -1,6 +1,6 @@
 .drop-noti {
   z-index: 2;
-  width: 310px;
+  width: 315px;
   position: absolute;
   right: 150px;
   top: 55px;
@@ -12,8 +12,8 @@
 
 .noti-header {
   height: 60px;
-  color: #ebebeb;
-  background-color: #a0a0a0;
+  color: white;
+  background-color: #404e68;
   cursor: default;
   display: flex;
   justify-content: center;
@@ -22,10 +22,10 @@
 
 .notification {
   align-items: center;
-  color: #000;
+  color: white;
   display: flex;
   font-size: 30px;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 20px;
   width: 260px;
   height: 60px;
@@ -65,7 +65,7 @@
   font-weight: bolder;
   padding: 0px;
   display: flex;
-  background-color: #d0d0d0;
+  background-color: #e4eaec;
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid white;
@@ -79,7 +79,7 @@
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 0px;
   /* margin-right: 20px; */
 }
@@ -92,12 +92,12 @@
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 0px;
   /* margin-right: 20px; */
 }
 
-.dropnoti-link-seen span {
+/* .dropnoti-link-seen span {
   width: 90%;
   display: flex;
   justify-content: flex-start;
@@ -107,11 +107,11 @@
   width: 90%;
   display: flex;
   justify-content: flex-start;
-}
+} */
 
-.old-noti {
+/* .old-noti {
   display: none;
-}
+} */
 
 /* .dropnoti-link a {
   text-decoration: none;
