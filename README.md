@@ -27,24 +27,6 @@ For Linux:
 
 - Just need to follow the instructions in the [documentation page](https://docs.mongodb.com/manual/administration/install-on-linux/) for your Linux distro.
 
-## Create testing data
-
-No application can run without data, so the next step, make sure your current directory is the project root directory, then copy and paste these below commands to create testing data.
-
-**Users data**
-
-```bash
-# Create testing user accounts in mongoDB.
-node data/UserSeeds.js
-```
-
-**Classes data**
-
-```bash
-# Import testing classes information to mongoDB.
-node data/ClassSeeds.js
-```
-
 ## How to run this application?
 
 - Clone this repository:
@@ -62,3 +44,21 @@ And you are ready to go!
 
 By default, frontend server runs on http://locahost:3000 and backend server runs on http://localhost:5000.
 Enjoy!
+
+## Create testing data
+
+No application can run without data, so the next step, make sure your current directory is the project root directory, then copy and paste these below commands to create testing data.
+
+**Users data**
+
+```bash
+# Create testing user accounts in mongoDB.
+node data/UserSeeds.js
+```
+
+**Classes data**
+
+```bash
+# Import testing classes information to mongoDB.
+node data/ClassSeeds.js
+```
