@@ -64,10 +64,23 @@ const BarChart = ({ selectedClassID }) => {
       },
     ],
   };
+  const options = {
+    scale: {
+      ticks: {
+        precision: 0,
+      },
+    },
+  };
   return (
     <>
       <h1 style={{ textAlign: 'center', fontSize: '50px' }}>GPA</h1>
-      <Bar data={data} height={50} gpaList={gpaList} setGpaList={setGpaList} />
+      <Bar
+        data={data}
+        height={50}
+        options={options}
+        gpaList={gpaList}
+        setGpaList={setGpaList}
+      />
     </>
   );
 };
