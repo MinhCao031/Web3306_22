@@ -68,7 +68,7 @@ function ModalBtn({
   useEffect(() => {
     if (edit) {
       axios
-        .get(`/posts/show/${post.id}`)
+        .get(`/api/posts/show/${post.id}`)
         .then((res) => {
           setTextEdit({
             headingText: res.data.title,
@@ -89,7 +89,7 @@ function ModalBtn({
       setAddErrorMessage(false);
     } else {
       axios
-        .get(`/posts/show/${post.id}`)
+        .get(`/api/posts/show/${post.id}`)
         .then((res) => {
           setTextEdit({
             headingText: res.data.title,
@@ -118,7 +118,7 @@ function ModalBtn({
         setAddErrorMessage(true);
       } else {
         axios
-          .post(`http://localhost:5000/api/posts/create/${username}`, {
+          .post(`/api/posts/create/${username}`, {
             title: headingText,
             content: contentText,
           })
@@ -139,7 +139,7 @@ function ModalBtn({
             console.log(err);
           });
         axios
-          .post(`/notifications/create/${username}?type=bài đăng`)
+          .post(`/api/notifications/create/${username}?type=bài đăng`)
           .then((res) => {
             console.log(res.data);
           })
@@ -153,7 +153,7 @@ function ModalBtn({
         setEditErrorMessage(true);
       } else {
         axios
-          .post(`/posts/update/${post.id}`, {
+          .post(`/api/posts/update/${post.id}`, {
             title: textEdit.headingText,
             content: textEdit.contentText,
           })

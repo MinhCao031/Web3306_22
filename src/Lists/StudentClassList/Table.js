@@ -97,7 +97,7 @@ const Table = () => {
   });
   useEffect(() => {
     axios
-      .post(`http://localhost:5000/api/classes/students`, null, {
+      .post(`/api/classes/students`, null, {
         params: {
           role: 'Student',
           user_id: username,

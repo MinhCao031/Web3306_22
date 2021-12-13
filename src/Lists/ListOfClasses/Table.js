@@ -23,7 +23,7 @@ const Table = () => {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/classes/${username}/show`)
+      .get(`/api/classes/${username}/show`)
       .then((res) => {
         setData(res.data);
       })
