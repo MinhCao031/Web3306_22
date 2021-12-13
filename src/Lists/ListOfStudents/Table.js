@@ -251,7 +251,7 @@ const Table = () => {
     : 'Loading...';
   useEffect(() => {
     axios
-      .post(`http://localhost:5000/api/classes/students`, null, {
+      .post(`/api/classes/students`, null, {
         params: {
           class_id: classId,
           role: 'Teacher',
@@ -271,7 +271,7 @@ const Table = () => {
       edited: getUniqueListBy(editedRows, 'username'),
     };
     axios
-      .post(`http://localhost:5000/api/classes/${classId}/update`, req)
+      .post(`/api/classes/${classId}/update`, req)
       .then((res) => {
         console.log(res);
       })
@@ -286,7 +286,7 @@ const Table = () => {
   };
   const handleCancelAction = (e) => {
     axios
-      .post(`http://localhost:5000/api/classes/students`, null, {
+      .post(`/api/classes/students`, null, {
         params: {
           class_id: classId,
           role: 'Teacher',

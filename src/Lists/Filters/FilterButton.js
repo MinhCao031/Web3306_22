@@ -29,7 +29,7 @@ const FilterButton = ({ setData }) => {
 
   const handleBadClick = (e) => {
     axios
-      .post(`http://localhost:5000/api/classes/students`, null, {
+      .post(`/api/classes/students`, null, {
         params: {
           class_id: classId,
           role: 'Teacher',
@@ -54,7 +54,7 @@ const FilterButton = ({ setData }) => {
 
   const handleGoodClick = (e) => {
     axios
-      .post(`http://localhost:5000/api/classes/students`, null, {
+      .post(`/api/classes/students`, null, {
         params: {
           class_id: classId,
           role: 'Teacher',
@@ -72,7 +72,7 @@ const FilterButton = ({ setData }) => {
   const handleFeeClick = (e) => {
     console.log('Thiếu học phí');
     axios
-      .post(`http://localhost:5000/api/classes/students`, null, {
+      .post(`/api/classes/students`, null, {
         params: {
           class_id: classId,
           role: 'Teacher',
@@ -91,7 +91,7 @@ const FilterButton = ({ setData }) => {
   const handleCreditsClick = (e) => {
     console.log('Thiếu tín chỉ');
     axios
-      .post(`http://localhost:5000/api/classes/students`, null, {
+      .post(`/api/classes/students`, null, {
         params: {
           class_id: classId,
           role: 'Teacher',
@@ -110,7 +110,7 @@ const FilterButton = ({ setData }) => {
   const handleExpelledClick = (e) => {
     console.log('Nguy cơ nghỉ học');
     axios
-      .post(`http://localhost:5000/api/classes/students`, null, {
+      .post(`/api/classes/students`, null, {
         params: {
           class_id: classId,
           role: 'Teacher',

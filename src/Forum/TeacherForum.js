@@ -11,7 +11,7 @@ const TeacherForum = () => {
   const [contentText, setContentText] = useState('');
   useEffect(async () => {
     await axios
-      .get('http://localhost:5000/api/posts')
+      .get('/api/posts')
       .then((res) => {
         if (res.data.message !== 'No posts found') {
           setPosts(res.data);

@@ -67,7 +67,7 @@ export default function BoxPost({post, posts, setPosts}) {
     : '';
     const handleOpen = () => {
         setOpen(true)
-        axios.get(`/posts/show/${post.id}`)
+        axios.get(`/api/posts/show/${post.id}`)
         .then(res => {
             setCommentData(res.data);
             setComments(res.data.comments);
@@ -78,7 +78,7 @@ export default function BoxPost({post, posts, setPosts}) {
     };
     const handleClose = () => setOpen(false);
     const handleDelete = () => {
-        axios.delete(`/posts/delete/${post.id}`)
+        axios.delete(`/api/posts/delete/${post.id}`)
         .then((res) => {
             if(posts.length > 0){
                 setPosts(posts.filter(p => p.id !== post.id));

@@ -42,7 +42,7 @@ npm run server
 
 And you are ready to go!
 
-By default, frontend server runs on http://locahost:3000 and backend server runs on http://localhost:5000.
+By default, frontend server runs on http://locahost:3000 and backend server runs on .
 Enjoy!
 
 ## Create testing data
