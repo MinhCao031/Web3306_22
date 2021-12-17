@@ -394,7 +394,7 @@ const Container = styled.div`
         border-radius: 5px;
     }
     .Field1 {
-        width: 900px;
+        width: 950px;
         height: 140px;
     }
     .Field2 {
